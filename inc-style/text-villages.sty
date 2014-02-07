@@ -1,0 +1,73 @@
+<Style name="text-villages">
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom11;
+		<Filter>([place] = 'village') and ([population] &gt; 1000)</Filter>
+		<PointSymbolizer file="symbols-topo/small_town.png"/>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dx="4" dy="-3">[name]</TextSymbolizer>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="1" placement="point" dx="4" dy="-3">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>([place] = 'village') and not ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="1" placement="point" dx="4" dy="-3">[name]</TextSymbolizer>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="13" fill="black" halo-radius="1" placement="point" dx="20" dy="-5">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and not ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="12" opacity="0.9" fill="black" halo-radius="1" placement="point" dx="10" dy="-4">[name]</TextSymbolizer>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="15" fill="black" halo-radius="1" placement="point" dx="50" dy="-7">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and not ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="13" fill="black" halo-radius="1" placement="point" dx="25" dy="-7">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([place] = 'hamlet')</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="1" placement="point" dx="13" dy="-7">[name]</TextSymbolizer>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="17" fill="black" halo-radius="1" character-spacing="5" placement="point">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>(([place] = 'village') or ([place] = 'suburb')) and not ([population] &gt; 1000)</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="15" fill="black" halo-radius="1" character-spacing="5" placement="point">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([place] = 'hamlet')</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" dx="20" placement="point">[name]</TextSymbolizer>
+	</Rule>
+</Style>

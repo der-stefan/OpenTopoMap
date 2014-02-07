@@ -1,0 +1,17 @@
+<Style name="waterway-polygons-fill">
+<!-- riverbanks -->
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom11;
+		<Filter>([waterway] = 'riverbank')</Filter>
+		<PolygonSymbolizer fill="#a9ece9" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom15;
+		<Filter>([waterway] = 'riverbank')</Filter>
+		<PolygonSymbolizer fill="#a9ece9" />
+		<LineSymbolizer stroke="#a9ece9" stroke-width="0.7" /> <!-- avoid riverbank polygons -->
+	</Rule>
+
+</Style>
