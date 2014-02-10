@@ -1,0 +1,219 @@
+<html> 
+  <head> 
+	  <title>OpenTopoMap - Topographische Karten aus OpenStreetMap</title>
+	  <meta name="description" content="direkt zur Karte...">
+	  <link rel="stylesheet" href="leaflet/leaflet.css" />
+	  <!--[if lte IE 8]><link rel="stylesheet" href="leaflet/leaflet.ie.css" /><![endif]-->
+	<link rel="stylesheet" href="leaflet/L.Control.Locate.css" />
+	<link rel="stylesheet" href="leaflet/leaflet-search.css" />
+	<!--<link rel="stylesheet" href="leaflet/font-awesome.min.css" />-->
+	<script src="leaflet/leaflet.js"></script>
+	<script src="leaflet/L.Control.Locate.js"></script>
+	<script src="leaflet/leaflet-search.js"></script>
+	<!--<script src="leaflet/leaflet.filelayer.js"></script>
+	<script src="leaflet/togeojson.js"></script>-->
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
+  </head>
+  <body style="margin:0px;" onhashchange="set_view()" onbeforeunload="delete_permahash()" >
+	<div style="display:none;position:absolute;left:10%;z-index:100;border: 1px solid black;border-radius:3px;background-color:#ffeebb;padding:2px;margin-top:2px;font-size:12"><a href="https://opentopomap.org">https-verschl&uuml;sselte Verbindung verwenden...</a></div>
+
+	<div id="map" style="width: 100%; height: 100%"></div>
+	<script>
+		var lock=false;
+		var permahash=false;
+		var next=false;
+		var marker=null;
+
+		function cookie_read(cookiename) {
+			var cookies=document.cookie.split("; ");
+			for(var i=0;i<cookies.length;i++) {
+				var a=cookies[i].split("=");
+				if(a[0] == cookiename) {
+					a.shift();
+					return a.join("=");
+				}
+			}
+			return null;
+		}
+
+		function delete_permahash(){
+			document.cookie="permahash=;";
+		}
+
+		/* overloaded function to set browser hash and cookie 
+		*	no parameter: normal mode
+		*	with parameter: update marker hash
+		*/
+		function set_hash(marker_position) {
+			var digits=Math.ceil(2*Math.log(map.getZoom())-1);
+			var position=map.getZoom()+"/"+map.getCenter().lat.toFixed(digits)+"/"+map.getCenter().lng.toFixed(digits);
+			var e=new Date;e.setYear(e.getFullYear()+10);
+			document.cookie="map="+position+" ;expires="+e;
+			if(marker==null) {
+				if(next==true){
+					window.location.hash="map="+position;
+					next=false;
+				} else {
+					window.location.replace('#map='+position);
+				}
+				if((permahash==true) || (cookie_read("permahash")==window.location.hash.substr(1))){
+					next=true;
+					permahash=false;
+					document.cookie="permahash="+position;
+				}
+			} else if(marker_position!=null) {
+				window.location.hash="marker="+map.getZoom()+"/"+marker_position.lat.toFixed(digits)+"/"+marker_position.lng.toFixed(digits);
+			}
+		}
+
+		function set_view() {
+			if(lock==false) {
+				var hash=window.location.hash;
+				if((hash.contains("map")) && (hash.split("/").length-1 == 2)) {
+					var position = hash.substr(1).split("map=")[1].split("/");
+					if(isValid(position)) {
+						map.setView(new L.LatLng(position[1], position[2]), position[0]);
+					}
+					if(marker!=null) {
+						map.removeLayer(marker);
+						marker=null;
+					}
+				} else if((hash.contains("marker")) && (hash.split("/").length-1 == 2)) {
+					var position = hash.substr(1).split("marker=")[1].split("/");
+					if((marker==null) && (isValid(position))){
+						map.setView(new L.LatLng(position[1], position[2]), position[0]);
+						marker = L.marker([position[1], position[2]],{draggable:true}).addTo(map).on('dragend', function(event){set_hash(event.target.getLatLng())});
+					} else if((marker!=null) && (isValid(position))) {
+						marker.setLatLng(new L.LatLng(position[1], position[2]));
+					}
+
+				
+				} else if(cookie_read("map")) {
+					var position = cookie_read("map").split("/");
+					map.setView(new L.LatLng(position[1], position[2]), position[0]);
+				} else {
+					map.setView(new L.LatLng(49, 9), 5);
+				}
+				set_hash();
+			}
+			lock=false;
+		}
+
+		/* check if coordinates are valid numbers; if not zoom to Europe default */
+		function isValid(p) {
+			if(isNaN(p[0]) || (parseFloat(p[0]) != parseInt(p[0])) || isNaN(p[1]) || isNaN(p[2])) {
+				window.location.replace("");
+				map.setView(new L.LatLng(49, 9), 5);
+				alert("Ungueltige Koordinaten");
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		map = new L.Map('map');
+		map.attributionControl.setPrefix(false);
+	map.dragging.enable();
+	map.touchZoom.enable();
+	map.doubleClickZoom.enable();
+	map.scrollWheelZoom.enable();
+	map.addControl( new L.Control.Search({
+		url: 'http://nominatim.openstreetmap.org/search?format=json&accept-language=de-DE&q={s}',
+		jsonpParam: 'json_callback',
+		propertyName: 'display_name',
+		propertyLoc: ['lat','lon'],
+		markerLocation: true,
+		autoType: false,
+		autoCollapse: true,
+		minLength: 2,
+		zoom:10,
+		text: 'Suchen...',
+		textCancel: 'Abbrechen',
+		textErr: 'Kein Ergebnis gefunden'
+	}) );
+
+	L.control.locate({
+		follow: true,
+		title: "Position bestimmen",
+		popupText: ["Sie befinden sich innerhalb "," von diesem Punkt"]
+	}).addTo(map);
+
+	/*var style = {color:'red', opacity: 1.0, fillOpacity: 1.0, weight: 2, clickable: false};
+	L.Control.FileLayerLoad.LABEL = '<i class="icon-folder-open"></i>';
+	L.Control.fileLayerLoad({
+		fitBounds: true,
+		layerOptions: {style: style,
+		               pointToLayer: function (data, latlng) {return L.circleMarker(latlng, {style: style});
+					}},
+	}).addTo(map);*/
+
+	var topoUrl = 'http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
+
+	if(window.location.protocol == "https:") {
+		topoUrl = "https://opentopomap.org/{z}/{x}/{y}.png"; //tiles are only for https directyl on opentopomap.org
+	}
+	
+
+	var topoAttribution = 'Kartendaten: <a href="https://openstreetmap.org">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: <a href="https://opentopomap.org">OpenTopoMap</a>, &copy; <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>',
+		topo = new L.TileLayer(topoUrl, {minZoom: 5, maxZoom: 15,  attribution: topoAttribution});
+	var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		osmAttribution = 'Kartendaten &copy; 2012 OpenStreetMap'
+		osm = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttribution});
+
+	var lonviaHikingUrl = 'http://tile.lonvia.de/hiking/{z}/{x}/{y}.png',
+		lonviaHikingAttribution = 'Wanderwege &copy; Lonvia',
+		lonviaHiking = new L.TileLayer(lonviaHikingUrl, {maxZoom: 15, attribution: lonviaHikingAttribution, opacity: 0.7});
+	
+	var lonviaCyclingUrl = 'http://tile.lonvia.de/cycling/{z}/{x}/{y}.png',
+		lonviaCyclingAttribution = 'Wanderwege &copy; Lonvia',
+		lonviaCycling = new L.TileLayer(lonviaCyclingUrl, {maxZoom: 15, attribution: lonviaCyclingAttribution, opacity: 0.7});
+
+		map.addLayer(topo);
+
+		if(window.location.hash) {
+			document.cookie="permahash="+window.location.hash.substr(1);
+			permahash=true;
+		}
+		set_view();
+
+    	map.addControl(new L.Control.Scale({width: 200, position: 'bottomleft', imperial: false}));
+
+		var baseMaps = {
+			"OpenTopoMap": topo,
+			"OpenStreetMap": osm
+		}
+		var overlayMaps = {
+			"Lonvia Wanderrouten": lonviaHiking,
+			"Lonvia Radrouten": lonviaCycling
+		}
+
+		var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+		map.addControl(layersControl);
+
+		map.on('moveend', function(e) {
+			lock=true;
+			set_hash();
+		});
+
+		map.on('baselayerchange', function(e) {
+			if((e.name=="OpenTopoMap")&&(map.getZoom()>15)) {
+				map.setZoom(15);
+			}
+			/* *.tile.openstreetmap.org is now encrypted by default, and has a valid signature
+			if((e.name!="OpenTopoMap")&&(window.location.protocol == "https:"))  {
+				alert(e.name+" is not encrypted via https! Your current map position can easily be determined by anyone listening.");
+			}*/
+		});
+
+		map.on('overlayadd', function(e) {
+			if(window.location.protocol == "https:") {
+				alert(e.name+" is not encrypted via https! Your current map position can easily be determined by anyone listening.");
+			}
+		});
+
+	//map.locate({setView: true, maxZoom: 14});
+</script>
+
+
+  </body>
+</html>
