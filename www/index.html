@@ -19,6 +19,8 @@
 
 	<div id="map" style="width: 100%; height: 100%"></div>
 	<script>
+		String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+
 		var lock=false;
 		var permahash=false;
 		var next=false;
@@ -112,7 +114,7 @@
 		}
 
 		map = new L.Map('map');
-		map.attributionControl.setPrefix(false);
+		map.attributionControl.setPrefix("<a href=impressum>Impressum</a>");
 	map.dragging.enable();
 	map.touchZoom.enable();
 	map.doubleClickZoom.enable();
