@@ -12,6 +12,12 @@
 		<PolygonSymbolizer fill="#a1d47b" />
 	</Rule>
 	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/forest-outline.png"/>
+	</Rule>
+	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom15;
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'coniferous'))</Filter>
