@@ -165,12 +165,21 @@
  		<Filter>([sport] = 'swimming') and not ([access] = 'private')</Filter>
 		<PointSymbolizer file="symbols-topo/swimming.png"/>
 	</Rule>
+	
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom13;
  		<Filter>([tourism] = 'alpine_hut') or ([tourism] = 'wilderness_hut') </Filter>
 		<PointSymbolizer file="symbols-topo/hut.png"/>
 	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+ 		<Filter>([tourism] = 'alpine_hut') or ([tourism] = 'wilderness_hut') </Filter>
+		<PointSymbolizer file="symbols-topo/hut.png"/>
+		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
+	</Rule>
+	
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom15;
