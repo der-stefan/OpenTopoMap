@@ -163,7 +163,7 @@
 	<Layer name="waterway-lines">
 		<StyleName>waterway-lines</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"CEMT",NULL AS motorboat,tunnel,waterway FROM &prefix;_line) AS water </Parameter>
+			<Parameter name="table">(SELECT way,"CEMT",intermittent,NULL AS motorboat,tunnel,waterway FROM &prefix;_line) AS water </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>

@@ -25,49 +25,71 @@
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom12;
-		<Filter>([waterway] = 'river')</Filter>
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="1.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>([waterway] = 'river')</Filter>
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="2" />
 		<MarkersSymbolizer file="symbols-topo/waterway-arrow.png" placement="line" spacing="300" transform="translate(0 -3)"/>
 	</Rule>
 	
-<!-- streams and drains -->
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom12;
-		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes')</Filter>
+		<Filter>([waterway] = 'river') and ([intermittent] = 'yes')</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="1.5" stroke-dasharray="1.5,2" />
+	</Rule>
+	
+<!-- streams and drains -->
+	<!-- always water (intermittent!=yes) -->
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom12;
+		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes')</Filter>
+		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="1" />
 		<MarkersSymbolizer file="symbols-topo/waterway-arrow.png" placement="line" spacing="300" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>([waterway] = 'stream') and ([tunnel] = 'yes')</Filter>
+		<Filter>([waterway] = 'stream') and ([tunnel] = 'yes') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="1" stroke-dasharray="5,5" />
 	</Rule>
 	
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] != 'yes')</Filter>
+		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] != 'yes') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] = 'yes')</Filter>
+		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] = 'yes') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="0.5" stroke-dasharray="5,5" />
+	</Rule>
+	
+	<!-- sometimes water (intermittent=yes) -->
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom15;
+		<Filter>([waterway] = 'stream') and ([intermittent] = 'yes')</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="1" stroke-dasharray="1.5,2" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom15;
+		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([intermittent] = 'yes')</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="0.5" stroke-dasharray="1.5,2" />
 	</Rule>
 	
 <!-- important canals -->
