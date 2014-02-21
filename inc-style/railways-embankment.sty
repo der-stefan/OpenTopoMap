@@ -1,0 +1,14 @@
+<Style name="railways-embankment">
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'rail') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/embankment_3px.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([railway] = 'rail') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/embankment_4px.png"/>
+	</Rule>
+</Style>
