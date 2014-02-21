@@ -11,4 +11,11 @@
 		<Filter>([railway] = 'rail') and ([embankment] = 'yes')</Filter>
 		<LinePatternSymbolizer file="symbols-topo/embankment_4px.png"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+		<Filter>(([railway] = 'narrow_gauge') or ([railway] = 'funicular')) and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/embankment_2px.png"/>
+	</Rule>
 </Style>
