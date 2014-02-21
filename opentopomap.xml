@@ -23,6 +23,7 @@
        <!ENTITY layer-contours SYSTEM "opentopomap_contours.include">
        
        <!ENTITY borders-draw SYSTEM "inc-style/borders-draw.sty">
+       <!ENTITY railways-embankment SYSTEM "inc-style/railways-embankment.sty">
        <!ENTITY railways-draw SYSTEM "inc-style/railways-draw.sty">
        <!ENTITY airports-casing SYSTEM "inc-style/airports-casing.sty">
        <!ENTITY airports-fill SYSTEM "inc-style/airports-fill.sty">
@@ -73,6 +74,7 @@
 	&military-fill;
 	&contours;
 	&borders-draw;
+	&railways-embankment;
 	&railways-draw;
 	&airports-casing;
 	&airports-fill;
@@ -242,9 +244,10 @@
 	</Layer>
 
 	<Layer name="railways">
+		<StyleName>railways-embankment</StyleName>
 		<StyleName>railways-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway,tunnel FROM &prefix;_line WHERE railway IS NOT NULL) AS railways </Parameter>
+			<Parameter name="table">(SELECT way,railway,tunnel,embankment FROM &prefix;_line WHERE railway IS NOT NULL) AS railways </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
