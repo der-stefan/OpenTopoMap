@@ -31,11 +31,11 @@
        <!ENTITY roads-fill SYSTEM "inc-style/roads-fill.sty">
        <!ENTITY roads-12_13 SYSTEM "inc-style/roads-12_13.sty"> 
        <!ENTITY roads-middle SYSTEM "inc-style/roads-middle.sty">
+       <!ENTITY ferry_routes-draw SYSTEM "inc-style/ferry_routes-draw.sty">
        <!ENTITY railways-bridge SYSTEM "inc-style/railways-bridge.sty">
        <!ENTITY bridges-casing SYSTEM "inc-style/bridges-casing.sty">
        <!ENTITY bridges-fill SYSTEM "inc-style/bridges-fill.sty">
        <!ENTITY bridges-middle SYSTEM "inc-style/bridges-middle.sty">
-       <!ENTITY ferry_routes-draw SYSTEM "inc-style/ferry_routes-draw.sty">
        <!ENTITY aerialways-draw SYSTEM "inc-style/aerialways-draw.sty">
        <!ENTITY powerlines-draw SYSTEM "inc-style/powerlines-draw.sty">
        <!ENTITY powertowers-draw SYSTEM "inc-style/powertowers-draw.sty">
@@ -83,11 +83,11 @@
 	&roads-fill;
 	&roads-12_13;
 	&roads-middle;
+	&ferry_routes-draw;
 	&railways-bridge;
 	&bridges-casing;
 	&bridges-fill;
 	&bridges-middle;
-	&ferry_routes-draw;
 	&aerialways-draw;
 	&powerlines-draw;
 	&powertowers-draw;
@@ -283,6 +283,14 @@
 		</Datasource>
 	</Layer>
 	
+	<Layer name="ferry_routes">
+		<StyleName>ferry_routes-draw</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,route FROM &prefix;_line) AS route </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
 	<Layer name="railways">
 		<StyleName>railways-bridge</StyleName>
 		<Datasource>
@@ -298,14 +306,6 @@
 		<StyleName>bridges-middle</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,highway,tracktype FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL)) AS roads </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="ferry_routes">
-		<StyleName>ferry_routes-draw</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,route FROM &prefix;_line) AS route </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
