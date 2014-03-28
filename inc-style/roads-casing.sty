@@ -1,4 +1,17 @@
 <Style name="roads-casing">
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/embankment_8px.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/embankment_10px.png"/>
+	</Rule>
+
  <Rule>
   &maxscale_zoom12;
   &minscale_zoom12;
