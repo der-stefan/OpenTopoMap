@@ -203,7 +203,7 @@
 	<Layer name="cliffs-lines">
 		<StyleName>cliffs-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural","man_made" FROM &prefix;_line) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,"natural","man_made",highway FROM &prefix;_line) AS cliff </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -211,7 +211,7 @@
 	<Layer name="cliffs-polygons">
 		<StyleName>cliffs-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,area,"natural","man_made" FROM &prefix;_polygon WHERE (area != 'yes')) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,area,"natural","man_made",NULL AS highway FROM &prefix;_polygon WHERE (area != 'yes')) AS cliff </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>

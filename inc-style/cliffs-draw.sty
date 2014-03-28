@@ -20,11 +20,40 @@
 
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom14;
 		<Filter>([man_made] = 'dyke')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5"/>
 		<LinePatternSymbolizer file="symbols-topo/dyke.png"/>
 	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([man_made] = 'dyke') and ([highway] = null)</Filter>
+		<LineSymbolizer stroke="black" stroke-width="0.5"/>
+		<LinePatternSymbolizer file="symbols-topo/dyke.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([man_made] = 'dyke') and ([highway] = 'path')</Filter>
+		<LineSymbolizer stroke="grey" stroke-width="1"/>
+		<LinePatternSymbolizer file="symbols-topo/dyke_path.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([man_made] = 'dyke') and ([highway] = 'track')</Filter>
+		<LineSymbolizer stroke="grey" stroke-width="1"/>
+		<LinePatternSymbolizer file="symbols-topo/dyke_track.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([man_made] = 'dyke') and not (([highway] = 'path') or ([highway] = 'track') or ([highway] = null))</Filter>
+		<LineSymbolizer stroke="grey" stroke-width="1"/>
+		<LinePatternSymbolizer file="symbols-topo/dyke_track.png"/>
+	</Rule>
+	
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom15;
