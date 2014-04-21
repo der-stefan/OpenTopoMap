@@ -1,0 +1,30 @@
+###############################################
+#   OpenTopoMap Garmin Edition
+#   (c) 2014 Stefan Erhardt
+#   https://github.com/der-stefan/OpenTopoMap
+#
+#   opentopomap.org
+#
+###############################################
+
+The OpenTopoMap Garmin Edition makes uses of several hacks:
+- Overloading style definitions for different zoom levels
+- Adding opening hours/collection times/websites to mkgmap:region
+
+This is no walk-through: paths have to be adjusted by the user!
+
+1) Download mkgmap & bounds
+2) Download data
+3) Split data
+
+
+4) Compile TYP file
+   The TYP file is hand-made with the text editor of your choice. Ugly, but works great! You only have to compile the TYP file if you made changes to the .txt
+   
+   cd style/typ
+   java -jar mkgmap.jar OpenTopoMap.txt
+     -> output: OpenTopoMap.typ
+
+
+5) Compile map
+   java -jar mkgmap.jar -c mkgmap_options data/6324000* style/typ/OpenTopoMap.typ

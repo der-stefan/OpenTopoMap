@@ -1,0 +1,14 @@
+
+#
+# Style options.
+#
+
+# The levels specification for this style
+# 
+#levels = 0:24, 1:22, 2:20, 3:18
+# More levels may make zooming smoother, but it will generate larger map tiles.
+levels = 0:24, 1:23, 2:22, 3:21, 4:20, 5:19, 6:18
+
+overview-levels = 4:17, 5:16, 6:15, 7:14, 8:12 
+#extra-used-tags= 
+

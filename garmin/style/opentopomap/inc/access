@@ -1,0 +1,72 @@
+# Define the access restrictions
+# The following tags define the restrictions:
+# mkgmap:bicycle
+# mkgmap:foot
+# mkgmap:car
+# mkgmap:truck
+# mkgmap:taxi
+# mkgmap:bus
+# mkgmap:emergency
+# mkgmap:delivery
+# A class is not allowed to use the way if its tag is set to 'no'
+
+highway=steps                           { add foot=yes; add access=no }
+highway=* & motorroad=yes               { add bicycle=no; add foot=no }
+highway=motorway|highway=motorway_link  { add bicycle=no; add foot=no }
+highway=pedestrian & area!=yes          { add foot=yes; add access=no } 
+highway=path                            { add foot=yes; add bicycle=yes; add access=no } 
+highway=bridleway                       { add access=no }
+highway=cycleway                        { add bicycle=yes; add access=no }
+highway=footway                         { add foot=yes; add access=no }
+railway=platform                        { add foot=yes; add access=no }
+
+
+motorcar=destination   { set mkgmap:throughroute=no; set motorcar=yes } 
+motorcycle=destination { set mkgmap:throughroute=no; set motorcycle=yes } 
+access=destination     { set mkgmap:throughroute=no; set access=yes }
+bicycle=destination    { set bicycle=yes }
+foot=destination       { set foot=yes }                  
+hgv=destination        { delete hgv }                  
+psv=destination        { delete psv }                  
+taxi=destination       { delete taxi }                  
+emergency=destination  { delete emergency }                  
+delivery=destination   { delete delivery }                  
+goods=destination      { delete goods }                  
+
+bicycle=private       | bicycle=agricultural       { set bicycle=no }
+foot=private          | foot=agricultural          { set foot=no }
+hgv=private           | hgv=agricultural           { set hgv=no }
+motorcar=private      | motorcar=agricultural      { set motorcar=no }
+psv=private           | psv=agricultural           { set psv=no }
+taxi=private          | taxi=agricultural          { set taxi=no }
+emergency=private     | emergency=agricultural     { set emergency=no }
+delivery=private      | delivery=agricultural      { set delivery=no }
+goods=private         | goods=agricultural         { set goods=no }
+motorcycle=private    | motorcycle=agricultural    { set motorcycle=no }
+motor_vehicle=private | motor_vehicle=agricultural { set motor_vehicle=no }
+vehicle=private       | vehicle=agricultural       { set vehicle=no }
+access=private                                     { set access=no }
+access=agricultural                                { set access=no; add foot=yes }
+
+# set (override) specific restrictions                        
+bicycle=*    { set mkgmap:bicycle='${bicycle}' }
+foot=*       { set mkgmap:foot='${foot}' }                  
+hgv=*        { set mkgmap:truck='${hgv}' }                  
+motorcar=*   { set mkgmap:car='${motorcar}' }
+psv=*        { set mkgmap:bus='${psv}' }                  
+taxi=*       { set mkgmap:taxi='${taxi}' }                  
+emergency=*  { set mkgmap:emergency='${emergency}' }                  
+delivery=*   { set mkgmap:delivery='${delivery}' }                  
+goods=*      { set mkgmap:delivery='${goods}' }                  
+
+# Translate motor_vehicle and vehicle access rules.
+motorcycle=*    { add mkgmap:car='${motorcycle}' }                  
+motor_vehicle=* { add mkgmap:car='${motor_vehicle}' }
+vehicle=*       { add mkgmap:car='${vehicle}'; add mkgmap:bicycle='${vehicle}' }
+
+# the access tag defines all restrictions
+access=* { addaccess '${access}' }
+
+
+# check for carpool lane 
+(carpool=yes | carpool=designated | carpool=permissive | carpool=official)     { set mkgmap:carpool=yes }

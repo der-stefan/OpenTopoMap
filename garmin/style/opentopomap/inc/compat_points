@@ -1,0 +1,13 @@
+name=* { name '${name}' }
+mkgmap:default_name=* { name '${mkgmap:default_name}' }
+mkgmap:display_name=* { addlabel '${mkgmap:display_name|subst:;=>/}' }
+
+mkgmap:label:1!=* & ref=* { addlabel '${ref|part:;:1}' }
+mkgmap:label:1!=* & int_ref=* { addlabel '${int_ref|part:;:1}' }
+mkgmap:label:1!=* & nat_ref=* { addlabel '${nat_ref|part:;:1}' }
+mkgmap:label:1!=* & reg_ref=* { addlabel '${reg_ref|part:;:1}' }
+
+ref=*     { addlabel '${ref|part:;:1}';     addlabel '${ref|part:;:2}';     addlabel '${ref|part:;:3}'     }
+int_ref=* { addlabel '${int_ref|part:;:1}'; addlabel '${int_ref|part:;:2}'; addlabel '${int_ref|part:;:3}' }
+nat_ref=* { addlabel '${nat_ref|part:;:1}'; addlabel '${nat_ref|part:;:2}'; addlabel '${nat_ref|part:;:3}' }
+reg_ref=* { addlabel '${reg_ref|part:;:1}'; addlabel '${reg_ref|part:;:2}'; addlabel '${reg_ref|part:;:3}' }

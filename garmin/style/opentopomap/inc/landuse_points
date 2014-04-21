@@ -1,0 +1,4 @@
+landuse=cemetery|landuse=cemetary|amenity=grave_yard [0x6403 resolution 24]
+landuse=military [0x640b resolution 24]
+landuse=village_green & name=* [0x2c06 resolution 24]
+(landuse=wood|landuse=forest|natural=wood) & name=* [0x6618 resolution 24]

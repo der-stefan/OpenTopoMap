@@ -1,0 +1,32 @@
+#landuse=allotments [0x4e resolution 21]
+#landuse=commercial [0x0c resolution 19]
+#landuse=construction [0x0c resolution 21]
+#landuse=farm [0x4e resolution 20]
+#landuse=farmyard [0x4e resolution 22]
+
+
+#landuse=quarry [0x0c resolution 19]
+#landuse=recreation_ground [0x19 resolution 19]
+# dedicate resolution 24 for building=* instead of related landuse=*
+#landuse=industrial [0x0c resolution 23-19]
+#landuse=retail [0x08 resolution 23-20]
+#landuse=village_green [0x17 resolution 20]
+
+#military=airfield [0x04 resolution 20]
+#military=barracks [0x04 resolution 23]
+#military=danger_area [0x04 resolution 20]
+#military=range [0x04 resolution 20]
+
+
+
+(landuse=forest|landuse=wood|natural=wood) & (wood=coniferous)[0x38 resolution 15]
+(landuse=forest|landuse=wood|natural=wood) & (wood=deciduous)[0x39 resolution 15]
+(landuse=forest|landuse=wood|natural=wood) [0x50 resolution 15]
+natural=scrub [0x4f resolution 20]
+landuse=residential|landuse=industrial|landuse=commercial [0x10 resolution 19-23]
+landuse=cemetery|landuse=cemetary|amenity=grave_yard [0x1a resolution 21]
+
+landuse=greenfield [0x17 resolution 20]
+landuse=meadow [0x17 resolution 19]
+landuse=vineyard [0x4e resolution 20]
+landuse=military [0x04 resolution 19]

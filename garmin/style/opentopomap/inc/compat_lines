@@ -1,0 +1,125 @@
+include 'inc/roadspeed';
+
+name=* { name '${name}' }
+mkgmap:default_name=* { name '${mkgmap:default_name}' }
+mkgmap:display_name=* { addlabel '${mkgmap:display_name|subst:;=>/}' }
+
+mkgmap:label:1!=* & ref=* { addlabel '${ref|part:;:1}' }
+mkgmap:label:1!=* & int_ref=* { addlabel '${int_ref|part:;:1}' }
+mkgmap:label:1!=* & nat_ref=* { addlabel '${nat_ref|part:;:1}' }
+mkgmap:label:1!=* & reg_ref=* { addlabel '${reg_ref|part:;:1}' }
+
+ref=*     { addlabel '${ref|part:;:1}';     addlabel '${ref|part:;:2}';     addlabel '${ref|part:;:3}'     }
+int_ref=* { addlabel '${int_ref|part:;:1}'; addlabel '${int_ref|part:;:2}'; addlabel '${int_ref|part:;:3}' }
+nat_ref=* { addlabel '${nat_ref|part:;:1}'; addlabel '${nat_ref|part:;:2}'; addlabel '${nat_ref|part:;:3}' }
+reg_ref=* { addlabel '${reg_ref|part:;:1}'; addlabel '${reg_ref|part:;:2}'; addlabel '${reg_ref|part:;:3}' }
+
+highway=* & mkgmap:label:1=* & mkgmap:street!=* { add mkgmap:street='${mkgmap:label:1}' }
+
+toll=* { set mkgmap:toll='${toll}' }
+
+#		new AccessMapping("access",     RoadNetwork.NO_MAX), // must be first in list
+#		new AccessMapping("bicycle",    RoadNetwork.NO_BIKE),
+#		new AccessMapping("carpool",    RoadNetwork.NO_CARPOOL),
+#		new AccessMapping("foot",       RoadNetwork.NO_FOOT),
+#		new AccessMapping("hgv",        RoadNetwork.NO_TRUCK),
+#		new AccessMapping("motorcar",   RoadNetwork.NO_CAR),
+#		new AccessMapping("motorcycle", RoadNetwork.NO_CAR),
+#		new AccessMapping("psv",        RoadNetwork.NO_BUS),
+#		new AccessMapping("taxi",       RoadNetwork.NO_TAXI),
+#		new AccessMapping("emergency",  RoadNetwork.NO_EMERGENCY),
+#		new AccessMapping("delivery",   RoadNetwork.NO_DELIVERY),
+#		new AccessMapping("goods",      RoadNetwork.NO_DELIVERY),
+#		for (AccessMapping anAccessMap : accessMap) {
+#			int index = anAccessMap.index;
+#			String type = anAccessMap.type;
+#			String accessTagValue = way.getTag(type);
+#			if (accessTagValue == null)
+#				continue;
+#			if (accessExplicitlyDenied(accessTagValue)) {
+#				if (index == RoadNetwork.NO_MAX) {
+#					// everything is denied access
+#					for (int j = 1; j < accessMap.length; ++j)
+#						noAccess[accessMap[j].index] = true;
+#				} else {
+#					// just the specific vehicle class is denied
+#					// access
+#					noAccess[index] = true;
+#				}
+#				log.debug(type + " is not allowed in " + highwayType + " " + debugWayName);
+#			} else if (accessExplicitlyAllowed(accessTagValue)) {
+#				if (index == RoadNetwork.NO_MAX) {
+#					// everything is allowed access
+#					for (int j = 1; j < accessMap.length; ++j)
+#						noAccess[accessMap[j].index] = false;
+#				} else {
+#					// just the specific vehicle class is allowed
+#					// access
+#					noAccess[index] = false;
+#				}
+#				log.debug(type + " is allowed in " + highwayType + " " + debugWayName);
+#			}
+#			else if (accessTagValue.equalsIgnoreCase("destination")) {
+#				if (type.equals("motorcar") ||
+#				    type.equals("motorcycle")) {
+#					road.setNoThroughRouting();
+#				} else if (type.equals("access")) {
+#					log.info("access=destination only affects routing for cars in " + highwayType + " " + debugWayName);
+#					road.setNoThroughRouting();
+#				} else {
+#					log.info(type + "=destination ignored in " + highwayType + " " + debugWayName);
+#				}
+#			} else if (accessTagValue.equalsIgnoreCase("unknown")) {
+#				// implicitly allow access
+#			} else {
+#				log.info("Ignoring unsupported access tag value " + type + "=" + accessTagValue + " in " + highwayType + " " + debugWayName);
+#			}
+#		}
+#
+
+# mkgmap:carpool tag is set but before new access handling was introduced it had a
+# different meaning. Copy it to keep its value which is handled in the old behaviour last.
+mkgmap:carpool=* { set mkgmap:carpool_compat='${mkgmap:carpool}'; delete mkgmap:carpool }
+
+access=private | access=no { setaccess no; set mkgmap:carpool=yes; }
+access=yes | access=permissive | access=official | access=designated { setaccess yes; set mkgmap:carpool=no; }
+access=destination { set mkgmap:throughroute=no }
+
+bicycle=private | bicycle=no { set mkgmap:bicycle=no; }
+bicycle=yes | bicycle=permissive | bicycle=official | bicycle=designated { set mkgmap:bicycle=yes; }
+
+carpool=private | carpool=no { set mkgmap:carpool=no; }
+carpool=yes | carpool=permissive | carpool=official | carpool=designated { set mkgmap:carpool=yes; }
+
+foot=private | foot=no { set mkgmap:foot=no; }
+foot=yes | foot=permissive | foot=official | foot=designated { set mkgmap:foot=yes; }
+
+hgv=private | hgv=no { set mkgmap:truck=no; }
+hgv=yes | hgv=permissive | hgv=official | hgv=designated { set mkgmap:truck=yes; }
+
+motorcar=private | motorcar=no { set mkgmap:car=no; }
+motorcar=yes | motorcar=permissive | motorcar=official | motorcar=designated { set mkgmap:car=yes; }
+motorcar=destination { set mkgmap:throughroute=no }
+
+motorcycle=private | motorcycle=no { set mkgmap:car=no; }
+motorcycle=yes | motorcycle=permissive | motorcycle=official | motorcycle=designated { set mkgmap:car=yes; }
+motorcycle=destination { set mkgmap:throughroute=no }
+
+psv=private | psv=no { set mkgmap:bus=no; }
+psv=yes | psv=permissive | psv=official | psv=designated { set mkgmap:bus=yes; }
+
+taxi=private | taxi=no { set mkgmap:taxi=no; }
+taxi=yes | taxi=permissive | taxi=official | taxi=designated { set mkgmap:taxi=yes; }
+
+emergency=private | emergency=no { set mkgmap:emergency=no; }
+emergency=yes | emergency=permissive | emergency=official | emergency=designated { set mkgmap:emergency=yes; }
+
+delivery=private | delivery=no { set mkgmap:delivery=no; }
+delivery=yes | delivery=permissive | delivery=official | delivery=designated { set mkgmap:delivery=yes; }
+
+goods=private | goods=no { set mkgmap:delivery=no; }
+goods=yes | goods=permissive | goods=official | goods=designated { set mkgmap:delivery=yes; }
+
+# Reintroduce the old carpool handling which allows access only for bus and emergency plus setting the carpool bit
+mkgmap:carpool_compat=yes  { setaccess=no; set mkgmap:bus=yes; set mkgmap:emergency=yes; set mkgmap:carpool=yes }
+

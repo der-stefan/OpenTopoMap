@@ -1,0 +1,11 @@
+natural=coastline [0x15 resolution 12]
+
+route=ferry {add mkgmap:ferry=1} [0x1b road_class=3 road_speed=0 resolution 19]
+
+((waterway=river | waterway=canal) & (ref:fgkz ~ '\d{1,3}' | CEMT ~ '^[V].{1,2}' )) | fluss=yes [0x18 resolution 14-20 continue]
+((waterway=river | waterway=canal) & (ref:fgkz!=* & CEMT !=*)) [0x18 resolution 16-20 continue]
+waterway=river [0x1f resolution 21]
+waterway=canal [0x1f resolution 21]
+waterway=drain [0x18 resolution 23]
+waterway=rapids|waterway=waterfall [0x1f resolution 22]
+waterway=stream [0x18 resolution 23]

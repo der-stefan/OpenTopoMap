@@ -1,0 +1,85 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for converting closed OSM ways
+# into Garmin polygons.
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more information.
+
+leisure=* & sport=* & name=* { set name='${name} (${sport})' }
+leisure=* & sport=* & name!=* { add name='${sport}' }
+
+include 'inc/name';
+
+aeroway=airport [0x07 resolution 20]
+aeroway=aerodrome [0x07 resolution 20]
+aeroway=helipad [0x0e resolution 22]
+
+amenity=kindergarten [0x0a resolution 22]
+amenity=cafe | amenity=fast_food | amenity=restaurant | amenity=food_court [0x08 resolution 22]
+amenity=college [0x0a resolution 22]
+parking=underground | parking=multi-storey [0x06 resolution 22]
+amenity=parking | parking=surface [0x05 resolution 22]
+amenity=prison [0x04 resolution 22]
+amenity=school [0x0a resolution 22]
+# amenity=supermarket is superceded by shop=supermarket or landuse=retail
+amenity=supermarket [0x08 resolution 22]
+amenity=university [0x0a resolution 21 continue]
+
+(healthcare=hospital | amenity=hospital) & (building!=*) [0x0b resolution 22]
+(healthcare=hospital | amenity=hospital) & (building=*) [0x0b resolution 22 continue]
+healthcare=* | amenity=dentist | amenity=doctors | amenity=nursing_home
+[0x0b resolution 23]
+
+#leisure=common [0x17 resolution 21]
+leisure=garden [0x17 resolution 21]
+leisure=golf_course [0x18 resolution 21]
+leisure=ice_rink [0x19 resolution 22]
+leisure=nature_reserve [0x16 resolution 19]
+leisure=park [0x17 resolution 20]
+leisure=pitch [0x19 resolution 21]
+#leisure=playground [0x17 resolution 22]
+leisure=recreation_ground [0x19 resolution 21]
+leisure=sports_center | leisure=sports_centre [0x19 resolution 20]
+leisure=stadium [0x19 resolution 20]
+leisure=track & area=yes [0x19 resolution 21]
+leisure=water_park [0x09 resolution 21]
+
+place=village [0x03 resolution 19]
+place=island & name=* [0x53 resolution 19]
+place=islet & name=* [0x53 resolution 20]
+
+shop=* [0x08 resolution 22]
+
+# squares and plazas
+#highway=pedestrian & area=yes [0x17 resolution 22]
+# other highways that have area=yes set must be parking lots
+highway=* & area=yes [0x05 resolution 22]
+
+historic=museum | historic=memorial [0x1e resolution 21]
+historic=archaeological_site | historic=ruins [0x1e resolution 21]
+
+# landuse of university etc. that is not a building
+(amenity=university|amenity=school|amenity=hospital) & (building!=*) [0x10 resolution 19-23]
+
+# building tag should be last
+(building=* | amenity=*) & area!=no [0x13 resolution 24]
+tourism=* & area!=no & waterway!=* [0x13 resolution 24]
+# man_made can be used on areas or lines
+man_made=* & area!=no
+& (man_made!=door & man_made!=embankment & man_made!=breakwater
+   & man_made!=cable_line & man_made!=cutline & man_made!=cutting
+   & man_made!=levee & man_made!=trench)
+[0x13 resolution 24]
+man_made=* & area=yes
+[0x13 resolution 24]
+
+include 'inc/water_polygons';
+include 'inc/landuse_polygons';
+
+<finalize>
+# The finalizer section is executed for each element when a rule with an element type matches
+
+name=* { name '${name}' }
