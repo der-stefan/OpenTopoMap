@@ -115,22 +115,24 @@ highway=* & construction=* & maxspeed!=* { add mkgmap:road-speed = '-1' }
 highway=* & disused=yes & maxspeed!=* { add mkgmap:road-speed = '-2' }
 
 # Ways sorted roughly by descending order of class
-highway=motorway & network=e-road [0x01 resolution 14-14 continue]
-highway=motorway [0x03 resolution 10-16 continue]
-highway=motorway [0x09 resolution 17-17 continue]
+#highway=motorway & network=e-road [0x01 resolution 14-14 continue]
+#highway=motorway [0x03 resolution 10-16 continue]
+highway=motorway [0x09 resolution 14-17 continue]
 highway=motorway [0x01 road_class=4 road_speed=7 resolution 18]
 highway=motorway_link & (mkgmap:exit_hint=true | mkgmap:dest_hint=true) [0x06 road_class=3 road_speed=2 resolution 20]
 highway=motorway_link [0x09 road_class=3 road_speed=2 resolution 20]
 
-highway=trunk & ( network=e-road | int_ref=* ) [0x09 resolution 15-17 continue]
-highway=trunk [0x03 resolution 18-18 continue]
+#highway=trunk & ( network=e-road | int_ref=* ) [0x09 resolution 15-17 continue]
+#highway=trunk [0x03 resolution 18-18 continue]
+highway=trunk [0x0b resolution 16-17 continue]
+highway=trunk [0x04 resolution 18-18 continue]
 highway=trunk [0x02 road_class=4 road_speed=5 resolution 19]
 highway=trunk_link & (mkgmap:exit_hint=true | mkgmap:dest_hint=true) [0x06 road_class=3 road_speed=2 resolution 20]
 highway=trunk_link [0x09 road_class=3 road_speed=2 resolution 20]
 highway=* & highway!=proposed & motorroad=yes [0x02 road_class=4 road_speed=4 resolution 18]
 
-highway=primary & ( network=e-road | int_ref=* ) [0x08 resolution 15-17 continue]
-highway=primary [0x04 resolution 18-18 continue]
+#highway=primary & ( network=e-road | int_ref=* ) [0x08 resolution 15-17 continue]
+highway=primary [0x0b resolution 16-18 continue]
 highway=primary [0x03 road_class=3 road_speed=4 resolution 19]
 highway=primary_link [0x08 road_class=3 road_speed=1 resolution 21]
 
@@ -143,14 +145,14 @@ highway=tertiary [0x05 road_class=1 road_speed=3 resolution 22]
 highway=tertiary_link [0x08 road_class=1 road_speed=1 resolution 22]
 highway=minor [0x06 road_class=1 road_speed=3 resolution 21]
 
-highway=unclassified [0x06 resolution 20-21 continue]
+highway=unclassified & length()>250 [0x06 resolution 20-21 continue]
 highway=unclassified [0x05 road_class=0 road_speed=3 resolution 22]
 
 # Some countries allow, others disallow bicycling on pedestrian streets.
 # To allow bicycling, add 'add bicycle=yes'
 highway=pedestrian & area!=yes [0x0d road_class=0 road_speed=0 resolution 22]
 highway=living_street [0x06 road_class=0 road_speed=1 resolution 22]
-highway=residential [0x0a resolution 21-21 continue]
+highway=residential | (highway=pedestrian & area!=yes) | highway=living_street [0x0a resolution 21-21 continue]
 highway=residential [0x06 road_class=0 road_speed=2 resolution 22]
 highway=bridleway [0x07 road_class=0 road_speed=0 resolution 23]
 highway=byway [0x16 road_class=0 road_speed=0 resolution 23]

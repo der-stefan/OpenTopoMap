@@ -337,6 +337,15 @@ Xpm="0 0 1 0"
 [end]
 
 [_line]
+Type=0x0b
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdfd4f"
+"b c #000000"
+[end]
+
+[_line]
 Type=0x0c
 LineWidth=2
 BorderWidth=1
