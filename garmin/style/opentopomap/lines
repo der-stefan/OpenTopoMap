@@ -145,14 +145,14 @@ highway=tertiary [0x05 road_class=1 road_speed=3 resolution 22]
 highway=tertiary_link [0x08 road_class=1 road_speed=1 resolution 22]
 highway=minor [0x06 road_class=1 road_speed=3 resolution 21]
 
-highway=unclassified & length()>250 [0x06 resolution 20-21 continue]
+highway=unclassified [0x06 resolution 21-21 continue]
 highway=unclassified [0x05 road_class=0 road_speed=3 resolution 22]
 
 # Some countries allow, others disallow bicycling on pedestrian streets.
 # To allow bicycling, add 'add bicycle=yes'
+highway=residential | (highway=pedestrian & area!=yes) | highway=living_street [0x0a resolution 21-21 continue]
 highway=pedestrian & area!=yes [0x0d road_class=0 road_speed=0 resolution 22]
 highway=living_street [0x06 road_class=0 road_speed=1 resolution 22]
-highway=residential | (highway=pedestrian & area!=yes) | highway=living_street [0x0a resolution 21-21 continue]
 highway=residential [0x06 road_class=0 road_speed=2 resolution 22]
 highway=bridleway [0x07 road_class=0 road_speed=0 resolution 23]
 highway=byway [0x16 road_class=0 road_speed=0 resolution 23]

@@ -218,6 +218,12 @@ leisure=water_park [0x2b04 resolution 24]
 
 man_made=tower|landmark=chimney [0x6411 resolution 24]
 
+man_made=communications_tower | communication:radio=yes | communication:television=yes [0x6700 resolution 20]
+man_made=tower & (tower:type=observation | tourism=viewpoint) [0x6701 resolution 22]
+man_made=tower & tower:type=communication [0x6700 resolution 24]
+man_made=tower & !(tower:type=bell_tower) [0x6411 resolution 22]
+man_made=water_tower [0x6412 resolution 22]
+
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
 natural=cave_entrance [0x6601 resolution 24]
 natural=cliff [0x6607 resolution 24]
