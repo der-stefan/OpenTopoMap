@@ -178,8 +178,8 @@ power=line [0x29 resolution 21]
 
 railway=abandoned [0x0a road_class=0 road_speed=1 resolution 22]
 railway=platform [0x16 road_class=0 road_speed=0 resolution 23]
-railway=* & highspeedtrain=yes [0x2d resolution 18-20 continue]
-railway=* & tunnel!=yes [0x2d resolution 21-23 continue]
+railway=* & highspeedtrain=yes [0x2d resolution 18-18 continue]
+railway=* & tunnel!=yes [0x2d resolution 19-23 continue]
 railway=* & tunnel=yes [0x2c resolution 25]
 railway=* [0x14 resolution 24]
 

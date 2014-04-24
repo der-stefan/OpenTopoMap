@@ -196,6 +196,7 @@ highway=motorway_junction [0x2100 resolution 24]
 
 highway=services & mkgmap:area2poi!=true [0x210f resolution 24 default_name 'Services']
 
+historic=castle [0x2c0d resolution 21 default_name 'Schloss']
 historic=museum [0x2c02 resolution 24]
 historic=archaeological_site | historic=ruins [0x2c02 resolution 24]
 historic=memorial [0x2c02 resolution 24]
