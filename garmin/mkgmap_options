@@ -18,7 +18,7 @@ route
 adjust-turn-headings
 add-pois-to-areas
 generate-sea=extend-sea-sectors
-make-all-cycleways
+make-oposite-cycleways
 link-pois-to-ways
 process-destination
 process-exits
