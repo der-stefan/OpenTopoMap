@@ -39,11 +39,11 @@ leisure=golf_course [0x18 resolution 21]
 leisure=ice_rink [0x19 resolution 22]
 leisure=nature_reserve [0x16 resolution 19]
 leisure=park [0x17 resolution 20]
-leisure=pitch [0x19 resolution 21]
+leisure=pitch [0x19 resolution 22]
 #leisure=playground [0x17 resolution 22]
 leisure=recreation_ground [0x19 resolution 21]
-leisure=sports_center | leisure=sports_centre [0x19 resolution 20]
-leisure=stadium [0x19 resolution 20]
+#leisure=sports_center | leisure=sports_centre [0x19 resolution 20]
+#leisure=stadium [0x19 resolution 20]
 leisure=track & area=yes [0x19 resolution 21]
 leisure=water_park [0x09 resolution 21]
 
@@ -65,16 +65,16 @@ historic=archaeological_site | historic=ruins [0x1e resolution 21]
 (amenity=university|amenity=school|amenity=hospital) & (building!=*) [0x10 resolution 19-23]
 
 # building tag should be last
-(building=* | amenity=*) & area!=no [0x13 resolution 24]
+building=* & area!=no [0x13 resolution 24]
 tourism=* & area!=no & waterway!=* [0x13 resolution 24]
 # man_made can be used on areas or lines
-man_made=* & area!=no
-& (man_made!=door & man_made!=embankment & man_made!=breakwater
-   & man_made!=cable_line & man_made!=cutline & man_made!=cutting
-   & man_made!=levee & man_made!=trench)
-[0x13 resolution 24]
-man_made=* & area=yes
-[0x13 resolution 24]
+# man_made=* & area!=no
+# & (man_made!=door & man_made!=embankment & man_made!=breakwater
+#    & man_made!=cable_line & man_made!=cutline & man_made!=cutting
+#    & man_made!=levee & man_made!=trench)
+# [0x13 resolution 24]
+# man_made=* & area=yes
+# [0x13 resolution 24]
 
 include 'inc/water_polygons';
 include 'inc/landuse_polygons';

@@ -182,7 +182,7 @@ railway=abandoned [0x0a road_class=0 road_speed=1 resolution 22]
 railway=platform [0x16 road_class=0 road_speed=0 resolution 23]
 railway=* & highspeedtrain=yes [0x2d resolution 18-18 continue]
 railway=* & tunnel!=yes [0x2d resolution 19-23 continue]
-railway=* & tunnel=yes [0x2c resolution 25]
+railway=* & tunnel=yes [0x2c resolution 24]
 railway=* [0x14 resolution 24]
 
 (man_made=cable|(man_made=* & man_made ~ '.*pipe.*')) & area!=yes &
@@ -200,6 +200,9 @@ boundary=administrative & admin_level<9 [0x1c resolution 22]
 boundary=administrative [0x1c resolution 22]
 boundary=national [0x1e resolution 17]
 boundary=political [0x1c resolution 19]
+
+natural=cliff [0x31 resolution 24]
+barrier=fence | fenced=yes [0x33 resolution 24]
 
 include 'inc/water_lines';
 include 'inc/contour_lines';

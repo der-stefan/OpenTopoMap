@@ -175,10 +175,10 @@ amenity=shelter [0x2b06 resolution 24 default_name 'Shelter']
 # amenity=supermarket is superceded by shop=supermarket
 amenity=supermarket [0x2e02 resolution 24]
 amenity=taxi [0x2f17 resolution 24]
-amenity=telephone [0x2f12 resolution 24 default_name 'Telephone']
+amenity=telephone [0x2f12 resolution 24 default_name 'Telefon']
 amenity=theatre [0x2d01 resolution 24]
-amenity=toilets & tourism=information [0x2f0c resolution 24]
-amenity=toilets [0x4e00 resolution 24 default_name 'Toilets' ]
+#amenity=toilets & tourism=information [0x2f0c resolution 24]
+amenity=toilets [0x4e00 resolution 24 default_name 'Toilette' ]
 amenity=townhall [0x3003 resolution 24]
 amenity=university [0x2c05 resolution 24]
 # amenity=zoo is superceded by tourism=zoo
@@ -223,6 +223,10 @@ man_made=tower & (tower:type=observation | tourism=viewpoint) [0x6701 resolution
 man_made=tower & tower:type=communication [0x6700 resolution 24]
 man_made=tower & !(tower:type=bell_tower) [0x6411 resolution 22]
 man_made=water_tower [0x6412 resolution 22]
+man_made=mast [0x6702 resolution 24]
+
+power=generator & generator:source=wind [0x6413 resolution 20]
+
 
 # Edge 705 displays 0x650a,0x6511,0x6512,0x6513,0x6603,0x6614 as hollow white circles, no menu
 natural=cave_entrance [0x6601 resolution 24]
@@ -287,7 +291,7 @@ tourism=chalet [0x2b02 resolution 24]
 tourism=guest_house [0x2b02 resolution 24]
 tourism=hostel [0x2b02 resolution 24]
 tourism=hotel | tourism=motel [0x2b01 resolution 24]
-tourism=information [0x2f0c resolution 24]
+tourism=information [0x4c00 resolution 24]
 # tourism=lean_to replaces some uses of amenity=shelter
 tourism=lean_to [0x2b05 resolution 24 default_name 'lean-to']
 tourism=wilderness_hut [0x2b07 resolution 24 default_name 'wilderness hut']
@@ -298,7 +302,7 @@ tourism=viewpoint {name '${name} - ${description}' | '${name}'} [0x2c04 resoluti
 tourism=wine_cellar [0x2c0a resolution 24]
 tourism=zoo [0x2c07 resolution 24]
 
-barrier=bollard | barrier=bus_trap | barrier=gate [0x660f resolution 24]
+barrier=bollard | barrier=bus_trap | barrier=gate [0x660f resolution 24 default_name 'Pfosten']
 barrier=block | barrier=cycle_barrier | barrier=stile | barrier=kissing_gate [0x660f resolution 24]
 
 include 'inc/water_points';
