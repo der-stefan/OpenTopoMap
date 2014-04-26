@@ -14,7 +14,9 @@ Type=0x19,2
 Type=0x10,2
 Type=0x4e,2
 Type=0x4f,2
+Type=0x32,3
 Type=0x3c,3
+Type=0x3f,3
 Type=0x46,3
 Type=0x13,4
 Type=0x1a,4
@@ -1290,8 +1292,22 @@ Xpm="32 32 2 1"
 [end]
 
 [_polygon]
+Type=0x32
+String=0x02,Meer
+Xpm="0 0 1 0"
+"a c #8adfff"
+[end]
+
+[_polygon]
 Type=0x3c
 String=0x02,Wasser
+Xpm="0 0 1 0"
+"a c #8adfff"
+[end]
+
+[_polygon]
+Type=0x3f
+String=0x02,Wasserspeicher
 Xpm="0 0 1 0"
 "a c #8adfff"
 [end]
