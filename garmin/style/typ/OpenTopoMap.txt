@@ -1114,7 +1114,7 @@ Xpm="32 32 2 1"
 Type=0x10
 String=0x02,Bebauung
 Xpm="0 0 1 0"
-"a c #f0f0f0"
+"a c #e0e0e0"
 [end]
 
 [_polygon]
