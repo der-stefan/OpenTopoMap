@@ -171,7 +171,7 @@ amenity=school [0x2c05 resolution 24]
 # amenity=shelter is ambiguous; when possible, consider using other tags:
 #  tourism=lean_to or tourism=picnic_site
 #  shelter=yes on highway=bus_stop or highway=tram_stop or railway=halt
-amenity=shelter [0x2b06 resolution 24 default_name 'Shelter']
+amenity=shelter [0x2b06 resolution 24 default_name 'Schutzhütte']
 # amenity=supermarket is superceded by shop=supermarket
 amenity=supermarket [0x2e02 resolution 24]
 amenity=taxi [0x2f17 resolution 24]
