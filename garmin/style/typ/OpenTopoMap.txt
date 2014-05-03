@@ -23,8 +23,64 @@ Type=0x1a,4
 Type=0x04,5
 [end]
 
+[_point]
+Type=0x2b02
+String=0x02,Hütte/Hostel
+DayXpm="9 9 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #1F1F1F"
+"#	c #3F3F3F"
+"    .    "
+"   .+.   "
+"  .+.+.  "
+" .+...+. "
+".@#...#@."
+" .+...+. "
+" .+...+. "
+" .+++++. "
+" ....... "
+[end]
 
+[_point]
+Type=0x2b06
+String=0x02,Schutzhütte
+DayXpm="9 8 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #1F1F1F"
+"#	c #3F3F3F"
+"    .    "
+"   .+.   "
+"  .+.+.  "
+" .+...+. "
+".@#...#@."
+" .+...+. "
+" .+...+. "
+"  .   .  "
+[end]
 
+[_point]
+Type=0x2b07
+String=0x02,Hütte
+DayXpm="9 9 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #1F1F1F"
+"#	c #3F3F3F"
+"    .    "
+"   .+.   "
+"  .+.+.  "
+" .+...+. "
+".@#...#@."
+" .+...+. "
+" .+...+. "
+" .+++++. "
+" ....... "
+[end]
 
 [_point]
 Type=0x2c0b
