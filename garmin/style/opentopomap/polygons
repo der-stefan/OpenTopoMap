@@ -13,6 +13,9 @@ leisure=* & sport=* & name!=* { add name='${sport}' }
 
 include 'inc/name';
 
+# buildings tag should be FIRST
+building=* & area!=no [0x13 resolution 24 continue]
+
 aeroway=airport [0x07 resolution 20]
 aeroway=aerodrome [0x07 resolution 20]
 aeroway=helipad [0x0e resolution 22]
@@ -65,8 +68,8 @@ historic=archaeological_site | historic=ruins [0x1e resolution 21]
 (amenity=university|amenity=school|amenity=hospital) & (building!=*) [0x10 resolution 19-23]
 
 # building tag should be last
-building=* & area!=no [0x13 resolution 24]
-tourism=* & area!=no & waterway!=* [0x13 resolution 24]
+#building=* & area!=no [0x13 resolution 24]
+#tourism=* & area!=no & waterway!=* [0x13 resolution 24]
 # man_made can be used on areas or lines
 # man_made=* & area!=no
 # & (man_made!=door & man_made!=embankment & man_made!=breakwater

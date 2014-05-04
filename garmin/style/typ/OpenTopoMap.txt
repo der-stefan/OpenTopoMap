@@ -1003,7 +1003,7 @@ Xpm="32 2 2 1"
 Type=0x1f
 LineWidth=3
 Xpm="0 0 1 0"
-"0 c #0000ff"
+"0 c #1d4dff"
 [end]
 
 [_line]
@@ -1323,28 +1323,28 @@ Xpm="32 32 2 1"
 Type=0x32
 String=0x02,Meer
 Xpm="0 0 1 0"
-"a c #8adfff"
+"a c #72ceff"
 [end]
 
 [_polygon]
 Type=0x3c
 String=0x02,Wasser
 Xpm="0 0 1 0"
-"a c #8adfff"
+"a c #72ceff"
 [end]
 
 [_polygon]
 Type=0x3f
 String=0x02,Wasserspeicher
 Xpm="0 0 1 0"
-"a c #8adfff"
+"a c #72ceff"
 [end]
 
 [_polygon]
 Type=0x46
 String=0x02,Fluss
 Xpm="0 0 1 0"
-"a c #8adfff"
+"a c #72ceff"
 [end]
 
 [_polygon]

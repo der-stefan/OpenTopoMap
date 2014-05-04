@@ -84,6 +84,7 @@ mkgmap:city!=* & addr:city=* { set mkgmap:city='${addr:city}' }
 opening_hours=* {set mkgmap:region='${opening_hours|subst:Tu=>Di|subst:We=>Mi|subst:Th=>Do|subst:Su=>So}' }
 website=* {set mkgmap:region='${mkgmap:region}   ${website}'}
 collection_times=* {set mkgmap:region='${collection_times|subst:Tu=>Di|subst:We=>Mi|subst:Th=>Do|subst:Su=>So}' }
+fee=* {set mkgmap:region='${mkgmap:region} ${fee|subst:yes=>kostenpflichtig|subst:no=>kostenfrei}'}
 
 mkgmap:postal_code!=* & mkgmap:postcode=* { set mkgmap:postal_code='${mkgmap:postcode}' } 
 mkgmap:postal_code!=* & addr:postcode=* { set mkgmap:postal_code='${addr:postcode}' } 
