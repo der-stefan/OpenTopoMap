@@ -302,7 +302,7 @@ tourism=viewpoint {name '${name} - ${description}' | '${name}'} [0x2c04 resoluti
 tourism=wine_cellar [0x2c0a resolution 24]
 tourism=zoo [0x2c07 resolution 24]
 
-barrier=bollard | barrier=bus_trap | barrier=gate [0x660f resolution 24 default_name 'Pfosten']
+barrier=bollard | barrier=bus_trap | barrier=gate [0x660f resolution 24]
 barrier=block | barrier=cycle_barrier | barrier=stile | barrier=kissing_gate [0x660f resolution 24]
 
 include 'inc/water_points';
