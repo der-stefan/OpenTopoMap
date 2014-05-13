@@ -27,4 +27,9 @@ This is no walk-through: paths have to be adjusted by the user!
 
 
 5) Compile map
-   java -jar mkgmap.jar -c mkgmap_options data/6324000* style/typ/OpenTopoMap.typ
+   java -jar mkgmap.jar -c mkgmap_options --style-file=style/opentopomap --output-dir=output --bounds=bounds/bounds data/6324000* style/typ/OpenTopoMap.typ
+
+
+Note: Since mkgmap-r3267 warnings like this occur:
+"routable type 0x06 is used with a non-routable way which was also added as a routable way. This leads to routing errors"
+This is the result of the overloaded style definitions and does not influence routing functionality! Just ignore it...
