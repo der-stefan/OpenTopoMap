@@ -22,7 +22,7 @@ This is no walk-through: paths have to be adjusted by the user!
    The TYP file is hand-made with the text editor of your choice. Ugly, but works great! You only have to compile the TYP file if you made changes to the .txt
    
    cd style/typ
-   java -jar mkgmap.jar OpenTopoMap.txt
+   java -jar mkgmap.jar --family-id=35 OpenTopoMap.txt
      -> output: OpenTopoMap.typ
 
 
