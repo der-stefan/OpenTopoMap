@@ -18,6 +18,20 @@
 		<LinePatternSymbolizer file="symbols-topo/embankment_10px.png"/>
 	</Rule>
 
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="0.5" stroke-dasharray="1.5,1.5"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2"/>
+	</Rule>
+
+
  <Rule>
   &maxscale_zoom12;
   &minscale_zoom12;
@@ -185,8 +199,7 @@
   <Filter>
 ( ([highway] = 'track') and ( 
  ([tracktype] = 'grade5') )
-) or 
-([highway] = 'path' or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway')</Filter>
+)</Filter>
   <LineSymbolizer stroke="black" stroke-width="0.5" stroke-dasharray="3,3" />
  </Rule>
  <Rule>
@@ -195,8 +208,7 @@
   <Filter>
 ( ([highway] = 'track') and ( 
  ([tracktype] = 'grade5') )
-) or 
-([highway] = 'path' or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway')</Filter>
+)</Filter>
   <LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="4,4" />
  </Rule>
  <Rule>
