@@ -1,0 +1,33 @@
+[_id]
+	FID=3535
+	ProductCode=1
+	CodePage=1252
+[end]
+
+[_drawOrder]
+Type=0x4b,0
+[end]
+
+
+
+[_line]
+Type=0x20
+Xpm="32 1 1 1"
+"# c #c08040"
+"################################"
+[end]
+
+[_line]
+Type=0x21
+LineWidth=1
+Xpm="0 0 1 0"
+"0 c #c08040"
+[end]
+
+[_line]
+Type=0x22
+LineWidth=1
+Xpm="0 0 1 0"
+"0 c #c08040"
+[end]
+
