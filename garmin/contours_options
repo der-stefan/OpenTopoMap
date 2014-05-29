@@ -1,0 +1,15 @@
+max-jobs
+gmapsupp
+description=Contours
+latin1
+index
+overview-mapname=Contours
+family-id=3535
+family-name=Contours
+product-id=1
+product-version=1
+series-name=Contours
+min-size-polygon=8
+polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
+tdbfile
+nsis
