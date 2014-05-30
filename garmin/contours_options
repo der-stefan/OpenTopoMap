@@ -1,3 +1,5 @@
+transparent
+draw-priority=99
 max-jobs
 gmapsupp
 description=Contours

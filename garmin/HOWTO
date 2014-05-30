@@ -42,3 +42,6 @@ This is the result of the overloaded style definitions and does not influence ro
 
 	phyghtmap --polygon=europe.poly -j 2 -s 10 -0 --source=view3 --max-nodes-per-tile=0 --max-nodes-per-way=0 --pbf
 
+	java -jar splitter.jar <phyghtmap-output>.osm.pbf --mapid=3535
+	java -jar mkgmap.jar -c contours_options --style-file=style/contours/ --output-dir=output2 data2/00003535.osm.pbf style/typ/contours.typ
+
