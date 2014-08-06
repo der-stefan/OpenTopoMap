@@ -17,7 +17,6 @@ polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
 route
 adjust-turn-headings
 add-pois-to-areas
-generate-sea=extend-sea-sectors
 make-opposite-cycleways
 link-pois-to-ways
 process-destination
