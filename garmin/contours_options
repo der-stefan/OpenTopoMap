@@ -2,12 +2,9 @@ transparent
 draw-priority=99
 max-jobs
 gmapsupp
-description=Contours
 latin1
 index
 overview-mapname=Contours
-family-id=3535
-family-name=Contours
 product-id=1
 product-version=1
 series-name=Contours
