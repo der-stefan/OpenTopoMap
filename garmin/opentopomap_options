@@ -1,16 +1,12 @@
 max-jobs
 gmapsupp
-description=OpenTopoMap
 country-name=Deutschland
 country-abbr=DE
 latin1
 index
 housenumbers
 overview-mapname=OpenTopoMap
-family-id=35
-family-name=OpenTopoMap
 product-id=1
-product-version=2
 series-name=OpenTopoMap
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
