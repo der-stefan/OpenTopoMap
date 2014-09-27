@@ -9,6 +9,7 @@ The online renderer is based on Mapnik. All necessary files are available to bui
 
 ### Garmin
 Since summer 2014 there is a Garmin edition of the OpenTopoMap. They can be downloaded from http://garmin.opentopomap.org. Here are some screenshots:
+
 ![screenshot1](https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/garmin/screenshots/screenshot1.png)
 ![screenshot2](https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/garmin/screenshots/screenshot2.png)
 ![screenshot3](https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/garmin/screenshots/screenshot3.png)
