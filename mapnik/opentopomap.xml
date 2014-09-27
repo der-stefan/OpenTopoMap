@@ -133,7 +133,7 @@
 		<StyleName>hillshade-2000</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-europa-2000.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-europe-2000.tif</Parameter>
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
@@ -142,7 +142,7 @@
 		<StyleName>hillshade-500</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-europa-500.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-europe-500.tif</Parameter>
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
@@ -151,7 +151,7 @@
 		<StyleName>hillshade-150</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-150.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-europe-150.tif</Parameter>
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
