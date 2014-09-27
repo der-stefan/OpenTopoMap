@@ -8,7 +8,7 @@ The main OpenTopoMap is a online rendered raster map. It can be used with the we
 The online renderer is based on Mapnik. All necessary files are available to build your own OpenTopoMap server.
 
 ### Garmin
-There will be a Garmin edition of the OpenTopoMap released in summer 2014. Here is a first teaser:
+Since summer 2014 there is a Garmin edition of the OpenTopoMap. They can be downloaded from http://garmin.opentopomap.org. Here are some screenshots:
 ![screenshot1](https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/garmin/screenshots/screenshot1.png)
 ![screenshot2](https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/garmin/screenshots/screenshot2.png)
 ![screenshot3](https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/garmin/screenshots/screenshot3.png)
