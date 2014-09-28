@@ -1,0 +1,145 @@
+HOWTO install OpenTopoMap on Ubuntu 14.04 LTS
+=============================================
+
+A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
+http://opentopomap.org
+
+This guide is quite complete, but you should always think about before blindly copying the commands.
+
+
+
+
+# File system (use "sda" for system and home and "sdb" for database and tiles)
+	/mnt/database
+	/mnt/tiles
+
+
+# Install Mapnik renderer
+	# either from PPA (not yet available for 14.04)
+	see https://github.com/mapnik/mapnik/wiki/UbuntuInstallation
+
+	# or from standard Ubuntu repository:
+	sudo apt-get install libmapnik2.2 libmapnik2-dev mapnik-utils python-mapnik
+
+
+# Install Postgresql database
+	sudo apt-get install postgresql-9.3-postgis-2.1 postgresql-contrib-9.3 postgresql-server-dev-9.3
+
+	# change default path via symlink 
+	sudo chown postgres /mnt/database
+	sudo chgrp postgres /mnt/database
+	sudo /etc/init.d/postgresql stop
+	sudo cp -a /var/lib/postgresql/9.3/main /mnt/database
+	sudo rm -r /var/lib/postgresql/9.3
+	sudo ln -s /mnt/database /var/lib/postgresql/9.3
+	sudo /etc/init.d/postgresql start
+
+	# add database "gis"
+	sudo -u postgres -i
+	createuser -s username
+	createdb -E UTF8 -O username gis
+	exit
+
+	# Install PostGIS to "gis"
+	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d gis
+	psql -d gis -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
+
+	# Tweaks:
+		Edit the file /etc/postgresql/9.3/main/postgresql.conf and make the following changes:
+			shared_buffers = 128MB
+			checkpoint_segments = 20
+			work_mem = 256MB
+			maintenance_work_mem = 256MB
+			autovacuum = off
+
+		As root, edit /etc/sysctl.conf and add these lines near the top after the other “kernel” definitions:
+			# Increase kernel shared memory segments - needed for large databases
+			kernel.shmmax=268435456
+	
+
+# Install mod_tile from source
+	sudo apt-get install subversion git-core tar unzip wget bzip2 build-essential autoconf libtool libxml2-dev libgeos-dev libgeos++-dev libpq-dev libbz2-dev munin-node munin libprotobuf-c0-dev protobuf-c-compiler libfreetype6-dev libpng12-dev libtiff4-dev libicu-dev libgdal-dev libcairo2-dev libcairomm-1.0-dev apache2 apache2-dev libagg-dev lua5.2 liblua5.2-dev ttf-unifont
+	mkdir ~/src
+	cd ~/src
+	git clone git://github.com/openstreetmap/mod_tile.git
+	cd mod_tile
+	./autogen.sh
+	./configure
+	make
+	sudo make install
+	sudo make install-mod_tile
+	sudo ldconfig
+
+	sudo vi /etc/apache2/mods_enabled/mod_tile.load
+		LoadModule tile_module /usr/lib/apache2/modules/mod_tile.so
+
+
+# Install osm2pgsql from source
+	cd ~/src
+	git clone git://github.com/openstreetmap/osm2pgsql.git
+	cd osm2pgsql
+	./autogen.sh
+	./configure
+	make
+	sudo make install
+	psql -f /usr/local/share/osm2pgsql/900913.sql -d gis
+
+
+# Install osmosis
+	sudo apt-get install default-jre-headless junit
+	mkdir ~/src/osmosis
+	cd ~/src/osmosis
+	wget http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz
+	tar xvfz osmosis-latest.tgz
+	chmod a+x bin/osmosis
+	sudo ln -s bin/osmosis /usr/local/bin/osmosis
+
+
+# Set up osmosis working dir for daily updates
+	osmosis --rrii workingDirectory=~/data/updates
+	# edit configuration.txt to baseUrl=http://download.geofabrik.de/europe/germany/bayern/mittelfranken-updates/
+
+
+# Load data into database
+	cd ~/data
+	wget http://download.geofabrik.de/europe/germany/bayern/mittelfranken-latest.osm.pbf
+	cd ~/data/updates
+	wget http://download.geofabrik.de/europe/germany/bayern/mittelfranken-updates/state.txt
+
+	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes ~/data/flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/mittelfranken-latest.osm.pbf
+
+
+# Update data
+	osmosis --rri workingDirectory=~/data/updates --simplify-change --write-xml-change ~/data/updates/changes.osc.gz
+	osm2pgsql --append --slim -d gis  -C 12000 --number-processes 10 --flat-nodes ~/data/flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/updates/changes.osc.gz
+	rm ~/data/updates/changes.osc.gz
+
+
+# Download OpenTopoMap files
+	cd ~
+	git clone https://github.com/der-stefan/OpenTopoMap.git
+	cd ~/OpenTopoMap/mapnik
+	mkdir world_boundaries
+	wget http://tile.openstreetmap.org/shoreline_300.tar.bz2
+	wget http://tile.openstreetmap.org/processed_p.tar.bz2
+	tar xjf shoreline_300.tar.bz2 -C world_boundaries
+	tar xjf processed_p.tar.bz2 -C world_boundaries
+
+	# You need the files for hillshade and contours
+	# Please create them on your own
+
+
+# Configure apache and mod_tile/renderd
+	# edit /usr/local/etc/renderd.conf
+	# edit /etc/apache2/sites-available/000-default.conf
+	sudo a2enmod rewrite && sudo service apache2 restart
+
+	sudo mkdir /var/run/renderd
+	sudo chown username /var/run/renderd
+	renderd -f -c /usr/local/etc/renderd.conf
+	
+	
+
+
+
+

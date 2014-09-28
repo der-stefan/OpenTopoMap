@@ -1,0 +1,44 @@
+HOWTO create a DEM for contours and hillshade
+=============================================
+
+A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
+http://opentopomap.org
+
+This guide is quite complete, but you should always think about before blindly copying the commands.
+
+
+
+
+# Install needed packages
+	sudo apt-get install gdal-bin python-gdal
+
+# Download all SRTM tiles you need (Viewfinder), for example with the help of http://www.imagico.de/map/demsearch.php
+	wget -i list.txt
+
+
+# Unpack all zip files
+	for zipfile in *.zip;do unzip -j -o "$zipfile" -d unpacked; done
+
+
+# Fill all voids
+	for hgtfile in *.hgt;do gdal_fillnodata.py $hgtfile $hgtfile.tif; done
+
+
+# Merge all .tifs into one huge tif. This file will is the raw DEM with full resolution and the start for any further steps.
+	gdal_merge.py -n 32767 -o ../../raw.tif *.hgt.tif
+
+# Convert the raw file into Mercator projection, interpolate and shrink
+	gdalwarp -co BIGTIFF=YES -co TILED=YES -co COMPRESS=LZW -co PREDICTOR=2 -t_srs "+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m" -r bilinear -tr 1000 1000 raw.tif warp-1000.tif
+
+	Parameters:
+		-co BIGTIFF=YES: if output > 4 GB
+		-co TILED=YES: intern tiles
+		-co COMPRESS=LZW -co PREDICTOR=2: lossless compression with prediction
+		-t_srs "+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m": convertion into Mercator
+		-r cubicspline: interpolation for tr < 90 m
+		   bilinear: for tr > 90 m
+		-tr 30 30: desired resolution in meter
+
+
+	gdaldem color-relief -co "compress=LZW" -alpha warp-500.tif relief.txt relief-500.tif
+
