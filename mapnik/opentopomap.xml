@@ -5,6 +5,7 @@
        
        <!ENTITY world SYSTEM "inc-style/world.sty">
        <!ENTITY landuse-fill SYSTEM "inc-style/landuse-fill.sty">
+       <!ENTITY relief SYSTEM "inc-style/relief.sty">
        <!ENTITY hillshade SYSTEM "inc-style/hillshade.sty">
        <!ENTITY residential-fill SYSTEM "inc-style/residential-fill.sty">
        <!ENTITY waterway-lines SYSTEM "inc-style/waterway-lines.sty">
@@ -60,6 +61,7 @@
 <!-- style definitions -->
 	&world;
 	&landuse-fill;
+    &relief;
 	&hillshade;
 	&residential-fill;
 	&waterway-lines;
@@ -126,6 +128,24 @@
 		<Datasource>
 			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity FROM &prefix;_polygon) AS landuse </Parameter>
 			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="relief" status="on">
+		<StyleName>relief-5000</StyleName>
+		<Datasource>
+			<Parameter name="type">gdal</Parameter>
+			<Parameter name="file">hillshade/relief-5000.tif</Parameter>
+			<Parameter name="format">tiff</Parameter>
+		</Datasource>
+	</Layer>
+
+	<Layer name="relief" status="on">
+		<StyleName>relief-1000</StyleName>
+		<Datasource>
+			<Parameter name="type">gdal</Parameter>
+			<Parameter name="file">hillshade/relief-500.tif</Parameter>
+			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
 
