@@ -28,6 +28,8 @@
        <!ENTITY railways-draw SYSTEM "inc-style/railways-draw.sty">
        <!ENTITY airports-casing SYSTEM "inc-style/airports-casing.sty">
        <!ENTITY airports-fill SYSTEM "inc-style/airports-fill.sty">
+       <!ENTITY roads-lowzoom-casing SYSTEM "inc-style/roads-lowzoom-casing.sty">
+       <!ENTITY roads-lowzoom-fill SYSTEM "inc-style/roads-lowzoom-fill.sty">
        <!ENTITY roads-casing SYSTEM "inc-style/roads-casing.sty">
        <!ENTITY roads-fill SYSTEM "inc-style/roads-fill.sty">
        <!ENTITY roads-12_13 SYSTEM "inc-style/roads-12_13.sty"> 
@@ -81,6 +83,8 @@
 	&railways-draw;
 	&airports-casing;
 	&airports-fill;
+    &roads-lowzoom-casing;
+    &roads-lowzoom-fill;
 	&roads-casing;
 	&roads-fill;
 	&roads-12_13;
@@ -283,10 +287,18 @@
 		</Datasource>
 	</Layer>
 	 
+	<Layer name="roads-lowzoom">
+	<StyleName>roads-lowzoom-casing</StyleName>
+	<StyleName>roads-lowzoom-fill</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway FROM &prefix;_roads) AS roadslowzoom </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
 
-	<Layer name="roads-casing">
+<!--	<Layer name="roads-casing">-->
 	<!-- draw only roads without bridges and tunnels, but above zoom 12 every road-->
-	<StyleName>roads-casing</StyleName>
+<!--	<StyleName>roads-casing</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,highway,surface,tracktype,embankment FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL) AS roads </Parameter>
 			&datasource-settings;
@@ -301,7 +313,7 @@
 			<Parameter name="table">(SELECT way,highway,tracktype FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
-	</Layer>
+	</Layer>-->
 	
 	<Layer name="ferry_routes">
 		<StyleName>ferry_routes-draw</StyleName>

@@ -1,0 +1,86 @@
+<Style name="roads-lowzoom-casing">
+
+<!-- zoom 6 -->
+	<Rule>
+		&maxscale_zoom6;
+		&minscale_zoom6;
+		<Filter>[highway] = 'motorway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom6;
+		&minscale_zoom6;
+		<Filter>[highway] = 'trunk'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom6;
+		&minscale_zoom6;
+		<Filter>[highway] = 'primary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="0.4" />
+	</Rule>
+
+
+<!-- zoom 7 -->
+	<Rule>
+		&maxscale_zoom7;
+		&minscale_zoom7;
+		<Filter>[highway] = 'motorway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="2.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom7;
+		&minscale_zoom7;
+		<Filter>[highway] = 'trunk'</Filter>
+		<LineSymbolizer stroke="#613100" stroke-width="2.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom7;
+		&minscale_zoom7;
+		<Filter>[highway] = 'primary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.8" />
+	</Rule>
+
+
+<!-- zoom 8 -->
+	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<Filter>[highway] = 'motorway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="4" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<Filter>[highway] = 'trunk'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="3.2" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<Filter>[highway] = 'primary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="2.3" />
+	</Rule>
+
+
+<!-- zoom 9 -->
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>[highway] = 'primary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="3.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>[highway] = 'secondary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="2" />
+	</Rule>
+
+</Style>
