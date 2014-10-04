@@ -1,14 +1,14 @@
 <Style name="powerlines-draw">
 	<Rule>
 		&maxscale_zoom12;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([power] = 'line')</Filter>
 		<LinePatternSymbolizer file="symbols-topo/powerline.png"/>
 		<LineSymbolizer stroke="black" stroke-width="0.5"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([power] = 'minor_line') and (([voltage] &gt; '10000') or ([voltage] = null))</Filter>
 		<LinePatternSymbolizer file="symbols-topo/powerline.png"/>
 		<LineSymbolizer stroke="black" stroke-width="0.5"/>

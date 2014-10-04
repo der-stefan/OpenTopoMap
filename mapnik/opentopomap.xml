@@ -34,6 +34,7 @@
        <!ENTITY roads-fill SYSTEM "inc-style/roads-fill.sty">
        <!ENTITY roads-12_13 SYSTEM "inc-style/roads-12_13.sty"> 
        <!ENTITY roads-middle SYSTEM "inc-style/roads-middle.sty">
+       <!ENTITY roads-text_z16 SYSTEM "inc-style/roads-text_z16.sty">
        <!ENTITY ferry_routes-draw SYSTEM "inc-style/ferry_routes-draw.sty">
        <!ENTITY railways-bridge SYSTEM "inc-style/railways-bridge.sty">
        <!ENTITY bridges-casing SYSTEM "inc-style/bridges-casing.sty">
@@ -60,7 +61,7 @@
        %entities;
        
 ]>
-<Map background-color="#75b0c1" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" buffer-size="128">
+<Map background-color="#75b0c1" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" buffer-size="256">
 <!-- style definitions -->
 	&world;
 	&landuse-fill;
@@ -90,6 +91,7 @@
 	&roads-fill;
 	&roads-12_13;
 	&roads-middle;
+    &roads-text_z16;
 	&ferry_routes-draw;
 	&railways-bridge;
 	&bridges-casing;
@@ -311,8 +313,9 @@
 		<StyleName>roads-fill</StyleName>
 		<StyleName>roads-12_13</StyleName>
 		<StyleName>roads-middle</StyleName>
+		<StyleName>roads-text_z16</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,tracktype FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,tracktype,name FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -433,7 +436,7 @@
 	<Layer name="text-roads">
 		<StyleName>text-roads</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ref,highway FROM &prefix;_line WHERE (ST_Length(way)::integer &gt; 1000) AND ref IS NOT NULL) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,ref FROM &prefix;_line WHERE (ST_Length(way)::integer &gt; 1000) AND ref IS NOT NULL) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>

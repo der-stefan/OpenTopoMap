@@ -6,14 +6,26 @@
 		&minscale_zoom5;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ([population] &gt; 1000000)</Filter>
 		<PointSymbolizer file="symbols-topo/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="1" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="1" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom5;
 		&minscale_zoom5;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ([population] &lt; 1000000) and ([population] &gt; 250000)</Filter>
 		<PointSymbolizer file="symbols-topo/town_z8.png" />
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 
 
@@ -23,21 +35,42 @@
 		&minscale_zoom6;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ([population] &gt; 1000000)</Filter>
 		<PointSymbolizer file="symbols-topo/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="1" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="1" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom6;
 		&minscale_zoom6;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ([population] &lt; 1000000) and ([population] &gt; 400000)</Filter>
 		<PointSymbolizer file="symbols-topo/town_z8.png" />
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom6;
 		&minscale_zoom6;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ((([population] &lt; 400000) and ([population] &gt; 100000)) or [population] = null)</Filter>
 		<PointSymbolizer file="symbols-topo/town_z8.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="1" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="1" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 
 
@@ -47,14 +80,28 @@
 		&minscale_zoom7;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ([population] &gt; 1000000)</Filter>
 		<PointSymbolizer file="symbols-topo/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="black" halo-radius="2" placement="point" dx="5" dy="-4">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="black" halo-radius="2" placement="point" placement-type="list">[name]
+			<Placement dx="4" dy="-3" />
+			<Placement dx="4" dy="3" />
+			<Placement dy="4" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-4" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom7;
 		&minscale_zoom7;
 		<Filter>([place] = 'city') and not ([capital] = 'yes') and ([population] &lt; 1000000)</Filter>
 		<PointSymbolizer file="symbols-topo/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="2" placement="point" dx="5" dy="-4">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="2" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 
 

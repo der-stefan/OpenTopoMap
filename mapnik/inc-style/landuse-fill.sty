@@ -19,37 +19,37 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
 		<LinePatternSymbolizer file="symbols-topo/forest-outline.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'coniferous'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/forest-coniferous.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'deciduous'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/forest-deciduous.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/forest.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([landuse] = 'meadow' or [landuse] = 'grassland' or [landuse] = 'grass' or [natural] = 'grassland') and not ([natural] = 'wetland'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/meadow.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([natural] = 'scrub')</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/scrub.png"/>
 	</Rule>
@@ -62,7 +62,7 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wetland') and ([wetland] = 'swamp'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/swamp.png"/>
 		<LinePatternSymbolizer file="symbols-topo/swamp-outline.png"/>
@@ -76,20 +76,20 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wetland') and ([wetland] = 'bog'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/bog.png"/>
 		<LineSymbolizer stroke="#0055ff" stroke-width="1" stroke-opacity="0.2" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom10;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wetland') and ([wetland] = 'tidalflat'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/tidalflat.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wetland') and ([wetland] = 'reedbed'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/reedbed.png"/>
 	</Rule>
@@ -102,45 +102,45 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([natural] = 'wetland') and not (([wetland] = 'bog') or ([wetland] = 'swamp') or ([wetland] = 'tidalflat') or ([wetland] = 'reedbed')))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/swamp.png"/>
 		<LinePatternSymbolizer file="symbols-topo/swamp-outline.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([landuse] = 'cemetery') or ([amenity] = 'grave_yard'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/grave_yard.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([landuse] = 'vineyard')</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/vineyard.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([natural] = 'beach') or ([natural] = 'sand')</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/sand.png"/>
 	</Rule>
 	
 	<Rule>
 		&maxscale_zoom9;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([natural] = 'glacier')</Filter>
 		<PolygonSymbolizer fill="#d0f8ff" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom10;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([natural] = 'scree')</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/scree.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([natural] = 'fell')</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/fell.png"/>
 	</Rule>
@@ -152,19 +152,19 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([landuse] = 'quarry') and ([way_area] &lt; 2000000)</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/quarry.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([landuse] = 'allotments')</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/allotments.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([leisure] = 'pitch')</Filter>
 		<PolygonSymbolizer fill="#a3ff9e" fill-opacity="0.5" />
 	</Rule>

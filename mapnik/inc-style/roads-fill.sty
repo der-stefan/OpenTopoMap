@@ -346,4 +346,51 @@
 		<Filter>[highway] = 'service'</Filter>
 		<LineSymbolizer stroke="white" stroke-width="1.5" />
 	</Rule>
+
+
+<!-- zoom 16 -->
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary'</Filter>
+		<LineSymbolizer stroke="#fdb548" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'secondary' or [highway] = 'tertiary'</Filter>
+		<LineSymbolizer stroke="#fdfd4f" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'residential' or [highway] = 'unclassified' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
+		<LineSymbolizer stroke="#fdb548" stroke-width="4" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<LineSymbolizer stroke="#fdfd4f" stroke-width="4" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'service'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="4" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'track' and [tracktype] = 'grade1'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="2.5" stroke-linecap="round" />
+	</Rule>
+
+
 </Style>
