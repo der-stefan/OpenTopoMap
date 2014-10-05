@@ -345,25 +345,25 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>[highway] = 'track' and (not ([tracktype] = 'grade1' or [tracktype] = 'grade3' or [tracktype] = 'grade4' or [tracktype] = 'grade5') ) or [highway] = 'cycleway' or ([highway] = 'path' and [surface] = 'asphalt')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>[highway] = 'track' and ([tracktype] = 'grade3' or [tracktype] = 'grade4')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>[highway] = 'track' and [tracktype] = 'grade5'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="4,4" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2"/>
 	</Rule>
@@ -408,6 +408,12 @@
 		&minscale_zoom15;
 		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
 		<LinePatternSymbolizer file="symbols-topo/embankment_10px.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-topo/embankment_12px.png"/>
 	</Rule>
 
 </Style>

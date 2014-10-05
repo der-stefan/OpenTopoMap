@@ -1,13 +1,13 @@
 <Style name="symbols-churches-castles">
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
 		<PointSymbolizer file="symbols-topo/castle.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>
 (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="10">[name]</TextSymbolizer>
@@ -15,39 +15,39 @@
 
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
 		<PointSymbolizer file="symbols-topo/chateau.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="9">[name]</TextSymbolizer>
 	</Rule>
  
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([amenity] = 'place_of_worship') and ( not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel') or ([religion] = 'muslim') or ([religion] = 'jewish') or ([religion] = 'buddhist') or ([denomination] = 'baptist') or ([denomination] = 'apostolic') or ([denomination] = 'methodist') or ([denomination] = 'mormon') or ([denomination] = 'new_apostolic'))))</Filter>
 		<PointSymbolizer file="symbols-topo/church.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([amenity] = 'place_of_worship') and (([building] = 'chapel') or ([building] = 'wayside_chapel'))) or ([historic] = 'wayside_chapel') </Filter>
 		<PointSymbolizer file="symbols-topo/chapel.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([historic] = 'ruins') or
 (([ruins] = 'yes') and (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))))</Filter>
 		<PointSymbolizer file="symbols-topo/castle_ruins.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom15;
+		&minscale_zoom16;
 		<Filter>(([ruins] = 'yes') and (([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung'))))</Filter>
 		<PointSymbolizer file="symbols-topo/chateau_ruins.png"/>
 	</Rule>
