@@ -31,6 +31,7 @@
        <!ENTITY roads-lowzoom-casing SYSTEM "inc-style/roads-lowzoom-casing.sty">
        <!ENTITY roads-lowzoom-fill SYSTEM "inc-style/roads-lowzoom-fill.sty">
        <!ENTITY roads-casing SYSTEM "inc-style/roads-casing.sty">
+       <!ENTITY roads-areas SYSTEM "inc-style/roads-areas.sty">
        <!ENTITY roads-fill SYSTEM "inc-style/roads-fill.sty">
        <!ENTITY roads-12_13 SYSTEM "inc-style/roads-12_13.sty"> 
        <!ENTITY roads-middle SYSTEM "inc-style/roads-middle.sty">
@@ -88,6 +89,7 @@
     &roads-lowzoom-casing;
     &roads-lowzoom-fill;
 	&roads-casing;
+    &roads-areas;
 	&roads-fill;
 	&roads-12_13;
 	&roads-middle;
@@ -308,6 +310,14 @@
 			&datasource-settings;
 		</Datasource>
 	</Layer>
+
+	<Layer name="roads-areas">
+	<StyleName>roads-areas</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,area,highway FROM &prefix;_polygon WHERE highway IS NOT NULL AND area IS NOT NULL) AS areas </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
 	  
 	<Layer name="roads-fill">
 		<StyleName>roads-fill</StyleName>
@@ -342,7 +352,7 @@
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,tracktype FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL)) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL)) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
