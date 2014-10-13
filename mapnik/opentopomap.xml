@@ -352,10 +352,21 @@
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL)) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer = '1')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
+
+	<Layer name="bridges-layer2">
+		<StyleName>bridges-casing</StyleName>
+		<StyleName>bridges-fill</StyleName>
+		<StyleName>bridges-middle</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer != '1')) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
 	 
 	<Layer name="aerialways">
 		<StyleName>aerialways-draw</StyleName>
