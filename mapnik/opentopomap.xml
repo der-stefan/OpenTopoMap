@@ -352,7 +352,7 @@
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer = '1')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer IS NULL OR layer = '1')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
