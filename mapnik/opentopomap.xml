@@ -163,7 +163,8 @@
 		<StyleName>hillshade-2000</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-europe-2000.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-1000.tif</Parameter>
+			<!--Parameter name="file">hillshade/hillshade-europe-2000.tif</Parameter-->
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
