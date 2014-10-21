@@ -4,14 +4,28 @@
 		&minscale_zoom7;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
 		<PointSymbolizer file="symbols-topo/town_z8.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="2" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
 		<PointSymbolizer file="symbols-topo/town_z8.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" placement="point" dx="5" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="5" />
+			<Placement dy="-6" />
+			<Placement dx="-3" dy="4" />
+			<Placement dx="-5" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom9;

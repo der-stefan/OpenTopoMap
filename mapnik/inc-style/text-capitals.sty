@@ -36,7 +36,14 @@
 		&minscale_zoom7;
 		<Filter>([place] = 'city') and ([capital] = 'yes')</Filter>
 		<PointSymbolizer file="symbols-topo/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="13" fill="black" halo-radius="1" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="13" fill="black" halo-radius="2" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<Filter>([place] = 'city') and ([capital] = 'yes')</Filter>
+		<PointSymbolizer file="symbols-topo/city.png"/>
+		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="14" fill="black" halo-radius="2" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
 	</Rule>
 
 </Style>
