@@ -25,7 +25,7 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 # Merge all .tifs into one huge tif. This file will is the raw DEM with full resolution and the start for any further steps.
-	gdal_merge.py -n 32767 -o ../../raw.tif *.hgt.tif
+	gdal_merge.py -n 32767 -co BIGTIFF=YES -co TILED=YES -co COMPRESS=LZW -co PREDICTOR=2 -o ../../raw.tif *.hgt.tif
 
 # Convert the raw file into Mercator projection, interpolate and shrink
 	gdalwarp -co BIGTIFF=YES -co TILED=YES -co COMPRESS=LZW -co PREDICTOR=2 -t_srs "+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m" -r bilinear -tr 1000 1000 raw.tif warp-1000.tif
@@ -40,5 +40,15 @@ This guide is quite complete, but you should always think about before blindly c
 		-tr 30 30: desired resolution in meter
 
 
-	gdaldem color-relief -co "compress=LZW" -alpha warp-500.tif relief.txt relief-500.tif
+# Create color relief for different zoom levels
+	gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-5000.tif relief.txt relief-5000.tif
+	gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-500.tif relief.txt relief-500.tif
+
+
+# Create hillshade for different zoom levels
+	gdaldem hillshade -z 7 -compute_edges -co COMPRESS=JPEG warp-5000.tif hillshade-5000.tif
+	gdaldem hillshade -z 7 -compute_edges -co BIGTIFF=YES -co TILED=YES -co COMPRESS=JPEG warp-1000.tif hillshade-1000.tif
+	gdaldem hillshade -z 4 -compute_edges -co BIGTIFF=YES -co TILED=YES -co COMPRESS=JPEG warp-700.tif hillshade-700.tif
+
+	# Note: gdaldem and gdalwarp have problems compressing huge files while generation. You could compress those afterwards by gdal_translate -co compress=...
 
