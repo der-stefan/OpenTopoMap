@@ -141,7 +141,7 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="relief" status="on">
+	<Layer name="relief-5000" status="on">
 		<StyleName>relief-5000</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
@@ -150,8 +150,8 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="relief" status="on">
-		<StyleName>relief-1000</StyleName>
+	<Layer name="relief-500" status="on">
+		<StyleName>relief-500</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
 			<Parameter name="file">hillshade/relief-500.tif</Parameter>
@@ -159,26 +159,34 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="dem-2000" status="on">
-		<StyleName>hillshade-2000</StyleName>
+	<Layer name="hillshade-5000" status="on">
+		<StyleName>hillshade-5000</StyleName>
+		<Datasource>
+			<Parameter name="type">gdal</Parameter>
+			<Parameter name="file">hillshade/hillshade-5000.tif</Parameter>
+			<Parameter name="format">tiff</Parameter>
+		</Datasource>
+	</Layer>
+
+	<Layer name="hillshade-1000" status="on">
+		<StyleName>hillshade-1000</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
 			<Parameter name="file">hillshade/hillshade-1000.tif</Parameter>
-			<!--Parameter name="file">hillshade/hillshade-europe-2000.tif</Parameter-->
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
 
-	<Layer name="dem-500" status="on">
-		<StyleName>hillshade-500</StyleName>
+	<Layer name="hillshade-700" status="on">
+		<StyleName>hillshade-700</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-europe-500.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-700.tif</Parameter>
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
 
-	<Layer name="dem-150" status="on">
+	<Layer name="hillshade-150" status="on">
 		<StyleName>hillshade-150</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
@@ -265,6 +273,7 @@
 
 
 	<!-- Insert contour lines and clear label cache after that -->
+	<!-- This file is not included, since you have to compute the contour lines on your own -->
 	&layer-contours;
 
 
