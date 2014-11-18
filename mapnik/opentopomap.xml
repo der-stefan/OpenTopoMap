@@ -177,11 +177,11 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="hillshade-700" status="on">
-		<StyleName>hillshade-700</StyleName>
+	<Layer name="hillshade-500" status="on">
+		<StyleName>hillshade-500</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-700.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-500.tif</Parameter>
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
