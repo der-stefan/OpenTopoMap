@@ -102,9 +102,9 @@ This guide is quite complete, but you should always think about before blindly c
 
 # Load data into database
 	cd ~/data
-	wget http://download.geofabrik.de/europe/germany/bayern/mittelfranken-latest.osm.pbf
+	wget http://download.geofabrik.de/europe-latest.osm.pbf
 	cd ~/data/updates
-	wget http://download.geofabrik.de/europe/germany/bayern/mittelfranken-updates/state.txt
+	wget http://download.geofabrik.de/europe-updates/state.txt
 
 	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes ~/data/flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/mittelfranken-latest.osm.pbf
 
@@ -137,6 +137,18 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo mkdir /var/run/renderd
 	sudo chown username /var/run/renderd
 	renderd -f -c /usr/local/etc/renderd.conf
+
+	sudo mkdir /var/lib/mod_tile
+	sudo chown username /var/lib/mod_tile
+
+# start renderd automatically on every boot:
+	sudo cp  ~/src/mod_tile/debian/renderd.init /etc/init.d/renderd
+	sudo chmod u+x /etc/init.d/renderd
+	sudo ln -s /etc/init.d/renderd /etc/rc2.d/S20renderd
+	# edit /etc/init.d/renderd:
+	DAEMON=/usr/local/bin/$NAME
+	DAEMON_ARGS="-c /usr/local/etc/renderd.conf"
+	RUNASUSER=...
 	
 	
 
