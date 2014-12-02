@@ -362,7 +362,7 @@
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer IS NULL OR layer = '1')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -372,7 +372,17 @@
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer != '1')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer = '2')) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="bridges-layer3">
+		<StyleName>bridges-casing</StyleName>
+		<StyleName>bridges-fill</StyleName>
+		<StyleName>bridges-middle</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer &gt; '2')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -422,7 +432,7 @@
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') order by (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) asc, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) desc
+			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') order by (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) asc, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) desc
 		  ) AS names</Parameter>
 			&datasource-settings;
 		</Datasource>
