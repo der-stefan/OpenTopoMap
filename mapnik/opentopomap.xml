@@ -7,6 +7,7 @@
        <!ENTITY landuse-fill SYSTEM "inc-style/landuse-fill.sty">
        <!ENTITY relief SYSTEM "inc-style/relief.sty">
        <!ENTITY hillshade SYSTEM "inc-style/hillshade.sty">
+       <!ENTITY glaciers SYSTEM "inc-style/glaciers.sty">
        <!ENTITY residential-fill SYSTEM "inc-style/residential-fill.sty">
        <!ENTITY waterway-lines SYSTEM "inc-style/waterway-lines.sty">
        <!ENTITY waterway-polygons-casing SYSTEM "inc-style/waterway-polygons-casing.sty">
@@ -68,6 +69,7 @@
 	&landuse-fill;
     &relief;
 	&hillshade;
+	&glaciers;
 	&residential-fill;
 	&waterway-lines;
 	&waterway-polygons-casing;
@@ -194,6 +196,14 @@
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
+
+	<Layer name="glaciers">
+		<StyleName>glaciers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural" FROM &prefix;_polygon) AS glaciers </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
 	  
 	<Layer name="residential">
 		<StyleName>residential-fill</StyleName>
@@ -289,7 +299,7 @@
 		<StyleName>railways-embankment</StyleName>
 		<StyleName>railways-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway,tunnel,embankment FROM &prefix;_line WHERE railway IS NOT NULL) AS railways </Parameter>
+			<Parameter name="table">(SELECT way,railway,tunnel,embankment,service FROM &prefix;_line WHERE railway IS NOT NULL) AS railways </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
