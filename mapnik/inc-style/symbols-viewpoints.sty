@@ -8,7 +8,7 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom16;
-		<Filter>(([natural] = 'peak') and (not [summit:cross] = 'yes'))</Filter>
+		<Filter>(([natural] = 'peak' or [natural] = 'volcano') and (not [summit:cross] = 'yes'))</Filter>
 		<PointSymbolizer file="symbols-topo/peak.png"/>
 	</Rule>
 	<Rule>
