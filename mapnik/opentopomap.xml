@@ -313,7 +313,7 @@
 		</Datasource>
 	</Layer>
 	 
-	<Layer name="roads-lowzoom">
+	<Layer name="roads-lowzoom" cache-features="on">
 		<StyleName>roads-lowzoom-casing</StyleName>
 		<StyleName>roads-lowzoom-fill</StyleName>
 		<Datasource>
@@ -339,7 +339,7 @@
 		</Datasource>
 	</Layer>
 	  
-	<Layer name="roads-fill">
+	<Layer name="roads-fill" cache-features="on">
 		<StyleName>roads-fill</StyleName>
 		<StyleName>roads-12_13</StyleName>
 		<StyleName>roads-middle</StyleName>
@@ -350,7 +350,7 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="ferry_routes">
+	<Layer name="ferry_routes" clear-label-cache="on">
 		<StyleName>ferry_routes-draw</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,route FROM &prefix;_line) AS route </Parameter>
