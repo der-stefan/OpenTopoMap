@@ -206,25 +206,27 @@
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
  		<Filter>([amenity] = 'pharmacy') </Filter>
 		<PointSymbolizer file="symbols-topo/pharmacy.png"/>
 	</Rule>
+-->
 
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
- 		<Filter>([amenity] = 'parking') and not ([access] = 'private' or [access] = 'restricted' or [access] = 'permissive' or [access] = 'no') </Filter>
+ 		<Filter>([amenity] = 'parking') and not ([access] = 'private' or [access] = 'restricted' or [access] = 'permissive' or [access] = 'customers' or [access] = 'no') </Filter>
 		<PointSymbolizer file="symbols-topo/parking.png"/>
 	</Rule>
 
-	<Rule>
+<!-- <Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
  		<Filter>([highway] = 'bus_stop') </Filter>
 		<PointSymbolizer file="symbols-topo/bus_stop.png"/>
 	</Rule>
+-->
 
 </Style>
