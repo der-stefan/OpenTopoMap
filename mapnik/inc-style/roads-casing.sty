@@ -293,8 +293,14 @@
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway'</Filter>
+		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5" stroke-dasharray="1.5,1.5"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[highway] = 'steps'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.5,1.5"/>
 	</Rule>
 
 
