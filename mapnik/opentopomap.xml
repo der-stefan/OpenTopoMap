@@ -58,6 +58,7 @@
        <!ENTITY symbols-viewpoints SYSTEM "inc-style/symbols-viewpoints.sty">
        <!ENTITY text-roads SYSTEM "inc-style/text-roads.sty">
        <!ENTITY text-waterways SYSTEM "inc-style/text-waterways.sty">
+       <!ENTITY text-states SYSTEM "inc-style/text-states.sty">
        
        <!ENTITY % entities SYSTEM "inc/entities.xml.inc">
        %entities;
@@ -117,6 +118,7 @@
 	&symbols-viewpoints;
 	&text-roads;
 	&text-waterways;
+	&text-states;
 
 	<!-- layers -->
 	<Layer name="world" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
@@ -499,6 +501,14 @@
 			&datasource-settings;
 		</Datasource>
 	</Layer>
+
+	<!--<Layer name="text-states" clear-label-cache="yes">
+		<StyleName>text-states</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,place FROM &prefix;_point WHERE (place='state')) AS names</Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>-->
 
 </Map>
 
