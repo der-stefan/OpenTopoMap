@@ -300,7 +300,7 @@ tourism=hostel [0x2b02 resolution 24]
 tourism=hotel | tourism=motel [0x2b01 resolution 24]
 tourism=information [0x4c00 resolution 24]
 # tourism=lean_to replaces some uses of amenity=shelter
-tourism=lean_to [0x2b05 resolution 24 default_name 'lean-to']
+tourism=lean_to [0x2b07 resolution 24 default_name 'lean-to']
 tourism=wilderness_hut [0x2b07 resolution 24 default_name 'wilderness hut']
 tourism=museum [0x2c02 resolution 24]
 tourism=picnic_site [0x4a00 resolution 24]
