@@ -5,8 +5,12 @@ natural=glacier [0x4d resolution 18]
 natural=marsh [0x51 resolution 20]
 natural=mud [0x51 resolution 20]
 natural=wetland [0x51 resolution 20]
-natural=water | leisure=swimming_pool [0x3c resolution 18]
+leisure=swimming_pool [0x3c resolution 18]
 natural=waterfall | waterway=waterfall [0x47 resolution 21]
 natural=sea { add mkgmap:skipSizeFilter=true } [0x32 resolution 10]
 
+natural=water & area_size()>1000000 [0x46 resolution 10]
+natural=water [0x3c resolution 18]
+
+waterway=riverbank & area_size()>1000000 [0x46 resolution 10]
 waterway=riverbank [0x46 resolution 20]
