@@ -27,6 +27,8 @@ Type=0x04,6
 
 [_point]
 Type=0x2a00
+String=0x02,Restaurant
+String=0x04,restaurant
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -62,6 +64,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a01
+String=0x02,Restaurant (amerikanisch)
+String=0x04,restaurant (american)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -97,6 +101,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a02
+String=0x02,Restaurant (asiatisch)
+String=0x04,restaurant (asian)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -132,6 +138,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a03
+String=0x02,Restaurant (Grill)
+String=0x04,restaurant (barbecue)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -167,6 +175,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a04
+String=0x02,Restaurant (chinesisch)
+String=0x04,restaurant (chinese)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -202,6 +212,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a05
+String=0x02,Restaurant (indisch)
+String=0x04,restaurant (indian)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -237,6 +249,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a06
+String=0x02,Restaurant (international)
+String=0x04,restaurant (international)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -272,7 +286,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a07
-String=0x02,Fast Food
+String=0x02,Fast food
+String=0x04,fast food
 DayXpm="16 15 10 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -303,6 +318,8 @@ DayXpm="16 15 10 1"
 
 [_point]
 Type=0x2a08
+String=0x02,Restaurant (italienisch)
+String=0x04,restaurant (italian)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -338,6 +355,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a09
+String=0x02,Restaurant (mexikanisch)
+String=0x04,restaurant (mexican)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -373,6 +392,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a0a
+String=0x02,Pizzeria
+String=0x04,restaurant (pizza)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -408,6 +429,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a0b
+String=0x02,Restaurant (Fisch)
+String=0x04,restaurant (sea food)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -443,6 +466,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a0c
+String=0x02,Steakhaus
+String=0x04,restaurant (steaks)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -479,6 +504,7 @@ DayXpm="8 13 17 1"
 [_point]
 Type=0x2a0d
 String=0x02,Bäckerei
+String=0x04,bakery
 DayXpm="14 11 17 1"
 " 	c None"
 ".	c #B0590F"
@@ -513,6 +539,7 @@ DayXpm="14 11 17 1"
 [_point]
 Type=0x2a0e
 String=0x02,Café
+String=0x04,cafe
 DayXpm="11 10 3 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -531,6 +558,8 @@ DayXpm="11 10 3 1"
 
 [_point]
 Type=0x2a0f
+String=0x02,Restaurant (französisch)
+String=0x04,restaurant (french)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -566,6 +595,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a10
+String=0x02,Restaurant (deutsch)
+String=0x04,restaurant (german)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -601,6 +632,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a11
+String=0x02,Restaurant (britisch)
+String=0x04,restaurant (british)
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -636,6 +669,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a12
+String=0x02,Restaurant (Spezialitäten)
+String=0x04,restaurant
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -671,6 +706,8 @@ DayXpm="8 13 17 1"
 
 [_point]
 Type=0x2a13
+String=0x02,Restaurant
+String=0x04,restaurant
 DayXpm="8 13 17 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -707,6 +744,7 @@ DayXpm="8 13 17 1"
 [_point]
 Type=0x2b02
 String=0x02,Hütte/Hostel
+String=0x04,hut/hostel
 DayXpm="9 9 5 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -727,6 +765,7 @@ DayXpm="9 9 5 1"
 [_point]
 Type=0x2b06
 String=0x02,Schutzhütte
+String=0x04,shelter
 DayXpm="9 8 5 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -746,6 +785,7 @@ DayXpm="9 8 5 1"
 [_point]
 Type=0x2b07
 String=0x02,Hütte
+String=0x04,hut
 DayXpm="9 9 5 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -767,6 +807,7 @@ DayXpm="9 9 5 1"
 [_point]
 Type=0x2c02
 String=0x02,Denkmal
+String=0x04,memorial
 DayXpm="9 10 36 1"
 " 	c None"
 ".	c #EAEAEA"
@@ -820,6 +861,7 @@ DayXpm="9 10 36 1"
 [_point]
 Type=0x2c0b
 String=0x02,Kirche
+String=0x04,church
 DayXpm="9 20 4 1"
 " 	c none"
 "#	c #000000"
@@ -850,6 +892,7 @@ DayXpm="9 20 4 1"
 [_point]
 Type=0x2c0d
 String=0x02,Schloss
+String=0x04,castle
 DayXpm="8 16 5 1"
 " 	c none"
 "#	c #000000"
@@ -877,6 +920,7 @@ DayXpm="8 16 5 1"
 [_point]
 Type=0x2d02
 String=0x02,Kneipe
+String=0x04,pub
 DayXpm="13 13 11 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -907,6 +951,7 @@ DayXpm="13 13 11 1"
 [_point]
 Type=0x2d09
 String=0x02,Badestelle
+String=0x04,swimming
 DayXpm="11 6 5 1"
 " 	c none"
 ".	c #FFFFFF"
@@ -924,6 +969,7 @@ DayXpm="11 6 5 1"
 [_point]
 Type=0x2e02
 String=0x02,Supermarkt
+String=0x04,supermarket
 DayXpm="16 16 18 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -964,6 +1010,7 @@ DayXpm="16 16 18 1"
 [_point]
 Type=0x2e05
 String=0x02,Apotheke
+String=0x04,pharmacy
 DayXpm="11 12 38 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1020,6 +1067,8 @@ DayXpm="11 12 38 1"
 [_point]
 Type=0x2e06
 String=0x02,Kiosk
+String=0x04,convenience
+String=0x04,
 DayXpm="16 16 18 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1061,6 +1110,7 @@ DayXpm="16 16 18 1"
 [_point]
 Type=0x2f06
 String=0x02,Bank
+String=0x04,bank
 DayXpm="9 11 17 1"
 " 	c None"
 ".	c #000000"
@@ -1095,6 +1145,7 @@ DayXpm="9 11 17 1"
 [_point]
 Type=0x2f0b
 String=0x02,Parkplatz
+String=0x04,parking
 DayXpm="11 11 8 1"
 " 	c none"
 "#	c #1600FF"
@@ -1120,6 +1171,7 @@ DayXpm="11 11 8 1"
 [_point]
 Type=0x2f0c
 String=0x02,Toilette
+String=0x04,restroom
 DayXpm="16 16 32 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1174,6 +1226,7 @@ DayXpm="16 16 32 1"
 [_point]
 Type=0x2f12
 String=0x02,Telefon
+String=0x04,phone
 DayXpm="7 11 15 1",
 " 	c none"
 ".	c #000000"
@@ -1207,6 +1260,7 @@ DayXpm="7 11 15 1",
 [_point]
 Type=0x2f15
 String=0x02,Recycling
+String=0x04,recycling
 DayXpm="12 12 36 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1262,6 +1316,7 @@ DayXpm="12 12 36 1"
 [_point]
 Type=0x2f17
 String=0x02,Bushaltestelle
+String=0x04,bus stop
 DayXpm="9 9 11 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1288,6 +1343,7 @@ DayXpm="9 9 11 1"
 [_point]
 Type=0x4c00
 String=0x02,Information
+String=0x04,information
 DayXpm="8 12 5 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1311,6 +1367,7 @@ DayXpm="8 12 5 1"
 [_point]
 Type=0x3002
 String=0x02,Arzt/Krankenhaus
+String=0x04,doctor/hospital
 DayXpm="10 10 3 1"
 "  c none"
 "1 c #f0ffff"
@@ -1331,6 +1388,7 @@ DayXpm="10 10 3 1"
 [_point]
 Type=0x6411
 String=0x02,Turm
+String=0x04,tower
 DayXpm="9 18 14 1"
 "  c none"
 "1 c #f0f8f8"
@@ -1369,6 +1427,7 @@ DayXpm="9 18 14 1"
 [_point]
 Type=0x6412
 String=0x02,Wasserturm
+String=0x04,water tower
 DayXpm="9 18 15 1"
 "  c none"
 "1 c #f0f8f8"
@@ -1409,6 +1468,7 @@ DayXpm="9 18 15 1"
 [_point]
 Type=0x6413
 String=2,Windkraftanlage
+String=0x04,wind turbine
 DayXpm="15 26 44 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1486,6 +1546,7 @@ DayXpm="15 26 44 1"
 [_point]
 Type=0x6414
 String=0x02,Trinkwasser
+String=0x04,drinking water
 DayXpm="13 14 16 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1522,6 +1583,7 @@ DayXpm="13 14 16 1"
 [_point]
 Type=0x6415
 String=0x02,Mühle
+String=0x04,mill
 DayXpm="11 11 25 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1564,6 +1626,7 @@ DayXpm="11 11 25 1"
 [_point]
 Type=0x6416
 String=0x02,Laubbaum
+String=0x04,broadleaf tree
 DayXpm="9 12 13 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1596,6 +1659,7 @@ DayXpm="9 12 13 1"
 [_point]
 Type=0x6417
 String=0x02,Nadelbaum
+String=0x04,pinale
 DayXpm="7 12 6 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1621,6 +1685,7 @@ DayXpm="7 12 6 1"
 [_point]
 Type=0x660f
 String=0x02,Pfosten/Barriere
+String=0x04,barrier
 DayXpm="7 7 3 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1638,6 +1703,7 @@ DayXpm="7 7 3 1"
 [_point]
 Type=0x6619
 String=0x02,Höhle
+String=0x04,cave
 DayXpm="8 8 24 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1677,6 +1743,7 @@ DayXpm="8 8 24 1"
 [_point]
 Type=0x6700
 String=0x02,Funkturm/Funkmast
+String=0x04,communications tower
 DayXpm="11 20 16 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1720,6 +1787,7 @@ DayXpm="11 20 16 1"
 [_point]
 Type=0x6701
 String=0x02,Aussichtsturm
+String=0x04,observation tower
 DayXpm="19 20 34 1"
 " 	c None"
 ".	c #F8F8F8"
@@ -1780,6 +1848,7 @@ DayXpm="19 20 34 1"
 [_point]
 Type=0x6702
 String=0x02,Funkmast
+String=0x04,communication mast
 DayXpm="11 12 8 1"
 " 	c None"
 ".	c #FFFFFF"
@@ -1810,6 +1879,7 @@ DayXpm="11 12 8 1"
 [_line]
 Type=0x01
 String=0x02,Autobahn
+String=0x04,motorway
 LineWidth=2
 BorderWidth=2
 Xpm="0 0 2 0"
@@ -1820,6 +1890,7 @@ Xpm="0 0 2 0"
 [_line]
 Type=0x02
 String=0x02,Schnellstraße
+String=0x04,trunk
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1830,6 +1901,7 @@ Xpm="0 0 2 0"
 [_line]
 Type=0x03
 String=0x02,Bundesstraße
+String=0x04,primary street
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1918,6 +1990,7 @@ Xpm="0 0 2 0"
 [_line]
 Type=0x0d
 String=0x02,Fußgängerzone
+String=0x04,pedestrian zone
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1928,6 +2001,7 @@ Xpm="0 0 2 0"
 [_line]
 Type=0x13
 String=0x02,Treppe/Stufen
+String=0x04,steps
 Xpm="32 2 2 1"
 " c None"
 "# c #000000"
@@ -1937,6 +2011,8 @@ Xpm="32 2 2 1"
 
 [_line]
 Type=0x14
+String=0x02,Gleis
+String=0x04,rail
 Xpm="32 3 2 1"
 ". c #ffffff"
 "# c #000000"
@@ -1947,6 +2023,8 @@ Xpm="32 3 2 1"
 
 [_line]
 Type=0x16
+String=0x02,Fußweg
+String=0x04,footway
 Xpm="32 1 2 1"
 "  c none"
 "# c #000000"
@@ -1955,13 +2033,17 @@ Xpm="32 1 2 1"
 
 [_line]
 Type=0x18
+String=0x02,Bach
+String=0x04,stream
 LineWidth=1
 Xpm="0 0 1 0"
-"0 c #0000ff"
+"0 c #1d4dff"
 [end]
 
 [_line]
 Type=0x1b
+String=0x02,Fähre
+String=0x04,ferry
 Xpm="32 1 2 1"
 "  c none"
 "# c #0000ff"
@@ -1970,6 +2052,8 @@ Xpm="32 1 2 1"
 
 [_line]
 Type=0x1c
+String=0x02,Grenze
+String=0x04,border
 Xpm="32 1 2 1"
 "  c none"
 "# c #ff80ff"
@@ -1978,6 +2062,8 @@ Xpm="32 1 2 1"
 
 [_line]
 Type=0x1d
+String=0x02,Grenze
+String=0x04,border
 Xpm="32 1 2 1"
 "  c none"
 "# c #ff80ff"
@@ -1986,6 +2072,8 @@ Xpm="32 1 2 1"
 
 [_line]
 Type=0x1e
+String=0x02,Grenze
+String=0x04,border
 Xpm="32 2 2 1"
 "  c none"
 "# c #ff80ff"
@@ -1995,6 +2083,8 @@ Xpm="32 2 2 1"
 
 [_line]
 Type=0x1f
+String=0x02,Fluss
+String=0x04,river
 LineWidth=3
 Xpm="0 0 1 0"
 "0 c #1d4dff"
@@ -2002,6 +2092,8 @@ Xpm="0 0 1 0"
 
 [_line]
 Type=0x27
+String=0x02,Landebahn
+String=0x04,runway
 LineWidth=2
 Xpm="0 0 1 0"
 "0 c #a0a0a0"
@@ -2010,6 +2102,7 @@ Xpm="0 0 1 0"
 [_line]
 Type=0x29
 String=0x02,Stromleitung
+String=0x04,power line
 UseOrientation=Y
 Xpm="32 5 2 1"
 "  c none"
@@ -2024,6 +2117,7 @@ Xpm="32 5 2 1"
 [_line]
 Type=0x2c
 String=0x02,Bahntunnel
+String=0x04,railway tunnel
 Xpm="32 3 2 1"
 "  c none"
 "# c #000000"
@@ -2035,6 +2129,7 @@ Xpm="32 3 2 1"
 [_line]
 Type=0x2d
 String=0x02,Gleis
+String=0x04,rail
 LineWidth=2
 Xpm="0 0 1 0"
 "0 c #000000"
@@ -2043,6 +2138,7 @@ Xpm="0 0 1 0"
 [_line]
 Type=0x31
 String=0x02,Hang
+String=0x04,cliff
 UseOrientation=Y
 Xpm="32 3 2 1"
 "  c none"
@@ -2055,6 +2151,7 @@ Xpm="32 3 2 1"
 [_line]
 Type=0x33
 String=0x02,Zaun
+String=0x04,fence
 Xpm="32 5 2 1"
 "  c none"
 "# c #000000"
@@ -2074,6 +2171,7 @@ Xpm="32 5 2 1"
 [_polygon]
 Type=0x04
 String=0x02,Sperrgebiet
+String=0x04,exclusion zone
 Xpm="32 32 2 1"
 "  c none"
 "0 c #ff4040"
@@ -2114,6 +2212,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x10
 String=0x02,Bebauung
+String=0x02,built-up area
 Xpm="0 0 1 0"
 "a c #ebebeb"
 [end]
@@ -2121,6 +2220,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x13
 String=0x02,Gebäude
+String=0x04,building
 Xpm="0 0 1 0"
 "a c #404040"
 [end]
@@ -2128,6 +2228,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x17
 String=0x02,Wiese
+String=0x04,meadow
 Xpm="32 32 2 1"
 "  c none"
 "0 c #00c000"
@@ -2168,6 +2269,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x19
 String=0x02,Sportplatz
+String=0x04,sports field
 Xpm="0 0 1 0"
 "a c #beffba"
 [end]
@@ -2175,6 +2277,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x1a
 String=0x02,Friedhof
+String=0x04,cemetery
 Xpm="32 32 2 1"
 "  c none"
 "0 c #000000"
@@ -2215,6 +2318,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x38
 String=0x02,Nadelwald
+String=0x04,conifer forest
 Xpm="32 32 2 1"
 "0 c #77cc77"
 "1 c #c7fa9b"
@@ -2255,6 +2359,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x39
 String=0x02,Laubwald
+String=0x04,broad-leaved forest
 Xpm="32 32 2 1"
 "0 c #77cc77"
 "1 c #c7fa9b"
@@ -2295,6 +2400,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x32
 String=0x02,Meer
+String=0x04,sea
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2302,6 +2408,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x3c
 String=0x02,Wasser
+String=0x04,water
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2309,6 +2416,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x3f
 String=0x02,Wasserspeicher
+String=0x04,reservoir
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2316,6 +2424,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x46
 String=0x02,Fluss
+String=0x04,river
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2329,6 +2438,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x4e
 String=0x02,Wein
+String=0x04,wine
 Xpm="32 32 2 1"
 "  c none"
 "0 c #00c000"
@@ -2369,6 +2479,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x4f
 String=0x02,Busch
+String=0x04,scrubs
 Xpm="32 32 2 1"
 "  c none"
 "0 c #00c000"
@@ -2409,6 +2520,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x50
 String=0x02,Mischwald
+String=0x04,mixed forest
 Xpm="32 32 2 1"
 "0 c #77cc77"
 "1 c #c7fa9b"
@@ -2449,6 +2561,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x55
 String=0x02,Sand/Strand
+String=0x02,sand/beach
 Xpm="32 32 2 1"
 "  c #ffffd5"
 "0 c #f5f500"

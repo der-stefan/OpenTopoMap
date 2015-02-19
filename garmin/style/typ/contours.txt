@@ -12,6 +12,7 @@ Type=0x4b,0
 
 [_line]
 Type=0x20
+FontStyle=SmallFont
 Xpm="32 1 1 1"
 "# c #c08040"
 "################################"
@@ -20,6 +21,7 @@ Xpm="32 1 1 1"
 [_line]
 Type=0x21
 LineWidth=1
+FontStyle=SmallFont
 Xpm="0 0 1 0"
 "0 c #c08040"
 [end]
@@ -27,6 +29,7 @@ Xpm="0 0 1 0"
 [_line]
 Type=0x22
 LineWidth=1
+FontStyle=SmallFont
 Xpm="0 0 1 0"
 "0 c #c08040"
 [end]
