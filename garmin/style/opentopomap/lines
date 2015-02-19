@@ -179,8 +179,8 @@ highway=road { add mkgmap:dead-end-check = false} [0x06 road_class=0 road_speed=
 highway=* & highway!=proposed & area!=yes [0x07 road_class=0 road_speed=0 resolution 23] 
 
 natural=coastline [0x15 resolution 12]
-power=line [0x29 resolution 21]
-power=minor_line [0x29 resolution 24]
+power=line {delete name} [0x29 resolution 21]
+power=minor_line {delete name} [0x29 resolution 24]
 
 #railway=abandoned [0x0a road_class=0 road_speed=1 resolution 22]
 railway=platform [0x16 road_class=0 road_speed=0 resolution 23]
