@@ -762,6 +762,42 @@ DayXpm="9 9 5 1"
 " ....... "
 [end]
 
+
+[_point]
+Type=0x2b05
+String=0x02,Campingplatz
+String=0x04,camping
+DayXpm="16 16 11 1"
+" 	c None"
+".	c #025301"
+"+	c #244C14"
+"@	c #146C0C"
+"#	c #3C6639"
+"$	c #038A03"
+"%	c #368328"
+"&	c #00A200"
+"*	c #568441"
+"=	c #00C000"
+"-	c #FEFFFC"
+"          -     "
+"         -*-    "
+"      -- -*-    "
+"     -##-*%*-   "
+"     -@@*%&@-   "
+"     -#$&&=$*-  "
+"    -#+@====@-  "
+"    -+++&===&%- "
+"   -#$@@.&===@- "
+"   -@$@&.$===&%-"
+"   -#$@$@$====$*"
+"  -#$&@$$.&==&@-"
+" -%@$=@$=.$=&@- "
+"-*@&=&@$&$@$@-  "
+"-#.@.@+.@@+.-   "
+" -----------    "
+[end]
+
+
 [_point]
 Type=0x2b06
 String=0x02,Schutzhütte
@@ -2047,7 +2083,7 @@ String=0x04,ferry
 Xpm="32 1 2 1"
 "  c none"
 "# c #0000ff"
-"################                "
+"########        ########        "
 [end]
 
 [_line]
@@ -2085,6 +2121,10 @@ Xpm="32 2 2 1"
 Type=0x1f
 String=0x02,Fluss
 String=0x04,river
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=Day
+DaycustomColor=#1d4dff
 LineWidth=3
 Xpm="0 0 1 0"
 "0 c #1d4dff"
@@ -2143,9 +2183,9 @@ UseOrientation=Y
 Xpm="32 3 2 1"
 "  c none"
 "# c #000000"
+"  ###     ###     ###     ###   "
+"  ###     ###     ###     ###   "
 "################################"
-"  ###     ###     ###     ###   "
-"  ###     ###     ###     ###   "
 [end]
 
 [_line]
@@ -2409,6 +2449,11 @@ Xpm="0 0 1 0"
 Type=0x3c
 String=0x02,Wasser
 String=0x04,water
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=DayAndNight
+DaycustomColor:#1d4dff
+NightcustomColor:#000000
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2417,6 +2462,11 @@ Xpm="0 0 1 0"
 Type=0x3f
 String=0x02,Wasserspeicher
 String=0x04,reservoir
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=DayAndNight
+DaycustomColor:#1d4dff
+NightcustomColor:#000000
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2425,6 +2475,11 @@ Xpm="0 0 1 0"
 Type=0x46
 String=0x02,Fluss
 String=0x04,river
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=DayAndNight
+DaycustomColor:#1d4dff
+NightcustomColor:#000000
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
