@@ -53,7 +53,11 @@ leisure=water_park [0x09 resolution 21]
 natural=beach | natural=sand [0x55 resolution 21]
 
 place=village [0x03 resolution 19]
-place=island & name=* [0x53 resolution 19]
+
+place=island & name=* & area_size() >=100000 [0x53 resolution 20]
+place=island & name=* & area_size() >=25000 [0x53 resolution 22]
+place=island & name=* [0x53 resolution 23]
+
 place=islet & name=* [0x53 resolution 20]
 
 shop=* [0x08 resolution 22]

@@ -4,24 +4,98 @@
 	CodePage=1252
 [end]
 
+[_comments]
+[End]
+
 [_drawOrder]
 Type=0x4b,0
+			;background
 Type=0x10,1
+			;built-up area
 Type=0x38,2
+			;conifer forest
 Type=0x39,2
+			;broad-leaved forest
 Type=0x50,2
+			;mixed forest
 Type=0x55,3
+			;sand/beach
 Type=0x17,3
+			;meadow
 Type=0x19,3
+			;sports field
 Type=0x4e,3
+			;wine
 Type=0x4f,3
+			;scrubs
 Type=0x32,4
+			;sea
 Type=0x3c,4
-Type=0x3f,4
+			;water
+Type=0x3d,4
+			;water
 Type=0x46,4
+			;river
+Type=0x47,4
+			;river
 Type=0x13,5
+			;building
 Type=0x1a,5
+			;cemetery
 Type=0x04,6
+			;exclusion zone
+[end]
+
+
+; large labels
+[_point]
+Type=0x0200
+ExtendedLabels=Y
+FontStyle=LargeFont
+DayXpm="1 1 1 1"
+" 	c None"
+" "
+[end]
+
+; normal labels
+[_point]
+Type=0x0300
+ExtendedLabels=Y
+FontStyle=NormalFont
+DayXpm="8 8 6 1"
+" 	c None"
+".	c #000000"
+"+	c #007700"
+"@	c #00A400"
+"#	c #00D200"
+"$	c #FFFFFF"
+"   $$   "
+"  $..$  "
+" $.#@.$ "
+"$.##@+.$"
+"$.@@@+.$"
+" $.++.$ "
+"  $..$  "
+"   $$   "
+[end]
+
+; small labels
+[_point]
+Type=0x0400
+ExtendedLabels=Y
+FontStyle=SmallFont
+DayXpm="6 6 5 1"
+" 	c None"
+".	c #000000"
+"+	c #00A400"
+"@	c #00D200"
+"#	c #FFFFFF"
+"  ##  "
+" #..# "
+"#.@@.#"
+"#.@+.#"
+" #..# "
+"  ##  "
 [end]
 
 
@@ -1916,6 +1990,8 @@ DayXpm="11 12 8 1"
 Type=0x01
 String=0x02,Autobahn
 String=0x04,motorway
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=2
 BorderWidth=2
 Xpm="0 0 2 0"
@@ -1927,6 +2003,8 @@ Xpm="0 0 2 0"
 Type=0x02
 String=0x02,Schnellstraße
 String=0x04,trunk
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=3
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1938,6 +2016,8 @@ Xpm="0 0 2 0"
 Type=0x03
 String=0x02,Bundesstraße
 String=0x04,primary street
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1947,6 +2027,8 @@ Xpm="0 0 2 0"
 
 [_line]
 Type=0x04
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1956,6 +2038,8 @@ Xpm="0 0 2 0"
 
 [_line]
 Type=0x05
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1965,6 +2049,8 @@ Xpm="0 0 2 0"
 
 [_line]
 Type=0x06
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1975,6 +2061,8 @@ Xpm="0 0 2 0"
 [_line]
 Type=0x07
 String=2,Weg
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=2
 Xpm="0 0 1 0"
 "a c #000000"
@@ -1982,6 +2070,8 @@ Xpm="0 0 1 0"
 
 [_line]
 Type=0x08
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -1991,6 +2081,8 @@ Xpm="0 0 2 0"
 
 [_line]
 Type=0x09
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -2000,6 +2092,8 @@ Xpm="0 0 2 0"
 
 [_line]
 Type=0x0a
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=1
 Xpm="0 0 1 0"
 "a c #000000"
@@ -2007,6 +2101,8 @@ Xpm="0 0 1 0"
 
 [_line]
 Type=0x0b
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -2016,6 +2112,8 @@ Xpm="0 0 2 0"
 
 [_line]
 Type=0x0c
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=2
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -2027,6 +2125,8 @@ Xpm="0 0 2 0"
 Type=0x0d
 String=0x02,Fußgängerzone
 String=0x04,pedestrian zone
+ExtendedLabels=Y
+FontStyle=SmallFont
 LineWidth=1
 BorderWidth=1
 Xpm="0 0 2 0"
@@ -2038,6 +2138,8 @@ Xpm="0 0 2 0"
 Type=0x13
 String=0x02,Treppe/Stufen
 String=0x04,steps
+ExtendedLabels=Y
+FontStyle=SmallFont
 Xpm="32 2 2 1"
 " c None"
 "# c #000000"
@@ -2049,6 +2151,8 @@ Xpm="32 2 2 1"
 Type=0x14
 String=0x02,Gleis
 String=0x04,rail
+ExtendedLabels=Y
+FontStyle=SmallFont
 Xpm="32 3 2 1"
 ". c #ffffff"
 "# c #000000"
@@ -2061,6 +2165,8 @@ Xpm="32 3 2 1"
 Type=0x16
 String=0x02,Fußweg
 String=0x04,footway
+ExtendedLabels=Y
+FontStyle=SmallFont
 Xpm="32 1 2 1"
 "  c none"
 "# c #000000"
@@ -2090,6 +2196,8 @@ Xpm="32 1 2 1"
 Type=0x1c
 String=0x02,Grenze
 String=0x04,border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 1 2 1"
 "  c none"
 "# c #ff80ff"
@@ -2100,6 +2208,8 @@ Xpm="32 1 2 1"
 Type=0x1d
 String=0x02,Grenze
 String=0x04,border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 1 2 1"
 "  c none"
 "# c #ff80ff"
@@ -2110,6 +2220,8 @@ Xpm="32 1 2 1"
 Type=0x1e
 String=0x02,Grenze
 String=0x04,border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 2 2 1"
 "  c none"
 "# c #ff80ff"
@@ -2253,6 +2365,8 @@ Xpm="32 32 2 1"
 Type=0x10
 String=0x02,Bebauung
 String=0x02,built-up area
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="0 0 1 0"
 "a c #ebebeb"
 [end]
@@ -2359,6 +2473,8 @@ Xpm="32 32 2 1"
 Type=0x38
 String=0x02,Nadelwald
 String=0x04,conifer forest
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "0 c #77cc77"
 "1 c #c7fa9b"
@@ -2400,6 +2516,8 @@ Xpm="32 32 2 1"
 Type=0x39
 String=0x02,Laubwald
 String=0x04,broad-leaved forest
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "0 c #77cc77"
 "1 c #c7fa9b"
@@ -2445,31 +2563,30 @@ Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
 
-[_polygon]
-Type=0x3c
-String=0x02,Wasser
-String=0x04,water
-ExtendedLabels=Y
-FontStyle=SmallFont
-CustomColor=DayAndNight
-DaycustomColor:#1d4dff
-NightcustomColor:#000000
-Xpm="0 0 1 0"
-"a c #72ceff"
-[end]
 
 [_polygon]
-Type=0x3f
-String=0x02,Wasserspeicher
-String=0x04,reservoir
+Type=0x3c
+String1=0x04,water
+String3=0x02,Gewässer
 ExtendedLabels=Y
 FontStyle=SmallFont
-CustomColor=DayAndNight
+CustomColor=Day
 DaycustomColor:#1d4dff
-NightcustomColor:#000000
 Xpm="0 0 1 0"
-"a c #72ceff"
+"1 c #72ceff"
 [end]
+
+
+[_polygon]
+Type=0x3d
+String1=0x04,water
+String3=0x02,Gewässer
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="0 0 1 0"
+"1 c #72ceff"
+[end]
+
 
 [_polygon]
 Type=0x46
@@ -2477,9 +2594,18 @@ String=0x02,Fluss
 String=0x04,river
 ExtendedLabels=Y
 FontStyle=SmallFont
-CustomColor=DayAndNight
+CustomColor=Day
 DaycustomColor:#1d4dff
-NightcustomColor:#000000
+Xpm="0 0 1 0"
+"a c #72ceff"
+[end]
+
+[_polygon]
+Type=0x47
+String=0x02,Fluss
+String=0x04,river
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="0 0 1 0"
 "a c #72ceff"
 [end]
@@ -2576,6 +2702,8 @@ Xpm="32 32 2 1"
 Type=0x50
 String=0x02,Mischwald
 String=0x04,mixed forest
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "0 c #77cc77"
 "1 c #c7fa9b"
@@ -2616,7 +2744,7 @@ Xpm="32 32 2 1"
 [_polygon]
 Type=0x55
 String=0x02,Sand/Strand
-String=0x02,sand/beach
+String=0x04,sand/beach
 Xpm="32 32 2 1"
 "  c #ffffd5"
 "0 c #f5f500"
