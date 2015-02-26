@@ -48,55 +48,56 @@ Type=0x04,6
 
 
 ; large labels
-[_point]
-Type=0x0200
-ExtendedLabels=Y
-FontStyle=LargeFont
-DayXpm="1 1 1 1"
-" 	c None"
-" "
-[end]
+;[_point]
+;Type=0x0200
+;ExtendedLabels=Y
+;FontStyle=LargeFont
+;DayXpm="1 1 2 1"
+;" 	c None"
+;"! c #000000"
+;" "
+;[end]
 
 ; normal labels
-[_point]
-Type=0x0300
-ExtendedLabels=Y
-FontStyle=NormalFont
-DayXpm="8 8 6 1"
-" 	c None"
-".	c #000000"
-"+	c #007700"
-"@	c #00A400"
-"#	c #00D200"
-"$	c #FFFFFF"
-"   $$   "
-"  $..$  "
-" $.#@.$ "
-"$.##@+.$"
-"$.@@@+.$"
-" $.++.$ "
-"  $..$  "
-"   $$   "
-[end]
+;[_point]
+;Type=0x0300
+;ExtendedLabels=Y
+;FontStyle=NormalFont
+;DayXpm="8 8 6 1"
+;" 	c None"
+;".	c #000000"
+;"+	c #007700"
+;"@	c #00A400"
+;"#	c #00D200"
+;"$	c #FFFFFF"
+;"   $$   "
+;"  $..$  "
+;" $.#@.$ "
+;"$.##@+.$"
+;"$.@@@+.$"
+;" $.++.$ "
+;"  $..$  "
+;"   $$   "
+;[end]
 
 ; small labels
-[_point]
-Type=0x0400
-ExtendedLabels=Y
-FontStyle=SmallFont
-DayXpm="6 6 5 1"
-" 	c None"
-".	c #000000"
-"+	c #00A400"
-"@	c #00D200"
-"#	c #FFFFFF"
-"  ##  "
-" #..# "
-"#.@@.#"
-"#.@+.#"
-" #..# "
-"  ##  "
-[end]
+;[_point]
+;Type=0x0400
+;ExtendedLabels=Y
+;FontStyle=SmallFont
+;DayXpm="6 6 5 1"
+;" 	c None"
+;".	c #000000"
+;"+	c #00A400"
+;"@	c #00D200"
+;"#	c #FFFFFF"
+;"  ##  "
+;" #..# "
+;"#.@@.#"
+;"#.@+.#"
+;" #..# "
+;"  ##  "
+;[end]
 
 
 [_point]
