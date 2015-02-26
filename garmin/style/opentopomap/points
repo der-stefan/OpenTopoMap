@@ -90,7 +90,7 @@ place=town                            & cityxx!=yes  & name=* {set cityxx=yes} [
 #place=town	[0x0400 resolution 18-19 continue]
 #place=town	[0x0300 resolution 20]
 
-place=village   & population >   9999 & cityxx!=yes  & name=* {set cityxx=yes} [0x0800 resolution 18 continue with_actions]
+place=village   & population >   999 & cityxx!=yes  & name=* {set cityxx=yes} [0x0800 resolution 20 continue with_actions]
 place=village & cityxx!=yes {set cityxx=yes} 	[0x0900 resolution 21 continue with_actions]
 
 place=island & cityxx!=yes  {set cityxx=yes}	[0x650c resolution 20 continue with_actions]
