@@ -23,7 +23,8 @@
 (landuse=forest|landuse=wood|natural=wood) & (wood=deciduous)[0x39 resolution 15]
 (landuse=forest|landuse=wood|natural=wood) [0x50 resolution 15]
 natural=scrub [0x4f resolution 20]
-landuse=residential|landuse=industrial|landuse=commercial [0x10 resolution 19-23]
+#landuse=residential|landuse=industrial|landuse=commercial [0x10 resolution 19-23]
+landuse=residential|landuse=industrial|landuse=commercial [0x10 resolution 19]
 landuse=cemetery|landuse=cemetary|amenity=grave_yard [0x1a resolution 21]
 
 #landuse=greenfield [0x17 resolution 20]

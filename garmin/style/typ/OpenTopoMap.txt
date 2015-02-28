@@ -2325,6 +2325,8 @@ Xpm="32 5 2 1"
 Type=0x04
 String=0x02,Sperrgebiet
 String=0x04,exclusion zone
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "  c none"
 "0 c #ff4040"

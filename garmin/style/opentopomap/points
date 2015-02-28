@@ -93,7 +93,7 @@ place=town                            & cityxx!=yes  & name=* {set cityxx=yes} [
 place=village   & population >   999 & cityxx!=yes  & name=* {set cityxx=yes} [0x0800 resolution 20 continue with_actions]
 place=village & cityxx!=yes {set cityxx=yes} 	[0x0900 resolution 21 continue with_actions]
 
-place=island & cityxx!=yes  {set cityxx=yes}	[0x650c resolution 20 continue with_actions]
+place=island & cityxx!=yes  {set cityxx=yes}	[0x650c resolution 24 continue with_actions]
 place=islet & cityxx!=yes   {set cityxx=yes}	[0x650c resolution 22 continue with_actions]
 place=suburb & cityxx!=yes  {set cityxx=yes}	[0x0a00 resolution 22 continue with_actions]
 place=hamlet & cityxx!=yes  {set cityxx=yes}	[0x0b00 resolution 24 continue with_actions]

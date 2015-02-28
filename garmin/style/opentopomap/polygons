@@ -21,20 +21,20 @@ aeroway=aerodrome [0x07 resolution 20]
 aeroway=helipad [0x0e resolution 22]
 
 amenity=kindergarten [0x0a resolution 24]
-amenity=cafe | amenity=fast_food | amenity=restaurant | amenity=food_court [0x08 resolution 22]
+amenity=cafe | amenity=fast_food | amenity=restaurant | amenity=food_court [0x08 resolution 24]
 amenity=college [0x0a resolution 24]
-parking=underground | parking=multi-storey [0x06 resolution 22]
-amenity=parking | parking=surface [0x05 resolution 22]
+parking=underground | parking=multi-storey [0x06 resolution 24]
+amenity=parking | parking=surface [0x05 resolution 24]
 amenity=prison [0x04 resolution 24]
 amenity=school [0x0a resolution 24]
 # amenity=supermarket is superceded by shop=supermarket or landuse=retail
 amenity=supermarket [0x08 resolution 22]
 amenity=university [0x0a resolution 24 continue]
 
-(healthcare=hospital | amenity=hospital) & (building!=*) [0x0b resolution 22]
-(healthcare=hospital | amenity=hospital) & (building=*) [0x0b resolution 22 continue]
+(healthcare=hospital | amenity=hospital) & (building!=*) [0x0b resolution 24]
+(healthcare=hospital | amenity=hospital) & (building=*) [0x0b resolution 24 continue]
 healthcare=* | amenity=dentist | amenity=doctors | amenity=nursing_home
-[0x0b resolution 23]
+[0x0b resolution 24]
 
 #leisure=common [0x17 resolution 21]
 leisure=garden [0x17 resolution 21]
@@ -60,12 +60,12 @@ place=island & name=* [0x53 resolution 23]
 
 place=islet & name=* [0x53 resolution 20]
 
-shop=* [0x08 resolution 22]
+#shop=* [0x08 resolution 22]
 
 # squares and plazas
 #highway=pedestrian & area=yes [0x17 resolution 22]
 # other highways that have area=yes set must be parking lots
-highway=* & area=yes [0x05 resolution 22]
+highway=* & area=yes [0x05 resolution 24]
 
 historic=museum | historic=memorial [0x1e resolution 21]
 historic=archaeological_site | historic=ruins [0x1e resolution 21]
