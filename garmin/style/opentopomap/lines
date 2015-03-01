@@ -147,6 +147,7 @@ highway=tertiary [0x05 road_class=1 road_speed=3 resolution 22]
 highway=tertiary_link [0x08 road_class=1 road_speed=1 resolution 22]
 highway=minor [0x06 road_class=1 road_speed=3 resolution 21]
 
+highway=unclassified [0x0a resolution 20-20 continue]
 highway=unclassified [0x06 resolution 21-21 continue]
 highway=unclassified [0x05 road_class=0 road_speed=3 resolution 22]
 

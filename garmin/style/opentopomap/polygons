@@ -48,7 +48,7 @@ leisure=recreation_ground [0x19 resolution 21]
 #leisure=sports_center | leisure=sports_centre [0x19 resolution 20]
 #leisure=stadium [0x19 resolution 20]
 leisure=track & area=yes [0x19 resolution 21]
-leisure=water_park [0x09 resolution 21]
+leisure=water_park [0x09 resolution 23]
 
 natural=beach | natural=sand [0x55 resolution 21]
 
