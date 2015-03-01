@@ -164,9 +164,11 @@ highway=service & service=parking_aisle
 [0x07 road_class=0 road_speed=1 resolution 24]
 highway=service & (service=alley|service=driveway)
 [0x07 road_class=0 road_speed=0 resolution 23]
-highway=service [0x07 road_class=0 road_speed=2 resolution 22]
+highway=service [0x0a resolution 22-22 continue]
+highway=service [0x07 road_class=0 road_speed=2 resolution 23]
 
-highway=cycleway [0x07 road_class=0 road_speed=1 resolution 22]
+highway=cycleway [0x0a resolution 22-22 continue]
+highway=cycleway [0x07 road_class=0 road_speed=1 resolution 23]
 
 (highway=footway|highway=path) & tracktype~'grade[1-2]' {add access = no; add foot = yes} [0x16 road_class=0 road_speed=0 resolution 22]
 highway=footway|highway=path [0x16 road_class=0 road_speed=0 resolution 23]
