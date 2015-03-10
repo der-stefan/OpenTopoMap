@@ -87,7 +87,7 @@
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>([place] = 'hamlet')</Filter>
+		<Filter>([place] = 'hamlet' or [place] = 'isolated_dwelling')</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dx="13" dy="-7">[name]</TextSymbolizer>
 	</Rule>
 
@@ -108,7 +108,13 @@
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom16;
-		<Filter>([place] = 'hamlet')</Filter>
+		<Filter>([place] = 'hamlet' or [place] = 'isolated_dwelling')</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" dx="20" placement="point">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom16;
+		<Filter>([place] = 'locality')</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="point">[name]</TextSymbolizer>
 	</Rule>
 </Style>

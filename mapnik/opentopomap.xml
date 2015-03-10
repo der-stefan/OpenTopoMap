@@ -194,7 +194,7 @@
 		<StyleName>hillshade-150</StyleName>
 		<Datasource>
 			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-europe-150.tif</Parameter>
+			<Parameter name="file">hillshade/hillshade-150.tif</Parameter>
 			<Parameter name="format">tiff</Parameter>
 		</Datasource>
 	</Layer>
@@ -444,7 +444,7 @@
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') order by (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) asc, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) desc
+			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') order by (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) asc, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) desc
 		  ) AS names</Parameter>
 			&datasource-settings;
 		</Datasource>
