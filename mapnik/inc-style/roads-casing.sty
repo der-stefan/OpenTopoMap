@@ -391,13 +391,13 @@
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
-		<Filter>[highway] = 'service' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="6" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
-		<Filter>[highway] = 'track' and [tracktype] = 'grade1'</Filter>
+		<Filter>([highway] = 'track' and [tracktype] = 'grade1') or ([highway] = 'service' and [service] != null)</Filter>
 		<LineSymbolizer stroke="black" stroke-width="4.5" stroke-linecap="round" />
 	</Rule>
 	<Rule>
