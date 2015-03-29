@@ -208,6 +208,12 @@
 		<Filter>([highway] = 'track' and [tracktype] = 'grade2') or [highway] = 'cycleway' or ([highway] = 'path' and [surface] = 'asphalt')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5" />
 	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>[highway] = 'raceway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="3.5" />
+	</Rule>
 
 
 <!-- zoom 14 -->
@@ -302,8 +308,12 @@
 		<Filter>[highway] = 'steps'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-dasharray="1.2,1.2"/>
 	</Rule>
-
-
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[highway] = 'raceway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="4.5" />
+	</Rule>
 
 
 <!-- zoom 15 -->
@@ -379,6 +389,12 @@
 		<Filter>[highway] = 'steps'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="2" stroke-dasharray="1.1,2"/>
 	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'raceway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="6" />
+	</Rule>
 
 
 <!-- zoom 16 -->
@@ -405,6 +421,12 @@
 		&minscale_zoom16;
 		<Filter>[highway] = 'steps'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="3" stroke-dasharray="1.1,2"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'raceway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="8" />
 	</Rule>
 
 
