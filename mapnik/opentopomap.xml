@@ -347,7 +347,7 @@
 		<StyleName>roads-middle</StyleName>
 		<StyleName>roads-text_z16</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,tracktype,name FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,service,tracktype,name FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND (highway IS NOT NULL) AND (highway != 'construction')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
