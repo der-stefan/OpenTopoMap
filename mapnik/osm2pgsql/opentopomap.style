@@ -105,6 +105,7 @@ node,way	denotation	text		polygon
 node,way   disused      text         linear
 node       ele          text         linear
 node,way   embankment   text         linear
+node,way   fee			text		polygon
 node,way   fenced		text		polygon
 node,way   foot         text         linear
 node,way   generator:source    text  linear
