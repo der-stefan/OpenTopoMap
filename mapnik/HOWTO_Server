@@ -1,3 +1,13 @@
+###############################################
+#   OpenTopoMap
+#   (c) 2012-2015 Stefan Erhardt
+#   https://github.com/der-stefan/OpenTopoMap
+#
+#   opentopomap.org
+#
+###############################################
+
+
 HOWTO install OpenTopoMap on Ubuntu 14.04 LTS
 =============================================
 
@@ -14,7 +24,7 @@ This guide is quite complete, but you should always think about before blindly c
 	/mnt/tiles
 
 
-# Install Mapnik renderer
+# Install Mapnik renderer:
 	# either from PPA (not yet available for 14.04)
 	see https://github.com/mapnik/mapnik/wiki/UbuntuInstallation
 
@@ -22,10 +32,10 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo apt-get install libmapnik2.2 libmapnik2-dev mapnik-utils python-mapnik
 
 
-# Install Postgresql database
+# Install Postgresql database:
 	sudo apt-get install postgresql-9.3-postgis-2.1 postgresql-contrib-9.3 postgresql-server-dev-9.3
 
-	# change default path via symlink 
+	# change default path via symlink:
 	sudo chown postgres /mnt/database
 	sudo chgrp postgres /mnt/database
 	sudo /etc/init.d/postgresql stop
@@ -34,13 +44,13 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo ln -s /mnt/database /var/lib/postgresql/9.3
 	sudo /etc/init.d/postgresql start
 
-	# add database "gis"
+	# add database "gis":
 	sudo -u postgres -i
 	createuser -s username
 	createdb -E UTF8 -O username gis
 	exit
 
-	# Install PostGIS to "gis"
+	# Install PostGIS to "gis":
 	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d gis
 	psql -d gis -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
 
