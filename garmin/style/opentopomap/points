@@ -179,7 +179,7 @@ amenity=school [0x2c05 resolution 24]
 # amenity=shelter is ambiguous; when possible, consider using other tags:
 #  tourism=lean_to or tourism=picnic_site
 #  shelter=yes on highway=bus_stop or highway=tram_stop or railway=halt
-amenity=shelter [0x2b06 resolution 24]
+amenity=shelter [0x2b06 resolution 23]
 # amenity=supermarket is superceded by shop=supermarket
 amenity=supermarket [0x2e02 resolution 24]
 amenity=taxi [0x2f17 resolution 24]
@@ -295,7 +295,7 @@ sport=skating [0x2d08 resolution 24]
 sport=skiing [0x2d06 resolution 24]
 sport=swimming & access!=private [0x2d09 resolution 24]
 
-tourism=alpine_hut [0x2b02 resolution 24]
+tourism=alpine_hut [0x2b02 resolution 23]
 tourism=attraction & historic=* [0x2c02 resolution 24]
 tourism=attraction [0x2c04 resolution 24]
 tourism=artwork [0x2c04 resolution 24]
@@ -307,8 +307,8 @@ tourism=hostel [0x2b02 resolution 24]
 tourism=hotel | tourism=motel [0x2b01 resolution 24]
 tourism=information [0x4c00 resolution 24]
 # tourism=lean_to replaces some uses of amenity=shelter
-tourism=lean_to [0x2b07 resolution 24 default_name 'lean-to']
-tourism=wilderness_hut [0x2b07 resolution 24 default_name 'wilderness hut']
+tourism=lean_to [0x2b07 resolution 23]
+tourism=wilderness_hut [0x2b07 resolution 23]
 tourism=museum [0x2c02 resolution 24]
 tourism=picnic_site [0x4a00 resolution 24]
 tourism=theme_park [0x2c01 resolution 24]
