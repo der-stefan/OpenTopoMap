@@ -38,6 +38,7 @@
        <!ENTITY roads-12_13 SYSTEM "inc-style/roads-12_13.sty"> 
        <!ENTITY roads-middle SYSTEM "inc-style/roads-middle.sty">
        <!ENTITY roads-text_z16 SYSTEM "inc-style/roads-text_z16.sty">
+       <!ENTITY trams-draw SYSTEM "inc-style/trams-draw.sty">
        <!ENTITY ferry_routes-draw SYSTEM "inc-style/ferry_routes-draw.sty">
        <!ENTITY railways-bridge SYSTEM "inc-style/railways-bridge.sty">
        <!ENTITY bridges-casing SYSTEM "inc-style/bridges-casing.sty">
@@ -99,6 +100,7 @@
 	&roads-12_13;
 	&roads-middle;
     &roads-text_z16;
+	&trams-draw;
 	&ferry_routes-draw;
 	&railways-bridge;
 	&bridges-casing;
@@ -348,9 +350,10 @@
 		<StyleName>roads-fill</StyleName>
 		<StyleName>roads-12_13</StyleName>
 		<StyleName>roads-middle</StyleName>
+		<StyleName>trams-draw</StyleName>
 		<StyleName>roads-text_z16</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,tracktype,name FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND (highway IS NOT NULL) AND (highway != 'construction')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,service,tracktype,name,railway FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND ((highway IS NOT NULL) AND (highway != 'construction')) OR (railway='tram')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -362,6 +365,14 @@
 			&datasource-settings;
 		</Datasource>
 	</Layer>
+
+	<!--<Layer name="trams">
+		<StyleName>trams-draw</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,railway FROM &prefix;_line WHERE (railway = 'tram')) AS trams </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>-->
 	
 	<Layer name="railways">
 		<StyleName>railways-bridge</StyleName>
@@ -376,8 +387,9 @@
 		<StyleName>bridges-casing</StyleName>
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
+		<StyleName>trams-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -386,8 +398,9 @@
 		<StyleName>bridges-casing</StyleName>
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
+		<StyleName>trams-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer = '2')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer = '2')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -396,8 +409,9 @@
 		<StyleName>bridges-casing</StyleName>
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
+		<StyleName>trams-draw</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL) AND (layer &gt; '2')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
