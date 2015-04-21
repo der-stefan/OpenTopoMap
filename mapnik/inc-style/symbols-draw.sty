@@ -134,7 +134,7 @@
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom16;
-		<Filter>(([historic] = 'memorial') or ([historic] = 'monument'))</Filter>
+		<Filter>(([historic] = 'memorial' and [memorial:type] != 'stolperstein') or ([historic] = 'monument'))</Filter>
 		<PointSymbolizer file="symbols-topo/monument.png"/>
 	</Rule>
 	<Rule>
