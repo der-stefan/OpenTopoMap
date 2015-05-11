@@ -76,9 +76,15 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
-		&minscale_zoom16;
+		&minscale_zoom14;
 		<Filter>([natural] = 'spring')</Filter>
 		<PointSymbolizer file="symbols-topo/spring.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom16;
+		<Filter>([natural] = 'spring')</Filter>
+		<PointSymbolizer file="symbols-topo/spring_z15.png"/>
 	</Rule>
 
 	<Rule>
@@ -178,14 +184,27 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
- 		<Filter>([tourism] = 'alpine_hut') or ([tourism] = 'wilderness_hut') </Filter>
-		<PointSymbolizer file="symbols-topo/hut.png"/>
+ 		<Filter>[tourism] = 'alpine_hut'</Filter>
+		<PointSymbolizer file="symbols-topo/hut_alpine.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+ 		<Filter>[tourism] = 'wilderness_hut'</Filter>
+		<PointSymbolizer file="symbols-topo/hut_wilderness.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom16;
- 		<Filter>([tourism] = 'alpine_hut') or ([tourism] = 'wilderness_hut') </Filter>
-		<PointSymbolizer file="symbols-topo/hut.png"/>
+ 		<Filter>[tourism] = 'alpine_hut'</Filter>
+		<PointSymbolizer file="symbols-topo/hut_alpine.png"/>
+		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom16;
+ 		<Filter>[tourism] = 'wilderness_hut'</Filter>
+		<PointSymbolizer file="symbols-topo/hut_wilderness.png"/>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 	
