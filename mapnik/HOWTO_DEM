@@ -62,3 +62,22 @@ This guide is quite complete, but you should always think before blindly copying
 	gdaldem hillshade -z 4 -compute_edges -co BIGTIFF=YES -co TILED=YES -co COMPRESS=JPEG warp-700.tif hillshade-700.tif
 	gdaldem hillshade -z 2 -co compress=lzw -co predictor=2 -co bigtiff=yes -compute_edges warp-90.tif hillshade-90.tif && gdal_translate -co compress=JPEG -co bigtiff=yes -co tiled=yes hillshade-90.tif hillshade-90-jpeg.tif
 
+
+# Create contour lines
+	# Install phyghtmap: sudo apt-get install python-setuptools python-matplotlib python-beautifulsoup python-numpy
+	# wget http://katze.tfiu.de/projects/phyghtmap/phyghtmap_1.71.orig.tar.gz (or newer)
+	# sudo python setup.py install
+	phyghtmap --max-nodes-per-tile=0 -s 10 -0 --pbf warp-90.tif
+
+# Create contours database
+	sudo -u postgres -i
+	createdb -E UTF8 -O username contours
+	exit
+	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d contours
+	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/spatial_ref_sys.sql -d contours
+	psql -d contours -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
+	#psql -f /usr/local/share/osm2pgsql/900913.sql -d contours
+	
+# Load contour file into database
+	screen osm2pgsql --slim -d contours -C 12000 --number-processes 10 --style ~/OpenTopoMap/mapnik/osm2pgsql/contours.style contours.pbf
+
