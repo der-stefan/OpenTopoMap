@@ -53,6 +53,7 @@
        <!ENTITY text-towns SYSTEM "inc-style/text-towns.sty">
        <!ENTITY text-villages SYSTEM "inc-style/text-villages.sty">
        <!ENTITY text-natural SYSTEM "inc-style/text-natural.sty">
+       <!ENTITY text-natural-lines SYSTEM "inc-style/text-natural-lines.sty">
        <!ENTITY text-peaks SYSTEM "inc-style/text-peaks.sty">
        <!ENTITY symbols-churches-castles SYSTEM "inc-style/symbols-churches-castles.sty">
        <!ENTITY symbols-draw SYSTEM "inc-style/symbols-draw.sty">
@@ -115,6 +116,7 @@
 	&text-towns;
 	&text-villages;
 	&text-natural;
+	&text-natural-lines;
 	&text-peaks;
 	&symbols-churches-castles;
 	&symbols-draw;
@@ -455,7 +457,15 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="text">
+	<Layer name="text-natural-lines">
+		<StyleName>text-natural-lines</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,"natural" FROM &prefix;_line) AS names</Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="text" clear-label-cache="yes">
 		<StyleName>text-capitals</StyleName>
 		<StyleName>text-cities</StyleName>
 		<StyleName>text-towns</StyleName>
@@ -467,7 +477,7 @@
 		</Datasource>
 	</Layer>
 	  
-	<Layer name="text-natural">
+	<Layer name="text-natural-polygons">
 		<StyleName>text-natural</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,"natural",way_area FROM &prefix;_polygon) AS names</Parameter>
