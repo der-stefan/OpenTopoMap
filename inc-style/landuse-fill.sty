@@ -141,13 +141,19 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-		<Filter>([landuse] = 'quarry') and ([way_area] &lt; 2000000)</Filter>
+		<Filter>([landuse] = 'quarry') and not (([resource = 'gravel']) or ([resource] = 'aggregate')) and ([way_area] &lt; 2000000)</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/quarry_z13.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom15;
-		<Filter>([landuse] = 'quarry') and ([way_area] &lt; 2000000)</Filter>
+		<Filter>([landuse] = 'quarry') and not (([resource = 'gravel']) or ([resource] = 'aggregate')) and ([way_area] &lt; 2000000)</Filter>
 		<PolygonPatternSymbolizer file="symbols-topo/quarry.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom15;
+		<Filter>([landuse] = 'quarry') and (([resource = 'gravel']) or ([resource] = 'aggregate'))and ([way_area] &lt; 2000000)</Filter>
+		<PolygonPatternSymbolizer file="symbols-topo/scree.png"/>
 	</Rule>
 </Style>
