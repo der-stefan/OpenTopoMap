@@ -1,0 +1,71 @@
+###############################################
+#   OpenTopoMap
+#   (c) 2012-2015 Stefan Erhardt
+#   https://github.com/der-stefan/OpenTopoMap
+#
+#   opentopomap.org
+#
+###############################################
+
+
+HOWTO create a generalized database for low zoom levels
+=======================================================
+
+A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
+http://opentopomap.org
+
+This guide is quite complete, but you should always think before blindly copying the commands.
+
+# Create generalized database
+	sudo -u postgres -i
+	createdb -E UTF8 -O username gis-lowzoom
+	exit
+	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d gis-lowzoom
+	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/spatial_ref_sys.sql -d gis-lowzoom
+	psql -d gis-lowzoom -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
+	#psql -f /usr/local/share/osm2pgsql/900913.sql -d gis-lowzoom
+
+
+# Generalize different things
+	pgsql2shp -k -f water gis "SELECT ST_SimplifyPreserveTopology(way,500),name,\"natural\",waterway,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank') AND way_area > 10000000"
+
+	pgsql2shp -k -f borders gis "SELECT ST_SimplifyPreserveTopology(way,500),boundary,admin_level AS level FROM planet_osm_line WHERE boundary = 'administrative' AND admin_level IN ('2', '4')"
+	
+	
+	SELECT name
+	FROM planet_osm_point
+	JOIN (
+		SELECT ltrim(member, 'n')::bigint AS osm_id
+		FROM (
+			SELECT unnest(members) AS member
+			FROM planet_osm_rels
+			WHERE ARRAY['boundary','administrative']<@tags AND ARRAY['admin_level','6']<@tags) u
+		WHERE member LIKE 'n%') x
+	USING(osm_id);
+	
+	
+	WITH numbered AS(
+		SELECT row_number() OVER() AS row, entry
+		FROM(
+			SELECT unnest(members) AS entry
+			FROM planet_osm_rels
+			WHERE ARRAY['admin_level','2']<@tags AND ARRAY['boundary','administrative']<@tags) AS mylist)
+		SELECT a.entry
+		FROM numbered AS a JOIN numbered AS b
+		ON a.row = b.row-1 AND b.entry = 'admin_centre';
+		
+		
+	SELECT ltrim(member, 'n')::bigint AS osm_id
+    FROM (
+    	SELECT row_number() OVER() a AS row, unnest(members) AS member
+    	FROM planet_osm_rels
+		WHERE ARRAY['admin_level','2']<@tags AND ARRAY['boundary','administrative']<@tags) AS mylist
+		
+		
+SELECT row_number() OVER() a AS row, unnest(members) AS member FROM planet_osm_rels WHERE ARRAY['admin_level','2']<@tags AND ARRAY['boundary','administrative']<@tags
+		
+		
+	SELECT ltrim(member, 'n')::bigint AS osm_id
+    	FROM (
+    	SELECT row_number() OVER() a AS row, unnest(members) AS member
+    	FROM planet_osm_rels

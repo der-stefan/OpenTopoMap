@@ -1,0 +1,6 @@
+Add read access to other users
+
+create role user;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO mogstar;
+GRANT CONNECT ON DATABASE gis TO mogstar;
+alter role mogstar with login;
