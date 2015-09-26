@@ -3,6 +3,7 @@ gmapsupp
 latin1
 index
 housenumbers
+family-id=6868
 product-id=1
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0

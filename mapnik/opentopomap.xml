@@ -293,7 +293,7 @@
 
 	<!-- Insert contour lines and clear label cache after that -->
 	<!-- This file is not included, since you have to compute the contour lines on your own -->
-	&layer-contours;
+<!--	&layer-contours;-->
 
 
 	<Layer name="borders" clear-label-cache="yes">

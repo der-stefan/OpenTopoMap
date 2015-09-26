@@ -1,4 +1,15 @@
 <Style name="bridges-casing">
+	
+	<!--<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom16;
+		<Filter>[length] &gt; 25</Filter>
+		<LineSymbolizer stroke="red" stroke-width="7" />
+		<MarkersSymbolizer file="symbols-topo/bridge_5px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_5px_last.png" placement="vertex-last" allow-overlap="true" />
+	</Rule>-->
+	
+	
 <!-- zoom 12 -->
 	<Rule>
 		&maxscale_zoom12;
@@ -143,60 +154,80 @@
 		&minscale_zoom14;
 		<Filter>[highway] = 'motorway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="9" />
+		<MarkersSymbolizer file="symbols-topo/bridge_11px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_11px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'trunk'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="8" />
+		<LineSymbolizer stroke="black" stroke-width="8.7" />
+		<MarkersSymbolizer file="symbols-topo/bridge_9px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_9px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'primary' or [highway] = 'secondary'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="5" />
+		<LineSymbolizer stroke="black" stroke-width="5.3" />
+		<MarkersSymbolizer file="symbols-topo/bridge_5px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_5px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'motorway_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="4.5" />
+		<LineSymbolizer stroke="black" stroke-width="4.9" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="4" />
+		<LineSymbolizer stroke="black" stroke-width="4.4" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'unclassified'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="3.9" /> <!-- 3.6 -->
+		<LineSymbolizer stroke="black" stroke-width="4.3" /> <!-- 3.6 -->
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'tertiary' or [highway] = 'tertiary_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="3.6" />
+		<LineSymbolizer stroke="black" stroke-width="4.3" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_4px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="3.1" />
+		<LineSymbolizer stroke="black" stroke-width="3.6" />
+		<MarkersSymbolizer file="symbols-topo/bridge_3px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_3px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'track' and [tracktype] = 'grade1'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="2.5" />
+		<LineSymbolizer stroke="black" stroke-width="3.0" />
+		<MarkersSymbolizer file="symbols-topo/bridge_3px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_3px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'service'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="2.2" />
+		<LineSymbolizer stroke="black" stroke-width="2.6" />
+		<MarkersSymbolizer file="symbols-topo/bridge_3px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_3px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
@@ -204,30 +235,36 @@
 		<Filter>[highway] = 'track' and (not 
 			([tracktype] = 'grade1' or [tracktype] = 'grade3' or [tracktype] = 'grade4' or [tracktype] = 'grade5' )) or([highway] = 'cycleway') or ([highway] = 'path' and [surface] = 'asphalt')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" />
+		<MarkersSymbolizer file="symbols-topo/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'track' and ([tracktype] = 'grade3' or [tracktype] = 'grade4')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="0.5" />
+		<LineSymbolizer stroke="red" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'track' and [tracktype] = 'grade5'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" />
+		<MarkersSymbolizer file="symbols-topo/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'steps' or [highway] = 'bridleway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" />
+		<MarkersSymbolizer file="symbols-topo/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-topo/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'raceway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="4.5" />
+		<LineSymbolizer stroke="red" stroke-width="4.5" />
 	</Rule>
 
 
