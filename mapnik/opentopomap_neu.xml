@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map
+[
+	<!ENTITY basemap SYSTEM "styles-otm/basemap.xml">
+	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
+	<!ENTITY water-lowzoom SYSTEM "styles-otm/water-lowzoom.xml">
+	<!ENTITY landuse SYSTEM "styles-otm/landuse.xml">
+	<!ENTITY landuse2 SYSTEM "styles-otm/landuse2.xml">
+	<!ENTITY hillshade SYSTEM "styles-otm/hillshade.xml">
+	<!ENTITY glaciers SYSTEM "styles-otm/glaciers.xml">
+	
+	<!ENTITY borders SYSTEM "styles-otm/borders.xml">
+	<!ENTITY buildings SYSTEM "styles-otm/buildings.xml">
+	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
+	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
+	<!ENTITY places-cutout SYSTEM "styles-otm/places-cutout.xml">
+	<!ENTITY places SYSTEM "styles-otm/places.xml">
+	
+	<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+	%entities;     
+]>
+<!-- background-color="#222222" -->
+<Map background-color="#97d2e3" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" buffer-size="256">
+	<!-- style definitions -->
+	&borders-lowzoom;
+	&water-lowzoom;
+	&landuse;
+	&landuse2;
+	&glaciers;
+	&borders;
+	&buildings;
+	&roads-casing;
+	&roads-fill;
+	&places-cutout;
+	&places;
+
+	<!-- layers -->
+	
+	&basemap;
+
+	<Layer name="water-lowzoom">
+		<StyleName>water-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/water/water</Parameter>
+		</Datasource>
+	</Layer>
+	
+	<Layer name="borders-lowzoom">
+		<StyleName>borders-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/borders/borders</Parameter>
+		</Datasource>
+	</Layer>
+	
+	<Layer name="landuse">
+		<StyleName>landuse</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity FROM &prefix;_polygon) AS landuse </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	&hillshade;
+	
+	<Layer name="landuse">
+		<StyleName>landuse2</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity FROM &prefix;_polygon) AS landuse </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="glaciers">
+		<StyleName>glaciers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural" FROM &prefix;_polygon) AS glaciers </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<!-- viele layers -->
+	
+	<Layer name="borders">
+		<StyleName>borders</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,boundary,admin_level,name FROM &prefix;_line WHERE boundary IN ('administrative')) AS borders </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="buildings">
+		<StyleName>buildings</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,building,leisure,railway,amenity,aeroway FROM &prefix;_polygon WHERE (building IS NOT NULL AND building != 'no') OR (aeroway = 'terminal')) AS buildings </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	
+	<Layer name="roads">
+		<StyleName>roads-casing</StyleName>
+		<StyleName>roads-fill</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway,service,surface,tracktype,embankment FROM &prefix;_line WHERE highway IS NOT NULL) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="places">
+		<StyleName>places-cutout</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,place FROM &prefix;_point) AS places </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<!--<Layer name="roads">
+		<StyleName>roads-fill2</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway,service,surface,tracktype,embankment FROM &prefix;_line WHERE highway IS NOT NULL) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>-->
+	
+	<!--<Layer name="places2">
+		<StyleName>places</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,place FROM &prefix;_point) AS places2 </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>-->
+	
+</Map>
+
+<!--
+macros:
+	!scale_denominator!
+	!bbox!
+-->

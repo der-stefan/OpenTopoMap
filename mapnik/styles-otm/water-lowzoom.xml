@@ -1,0 +1,7 @@
+<Style name="water-lowzoom">
+	<Rule>
+		&maxscale_zoom0;
+		&minscale_zoom8;
+		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+</Style>

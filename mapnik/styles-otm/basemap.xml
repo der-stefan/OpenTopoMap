@@ -1,0 +1,114 @@
+<Style name="bathy">
+	<Rule>
+		&maxscale_zoom0;
+		&minscale_zoom17;
+		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
+	</Rule>
+</Style>
+<!--Layer name="bathymetry">
+	<StyleName>bathy</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">data/OB_LR/bathy.tif</Parameter>
+	</Datasource>
+</Layer-->
+
+<Style name="landpolys_z0-3">
+	<Rule>
+		&maxscale_zoom0;
+		&minscale_zoom3;
+		<PolygonSymbolizer fill="#117803" />
+	</Rule>
+</Style>
+<Style name="landpolys_z4-5">
+	<Rule>
+		&maxscale_zoom4;
+		&minscale_zoom5;
+		<PolygonSymbolizer fill="#117803" />
+	</Rule>
+</Style>
+<Style name="landpolys_z6-7">
+	<Rule>
+		&maxscale_zoom6;
+		&minscale_zoom7;
+		<PolygonSymbolizer fill="#117803" />
+	</Rule>
+</Style>
+<Style name="landpolys_z8">
+	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<PolygonSymbolizer fill="#117803" />
+		<LineSymbolizer stroke="#117803" stroke-width="1.5" />
+	</Rule>
+</Style>
+<Style name="landpolys_z9">
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom17;
+		<PolygonSymbolizer fill="#e0e0e0" />
+		<!--<LineSymbolizer stroke="#d7d7d7" stroke-width="1" />-->
+	</Rule>
+</Style>
+<Layer name="landpolys">
+	<StyleName>landpolys_z0-3</StyleName>
+	<Datasource>
+		<Parameter name="type">shape</Parameter>
+		<Parameter name="file">data/land-polygons-generalized-3857/land_polygons_z7</Parameter>
+	</Datasource>
+</Layer>
+<Layer name="landpolys">
+	<StyleName>landpolys_z4-5</StyleName>
+	<Datasource>
+		<Parameter name="type">shape</Parameter>
+		<Parameter name="file">data/land-polygons-generalized-3857/land_polygons_z7</Parameter>
+	</Datasource>
+</Layer>
+<Layer name="landpolys">
+	<StyleName>landpolys_z6-7</StyleName>
+	<Datasource>
+		<Parameter name="type">shape</Parameter>
+		<Parameter name="file">data/land-polygons-generalized-3857/land_polygons_z8</Parameter>
+	</Datasource>
+</Layer>
+<Layer name="landpolys">
+	<StyleName>landpolys_z8</StyleName>
+	<StyleName>landpolys_z9</StyleName>
+	<Datasource>
+		<Parameter name="type">shape</Parameter>
+		<Parameter name="file">data/land-polygons-split-3857/land_polygons</Parameter>
+	</Datasource>
+</Layer>
+
+<!--<Style name="relief-5000">
+	<Rule>
+		&maxscale_zoom1;
+		&minscale_zoom4;
+		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
+	</Rule>
+</Style>
+Layer name="relief-5000">
+	<StyleName>relief-5000</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">testrelief/relief-5000.tif</Parameter>
+		<Parameter name="format">tiff</Parameter>
+	</Datasource>
+</Layer>
+
+<Style name="relief-500">
+	<Rule>
+		&maxscale_zoom5;
+		&minscale_zoom8;
+		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
+	</Rule>
+</Style>
+<Layer name="relief-500">
+	<StyleName>relief-500</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">hillshade/relief-500.tif</Parameter>
+		<Parameter name="format">tiff</Parameter>
+	</Datasource>
+</Layer>-->
+

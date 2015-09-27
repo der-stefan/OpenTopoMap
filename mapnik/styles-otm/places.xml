@@ -1,0 +1,8 @@
+<Style name="places">
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom17;
+		<Filter>[place] = 'city'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="20" fill="black" placement="point">[name]</TextSymbolizer>
+	</Rule>
+</Style>

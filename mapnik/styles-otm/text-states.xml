@@ -1,0 +1,9 @@
+<Style name="text-states">
+	<Rule>
+		&maxscale_zoom5;
+		&minscale_zoom7;
+		<TextSymbolizer face-name="DejaVu Sans Book" size="12" fill="#c82fe5" placement="point" character-spacing="3" halo-radius="2" halo-fill="rgba(255,255,255,0.5)">[name]
+		</TextSymbolizer>
+	</Rule>
+
+</Style>
