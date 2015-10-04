@@ -80,18 +80,18 @@
 	</Datasource>
 </Layer>
 
-<!--<Style name="relief-5000">
+<Style name="relief-5000">
 	<Rule>
 		&maxscale_zoom1;
 		&minscale_zoom4;
 		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
 	</Rule>
 </Style>
-Layer name="relief-5000">
+<Layer name="relief-5000">
 	<StyleName>relief-5000</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">testrelief/relief-5000.tif</Parameter>
+		<Parameter name="file">hillshade/relief-5000.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
@@ -110,5 +110,5 @@ Layer name="relief-5000">
 		<Parameter name="file">hillshade/relief-500.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
-</Layer>-->
+</Layer>
 

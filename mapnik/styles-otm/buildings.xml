@@ -21,6 +21,6 @@
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<PolygonPatternSymbolizer file="symbols-otm/building_z17.png"/>
-		<LineSymbolizer stroke="black" stroke-width="1" />
+		<LineSymbolizer stroke="black" stroke-width="0.9" />
 	</Rule>
 </Style>

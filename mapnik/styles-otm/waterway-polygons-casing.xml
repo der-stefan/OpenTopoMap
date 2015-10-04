@@ -1,0 +1,15 @@
+<Style name="waterway-polygons-casing">
+<!-- riverbanks -->
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom11;
+		<Filter>(([waterway] = 'riverbank') and ([way_area] &gt; 250000))</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="0.8" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>([waterway] = 'riverbank')</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="1.7" />
+	</Rule>
+</Style>

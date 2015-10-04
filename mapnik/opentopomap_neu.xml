@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO:
+	- generalize mid zoom water, streets and landuse
+	- zoom 9 make streets more narrow
+	- subway stations
+-->
 <!DOCTYPE Map
 [
 	<!ENTITY basemap SYSTEM "styles-otm/basemap.xml">
-	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
-	<!ENTITY water-lowzoom SYSTEM "styles-otm/water-lowzoom.xml">
+	<!ENTITY landuse-lowzoom SYSTEM "styles-otm/landuse-lowzoom.xml">
 	<!ENTITY landuse SYSTEM "styles-otm/landuse.xml">
 	<!ENTITY landuse2 SYSTEM "styles-otm/landuse2.xml">
 	<!ENTITY hillshade SYSTEM "styles-otm/hillshade.xml">
+	<!ENTITY water-lowzoom SYSTEM "styles-otm/water-lowzoom.xml">
+	<!ENTITY water-midzoom SYSTEM "styles-otm/water-midzoom.xml">
+	<!ENTITY waterway-lines SYSTEM "styles-otm/waterway-lines.xml">
+	<!ENTITY waterway-polygons-casing SYSTEM "styles-otm/waterway-polygons-casing.xml">
+	<!ENTITY waterway-polygons-fill SYSTEM "styles-otm/waterway-polygons-fill.xml">
+	<!ENTITY water-areas SYSTEM "styles-otm/water-areas.xml">
+	<!ENTITY water-weir SYSTEM "styles-otm/water-weir.xml">
+	<!ENTITY waterway-arrows SYSTEM "styles-otm/waterway-arrows.xml">
 	<!ENTITY glaciers SYSTEM "styles-otm/glaciers.xml">
 	
+	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
+	<!ENTITY borders-midzoom SYSTEM "styles-otm/borders-midzoom.xml">
 	<!ENTITY borders SYSTEM "styles-otm/borders.xml">
 	<!ENTITY buildings SYSTEM "styles-otm/buildings.xml">
+	<!ENTITY housenumbers SYSTEM "styles-otm/housenumbers.xml">
+	<!ENTITY roads-casing-midzoom SYSTEM "styles-otm/roads-casing-midzoom.xml">
+	<!ENTITY roads-fill-midzoom SYSTEM "styles-otm/roads-fill-midzoom.xml">
 	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
 	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
+	<!ENTITY roads-text_z16 SYSTEM "styles-otm/roads-text_z16.xml">
+	<!ENTITY bridges-casing SYSTEM "styles-otm/bridges-casing.xml">
+	<!ENTITY bridges-fill SYSTEM "styles-otm/bridges-fill.xml">
+	<!ENTITY bridges-middle SYSTEM "styles-otm/bridges-middle.xml">
+	<!ENTITY motorway_junctions SYSTEM "styles-otm/motorway_junctions.xml">
 	<!ENTITY places-cutout SYSTEM "styles-otm/places-cutout.xml">
 	<!ENTITY places SYSTEM "styles-otm/places.xml">
 	
@@ -22,35 +44,44 @@
 <!-- background-color="#222222" -->
 <Map background-color="#97d2e3" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" buffer-size="256">
 	<!-- style definitions -->
-	&borders-lowzoom;
-	&water-lowzoom;
+	&landuse-lowzoom;
 	&landuse;
 	&landuse2;
+	&water-lowzoom;
+	&water-midzoom;
+	&waterway-lines;
+	&waterway-polygons-casing;
+	&waterway-polygons-fill;
+	&water-areas;
+	&water-weir;
+	&waterway-arrows;
 	&glaciers;
+	&borders-lowzoom;
+	&borders-midzoom;
 	&borders;
 	&buildings;
+	&housenumbers;
+	&roads-casing-midzoom;
+	&roads-fill-midzoom;
 	&roads-casing;
 	&roads-fill;
+	&roads-text_z16;
+	&bridges-casing;
+	&bridges-fill;
+	&bridges-middle;
+	&motorway_junctions;
 	&places-cutout;
 	&places;
 
 	<!-- layers -->
 	
 	&basemap;
-
-	<Layer name="water-lowzoom">
-		<StyleName>water-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">data/water/water</Parameter>
-		</Datasource>
-	</Layer>
 	
-	<Layer name="borders-lowzoom">
-		<StyleName>borders-lowzoom</StyleName>
+	<Layer name="landuse-midzoom">
+		<StyleName>landuse-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">data/borders/borders</Parameter>
+			<Parameter name="file">data/landuse/landuse-midzoom</Parameter>
 		</Datasource>
 	</Layer>
 	
@@ -72,6 +103,48 @@
 		</Datasource>
 	</Layer>
 	
+	<Layer name="water-lowzoom">
+		<StyleName>water-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/water/water-lowzoom</Parameter>
+		</Datasource>
+	</Layer>
+	<Layer name="water-midzoom">
+		<StyleName>water-midzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/water/water-midzoom</Parameter>
+		</Datasource>
+	</Layer>
+	
+	<Layer name="waterway-lines">
+		<StyleName>waterway-lines</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"CEMT",intermittent,motorboat,tunnel,waterway FROM &prefix;_line) AS water </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="water-polygons">
+		<StyleName>waterway-polygons-casing</StyleName>
+		<StyleName>waterway-polygons-fill</StyleName>
+		<StyleName>water-areas</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,way_area FROM &prefix;_polygon) AS water </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="water-weir-arrows">
+		<StyleName>water-weir</StyleName>
+		<StyleName>waterway-arrows</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,waterway,intermittent FROM &prefix;_line) AS water </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
 	<Layer name="glaciers">
 		<StyleName>glaciers</StyleName>
 		<Datasource>
@@ -81,6 +154,22 @@
 	</Layer>
 	
 	<!-- viele layers -->
+	
+	<Layer name="borders-lowzoom">
+		<StyleName>borders-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/borders/borders-lowzoom</Parameter>
+		</Datasource>
+	</Layer>
+	
+	<Layer name="borders-midzoom">
+		<StyleName>borders-midzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/borders/borders-midzoom</Parameter>
+		</Datasource>
+	</Layer>
 	
 	<Layer name="borders">
 		<StyleName>borders</StyleName>
@@ -98,15 +187,81 @@
 		</Datasource>
 	</Layer>
 	
+	<Layer name="roads-midzoom">
+		<StyleName>roads-casing-midzoom</StyleName>
+		<StyleName>roads-fill-midzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/roads/roads-midzoom</Parameter>
+		</Datasource>
+	</Layer>
 	
-	<Layer name="roads">
+	<!--Layer name="roads">
 		<StyleName>roads-casing</StyleName>
 		<StyleName>roads-fill</StyleName>
+		<StyleName>roads-text_z16</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,surface,tracktype,embankment FROM &prefix;_line WHERE highway IS NOT NULL) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,service,surface,tracktype,name,embankment FROM &prefix;_line WHERE highway IS NOT NULL) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>-->
+	
+	<Layer name="buildings-housenumbers-points">
+		<StyleName>housenumbers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"addr:housenumber" FROM &prefix;_point WHERE "addr:housenumber" IS NOT NULL) AS housenumbers </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
+	<Layer name="buildings-housenumbers-polygons">
+		<StyleName>housenumbers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"addr:housenumber" FROM &prefix;_polygon WHERE "addr:housenumber" IS NOT NULL) AS housenumbers </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="bridges">
+		<StyleName>bridges-casing</StyleName>
+		<StyleName>bridges-fill</StyleName>
+		<StyleName>bridges-middle</StyleName>
+		<StyleName>roads-text_z16</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="bridges-layer2">
+		<StyleName>bridges-casing</StyleName>
+		<StyleName>bridges-fill</StyleName>
+		<StyleName>bridges-middle</StyleName>
+		<StyleName>roads-text_z16</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer = '2')) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="bridges-layer3">
+		<StyleName>bridges-casing</StyleName>
+		<StyleName>bridges-fill</StyleName>
+		<StyleName>bridges-middle</StyleName>
+		<StyleName>roads-text_z16</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<!--<Layer name="motorway_junctions">
+		<StyleName>motorway_junctions</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way FROM &prefix;_point WHERE (highway = 'motorway_junction')) AS junction </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>-->
+	
 	
 	<Layer name="places">
 		<StyleName>places-cutout</StyleName>
@@ -116,21 +271,6 @@
 		</Datasource>
 	</Layer>
 	
-	<!--<Layer name="roads">
-		<StyleName>roads-fill2</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,surface,tracktype,embankment FROM &prefix;_line WHERE highway IS NOT NULL) AS roads </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>-->
-	
-	<!--<Layer name="places2">
-		<StyleName>places</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,name,place FROM &prefix;_point) AS places2 </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>-->
 	
 </Map>
 

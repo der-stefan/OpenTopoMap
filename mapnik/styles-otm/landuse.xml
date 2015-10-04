@@ -1,6 +1,6 @@
 <Style name="landuse">
 	<Rule>
-		&maxscale_zoom9;
+		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
 		<PolygonSymbolizer fill="#abda74" />
