@@ -1,50 +1,5 @@
 <Style name="roads-casing">
 
-<!-- zoom 10 -->
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'motorway' or [highway] = 'trunk'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="5" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'primary'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="3.5" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'secondary' or [highway] = 'primary_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="2" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'tertiary' or [highway] = 'tertiary_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1.7" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'motorway_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="4" />
-	</Rule>
- 	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'trunk_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="3" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>[highway] = 'secondary_link'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1.5" />
-	</Rule>
-
-
 <!-- zoom 11 -->
 	<Rule>
 		&maxscale_zoom11;

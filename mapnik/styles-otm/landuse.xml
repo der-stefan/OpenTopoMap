@@ -39,6 +39,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>([natural] = 'scrub')</Filter>
+		<PolygonSymbolizer fill="#bfd4a9" fill-opacity="0.2" />
 		<PolygonPatternSymbolizer file="symbols-otm/scrub.png"/>
 	</Rule>
 	<Rule>

@@ -1,0 +1,52 @@
+<Style name="landuse-over-hillshade">
+
+	<!-- again forest quite transparent over hillshade to optimize result -->
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/forest.png" opacity="0.2"/>
+	</Rule>
+	
+
+	<!-- glaciers -->
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom17;
+		<Filter>([natural] = 'glacier')</Filter>
+		<PolygonSymbolizer fill="#d0f8ff" fill-opacity="0.5"/>
+	</Rule>
+	
+
+	<!-- residential fills -->
+	<Rule>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital'</Filter>
+		&maxscale_zoom10;
+		&minscale_zoom10;
+		<PolygonSymbolizer fill="#cccccc" />
+	</Rule>
+	<Rule>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital'</Filter>
+		&maxscale_zoom11;
+		&minscale_zoom12;
+		<PolygonSymbolizer fill="#dddddd" />
+	</Rule>
+	<Rule>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital'</Filter>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<PolygonSymbolizer fill="#aaaaaa" fill-opacity="0.3" />
+	</Rule>
+	<Rule>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital'</Filter>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<PolygonSymbolizer fill="#aaaaaa" fill-opacity="0.15" />
+	</Rule>
+	<Rule>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital'</Filter>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<PolygonSymbolizer fill="#aaaaaa" fill-opacity="0.1" />
+	</Rule>
+</Style>
