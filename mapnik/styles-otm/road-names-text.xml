@@ -1,0 +1,57 @@
+<Style name="road-names-text">
+
+	<!-- zoom 15 -->
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,181,72,0.5)" repeat-distance="250" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'secondary'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,253,79,0.5)" repeat-distance="250" placement="line">[name]</TextSymbolizer>
+	</Rule>
+
+	<!-- zoom 16 -->
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,181,72,0.5)" repeat-distance="250" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,253,79,0.5)" repeat-distance="250" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<ElseFilter/>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.5)" repeat-distance="250" placement="line">[name]</TextSymbolizer>
+	</Rule>
+
+	
+	<!-- zoom 17 -->
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,181,72,0.7)" repeat-distance="250" character-spacing="1" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,253,79,0.7)" repeat-distance="150" character-spacing="1" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<ElseFilter/>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" repeat-distance="150" character-spacing="1" placement="line">[name]</TextSymbolizer>
+	</Rule>
+</Style>
