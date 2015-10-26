@@ -104,42 +104,76 @@
 		&minscale_zoom11;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
 		<PointSymbolizer file="symbols-otm/town.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="16" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="7" dy="-5">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="16" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+			<Placement dx="6" dy="-5" />
+			<Placement dx="7" dy="5" />
+			<Placement dy="-8" />
+			<Placement dy="7" />
+			<Placement dx="-5" dy="6" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>([place] = 'town') and ([population] &lt; 50000) and ([population] &gt; 10000)</Filter>
 		<PointSymbolizer file="symbols-otm/town.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="6" dy="-14" vertical-alignment="bottom">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+			<Placement dx="5" dy="-4" />
+			<Placement dx="6" dy="4" />
+			<Placement dy="-7" />
+			<Placement dy="6" />
+			<Placement dx="-4" dy="5" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>([place] = 'town') and not ([population] &gt; 10000)</Filter>
 		<PointSymbolizer file="symbols-otm/small_town.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="4" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+			<Placement dx="4" dy="-3" />
+			<Placement dx="5" dy="3" />
+			<Placement dy="-6" />
+			<Placement dy="5" />
+			<Placement dx="-3" dy="4" />
+		</TextSymbolizer>
 	</Rule>
 
+	<!-- zoom 12 -->
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="18" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="40" dy="-5">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="18" fill="red" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+			<Placement dx="40" dy="-5" />
+			<Placement dx="7" dy="5" />
+			<Placement dy="-8" />
+			<Placement dy="7" />
+			<Placement dx="-5" dy="6" />
+		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
 		<Filter>([place] = 'town') and ([population] &lt; 50000) and ([population] &gt; 10000)</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="15" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="20" dy="-4">[name]</TextSymbolizer>
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="15" fill="blue" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+			<Placement dx="40" dy="-4" />
+			<!--Placement dx="7" dy="5" />
+			<Placement dy="-8" />
+			<Placement dy="7" />
+			<Placement dx="-5" dy="6" /-->
+		</TextSymbolizer>
 	</Rule>
-		<Rule>
+	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
-		<Filter>([place] = 'town') and not ([population] &gt; 10000)</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="20" dy="-3">[name]</TextSymbolizer>
+		<Filter>([place] = 'town') and not ([population] &gt; 10000)</Filter>	
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="green" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+			<Placement dx="50" dy="-3" />
+		</TextSymbolizer>
 	</Rule>
 
+	<!-- zoom 13 -->
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;

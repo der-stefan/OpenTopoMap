@@ -1,0 +1,20 @@
+<Style name="railways-lowzoom">
+	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.9" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>[tunnel] != 'yes'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.9" />
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>[tunnel] = 'yes'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4,4" />
+	</Rule>
+</Style>

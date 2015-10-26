@@ -1,0 +1,23 @@
+<Style name="fences">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom14;
+		<Filter>([length] &gt; 300) and ([barrier] = 'fence' or [fenced] = 'yes' or [barrier] = 'wall')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/fence.png"/>
+		<LineSymbolizer stroke="black" stroke-width="0.5"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>(([barrier] = 'fence') or ([fenced] = 'yes') or ([barrier] = 'wall'))</Filter>
+		<LinePatternSymbolizer file="symbols-otm/fence.png"/>
+		<LineSymbolizer stroke="black" stroke-width="0.5"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([barrier] = 'hedge')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/hedge.png"/>
+	</Rule>
+</Style>

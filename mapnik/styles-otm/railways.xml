@@ -1,0 +1,157 @@
+<Style name="railways">
+<!--	<Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<Filter>([railway] = 'rail') and ([service] != 'yard' and [service] != 'spur')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.9" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>([railway] = 'rail') and ([tunnel] != 'yes') and ([service] != 'yard' and [service] != 'spur')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.9" />
+	</Rule>-->
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] != 'yard' and [service] != 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] != 'yard' and [service] != 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z13.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] != 'yard' and [service] != 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z14.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] != 'yard' and [service] != 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z15.png"/>
+	</Rule>
+
+
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] = 'yard' or [service] = 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small_service.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] = 'yard' or [service] = 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z13_service.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] = 'yard' or [service] = 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z14_service.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] != 'yes') and ([service] = 'yard' or [service] = 'spur')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z15_service.png"/>
+	</Rule>
+
+
+
+<!--
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>([railway] = 'rail') and ([tunnel] = 'yes')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4,4" />
+	</Rule>-->
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] = 'yes') </Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small_tunnel.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z13_tunnel.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z14_tunnel.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([tunnel] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z15_tunnel.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>(([railway] = 'narrow_gauge') or ([railway] = 'funicular')) and ([tunnel] != 'yes')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.9" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>(([railway] = 'narrow_gauge') or ([railway] = 'funicular')) and ([tunnel] != 'yes') </Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>(([railway] = 'narrow_gauge') or ([railway] = 'funicular')) and ([tunnel] = 'yes')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4,4" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>(([railway] = 'narrow_gauge') or ([railway] = 'funicular')) and ([tunnel] = 'yes') </Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small_tunnel.png"/>
+	</Rule>
+	
+
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([railway] = 'disused')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z13_disused.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'disused')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z14_disused.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([railway] = 'disused')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_z15_disused.png"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>[railway] = 'light_rail' and [tunnel] != 'yes'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="4.5" stroke-opacity="0.8" />
+		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>[railway] = 'light_rail' and [tunnel] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small_tunnel.png"/>
+	</Rule>
+</Style>

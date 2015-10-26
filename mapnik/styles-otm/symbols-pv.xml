@@ -1,0 +1,9 @@
+<Style name="symbols-pv">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>([power] = 'generator') and ([generator:source] = 'solar') and ([way_area] &gt; 25000)</Filter>
+		<PolygonSymbolizer fill="#a6b7ff" fill-opacity="0.2" />
+		<PointSymbolizer file="symbols-otm/photovoltaic.png"/>
+	</Rule>
+</Style>

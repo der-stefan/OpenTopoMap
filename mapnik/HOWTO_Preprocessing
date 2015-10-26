@@ -54,7 +54,10 @@ This guide is quite complete, but you should always think before blindly copying
 	
 	
 ======================================================
+	pgsql2shp -k -f railways gis "SELECT ST_SimplifyPreserveTopology(way,50),railway,\"service\",tunnel FROM planet_osm_line WHERE (\"service\" IS NULL AND railway='rail')"
 
+
+======================================================
 	pgsql2shp -k -f rails-highspeed gis "SELECT way FROM planet_osm_line JOIN ( SELECT ltrim(member, 'w')::bigint AS osm_id FROM (SELECT unnest(members) AS member FROM planet_osm_rels WHERE ARRAY['route','train']<@tags AND ARRAY['service','high_speed']<@tags) u WHERE member ~ '^w[0-9]+') x USING(osm_id);"
 
 
