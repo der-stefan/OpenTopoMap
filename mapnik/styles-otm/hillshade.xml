@@ -58,7 +58,7 @@
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
 		<!--Parameter name="file">hillshade/hillshade-90.tif</Parameter-->
-		<Parameter name="file">hillshade/test-opensnowmap/test-hillshade.tif</Parameter>
+		<Parameter name="file">hillshade/hillshade-30m-jpeg.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>

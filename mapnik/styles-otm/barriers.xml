@@ -1,4 +1,4 @@
-<Style name="fences">
+<Style name="barriers">
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom14;
@@ -19,5 +19,13 @@
 		&minscale_zoom17;
 		<Filter>([barrier] = 'hedge')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/hedge.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([barrier] = 'city_wall')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.3" />
+		<LinePatternSymbolizer file="symbols-otm/dyke_path.png"/>
 	</Rule>
 </Style>

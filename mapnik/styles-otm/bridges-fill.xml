@@ -347,13 +347,13 @@
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
-		<Filter>[highway] = 'service'</Filter>
+		<Filter>[highway] = 'service' and [service] = null</Filter>
 		<LineSymbolizer stroke="white" stroke-width="4" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
-		<Filter>[highway] = 'track' and [tracktype] = 'grade1'</Filter>
+		<Filter>([highway] = 'track' and [tracktype] = 'grade1') or ([highway] = 'service' and [service] != null)</Filter>
 		<LineSymbolizer stroke="white" stroke-width="2.5" stroke-linecap="round" />
 	</Rule>
 	<Rule>

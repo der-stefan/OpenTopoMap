@@ -1,7 +1,0 @@
-<Style name="rails-highspeed">
-	<Rule>
-		&maxscale_zoom4;
-		&minscale_zoom12;
-		<LineSymbolizer stroke="red" stroke-width="1" />
-	</Rule>
-</Style>

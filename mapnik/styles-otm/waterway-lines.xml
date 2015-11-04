@@ -41,6 +41,13 @@
 		<LineSymbolizer stroke="#1d4dff" stroke-width="4" />
 		<LineSymbolizer stroke="#a9ece9" stroke-width="3" />
 	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
+		<LineSymbolizer stroke="#1d4dff" stroke-width="7" />
+		<LineSymbolizer stroke="#a9ece9" stroke-width="6" />
+	</Rule>
 	
 	<Rule>
 		&maxscale_zoom11;

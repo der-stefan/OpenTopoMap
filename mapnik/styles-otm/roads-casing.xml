@@ -112,15 +112,36 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
+		<Filter>[highway] = 'motorway' and [embankment] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_9px.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
 		<Filter>[highway] = 'trunk'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="5.9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
+		<Filter>[highway] = 'trunk' and [embankment] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_6px.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
 		<Filter>[highway] = 'motorway_link' or [highway] = 'primary' or [highway] = 'secondary'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="4" />
 	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([highway] = 'motorway_link' or [highway] = 'primary' or [highway] = 'secondary') and [embankment] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_6px.png"/>
+	</Rule>
+	
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
@@ -181,15 +202,36 @@
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
+		<Filter>[highway] = 'motorway' and [embankment] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_10px.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
 		<Filter>[highway] = 'trunk'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="7.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
+		<Filter>[highway] = 'motorway' and [embankment] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_10px.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
 		<Filter>[highway] = 'primary' or [highway] = 'secondary'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="5" />
 	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([highway] = 'primary' or [highway] = 'secondary') and [embankment] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_8px.png"/>
+	</Rule>
+	
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
@@ -275,14 +317,8 @@
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
-		<Filter>[highway] = 'motorway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="10" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom15;
-		&minscale_zoom15;
-		<Filter>[highway] = 'trunk'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="10" />
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
@@ -419,29 +455,17 @@
 	
 
 
-<!-- embankments for highway=primary -->
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom13;
-		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
-		<LinePatternSymbolizer file="symbols-otm/embankment_6px.png"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom14;
-		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
-		<LinePatternSymbolizer file="symbols-otm/embankment_8px.png"/>
-	</Rule>
+<!-- embankments for highway=primary/secondary -->
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
-		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
+		<Filter>([highway] = 'primary' or [highway] = 'secondary') and ([embankment] = 'yes')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/embankment_10px.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
-		<Filter>([highway] = 'primary') and ([embankment] = 'yes')</Filter>
+		<Filter>([highway] = 'primary' or [highway] = 'secondary') and ([embankment] = 'yes')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/embankment_12px.png"/>
 	</Rule>
 

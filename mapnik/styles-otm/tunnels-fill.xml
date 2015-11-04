@@ -321,5 +321,59 @@
 
 
 <!-- zoom 17 -->
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary'</Filter>
+		<LineSymbolizer stroke="#fdd8a0" stroke-width="9.5" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'secondary' or [highway] = 'tertiary'</Filter>
+		<LineSymbolizer stroke="#fdfdc3" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'residential' or [highway] = 'unclassified' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
+		<LineSymbolizer stroke="#fdd8a0" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<LineSymbolizer stroke="#fdfdc3" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'service' and [service] = null</Filter>
+		<LineSymbolizer stroke="white" stroke-width="6" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'service' and [service] != null</Filter>
+		<LineSymbolizer stroke="white" stroke-width="2.5" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'track' and [tracktype] = 'grade1'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="2.5" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'raceway'</Filter>
+		<LineSymbolizer stroke="#ffeded" stroke-width="6" />
+	</Rule>
 
 </Style>

@@ -1,4 +1,4 @@
-<Style name="symbols-viewpoints">
+<Style name="symbols-point">
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
@@ -16,5 +16,11 @@
 		&minscale_zoom17;
 		<Filter>(([natural] = 'peak') and ([summit:cross] = 'yes'))</Filter>
 		<PointSymbolizer file="symbols-otm/summit_cross.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[highway] = 'bus_stop'</Filter>
+		<PointSymbolizer file="symbols-otm/bus_stop.png"/>
 	</Rule>
 </Style>
