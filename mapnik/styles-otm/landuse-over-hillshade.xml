@@ -7,6 +7,12 @@
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest.png" opacity="0.2"/>
 	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
+		<LinePatternSymbolizer opacity="0.5" file="symbols-otm/forest-outline.png"/>
+	</Rule>
 	
 
 	<!-- glaciers -->

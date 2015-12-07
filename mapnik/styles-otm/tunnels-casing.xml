@@ -297,19 +297,7 @@
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>([highway] = 'track' and [tracktype] = 'grade1') or ([highway] = 'service' and [service] != null)</Filter>
-		<LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="16,4" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom17;
-		&minscale_zoom17;
-		<Filter>[highway] = 'steps'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="3" stroke-dasharray="6,4" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom17;
-		&minscale_zoom17;
-		<Filter>[highway] = 'raceway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="8" stroke-dasharray="12,8" />
+		<Filter>[highway] = 'track' or ([highway] = 'service' and [service] != null) or [highway] = 'cycleway' or [highway] = 'path' or [highway] = 'footway'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="4,4" />
 	</Rule>
 </Style>

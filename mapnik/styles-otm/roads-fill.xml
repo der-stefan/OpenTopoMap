@@ -426,6 +426,35 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="#ffeded" stroke-width="6" />
 	</Rule>
+	
+	<!--<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] = '2'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="8" stroke-linecap="round" />
+		<LinePatternSymbolizer file="symbols-otm/lanes_2.png" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] = '3'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="12" stroke-linecap="round" />
+		<LinePatternSymbolizer file="symbols-otm/lanes_3.png" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] = '4'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="16" stroke-linecap="round" />
+		<LinePatternSymbolizer file="symbols-otm/lanes_4.png" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] &gt; '4'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="20" stroke-linecap="round" />
+		<LinePatternSymbolizer file="symbols-otm/lanes_5.png" />
+	</Rule>-->
 
 
 </Style>

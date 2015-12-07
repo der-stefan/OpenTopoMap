@@ -297,7 +297,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="0.5" stroke-dasharray="1.5,1.5"/>
+		<LineSymbolizer stroke="black" stroke-width="0.6" stroke-dasharray="1.6,1.6"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
@@ -366,7 +366,7 @@
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[highway] = 'track' and [tracktype] = 'grade5'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="4,4" />
+		<LineSymbolizer stroke="black" stroke-width="0.9" stroke-dasharray="4,4" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
@@ -452,6 +452,31 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="8" />
 	</Rule>
+	
+	<!--<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] = '2'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="10" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] = '3'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="14" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] = '4'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="18" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] != null and [lanes] &gt; '4'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="22" stroke-linecap="round" />
+	</Rule>-->
 	
 
 

@@ -91,29 +91,29 @@
 		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="13" dy="-7">[name]</TextSymbolizer>
 	</Rule>
 
-<!-- zoom 15-16 -->
+<!-- zoom 15-17 -->
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom16;
+		&minscale_zoom17;
 		<Filter>(([place] = 'village') or ([place] = 'suburb') or ([place] = 'neighbourhood')) and ([population] &gt; 1000)</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Condensed" size="17" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" character-spacing="5" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom16;
+		&minscale_zoom17;
 		<Filter>(([place] = 'village') or ([place] = 'suburb') or ([place] = 'neighbourhood')) and not ([population] &gt; 1000)</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Condensed" size="15" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" character-spacing="5" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom16;
+		&minscale_zoom17;
 		<Filter>([place] = 'hamlet' or [place] = 'isolated_dwelling')</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" dx="20" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
-		&minscale_zoom16;
+		&minscale_zoom17;
 		<Filter>([place] = 'locality')</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="10" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>

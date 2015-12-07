@@ -9,7 +9,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
-		<LinePatternSymbolizer file="symbols-otm/forest-outline.png"/>
+		<LinePatternSymbolizer opacity="0.9" file="symbols-otm/forest-outline.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;

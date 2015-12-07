@@ -1,11 +1,11 @@
 <Style name="contours">
 	<!-- 100 m -->
-	<Rule>
+	<!--<Rule>
 		&maxscale_zoom10;
 		&minscale_zoom10;
 		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.1" />
-	</Rule>
+	</Rule>-->
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom11;
