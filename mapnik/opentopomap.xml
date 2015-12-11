@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO:
-	- label positions
-	
-	- relief no alpha, but green; change colors in relief.txt to corrected ones with 10% #117803 below
-	- create 30 m hillshade
+	- symbols: move non-centrical symbols and text
+	- label positions places
+	- railway bridges for others than simple rails
 	- generalize rivers
-	- subway stations
-	- bathymetry idea: sea polygons instead of land polygons, comp-op with bathy file
-	- add to database: lanes
+	- generalize cities and admin_centre
+	- subway stations and subway overground rails
 -->
 <!DOCTYPE Map
 [
@@ -48,6 +46,7 @@
 	<!ENTITY road-names-text SYSTEM "styles-otm/road-names-text.xml">
 	<!ENTITY symbols-road SYSTEM "styles-otm/symbols-road.xml">
 	<!ENTITY ferry-routes SYSTEM "styles-otm/ferry-routes.xml">
+	<!ENTITY railway-bridges-casing SYSTEM "styles-otm/railway-bridges-casing.xml">
 	<!ENTITY railway-bridges SYSTEM "styles-otm/railway-bridges.xml">
 	<!ENTITY bridges-casing SYSTEM "styles-otm/bridges-casing.xml">
 	<!ENTITY bridges-fill SYSTEM "styles-otm/bridges-fill.xml">
@@ -115,6 +114,7 @@
 	&symbols-road;
 	&housenumbers;
 	&ferry-routes;
+	&railway-bridges-casing;
 	&railway-bridges;
 	&road-names-text;
 	&bridges-casing;
@@ -402,9 +402,10 @@
 	</Layer>
 	
 	<Layer name="railway-bridges" group-by="layer">
+		<StyleName>railway-bridges-casing</StyleName>
 		<StyleName>railway-bridges</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (railway IS NOT NULL)) AS railways </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (railway IS NOT NULL)) AS railways </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>

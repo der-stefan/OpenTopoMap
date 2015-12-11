@@ -410,13 +410,13 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'track' and ([tracktype] = 'grade3' or [tracktype] = 'grade4')</Filter>
-		<LineSymbolizer stroke="red" stroke-width="0.5" />
+		<LineSymbolizer stroke="black" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[highway] = 'track' and ([tracktype] = 'grade3' or [tracktype] = 'grade4')</Filter>
-		<LineSymbolizer stroke="red" stroke-width="0.5" />
+		<LineSymbolizer stroke="black" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
