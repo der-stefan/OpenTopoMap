@@ -39,14 +39,14 @@
 		&maxscale_zoom11;
 		&minscale_zoom13;
 		<Filter>([natural] = 'water' or [landuse] = 'basin' or [landuse] = 'reservoir') and ([way_area] &gt; 50000)</Filter>
-		<PolygonSymbolizer fill="#a9ece9" />
+		<PolygonSymbolizer fill="#97d2e3" />
 		<LineSymbolizer stroke="blue" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom13;
 		<Filter>([natural] = 'water' or [landuse] = 'basin' or [landuse] = 'reservoir') and ([way_area] &lt; 50000)</Filter>
-		<PolygonSymbolizer fill="#a9ece9" />
+		<PolygonSymbolizer fill="#97d2e3" />
 		<LineSymbolizer stroke="blue" stroke-width="0.5" stroke-opacity="0.5" />
 	</Rule>
 	
@@ -54,7 +54,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>([natural] = 'water' or [landuse] = 'basin' or [landuse] = 'reservoir')</Filter>
-		<PolygonSymbolizer fill="#a9ece9" />
+		<PolygonSymbolizer fill="#97d2e3" />
 		<LineSymbolizer stroke="blue" stroke-width="0.5" />
 	</Rule>
 
@@ -66,7 +66,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>([leisure] = 'swimming_pool')</Filter>
-		<PolygonSymbolizer fill="#a9ece9" />
+		<PolygonSymbolizer fill="#97d2e3" />
 		<LineSymbolizer stroke="blue" stroke-width="1.1" />
 	</Rule>
 </Style>

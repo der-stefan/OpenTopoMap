@@ -22,6 +22,7 @@
 	<!ENTITY waterway-polygons-casing SYSTEM "styles-otm/waterway-polygons-casing.xml">
 	<!ENTITY waterway-polygons-fill SYSTEM "styles-otm/waterway-polygons-fill.xml">
 	<!ENTITY water-areas SYSTEM "styles-otm/water-areas.xml">
+	<!ENTITY landuse-over-water SYSTEM "styles-otm/landuse-over-water.xml">
 	<!ENTITY water-weir SYSTEM "styles-otm/water-weir.xml">
 	<!ENTITY waterway-arrows SYSTEM "styles-otm/waterway-arrows.xml">
 	<!ENTITY tunnels-casing SYSTEM "styles-otm/tunnels-casing.xml">
@@ -60,6 +61,7 @@
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
+	<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
 	<!ENTITY text-natural-point SYSTEM "styles-otm/text-natural-point.xml">
 	<!ENTITY symbols-1 SYSTEM "styles-otm/symbols-1.xml">
@@ -91,6 +93,7 @@
 	&waterway-polygons-casing;
 	&waterway-polygons-fill;
 	&water-areas;
+	&landuse-over-water;
 	&water-weir;
 	&waterway-arrows;
 	&tunnels-casing;
@@ -129,6 +132,7 @@
 	&text-cities;
 	&text-towns;
 	&text-villages;
+	&text-natural-poly-lowzoom;
 	&text-natural-poly;
 	&text-natural-point;
 	&symbols-1;
@@ -203,6 +207,14 @@
 		<StyleName>water-areas</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,way_area FROM &prefix;_polygon) AS water </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="landuse-over-water">
+		<StyleName>landuse-over-water</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural",wetland FROM &prefix;_polygon) AS landuse </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -401,11 +413,19 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="railway-bridges" group-by="layer">
+	<Layer name="railway-bridges">
 		<StyleName>railway-bridges-casing</StyleName>
 		<StyleName>railway-bridges</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (railway IS NOT NULL)) AS railways </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (railway IS NOT NULL) AND (layer IS NULL OR layer &lt;= '1')) AS railways </Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	<Layer name="railway-bridges-layer2" group-by="layer">
+		<StyleName>railway-bridges-casing</StyleName>
+		<StyleName>railway-bridges</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM &prefix;_line WHERE (bridge = 'yes') AND (railway IS NOT NULL) AND (layer &gt; '1')) AS railways </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -498,6 +518,14 @@
 			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) asc, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) desc
 		  ) AS names</Parameter>
 			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="text-natural-poly-lowzoom">
+		<StyleName>text-natural-poly-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/preprocessed/water-lowzoom/water-lowzoom</Parameter>
 		</Datasource>
 	</Layer>
 	
