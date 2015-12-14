@@ -341,7 +341,7 @@
 		<StyleName>railways-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">data/railways/railways</Parameter>
+			<Parameter name="file">data/preprocessed/railways-lowzoom/railways-lowzoom</Parameter>
 		</Datasource>
 	</Layer>
 	

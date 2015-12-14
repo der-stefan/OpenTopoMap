@@ -54,11 +54,18 @@
 		<PolygonSymbolizer fill="#97d2e3" />
 	</Rule>
 </Style>
-<Style name="waterpolys">
+<Style name="waterpolys_z9">
 	<Rule>
 		&maxscale_zoom9;
-		&minscale_zoom17;
+		&minscale_zoom10;
 		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+</Style>
+<Style name="waterpolys_z11">
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom17;
+		<PolygonSymbolizer fill="#a3dde8" />
 	</Rule>
 </Style>
 
@@ -119,7 +126,8 @@
 	</Datasource>
 </Layer>
 <Layer name="waterpolys">
-	<StyleName>waterpolys</StyleName>
+	<StyleName>waterpolys_z9</StyleName>
+	<StyleName>waterpolys_z11</StyleName>
 	<Datasource>
 		<Parameter name="type">shape</Parameter>
 		<Parameter name="file">data/water-polygons-split-3857/water_polygons</Parameter>

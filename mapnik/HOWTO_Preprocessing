@@ -37,6 +37,8 @@ This guide is quite complete, but you should always think before blindly copying
 	
 	pgsql2shp -k -f waterways-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,100),\"CEMT\",intermittent,motorboat,waterway,tunnel FROM planet_osm_line WHERE \"CEMT\" IN ('IV','Va','Vb','VIa','VIb','VIc','VII') OR motorboat = 'yes'"
 	
+	pgsql2shp -k -f railways-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,50),railway,\"service\",tunnel FROM planet_osm_line WHERE (\"service\" IS NULL AND railway='rail')"
+	
 	
 	pgsql2shp -k -f waterways-test gis "SELECT way FROM planet_osm_line JOIN (SELECT ltrim(member, 'w')::bigint AS osm_id FROM (SELECT unnest(members) AS member FROM planet_osm_rels WHERE ARRAY['waterway','river']<@tags) u WHERE member LIKE 'w%') x USING(osm_id)"
 	
