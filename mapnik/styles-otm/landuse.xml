@@ -55,6 +55,18 @@
 		<PolygonPatternSymbolizer file="symbols-otm/vineyard.png"/>
 	</Rule>
 	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>([landuse] = 'hop_garden' or [crop] = 'hop')</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/hop.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>([landuse] = 'orchard')</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/orchard.png"/>
+	</Rule>
+	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>([natural] = 'beach') or ([natural] = 'sand')</Filter>

@@ -159,7 +159,7 @@
 	<Layer name="landuse">
 		<StyleName>landuse</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity FROM &prefix;_polygon ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity,NULL AS crop FROM &prefix;_polygon ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
@@ -588,6 +588,14 @@
 			&datasource-settings;
 		</Datasource>
 	</Layer>-->
+	
+	<Layer name="test">
+		<StyleName>test</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/preprocessed/test/test-lowzoom</Parameter>
+		</Datasource>
+	</Layer>
 	
 	
 </Map>

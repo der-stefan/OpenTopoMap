@@ -98,6 +98,7 @@ node,way   communication:bos		text polygon
 node,way   communication:television	text	polygon
 node,way   construction text         linear
 node,way   covered      text         linear
+node,way   crop         text         polygon
 node,way   culvert      text         linear
 node,way   cutting      text         linear
 node,way   denomination text         linear
