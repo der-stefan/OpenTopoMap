@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO:
-	- symbols: move non-centrical symbols and text
 	- label positions places
 	- railway bridges for others than simple rails
 	- generalize rivers
 	- generalize cities and admin_centre
-	- subway stations and subway overground rails
+	- subway stations
+	- remove NULL in query for landuse after data re-import
 -->
 <!DOCTYPE Map
 [

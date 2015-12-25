@@ -64,4 +64,12 @@
 		<LineSymbolizer stroke="white" stroke-width="4.5" stroke-opacity="0.8" />
 		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>[railway] = 'subway'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="4.5" stroke-opacity="0.8" />
+		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
+	</Rule>
 </Style>

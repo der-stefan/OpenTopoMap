@@ -154,4 +154,12 @@
 		<Filter>[railway] = 'light_rail' and [tunnel] = 'yes'</Filter>
 		<LinePatternSymbolizer file="symbols-otm/rail_small_tunnel.png"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>[railway] = 'subway' and [tunnel] != 'yes'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="4.5" stroke-opacity="0.8" />
+		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
+	</Rule>
 </Style>
