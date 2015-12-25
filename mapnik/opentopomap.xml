@@ -45,6 +45,7 @@
 	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
 	<!ENTITY housenumbers SYSTEM "styles-otm/housenumbers.xml">
 	<!ENTITY road-names-text SYSTEM "styles-otm/road-names-text.xml">
+	<!ENTITY railway-crossing SYSTEM "styles-otm/railway-crossing.xml">
 	<!ENTITY symbols-road SYSTEM "styles-otm/symbols-road.xml">
 	<!ENTITY ferry-routes SYSTEM "styles-otm/ferry-routes.xml">
 	<!ENTITY railway-bridges-casing SYSTEM "styles-otm/railway-bridges-casing.xml">
@@ -114,6 +115,7 @@
 	&roads-fill-lowzoom;
 	&roads-casing;
 	&roads-fill;
+	&railway-crossing;
 	&symbols-road;
 	&housenumbers;
 	&ferry-routes;
@@ -378,6 +380,14 @@
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,highway,name,service,surface,tracktype,lanes,embankment FROM &prefix;_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
+			&datasource-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="railway-crossing">
+		<StyleName>railway-crossing</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,railway FROM &prefix;_point) AS symbols </Parameter>
 			&datasource-settings;
 		</Datasource>
 	</Layer>
