@@ -19,7 +19,7 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 
-# File system (use "sda" for system and home and "sdb" for database and tiles)
+# File system (use "sda" for system and home, "sdb" for tiles and "nvme0n1" for database)
 	/mnt/database
 	/mnt/tiles
 
@@ -47,16 +47,6 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo rm -r /var/lib/postgresql/9.3
 	sudo ln -s /mnt/database /var/lib/postgresql/9.3
 	sudo /etc/init.d/postgresql start
-
-	# add database "gis":
-	#sudo -u postgres -i
-	#createuser -s username
-	#createdb -E UTF8 -O username gis
-	#exit
-
-	# Install PostGIS to "gis":
-	#psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d gis
-	#psql -d gis -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
 
 	# Tweaks:
 		Edit the file /etc/postgresql/9.3/main/postgresql.conf and make the following changes:
@@ -101,7 +91,7 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo make install
 
 
-# Install osmosis
+# Install osmosis (for diff updates)
 	sudo apt-get install default-jre-headless junit
 	mkdir ~/src/osmosis
 	cd ~/src/osmosis
@@ -140,14 +130,13 @@ This guide is quite complete, but you should always think about before blindly c
 	cd ~
 	git clone https://github.com/der-stefan/OpenTopoMap.git
 	cd ~/OpenTopoMap/mapnik
-	mkdir world_boundaries
-	wget http://tile.openstreetmap.org/shoreline_300.tar.bz2
-	wget http://tile.openstreetmap.org/processed_p.tar.bz2
-	tar xjf shoreline_300.tar.bz2 -C world_boundaries
-	tar xjf processed_p.tar.bz2 -C world_boundaries
+	
+	# use the generalized water polygons from http://openstreetmapdata.com/
+	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
+	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
 
 	# You need the files for hillshade and contours
-	# Please create them on your own
+	# Please create them on your own. A hint howto proceed is given in HOWTO_DEM
 
 
 # Configure apache and mod_tile/renderd
@@ -170,9 +159,5 @@ This guide is quite complete, but you should always think about before blindly c
 	DAEMON=/usr/local/bin/$NAME
 	DAEMON_ARGS="-c /usr/local/etc/renderd.conf"
 	RUNASUSER=...
-	
-	
-
-
 
 

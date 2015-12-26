@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO:
+	- generalization in database instead of shape files
 	- label positions places
 	- railway bridges for others than simple rails
 	- generalize rivers
@@ -272,54 +273,12 @@
 	</Layer>
 	
 	<!-- contours -->
-	<!--<Layer name="contours">
+	<Layer name="contours">
 		<StyleName>contours</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ele FROM &prefix;_line) AS contours </Parameter>
+			<Parameter name="table">(SELECT wkb_geometry,height FROM contours) AS contours </Parameter>
 			<Parameter name="type">postgis</Parameter>
 			<Parameter name="dbname">contours</Parameter>
-		</Datasource>
-	</Layer>-->
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">../../contours_test/contours_48-10</Parameter>
-		</Datasource>
-	</Layer>
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">../../contours_test/contours_48-11</Parameter>
-		</Datasource>
-	</Layer>
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">../../contours_test/contours_49-10</Parameter>
-		</Datasource>
-	</Layer>
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">../../contours_test/contours_49-11</Parameter>
-		</Datasource>
-	</Layer>
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">../../contours_test/contours_50-10</Parameter>
-		</Datasource>
-	</Layer>
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">../../contours_test/contours_50-11</Parameter>
 		</Datasource>
 	</Layer>
 	
