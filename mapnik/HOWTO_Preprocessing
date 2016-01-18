@@ -17,13 +17,24 @@ http://opentopomap.org
 This guide is quite complete, but you should always think before blindly copying the commands.
 
 # Create generalized database
-	sudo -u postgres -i
-	createdb -E UTF8 -O username gis-lowzoom
-	exit
-	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d gis-lowzoom
-	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/spatial_ref_sys.sql -d gis-lowzoom
-	psql -d gis-lowzoom -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
-	#psql -f /usr/local/share/osm2pgsql/900913.sql -d gis-lowzoom
+	createdb lowzoom
+	psql -d lowzoom -c 'CREATE EXTENSION postgis; CREATE EXTENSION hstore;'
+	
+	
+# Problems still to solve:
+# Great lakes:
+	# https://github.com/gravitystorm/openstreetmap-carto/issues/754
+	# https://blog.jochentopf.com/2013-03-11-state-of-the-osm-coastline.html
+# Admin centers combined with city/population
+
+# http://stackoverflow.com/questions/3195125/copy-a-table-from-one-database-to-another-in-postgres
+# pg_dump -t table_to_copy source_db | psql target_db
+# psql -h <host1> ... -c 'copy (select ... from <tablename> where ...) to stdout' | psql -h <host2> ...  -c 'copy <tablename> from stdin'
+#### HOW IS IT DONE?? NO RELEASE OF OTM 2.0 BEFORE PROBLEM IS SOLVED.
+
+
+# test with postgresql
+	INSERT INTO lowzoom.test SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area FROM gis.planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank') AND way_area > 50000
 
 
 # Generalize different things
