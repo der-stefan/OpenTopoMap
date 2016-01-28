@@ -2,7 +2,7 @@
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
-		<Filter>[way_area] &gt; 10000000</Filter>
+		<Filter>[way_area] &gt; 1E7</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="0.8" stroke-opacity="0.5" />
 	</Rule>
 	

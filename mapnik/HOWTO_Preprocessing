@@ -30,26 +30,38 @@ This guide is quite complete, but you should always think before blindly copying
 # http://stackoverflow.com/questions/3195125/copy-a-table-from-one-database-to-another-in-postgres
 # pg_dump -t table_to_copy source_db | psql target_db
 # psql -h <host1> ... -c 'copy (select ... from <tablename> where ...) to stdout' | psql -h <host2> ...  -c 'copy <tablename> from stdin'
+# psql gis -c "copy (select way,name,waterway,way_area from planet_osm_polygon where waterway='riverbank AND way_area > 50000) to stdout"
 #### HOW IS IT DONE?? NO RELEASE OF OTM 2.0 BEFORE PROBLEM IS SOLVED.
 
 
-# test with postgresql
-	INSERT INTO lowzoom.test SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area FROM gis.planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank') AND way_area > 50000
+
 
 
 # Generalize different things
-	pgsql2shp -k -f water-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,150),name,\"natural\",waterway,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank') AND way_area > 50000"
+	pgsql2shp -k -f water gis "SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area,osm_id FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake') AND way_area > 50000"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln water water.shp
 	
-	pgsql2shp -k -f borders-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,150),boundary,admin_level AS level FROM planet_osm_line WHERE boundary = 'administrative' AND admin_level IN ('2','4','5','6')"
+	pgsql2shp -k -f borders gis "SELECT ST_SimplifyPreserveTopology(way,150),boundary,admin_level AS level FROM planet_osm_line WHERE boundary = 'administrative' AND admin_level IN ('2','4','5','6')"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln borders borders.shp
 	
-	pgsql2shp -k -f landuse-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,150),landuse,\"natural\" FROM planet_osm_polygon WHERE landuse = 'forest' OR \"natural\" = 'wood' AND way_area > 50000"
+	pgsql2shp -k -f landuse gis "SELECT ST_SimplifyPreserveTopology(way,150) AS way,landuse,\"natural\" FROM planet_osm_polygon WHERE landuse = 'forest' OR \"natural\" = 'wood' AND way_area > 50000"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln landuse landuse.shp
 	
-	pgsql2shp -k -f roads-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,100),highway FROM planet_osm_line WHERE highway IN ('motorway','trunk','primary','secondary','tertiary','motorway_link','trunk_link','primary_link','secondary_link','tertiary_link')"
+	pgsql2shp -k -f roads gis "SELECT ST_SimplifyPreserveTopology(way,100) AS way,highway FROM planet_osm_line WHERE highway IN ('motorway','trunk','primary','secondary','tertiary','motorway_link','trunk_link','primary_link','secondary_link','tertiary_link')"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln roads roads.shp
 	
-	pgsql2shp -k -f waterways-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,100),\"CEMT\",intermittent,motorboat,waterway,tunnel FROM planet_osm_line WHERE \"CEMT\" IN ('IV','Va','Vb','VIa','VIb','VIc','VII') OR motorboat = 'yes'"
+	pgsql2shp -k -f railways gis "SELECT ST_SimplifyPreserveTopology(way,50) AS way,railway,\"service\",tunnel FROM planet_osm_line WHERE (\"service\" IS NULL AND railway='rail')"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln railways railways.shp
 	
-	pgsql2shp -k -f railways-lowzoom gis "SELECT ST_SimplifyPreserveTopology(way,50),railway,\"service\",tunnel FROM planet_osm_line WHERE (\"service\" IS NULL AND railway='rail')"
+	pgsql2shp -k -f cities gis "SELECT way,admin_level AS level,name,capital,place,population FROM planet_osm_point WHERE place='city'"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln cities cities.shp
 	
+	
+	
+	
+	
+	pgsql2shp -k -f waterways gis "SELECT ST_SimplifyPreserveTopology(way,100) AS way,\"CEMT\",intermittent,motorboat,waterway,tunnel FROM planet_osm_line WHERE \"CEMT\" IN ('IV','Va','Vb','VIa','VIb','VIc','VII') OR motorboat = 'yes'"
+	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln waterways waterways.shp
 	
 	pgsql2shp -k -f waterways-test gis "SELECT way FROM planet_osm_line JOIN (SELECT ltrim(member, 'w')::bigint AS osm_id FROM (SELECT unnest(members) AS member FROM planet_osm_rels WHERE ARRAY['waterway','river']<@tags) u WHERE member LIKE 'w%') x USING(osm_id)"
 	
@@ -108,7 +120,7 @@ This guide is quite complete, but you should always think before blindly copying
 		
 	
 ========================================================
-	pgsql2shp -k -f admin_centers gis "SELECT DISTINCT way,name FROM planet_osm_point JOIN (WITH numbered AS(SELECT row_number() OVER() AS row, entry FROM(SELECT unnest(members) AS entry FROM planet_osm_rels WHERE ARRAY['boundary','administrative']<@tags AND ARRAY['admin_level','6']<@tags) AS mylist) SELECT ltrim(a.entry,'n')::bigint AS osm_id FROM numbered AS a JOIN numbered AS b ON a.row = b.row-1 AND b.entry = 'admin_centre') x USING(osm_id)"
+	pgsql2shp -k -f admin_centers gis "SELECT DISTINCT name FROM planet_osm_point JOIN (WITH numbered AS(SELECT row_number() OVER() AS row, entry FROM(SELECT unnest(members) AS entry FROM planet_osm_rels WHERE ARRAY['boundary','administrative']<@tags AND ARRAY['admin_level','2']<@tags) AS mylist) SELECT ltrim(a.entry,'n')::bigint AS osm_id FROM numbered AS a JOIN numbered AS b ON a.row = b.row-1 AND b.entry = 'admin_centre') x USING(osm_id)"
 
 
 SELECT DISTINCT way,name FROM planet_osm_point
@@ -118,10 +130,10 @@ SELECT DISTINCT way,name FROM planet_osm_point
 				FROM(
 					SELECT unnest(members) AS entry
 					FROM planet_osm_rels
-					WHERE ARRAY['boundary','administrative']<@tags AND ARRAY['admin_level','6']<@tags) AS mylist)
+					WHERE ARRAY['boundary','administrative']<@tags AND ARRAY['admin_level','2']<@tags) AS mylist)
 			SELECT ltrim(a.entry,'n')::bigint AS osm_id
 			FROM numbered AS a JOIN numbered AS b
-			ON a.row = b.row-1 AND b.entry = 'admin_centre'
+			ON a.row = b.row-1 AND b.entry = 'admin_centre' WHERE a.entry ~ '^n[0-9]+'
 	) x
 	USING(osm_id);
 	
