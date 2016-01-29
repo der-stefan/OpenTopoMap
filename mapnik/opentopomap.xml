@@ -514,24 +514,7 @@
 		</Datasource>
 	</Layer>-->
 	
-	<!--<Layer name="admin_centers">
-		<StyleName>admin_centers</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">data/admin_centers/admin_centers</Parameter>
-		</Datasource>
-	</Layer>-->
-	
-	<!--<Layer name="text-capitals">
-		<StyleName>text-capitals</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,name,admin_level,capital,place,population::integer from &prefix;_point where capital='yes' and admin_level='2' and population::integer &gt; 1e5 ORDER BY population::integer) AS test</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>-->
-	
-	<Layer name="text-cities" clear-label-cache="on">
+	<Layer name="text-cities">
 		<StyleName>text-cities-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place='city' AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
@@ -541,7 +524,7 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="text">
+	<Layer name="text" clear-label-cache="on">
 		<StyleName>text-cities</StyleName>
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
