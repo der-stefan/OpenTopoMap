@@ -55,6 +55,7 @@
 	<!ENTITY bridges-casing SYSTEM "styles-otm/bridges-casing.xml">
 	<!ENTITY bridges-fill SYSTEM "styles-otm/bridges-fill.xml">
 	<!ENTITY bridges-middle SYSTEM "styles-otm/bridges-middle.xml">
+	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
 	<!ENTITY barriers SYSTEM "styles-otm/barriers.xml">
@@ -127,6 +128,7 @@
 	&bridges-casing;
 	&bridges-fill;
 	&bridges-middle;
+	&aerialways;
 	&powerlines;
 	&powertowers;
 	&barriers;
@@ -466,6 +468,15 @@
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="aerialways">
+		<StyleName>aerialways</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,aerialway FROM &prefix;_line WHERE aerialway IS NOT NULL) AS aerialway </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
