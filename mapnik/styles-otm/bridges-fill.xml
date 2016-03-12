@@ -375,7 +375,7 @@
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'secondary' or [highway] = 'tertiary'</Filter>
-		<LineSymbolizer stroke="#fdfd4f" stroke-width="6" stroke-linecap="round" />
+		<LineSymbolizer stroke="#fdfd4f" stroke-width="9" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;

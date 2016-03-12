@@ -656,7 +656,21 @@
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<Filter>[highway] = 'secondary' or [highway] = 'tertiary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="11.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[length] &gt; 3 and ([highway] = 'secondary' or [highway] = 'tertiary')</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_12px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_12px_last.png" placement="vertex-last" allow-overlap="true" />
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="9" />
 	</Rule>
 	<Rule>

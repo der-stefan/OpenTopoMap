@@ -427,11 +427,17 @@
 		&minscale_zoom17;
 		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="12" stroke-linecap="round" />
+	</Rule>	
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'secondary' or [highway] = 'tertiary'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="11" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="8" stroke-linecap="round" />
 	</Rule>
 	<Rule>
