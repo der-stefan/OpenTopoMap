@@ -387,7 +387,13 @@
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>[highway] = 'residential' or [highway] = 'unclassified' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian'</Filter>
+		<Filter>[highway] = 'residential' or [highway] = 'unclassified' or [highway] = 'road'</Filter>
+		<LineSymbolizer stroke="white" stroke-width="8" stroke-linecap="round" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'living_street' or [highway] = 'pedestrian'</Filter>
 		<LineSymbolizer stroke="white" stroke-width="6" stroke-linecap="round" />
 	</Rule>
 	<Rule>
