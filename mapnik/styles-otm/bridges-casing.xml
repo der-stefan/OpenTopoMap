@@ -670,15 +670,43 @@
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<Filter>[highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="10.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road'</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_10px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_10px_last.png" placement="vertex-last" allow-overlap="true" />
+	</Rule>
+	
+		<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>[length] &gt; 3 and (([highway] = 'service' and [service] = null) or [highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'unclassified' or [highway] = 'residential' or [highway] = 'road' or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link')</Filter>
+		<Filter>[length] &gt; 3 and ([highway] = 'raceway')</Filter>
 		<MarkersSymbolizer file="symbols-otm/bridge_9px_first.png" placement="vertex-first" allow-overlap="true" />
 		<MarkersSymbolizer file="symbols-otm/bridge_9px_last.png" placement="vertex-last" allow-overlap="true" />
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([highway] = 'service' and [service] = null) or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="8.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[length] &gt; 3 and (([highway] = 'service' and [service] = null) or [highway] = 'living_street' or [highway] = 'pedestrian' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link' or [highway] = 'secondary_link' or [highway] = 'tertiary_link')</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_8px_first.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_8px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 	
 	<Rule>
@@ -700,19 +728,6 @@
 		&minscale_zoom17;
 		<Filter>[highway] = 'steps'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="3" stroke-dasharray="1.1,2"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom17;
-		&minscale_zoom17;
-		<Filter>[highway] = 'raceway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="9" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom17;
-		&minscale_zoom17;
-		<Filter>[length] &gt; 3 and ([highway] = 'raceway')</Filter>
-		<MarkersSymbolizer file="symbols-otm/bridge_9px_first.png" placement="vertex-first" allow-overlap="true" />
-		<MarkersSymbolizer file="symbols-otm/bridge_9px_last.png" placement="vertex-last" allow-overlap="true" />
 	</Rule>
 
 </Style>
