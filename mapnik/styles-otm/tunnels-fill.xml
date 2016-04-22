@@ -325,13 +325,13 @@
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary'</Filter>
-		<LineSymbolizer stroke="#fdb548" stroke-width="9.5" stroke-linecap="round" />
+		<LineSymbolizer stroke="#fdd8a0" stroke-width="9.5" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'secondary' or [highway] = 'tertiary'</Filter>
-		<LineSymbolizer stroke="#fdfd4f" stroke-width="9" stroke-linecap="round" />
+		<LineSymbolizer stroke="#fdfdc3" stroke-width="9" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
@@ -349,13 +349,13 @@
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
-		<LineSymbolizer stroke="#fdb548" stroke-width="6" stroke-linecap="round" />
+		<LineSymbolizer stroke="#fdd8a0" stroke-width="6" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
-		<LineSymbolizer stroke="#fdfd4f" stroke-width="6" stroke-linecap="round" />
+		<LineSymbolizer stroke="#fdfdc3" stroke-width="6" stroke-linecap="round" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;

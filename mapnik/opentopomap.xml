@@ -59,7 +59,7 @@
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
 	<!ENTITY barriers SYSTEM "styles-otm/barriers.xml">
-	<!ENTITY motorway_junctions SYSTEM "styles-otm/motorway_junctions.xml">
+	<!ENTITY admin_centers SYSTEM "styles-otm/text-natural-line.xml">
 	<!ENTITY admin_centers SYSTEM "styles-otm/admin_centers.xml">
 	<!ENTITY text-cities-lowzoom SYSTEM "styles-otm/text-cities-lowzoom.xml">
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
@@ -132,7 +132,7 @@
 	&powerlines;
 	&powertowers;
 	&barriers;
-	&motorway_junctions;
+	&text-natural-line;
 	&admin_centers;
 	&text-cities-lowzoom;
 	&text-cities;
@@ -524,6 +524,15 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>-->
+	
+	<Layer name="text-natural-line">
+		<StyleName>text-natural-line</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,"natural" FROM &prefix;_line) AS names</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
 	
 	<Layer name="text-cities">
 		<StyleName>text-cities-lowzoom</StyleName>

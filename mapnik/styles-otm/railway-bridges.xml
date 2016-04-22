@@ -16,7 +16,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([railway] = 'rail')</Filter>
-		<LineSymbolizer stroke="white" stroke-width="4.8"/>
+		<LineSymbolizer stroke="white" stroke-width="4.5"/>
 		<LinePatternSymbolizer file="symbols-otm/rail_z14.png"/>
 	</Rule>
 	<Rule>
