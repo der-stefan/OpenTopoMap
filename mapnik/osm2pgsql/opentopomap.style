@@ -1,4 +1,4 @@
-# This is the default osm2pgsql .style file that comes with osm2pgsql.
+# This is the custom osm2pgsql .style file that is customized by the OpenTopoMap project.
 #
 # A .style file has 4 columns that define how OSM objects end up in tables in
 # the database and what columns are created. It interacts with the command-line
