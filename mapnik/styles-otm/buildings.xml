@@ -1,0 +1,26 @@
+<Style name="buildings">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<LineSymbolizer stroke="#777777" stroke-width="0.3" />
+		<PolygonSymbolizer fill="#777777" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<LineSymbolizer stroke="black" stroke-width="0.1" />
+		<PolygonSymbolizer fill="black" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom16;
+		<LineSymbolizer stroke="black" stroke-width="1.5" />
+		<PolygonSymbolizer fill="#555555" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<PolygonPatternSymbolizer file="symbols-otm/building_z17.png"/>
+		<LineSymbolizer stroke="black" stroke-width="0.7" />
+	</Rule>
+</Style>

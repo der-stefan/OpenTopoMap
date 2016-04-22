@@ -1,0 +1,33 @@
+<Style name="water-fill-lowzoom">
+	<Rule>
+		&maxscale_zoom0;
+		&minscale_zoom8;
+		<Filter>[way_area] &gt; 1E11</Filter>
+		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom0;
+		&minscale_zoom8;
+		<Filter>[way_area] &gt; 1E7</Filter>
+		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom10;
+		<Filter>[way_area] &gt; 3000000</Filter>
+		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom10;
+		<Filter>([way_area] &gt; 500000) and ([way_area] &lt; 3000000)</Filter>
+		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom10;
+		<Filter>[way_area] &lt; 500000</Filter>
+		<PolygonSymbolizer fill="#97d2e3" />
+	</Rule>
+</Style>

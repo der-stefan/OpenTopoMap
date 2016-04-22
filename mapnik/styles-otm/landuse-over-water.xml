@@ -1,0 +1,42 @@
+<Style name="landuse-over-water">
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wetland') and ([wetland] = 'swamp'))</Filter>
+		<PolygonSymbolizer fill="#73b64b" fill-opacity="0.3"/>
+		<PolygonPatternSymbolizer file="symbols-otm/wetland.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wetland') and ([wetland] = 'bog'))</Filter>
+		<PolygonSymbolizer fill="#d9cf57" fill-opacity="0.2"/>
+		<PolygonPatternSymbolizer file="symbols-otm/wetland.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wetland') and ([wetland] = 'reedbed'))</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/reedbed.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wetland') and not (([wetland] = 'bog') or ([wetland] = 'swamp') or ([wetland] = 'tidalflat') or ([wetland] = 'reedbed')))</Filter>
+		<PolygonSymbolizer fill="#304eff" fill-opacity="0.1"/>
+		<PolygonPatternSymbolizer file="symbols-otm/wetland.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom17;
+		<Filter>(([natural] = 'wetland') and ([wetland] = 'tidalflat'))</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/tidalflat.png" opacity="0.7"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>([natural] = 'beach') or ([natural] = 'sand')</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/sand.png" opacity="0.7"/>
+	</Rule>
+</Style>

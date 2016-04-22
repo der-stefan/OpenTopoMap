@@ -16,8 +16,15 @@ http://opentopomap.org
 
 This guide is quite complete, but you should always think before blindly copying the commands.
 
+########################
+# The new approach is to take the DEM and contours from opensnowmap
+# When loading the contours into a database, you should create a geohash index and cluster the data according to the index:
+psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Transform(wkb_geometry,4326)));"
+psql -d contours -c "CLUSTER contours USING contours_geohash;"
 
 
+#########################
+# Old description:
 
 # Install needed packages
 	sudo apt-get install gdal-bin python-gdal

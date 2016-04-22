@@ -1,0 +1,9 @@
+<Style name="water-weir">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>[waterway] = 'weir'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/weir.png" />
+	</Rule>
+</Style>
+

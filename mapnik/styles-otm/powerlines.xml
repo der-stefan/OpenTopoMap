@@ -1,0 +1,16 @@
+<Style name="powerlines">
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>([power] = 'line')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/powerline.png"/>
+		<LineSymbolizer stroke="black" stroke-width="0.5"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([power] = 'minor_line') and (([voltage] &gt; '10000') or ([voltage] = null))</Filter>
+		<LinePatternSymbolizer file="symbols-otm/powerline.png"/>
+		<LineSymbolizer stroke="black" stroke-width="0.5"/>
+	</Rule>
+</Style>

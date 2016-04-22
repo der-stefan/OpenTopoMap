@@ -1,0 +1,25 @@
+<Style name="waterway-arrows">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom15;
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
+		<MarkersSymbolizer file="symbols-otm/waterway-arrow.png" placement="line" spacing="250" transform="translate(0 -4)" max-error="0.3"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
+		<MarkersSymbolizer file="symbols-otm/waterway-arrow.png" placement="line" spacing="400" transform="translate(0 -6)" max-error="0.3"/>
+	</Rule>
+
+	
+<!-- streams and drains -->
+	<!-- always water (intermittent!=yes) -->
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>([waterway] = 'stream') and ([intermittent] != 'yes')</Filter>
+		<MarkersSymbolizer file="symbols-otm/waterway-arrow.png" placement="line" spacing="300" transform="translate(0 -4)" max-error="0.5"/>
+	</Rule>
+
+</Style>

@@ -98,10 +98,12 @@ node,way   communication:bos		text polygon
 node,way   communication:television	text	polygon
 node,way   construction text         linear
 node,way   covered      text         linear
+node,way   crop         text         polygon
 node,way   culvert      text         linear
 node,way   cutting      text         linear
 node,way   denomination text         linear
 node,way	denotation	text		polygon
+node,way   direction    text         linear
 node,way   disused      text         linear
 node       ele          text         linear
 node,way   embankment   text         linear
@@ -116,6 +118,7 @@ node,way   horse        text         linear
 node,way   intermittent text         linear
 node,way   junction     text         linear
 node,way   landuse      text         polygon
+node,way   lanes        text         linear
 node,way   layer        text         linear
 node,way   leisure      text         polygon
 node,way   lock         text         linear

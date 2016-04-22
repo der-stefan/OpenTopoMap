@@ -1,0 +1,21 @@
+<Style name="railways-embankment">
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'rail') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_6px.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([railway] = 'rail') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_8px.png"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([railway] = 'narrow_gauge' or [railway] = 'funicular' or [railway] = 'light_rail' or [railway] = 'subway') and ([embankment] = 'yes')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/embankment_4px.png"/>
+	</Rule>
+</Style>

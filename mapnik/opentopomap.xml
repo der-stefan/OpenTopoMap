@@ -1,231 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- TODO:
+	- Wasserfall, Sumpf verbessern
+	- generalization in database instead of shape files
+	- label positions places
+	- railway bridges for others than simple rails
+	- generalize rivers
+	- generalize cities and admin_centre
+	- subway stations
+	- remove NULL in query for landuse after data re-import
+-->
 <!DOCTYPE Map
 [
-       <!ENTITY world_boundaries_dir   "world_boundaries/">
-       
-       <!ENTITY world SYSTEM "inc-style/world.sty">
-       <!ENTITY landuse-fill SYSTEM "inc-style/landuse-fill.sty">
-       <!ENTITY relief SYSTEM "inc-style/relief.sty">
-       <!ENTITY hillshade SYSTEM "inc-style/hillshade.sty">
-       <!ENTITY glaciers SYSTEM "inc-style/glaciers.sty">
-       <!ENTITY residential-fill SYSTEM "inc-style/residential-fill.sty">
-       <!ENTITY waterway-lines SYSTEM "inc-style/waterway-lines.sty">
-       <!ENTITY waterway-polygons-casing SYSTEM "inc-style/waterway-polygons-casing.sty">
-       <!ENTITY waterway-polygons-fill SYSTEM "inc-style/waterway-polygons-fill.sty">
-       <!ENTITY water-areas SYSTEM "inc-style/water-areas.sty">
-       <!ENTITY water-weir SYSTEM "inc-style/water-weir.sty">
-       <!ENTITY waterway-arrows SYSTEM "inc-style/waterway-arrows.sty">
-       <!ENTITY tunnels-casing SYSTEM "inc-style/tunnels-casing.sty">
-       <!ENTITY tunnels-fill SYSTEM "inc-style/tunnels-fill.sty">
-       <!ENTITY tunnels-middle SYSTEM "inc-style/tunnels-middle.sty">
-       <!ENTITY cliffs-draw SYSTEM "inc-style/cliffs-draw.sty">
-       <!ENTITY buildings-fill SYSTEM "inc-style/buildings-fill.sty">
-       <!ENTITY military-fill SYSTEM "inc-style/military-fill.sty">
-
-       <!ENTITY contours SYSTEM "inc-style/contours.sty">
-       <!ENTITY layer-contours SYSTEM "opentopomap_contours.include">
-       
-       <!ENTITY borders-draw SYSTEM "inc-style/borders-draw.sty">
-       <!ENTITY railways-embankment SYSTEM "inc-style/railways-embankment.sty">
-       <!ENTITY railways-draw SYSTEM "inc-style/railways-draw.sty">
-       <!ENTITY airports-casing SYSTEM "inc-style/airports-casing.sty">
-       <!ENTITY airports-fill SYSTEM "inc-style/airports-fill.sty">
-       <!ENTITY roads-lowzoom-casing SYSTEM "inc-style/roads-lowzoom-casing.sty">
-       <!ENTITY roads-lowzoom-fill SYSTEM "inc-style/roads-lowzoom-fill.sty">
-       <!ENTITY roads-casing SYSTEM "inc-style/roads-casing.sty">
-       <!ENTITY roads-areas SYSTEM "inc-style/roads-areas.sty">
-       <!ENTITY roads-fill SYSTEM "inc-style/roads-fill.sty">
-       <!ENTITY roads-12_13 SYSTEM "inc-style/roads-12_13.sty"> 
-       <!ENTITY roads-middle SYSTEM "inc-style/roads-middle.sty">
-       <!ENTITY roads-text_z16 SYSTEM "inc-style/roads-text_z16.sty">
-       <!ENTITY trams-draw SYSTEM "inc-style/trams-draw.sty">
-       <!ENTITY ferry_routes-draw SYSTEM "inc-style/ferry_routes-draw.sty">
-       <!ENTITY railways-bridge SYSTEM "inc-style/railways-bridge.sty">
-       <!ENTITY bridges-casing SYSTEM "inc-style/bridges-casing.sty">
-       <!ENTITY bridges-fill SYSTEM "inc-style/bridges-fill.sty">
-       <!ENTITY bridges-middle SYSTEM "inc-style/bridges-middle.sty">
-       <!ENTITY aerialways-draw SYSTEM "inc-style/aerialways-draw.sty">
-       <!ENTITY powerlines-draw SYSTEM "inc-style/powerlines-draw.sty">
-       <!ENTITY powertowers-draw SYSTEM "inc-style/powertowers-draw.sty">
-       <!ENTITY fences-draw SYSTEM "inc-style/fences-draw.sty">
-       <!ENTITY text-capitals SYSTEM "inc-style/text-capitals.sty">
-       <!ENTITY text-cities SYSTEM "inc-style/text-cities.sty">
-       <!ENTITY text-towns SYSTEM "inc-style/text-towns.sty">
-       <!ENTITY text-villages SYSTEM "inc-style/text-villages.sty">
-       <!ENTITY text-natural SYSTEM "inc-style/text-natural.sty">
-       <!ENTITY text-natural-lines SYSTEM "inc-style/text-natural-lines.sty">
-       <!ENTITY text-peaks SYSTEM "inc-style/text-peaks.sty">
-       <!ENTITY symbols-churches-castles SYSTEM "inc-style/symbols-churches-castles.sty">
-       <!ENTITY symbols-draw SYSTEM "inc-style/symbols-draw.sty">
-       <!ENTITY symbols-pv SYSTEM "inc-style/symbols-pv.sty">
-       <!ENTITY symbols-viewpoints SYSTEM "inc-style/symbols-viewpoints.sty">
-       <!ENTITY text-roads SYSTEM "inc-style/text-roads.sty">
-       <!ENTITY text-waterways SYSTEM "inc-style/text-waterways.sty">
-       <!ENTITY text-states SYSTEM "inc-style/text-states.sty">
-       
-       <!ENTITY % entities SYSTEM "inc/entities.xml.inc">
-       %entities;
-       
+	<!ENTITY basemap-relief SYSTEM "styles-otm/basemap-relief.xml">
+	<!ENTITY landuse-lowzoom SYSTEM "styles-otm/landuse-lowzoom.xml">
+	<!ENTITY landuse SYSTEM "styles-otm/landuse.xml">
+	<!ENTITY landuse-over-hillshade SYSTEM "styles-otm/landuse-over-hillshade.xml">
+	<!ENTITY hillshade SYSTEM "styles-otm/hillshade.xml">
+	<!ENTITY basemap-sea SYSTEM "styles-otm/basemap-sea.xml">
+	<!ENTITY water-casing-lowzoom SYSTEM "styles-otm/water-casing-lowzoom.xml">
+	<!ENTITY water-fill-lowzoom SYSTEM "styles-otm/water-fill-lowzoom.xml">
+	<!ENTITY waterway-lines-lowzoom SYSTEM "styles-otm/waterway-lines-lowzoom.xml">
+	<!ENTITY waterway-lines SYSTEM "styles-otm/waterway-lines.xml">
+	<!ENTITY waterway-polygons-casing SYSTEM "styles-otm/waterway-polygons-casing.xml">
+	<!ENTITY waterway-polygons-fill SYSTEM "styles-otm/waterway-polygons-fill.xml">
+	<!ENTITY water-areas SYSTEM "styles-otm/water-areas.xml">
+	<!ENTITY landuse-over-water SYSTEM "styles-otm/landuse-over-water.xml">
+	<!ENTITY water-weir SYSTEM "styles-otm/water-weir.xml">
+	<!ENTITY waterway-arrows SYSTEM "styles-otm/waterway-arrows.xml">
+	<!ENTITY tunnels-casing SYSTEM "styles-otm/tunnels-casing.xml">
+	<!ENTITY tunnels-fill SYSTEM "styles-otm/tunnels-fill.xml">
+	<!ENTITY tunnels-middle SYSTEM "styles-otm/tunnels-middle.xml">
+	<!ENTITY cliffs SYSTEM "styles-otm/cliffs.xml">
+	<!ENTITY buildings SYSTEM "styles-otm/buildings.xml">
+	<!ENTITY military SYSTEM "styles-otm/military.xml">
+	<!ENTITY contours SYSTEM "styles-otm/contours.xml">
+	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
+	<!ENTITY borders SYSTEM "styles-otm/borders.xml">
+	<!ENTITY railways-lowzoom SYSTEM "styles-otm/railways-lowzoom.xml">
+	<!ENTITY railways-embankment SYSTEM "styles-otm/railways-embankment.xml">
+	<!ENTITY railways SYSTEM "styles-otm/railways.xml">
+	<!ENTITY airports-casing SYSTEM "styles-otm/airports-casing.xml">
+	<!ENTITY airports-fill SYSTEM "styles-otm/airports-fill.xml">
+	<!ENTITY roads-casing-lowzoom SYSTEM "styles-otm/roads-casing-lowzoom.xml">
+	<!ENTITY roads-fill-lowzoom SYSTEM "styles-otm/roads-fill-lowzoom.xml">
+	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
+	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
+	<!ENTITY housenumbers SYSTEM "styles-otm/housenumbers.xml">
+	<!ENTITY road-names-text SYSTEM "styles-otm/road-names-text.xml">
+	<!ENTITY railway-crossing SYSTEM "styles-otm/railway-crossing.xml">
+	<!ENTITY symbols-road SYSTEM "styles-otm/symbols-road.xml">
+	<!ENTITY ferry-routes SYSTEM "styles-otm/ferry-routes.xml">
+	<!ENTITY railway-bridges-casing SYSTEM "styles-otm/railway-bridges-casing.xml">
+	<!ENTITY railway-bridges SYSTEM "styles-otm/railway-bridges.xml">
+	<!ENTITY bridges-casing SYSTEM "styles-otm/bridges-casing.xml">
+	<!ENTITY bridges-fill SYSTEM "styles-otm/bridges-fill.xml">
+	<!ENTITY bridges-middle SYSTEM "styles-otm/bridges-middle.xml">
+	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
+	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
+	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
+	<!ENTITY barriers SYSTEM "styles-otm/barriers.xml">
+	<!ENTITY admin_centers SYSTEM "styles-otm/text-natural-line.xml">
+	<!ENTITY admin_centers SYSTEM "styles-otm/admin_centers.xml">
+	<!ENTITY text-cities-lowzoom SYSTEM "styles-otm/text-cities-lowzoom.xml">
+	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
+	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
+	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
+	<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">
+	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
+	<!ENTITY text-natural-point SYSTEM "styles-otm/text-natural-point.xml">
+	<!ENTITY symbols-1 SYSTEM "styles-otm/symbols-1.xml">
+	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
+	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
+	<!ENTITY symbols-point SYSTEM "styles-otm/symbols-point.xml">
+	<!ENTITY text-roads-ref SYSTEM "styles-otm/text-roads-ref.xml">
+	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
+	
+	<!ENTITY test SYSTEM "styles-otm/test.xml">
+	
+	<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
+	%entities;     
 ]>
-<Map background-color="#75b0c1" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" buffer-size="256">
-<!-- style definitions -->
-	&world;
-	&landuse-fill;
-    &relief;
-	&hillshade;
-	&glaciers;
-	&residential-fill;
+
+<!-- background-color:
+	zoom 0...8: #117803
+	zoom 9+: e0e0e0
+-->
+<Map background-color="#e0e0e0" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" buffer-size="256">
+	<!-- style definitions -->
+	&landuse-lowzoom;
+	&landuse;
+	&landuse-over-hillshade;
+	&water-casing-lowzoom;
+	&water-fill-lowzoom;
+	&waterway-lines-lowzoom;
 	&waterway-lines;
 	&waterway-polygons-casing;
 	&waterway-polygons-fill;
 	&water-areas;
+	&landuse-over-water;
 	&water-weir;
 	&waterway-arrows;
 	&tunnels-casing;
 	&tunnels-fill;
 	&tunnels-middle;
-	&cliffs-draw;
-	&buildings-fill;
-	&military-fill;
+	&cliffs;
+	&buildings;
+	&military;
 	&contours;
-	&borders-draw;
+	&borders-lowzoom;
+	&borders;
+	&railways-lowzoom;
 	&railways-embankment;
-	&railways-draw;
+	&railways;
 	&airports-casing;
 	&airports-fill;
-    &roads-lowzoom-casing;
-    &roads-lowzoom-fill;
+	&roads-casing-lowzoom;
+	&roads-fill-lowzoom;
 	&roads-casing;
-    &roads-areas;
 	&roads-fill;
-	&roads-12_13;
-	&roads-middle;
-    &roads-text_z16;
-	&trams-draw;
-	&ferry_routes-draw;
-	&railways-bridge;
+	&railway-crossing;
+	&symbols-road;
+	&housenumbers;
+	&ferry-routes;
+	&railway-bridges-casing;
+	&railway-bridges;
+	&road-names-text;
 	&bridges-casing;
 	&bridges-fill;
 	&bridges-middle;
-	&aerialways-draw;
-	&powerlines-draw;
-	&powertowers-draw;
-	&fences-draw;
-    &text-capitals;
+	&aerialways;
+	&powerlines;
+	&powertowers;
+	&barriers;
+	&text-natural-line;
+	&admin_centers;
+	&text-cities-lowzoom;
 	&text-cities;
 	&text-towns;
 	&text-villages;
-	&text-natural;
-	&text-natural-lines;
-	&text-peaks;
-	&symbols-churches-castles;
-	&symbols-draw;
-	&symbols-pv;
-	&symbols-viewpoints;
-	&text-roads;
+	&text-natural-poly-lowzoom;
+	&text-natural-poly;
+	&text-natural-point;
+	&symbols-1;
+	&symbols-2;
+	&symbols-poly;
+	&symbols-point;
+	&text-roads-ref;
 	&text-waterways;
-	&text-states;
+	
+	&test;
 
 	<!-- layers -->
-	<Layer name="world" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
-		<StyleName>world</StyleName>
+	
+	&basemap-relief;
+	
+	<Layer name="landuse-lowzoom">
+		<StyleName>landuse-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">&world_boundaries_dir;/shoreline_300</Parameter>
+			<Parameter name="table">(SELECT wkb_geometry,landuse,"natural" FROM landuse) AS landuse </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-	<Layer name="coast-poly" status="on" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
-		<StyleName>coast-poly</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">&world_boundaries_dir;/processed_p</Parameter>
-		</Datasource>
-	</Layer>
-	  
-
+	
 	<Layer name="landuse">
-		<StyleName>landuse-fill</StyleName>
+		<StyleName>landuse</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity FROM &prefix;_polygon) AS landuse </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity,crop FROM &prefix;_polygon ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	&hillshade;
+	
+	<Layer name="landuse-over-hillshade">
+		<StyleName>landuse-over-hillshade</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,landuse,"natural",wood,amenity FROM &prefix;_polygon) AS landuse </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	&basemap-sea;
+	
+	<!--<Layer name="water-lowzoom">
+		<StyleName>water-casing-lowzoom</StyleName>
+		<StyleName>water-fill-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/preprocessed/water-lowzoom/water-lowzoom</Parameter>
+		</Datasource>
+	</Layer>-->
+	
+	<Layer name="water-lowzoom">
+		<StyleName>water-casing-lowzoom</StyleName>
+		<StyleName>water-fill-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT wkb_geometry,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="relief-5000" status="on">
-		<StyleName>relief-5000</StyleName>
+	<!--<Layer name="waterway-lines-lowzoom">
+		<StyleName>waterway-lines-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/relief-5000.tif</Parameter>
-			<Parameter name="format">tiff</Parameter>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/test/waterways-test</Parameter>
 		</Datasource>
-	</Layer>
-
-	<Layer name="relief-500" status="on">
-		<StyleName>relief-500</StyleName>
-		<Datasource>
-			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/relief-500.tif</Parameter>
-			<Parameter name="format">tiff</Parameter>
-		</Datasource>
-	</Layer>
-
-	<Layer name="hillshade-5000" status="on">
-		<StyleName>hillshade-5000</StyleName>
-		<Datasource>
-			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-5000.tif</Parameter>
-			<Parameter name="format">tiff</Parameter>
-		</Datasource>
-	</Layer>
-
-	<Layer name="hillshade-1000" status="on">
-		<StyleName>hillshade-1000</StyleName>
-		<Datasource>
-			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-1000.tif</Parameter>
-			<Parameter name="format">tiff</Parameter>
-		</Datasource>
-	</Layer>
-
-	<Layer name="hillshade-500" status="on">
-		<StyleName>hillshade-500</StyleName>
-		<Datasource>
-			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-500.tif</Parameter>
-			<Parameter name="format">tiff</Parameter>
-		</Datasource>
-	</Layer>
-
-	<Layer name="hillshade-90" status="on">
-		<StyleName>hillshade-90</StyleName>
-		<Datasource>
-			<Parameter name="type">gdal</Parameter>
-			<Parameter name="file">hillshade/hillshade-90.tif</Parameter>
-			<Parameter name="format">tiff</Parameter>
-		</Datasource>
-	</Layer>
-
-	<Layer name="glaciers">
-		<StyleName>glaciers</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"natural" FROM &prefix;_polygon) AS glaciers </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-	  
-	<Layer name="residential">
-		<StyleName>residential-fill</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,amenity,landuse FROM &prefix;_polygon WHERE landuse IN ('residential','industrial') OR amenity IN ('university','school','hospital')) AS landuse </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-	  
+	</Layer>-->
+	
 	<Layer name="waterway-lines">
 		<StyleName>waterway-lines</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,"CEMT",intermittent,motorboat,tunnel,waterway FROM &prefix;_line) AS water </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
@@ -235,7 +227,17 @@
 		<StyleName>water-areas</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,way_area FROM &prefix;_polygon) AS water </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="landuse-over-water">
+		<StyleName>landuse-over-water</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural",wetland FROM &prefix;_polygon) AS landuse </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
@@ -244,72 +246,100 @@
 		<StyleName>waterway-arrows</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,waterway,intermittent FROM &prefix;_line) AS water </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
 	<Layer name="tunnels">
 		<StyleName>tunnels-casing</StyleName>
 		<StyleName>tunnels-fill</StyleName>
 		<StyleName>tunnels-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,tracktype FROM &prefix;_line WHERE (tunnel = 'yes') AND highway IS NOT NULL) AS roads </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,highway,service,tracktype,ST_Length(way) AS length FROM &prefix;_line WHERE (tunnel = 'yes') AND highway IS NOT NULL) AS roads </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
 	<Layer name="cliffs-lines">
-		<StyleName>cliffs-draw</StyleName>
+		<StyleName>cliffs</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,"natural","man_made",highway FROM &prefix;_line) AS cliff </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
 	<Layer name="cliffs-polygons">
-		<StyleName>cliffs-draw</StyleName>
+		<StyleName>cliffs</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,area,"natural","man_made",NULL AS highway FROM &prefix;_polygon WHERE (area != 'yes')) AS cliff </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,area,"natural","man_made",highway FROM &prefix;_polygon WHERE (area != 'yes')) AS cliff </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
 	<Layer name="buildings">
-		<StyleName>buildings-fill</StyleName>
+		<StyleName>buildings</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,building,leisure,railway,amenity,aeroway FROM &prefix;_polygon WHERE (building IS NOT NULL AND building != 'no') OR (aeroway = 'terminal')) AS buildings </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
 	<Layer name="military">
-		<StyleName>military-fill</StyleName>
+		<StyleName>military</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,landuse FROM &prefix;_polygon WHERE (landuse = 'military')) AS landuse </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-
-	<!-- Insert contour lines and clear label cache after that -->
-	<!-- This file is not included, since you have to compute the contour lines on your own -->
-<!--	&layer-contours;-->
-
-
-	<Layer name="borders" clear-label-cache="yes">
-		<StyleName>borders-draw</StyleName>
+	<Layer name="contours">
+		<StyleName>contours</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,boundary,admin_level FROM &prefix;_line WHERE boundary IN ('administrative')) AS borders </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT wkb_geometry,height FROM contours) AS contours </Parameter>
+			<Parameter name="dbname">contours</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
+	<Layer name="borders-lowzoom">
+		<StyleName>borders-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT wkb_geometry,boundary,level FROM borders) AS borders</Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="borders">
+		<StyleName>borders</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,boundary,admin_level,name FROM &prefix;_line WHERE boundary IN ('administrative')) AS borders </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="railways-lowzoom">
+		<StyleName>railways-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT wkb_geometry,railway,"service",tunnel FROM railways) AS railways</Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
 	<Layer name="railways">
 		<StyleName>railways-embankment</StyleName>
-		<StyleName>railways-draw</StyleName>
+		<StyleName>railways</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,railway,tunnel,embankment,service FROM &prefix;_line WHERE railway IS NOT NULL) AS railways </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
@@ -318,81 +348,104 @@
 		<StyleName>airports-fill</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,aeroway FROM &prefix;_line WHERE aeroway IS NOT NULL) AS airports </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-	 
-	<Layer name="roads-lowzoom" cache-features="on">
-		<StyleName>roads-lowzoom-casing</StyleName>
-		<StyleName>roads-lowzoom-fill</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,highway FROM &prefix;_roads) AS roadslowzoom </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="roads-casing">
-	<!-- draw only roads without bridges and tunnels, but above zoom 12 every road-->
-	<StyleName>roads-casing</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,surface,tracktype,embankment FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL) AS roads </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="roads-areas">
-	<StyleName>roads-areas</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,area,highway FROM &prefix;_polygon WHERE highway IS NOT NULL AND area IS NOT NULL) AS areas </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-	  
-	<Layer name="roads-fill" cache-features="on">
-		<StyleName>roads-fill</StyleName>
-		<StyleName>roads-12_13</StyleName>
-		<StyleName>roads-middle</StyleName>
-		<StyleName>trams-draw</StyleName>
-		<StyleName>roads-text_z16</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,tracktype,name,railway FROM &prefix;_line WHERE (!scale_denominator! &gt; 150000) OR ((bridge IS NULL OR bridge != 'yes') AND (tunnel IS NULL OR tunnel != 'yes')) AND ((highway IS NOT NULL) AND (highway != 'construction')) OR (railway='tram')) AS roads </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 	
-	<Layer name="ferry_routes" clear-label-cache="on">
-		<StyleName>ferry_routes-draw</StyleName>
+	<Layer name="roads-lowzoom">
+		<StyleName>roads-casing-lowzoom</StyleName>
+		<StyleName>roads-fill-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT wkb_geometry,highway FROM roads) AS roads </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="roads">
+		<StyleName>roads-casing</StyleName>
+		<StyleName>roads-fill</StyleName>
+		<StyleName>road-names-text</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway,name,service,surface,tracktype,lanes,embankment FROM &prefix;_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="railway-crossing">
+		<StyleName>railway-crossing</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,railway FROM &prefix;_point) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="symbols-road">
+		<StyleName>symbols-road</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,access,fee,amenity,highway FROM &prefix;_polygon) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="building-housenumbers-points">
+		<StyleName>housenumbers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"addr:housenumber",name,building FROM &prefix;_point WHERE "addr:housenumber" IS NOT NULL) AS housenumbers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	<Layer name="building-housenumbers-polygons">
+		<StyleName>housenumbers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"addr:housenumber",name,building FROM &prefix;_polygon WHERE building IS NOT NULL) AS housenumbers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="ferry-routes">
+		<StyleName>ferry-routes</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,route FROM &prefix;_line) AS route </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>
-
-	<!--<Layer name="trams">
-		<StyleName>trams-draw</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,railway FROM &prefix;_line WHERE (railway = 'tram')) AS trams </Parameter>
-			&datasource-settings;
-		</Datasource>
-	</Layer>-->
-	
-	<Layer name="railways">
-		<StyleName>railways-bridge</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (railway IS NOT NULL)) AS railways </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 	
-	   
+	<Layer name="railway-bridges">
+		<StyleName>railway-bridges-casing</StyleName>
+		<StyleName>railway-bridges</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM &prefix;_line WHERE (bridge != 'no') AND (railway IS NOT NULL) AND (layer IS NULL OR layer &lt;= '1')) AS railways </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	<Layer name="railway-bridges-layer2" group-by="layer">
+		<StyleName>railway-bridges-casing</StyleName>
+		<StyleName>railway-bridges</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM &prefix;_line WHERE (bridge != 'no') AND (railway IS NOT NULL) AND (layer &gt; '1')) AS railways </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
 	<Layer name="bridges">
 		<StyleName>bridges-casing</StyleName>
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
-		<StyleName>trams-draw</StyleName>
+		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
@@ -400,124 +453,164 @@
 		<StyleName>bridges-casing</StyleName>
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
-		<StyleName>trams-draw</StyleName>
+		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer = '2')) AS roads </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer = '2')) AS roads </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="bridges-layer3">
+	<Layer name="bridges-layer3" group-by="layer">
 		<StyleName>bridges-casing</StyleName>
 		<StyleName>bridges-fill</StyleName>
 		<StyleName>bridges-middle</StyleName>
-		<StyleName>trams-draw</StyleName>
+		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,surface,tracktype,layer,railway FROM &prefix;_line WHERE (bridge = 'yes') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM &prefix;_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	 
 	<Layer name="aerialways">
-		<StyleName>aerialways-draw</StyleName>
+		<StyleName>aerialways</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,aerialway FROM &prefix;_line WHERE aerialway IS NOT NULL) AS aerialway </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
 	<Layer name="powerlines">
-		<StyleName>powerlines-draw</StyleName>
+		<StyleName>powerlines</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,power,voltage FROM &prefix;_line) AS powerlines </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 	<Layer name="powertowers">
-		<StyleName>powertowers-draw</StyleName>
+		<StyleName>powertowers</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,power FROM &prefix;_point WHERE power IN ('tower','pole')) AS powertowers </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-	<Layer name="fences-poly">
-		<StyleName>fences-draw</StyleName>
+	
+	<Layer name="barriers-poly">
+		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,fenced FROM &prefix;_polygon WHERE (ST_Perimeter(way)::integer &gt; 400)) AS fences </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,barrier,fenced,ST_Perimeter(way) AS length FROM &prefix;_polygon) AS barriers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-	<Layer name="fences-line">
-		<StyleName>fences-draw</StyleName>
+	<Layer name="barriers-line">
+		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,fenced FROM &prefix;_line WHERE (ST_Length(way)::integer &gt; 300)) AS fences </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,barrier,fenced,ST_Length(way) AS length FROM &prefix;_line) AS barriers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-	<Layer name="text-natural-lines">
-		<StyleName>text-natural-lines</StyleName>
+	
+	<!--<Layer name="motorway_junctions">
+		<StyleName>motorway_junctions</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way FROM &prefix;_point WHERE (highway = 'motorway_junction')) AS junction </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>-->
+	
+	<Layer name="text-natural-line">
+		<StyleName>text-natural-line</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,"natural" FROM &prefix;_line) AS names</Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="text-cities">
+		<StyleName>text-cities-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place='city' AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
+		  ) AS names</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="text" clear-label-cache="yes">
-		<StyleName>text-capitals</StyleName>
+	<Layer name="text" clear-label-cache="on">
 		<StyleName>text-cities</StyleName>
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') order by (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) asc, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) desc
+			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM &prefix;_point WHERE place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) ASC, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
 		  ) AS names</Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-	  
-	<Layer name="text-natural-polygons">
-		<StyleName>text-natural</StyleName>
+	
+	<Layer name="text-natural-poly-lowzoom">
+		<StyleName>text-natural-poly-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT wkb_geometry,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="text-natural-poly">
+		<StyleName>text-natural-poly</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,"natural",way_area FROM &prefix;_polygon) AS names</Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="text-peaks">
-		<StyleName>text-peaks</StyleName>
+	<Layer name="text-natural-point">
+		<StyleName>text-natural-point</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,"natural",ele FROM &prefix;_point) AS names</Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
+	
 	<Layer name="symbols-poly">
-		<StyleName>symbols-churches-castles</StyleName>
-		<StyleName>symbols-draw</StyleName>
-		<StyleName>symbols-pv</StyleName>
+		<StyleName>symbols-1</StyleName>
+		<StyleName>symbols-2</StyleName>
+		<StyleName>symbols-poly</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,NULL AS fee,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,NULL AS "summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway,way_area FROM &prefix;_polygon) AS symbols </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,NULL AS "summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway,way_area FROM &prefix;_polygon) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 
 	<Layer name="symbols-point">
-		<StyleName>symbols-churches-castles</StyleName>
-		<StyleName>symbols-draw</StyleName>
-		<StyleName>symbols-viewpoints</StyleName>
+		<StyleName>symbols-1</StyleName>
+		<StyleName>symbols-2</StyleName>
+		<StyleName>symbols-point</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,NULL AS fee,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,"summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway FROM &prefix;_point) AS symbols </Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,"summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway FROM &prefix;_point) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-	  
-	<Layer name="text-roads">
-		<StyleName>text-roads</StyleName>
+	
+	<Layer name="text-roads-ref">
+		<StyleName>text-roads-ref</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,highway,ref FROM &prefix;_line WHERE (ST_Length(way)::integer &gt; 1000) AND ref IS NOT NULL) AS roads </Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
 	
@@ -525,18 +618,30 @@
 		<StyleName>text-waterways</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,waterway FROM &prefix;_line) AS names</Parameter>
-			&datasource-settings;
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-	<!--<Layer name="text-states" clear-label-cache="yes">
-		<StyleName>text-states</StyleName>
+	
+	<!--<Layer name="test">
+		<StyleName>test2</StyleName>
+		<StyleName>test</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,place FROM &prefix;_point WHERE (place='state')) AS names</Parameter>
-			&datasource-settings;
+			<Parameter name="table">(SELECT way,name,population::integer from planet_osm_point where capital='yes' and admin_level='2' and population::integer &gt; 1e5 ORDER BY population::integer) AS test</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
 		</Datasource>
 	</Layer>-->
-
+	
+	<!--<Layer name="test">
+		<StyleName>test</StyleName>
+		<Datasource>
+			<Parameter name="type">shape</Parameter>
+			<Parameter name="file">data/preprocessed/test/test-lowzoom</Parameter>
+		</Datasource>
+	</Layer>-->
+	
+	
 </Map>
 
 <!--

@@ -19,7 +19,7 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 
-# File system (use "sda" for system and home and "sdb" for database and tiles)
+# File system (use "sda" for system and home, "sdb" for tiles and "nvme0n1" for database)
 	/mnt/database
 	/mnt/tiles
 
@@ -30,6 +30,10 @@ This guide is quite complete, but you should always think about before blindly c
 
 	# or from standard Ubuntu repository:
 	sudo apt-get install libmapnik2.2 libmapnik2-dev mapnik-utils python-mapnik
+	
+	# install from sources: don't forget libxml2 support
+	# python scons/scons.py configure XMLPARSER=libxml2
+
 
 
 # Install Postgresql database:
@@ -43,16 +47,6 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo rm -r /var/lib/postgresql/9.3
 	sudo ln -s /mnt/database /var/lib/postgresql/9.3
 	sudo /etc/init.d/postgresql start
-
-	# add database "gis":
-	sudo -u postgres -i
-	createuser -s username
-	createdb -E UTF8 -O username gis
-	exit
-
-	# Install PostGIS to "gis":
-	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d gis
-	psql -d gis -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
 
 	# Tweaks:
 		Edit the file /etc/postgresql/9.3/main/postgresql.conf and make the following changes:
@@ -80,8 +74,11 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo make install-mod_tile
 	sudo ldconfig
 
-	sudo vi /etc/apache2/mods_enabled/mod_tile.load
+	sudo vi /etc/apache2/mods-enabled/mod_tile.load
 		LoadModule tile_module /usr/lib/apache2/modules/mod_tile.so
+		
+	# change in file /usr/local/etc/renderd.conf:
+	# /usr/local/lib/mapnik/input
 
 
 # Install osm2pgsql from source
@@ -92,10 +89,9 @@ This guide is quite complete, but you should always think about before blindly c
 	./configure
 	make
 	sudo make install
-	psql -f /usr/local/share/osm2pgsql/900913.sql -d gis
 
 
-# Install osmosis
+# Install osmosis (for diff updates)
 	sudo apt-get install default-jre-headless junit
 	mkdir ~/src/osmosis
 	cd ~/src/osmosis
@@ -110,13 +106,18 @@ This guide is quite complete, but you should always think about before blindly c
 	# edit configuration.txt to baseUrl=http://download.geofabrik.de/europe/germany/bayern/mittelfranken-updates/
 
 
+# Create database gis
+	createdb gis
+	psql -d gis -c 'CREATE EXTENSION postgis; CREATE EXTENSION hstore;'
+
+
 # Load data into database
 	cd ~/data
 	wget http://download.geofabrik.de/europe-latest.osm.pbf
 	cd ~/data/updates
 	wget http://download.geofabrik.de/europe-updates/state.txt
 
-	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes ~/data/flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/europe-latest.osm.pbf
+	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/db/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
 
 
 # Update data
@@ -129,14 +130,13 @@ This guide is quite complete, but you should always think about before blindly c
 	cd ~
 	git clone https://github.com/der-stefan/OpenTopoMap.git
 	cd ~/OpenTopoMap/mapnik
-	mkdir world_boundaries
-	wget http://tile.openstreetmap.org/shoreline_300.tar.bz2
-	wget http://tile.openstreetmap.org/processed_p.tar.bz2
-	tar xjf shoreline_300.tar.bz2 -C world_boundaries
-	tar xjf processed_p.tar.bz2 -C world_boundaries
+	
+	# use the generalized water polygons from http://openstreetmapdata.com/
+	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
+	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
 
 	# You need the files for hillshade and contours
-	# Please create them on your own
+	# Please create them on your own. A hint howto proceed is given in HOWTO_DEM
 
 
 # Configure apache and mod_tile/renderd
@@ -159,9 +159,5 @@ This guide is quite complete, but you should always think about before blindly c
 	DAEMON=/usr/local/bin/$NAME
 	DAEMON_ARGS="-c /usr/local/etc/renderd.conf"
 	RUNASUSER=...
-	
-	
-
-
 
 

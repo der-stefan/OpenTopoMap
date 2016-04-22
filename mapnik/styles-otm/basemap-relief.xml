@@ -1,0 +1,48 @@
+<!--<Style name="bathy">
+	<Rule>
+		&maxscale_zoom0;
+		&minscale_zoom17;
+		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
+	</Rule>
+</Style>
+<Layer name="bathymetry">
+	<StyleName>bathy</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">data/OB_LR/bathy.tif</Parameter>
+	</Datasource>
+</Layer>-->
+
+
+<Style name="relief-5000">
+	<Rule>
+		&maxscale_zoom1;
+		&minscale_zoom4;
+		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
+	</Rule>
+</Style>
+<Layer name="relief-5000">
+	<StyleName>relief-5000</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">hillshade/relief-5000.tif</Parameter>
+		<Parameter name="format">tiff</Parameter>
+	</Datasource>
+</Layer>
+
+<Style name="relief-500">
+	<Rule>
+		&maxscale_zoom5;
+		&minscale_zoom8;
+		<RasterSymbolizer opacity="0.9" scaling="bilinear" />
+	</Rule>
+</Style>
+<Layer name="relief-500">
+	<StyleName>relief-500</StyleName>
+	<Datasource>
+		<Parameter name="type">gdal</Parameter>
+		<Parameter name="file">hillshade/relief-500.tif</Parameter>
+		<Parameter name="format">tiff</Parameter>
+	</Datasource>
+</Layer>
+

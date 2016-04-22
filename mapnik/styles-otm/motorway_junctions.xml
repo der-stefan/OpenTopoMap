@@ -1,0 +1,9 @@
+<Style name="motorway_junctions">
+
+<!-- zoom 10 -->
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom10;
+		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="red" halo-radius="2" halo-fill="rgba(255,255,255,1)" placement="point">o</TextSymbolizer>
+	</Rule>
+</Style>

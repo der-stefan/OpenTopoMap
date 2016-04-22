@@ -1,0 +1,38 @@
+<Style name="borders">
+	
+<!-- admin_level = 2 -->
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom17;
+		<Filter>([admin_level] = '2')</Filter>
+		<LineSymbolizer stroke="#cb82d9" stroke-width="10" stroke-opacity="0.2" />
+		<LineSymbolizer stroke="#8301b1" stroke-width="0.8" stroke-opacity="0.9" />
+	</Rule>
+ 
+<!-- admin_level = 4 -->
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom17;
+		<Filter>([admin_level] = '4')</Filter>
+		<LineSymbolizer stroke="#cb82d9" stroke-width="4" stroke-opacity="0.2" />
+		<LineSymbolizer stroke="#8301b1" stroke-width="0.5" stroke-opacity="0.8" />
+	</Rule>
+ 
+<!-- admin_level = 5 -->
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom17;
+		<Filter>([admin_level] = '5')</Filter>
+		<LineSymbolizer stroke="#cb82d9" stroke-width="3" stroke-opacity="0.1" />
+		<LineSymbolizer stroke="#c82fe5" stroke-width="0.6" />
+	</Rule>
+ 
+<!-- admin_level = 6 -->
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom17;
+		<Filter>([admin_level] = '6')</Filter>
+		<LineSymbolizer stroke="#cb82d9" stroke-width="3" stroke-opacity="0.1" />
+		<LineSymbolizer stroke="#c82fe5" stroke-width="0.4" />
+	</Rule>
+</Style>

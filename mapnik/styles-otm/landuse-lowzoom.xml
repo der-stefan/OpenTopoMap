@@ -1,0 +1,7 @@
+<Style name="landuse-lowzoom">
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom10;
+		<PolygonSymbolizer fill="#abda74" />
+	</Rule>
+</Style>
