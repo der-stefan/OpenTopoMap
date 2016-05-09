@@ -33,6 +33,8 @@ This guide is quite complete, but you should always think about before blindly c
 	
 	# install from sources: don't forget libxml2 support
 	# python scons/scons.py configure XMLPARSER=libxml2
+	# if you don't want to use libxml2, compile the style before:
+	xmllint --noent opentopomap.xml > opentopomap-processed.xml
 
 
 
