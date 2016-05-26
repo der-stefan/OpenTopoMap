@@ -485,7 +485,7 @@
 	<Layer name="barriers-poly">
 		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon) AS barriers </Parameter>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -493,7 +493,7 @@
 	<Layer name="barriers-line">
 		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,fenced,ST_Length(way) AS length FROM planet_osm_line) AS barriers </Parameter>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Length(way) AS length FROM planet_osm_line) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
