@@ -17,18 +17,31 @@
 		<Filter>([natural] = 'cliff') or ([man_made] = 'embankment')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/cliff_z15.png"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+		<Filter>[barrier] = 'ditch'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/ditch_z14.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[barrier] = 'ditch'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/ditch_z16.png"/>
+	</Rule>
 
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom14;
-		<Filter>([man_made] = 'dyke')</Filter>
+		<Filter>([man_made] = 'dyke' or [barrier] = 'embankment')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5"/>
 		<LinePatternSymbolizer file="symbols-otm/dyke.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
-		<Filter>([man_made] = 'dyke') and ([highway] = null)</Filter>
+		<Filter>([man_made] = 'dyke' or [barrier] = 'embankment') and ([highway] = null)</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5"/>
 		<LinePatternSymbolizer file="symbols-otm/dyke.png"/>
 	</Rule>
