@@ -22,16 +22,78 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 # Update your freshly installed Ubuntu 16.04:
-	sudo apt-get update && sudo apt-get upgrade
+	sudo apt update && sudo apt upgrade
 
+# Install the apache web server:
+	sudo apt install apache2
 
 # Install Postgresql database:
-	sudo apt-get install postgresql-9.5 postgresql-9.5-postgis-2.2
+	sudo apt install postgresql-9.5 postgresql-9.5-postgis-2.2
 
 	
 # Install Mapnik renderer:
-	sudo apt-get install libmapnik3.0 libmapnik-dev mapnik-utils python-mapnik 
+	sudo apt install libmapnik3.0 libmapnik-dev mapnik-utils python-mapnik
 
+
+# Install tirex from source
+	sudo apt install devscripts libjson-perl libipc-sharelite-perl libgd-perl
+	
+	cd ~/src
+	git clone https://github.com/geofabrik/tirex
+	cd tirex
+	make deb
+	
+	cd ~/src
+	sudo dpkg -i tirex-core_0.4.1precise1_amd64.deb
+	sudo dpkg -i tirex-backend-mapnik_0.4.1precise1_amd64.deb
+	
+	# sudo dpkg -i tirex-example-map_0.4.1precise1_amd64.deb
+
+
+# Install mod_tile from source
+	sudo apt install autoconf apache2-dev
+	
+	mkdir ~/src
+	cd ~/src
+	git clone git://github.com/openstreetmap/mod_tile.git
+	cd mod_tile
+	echo '/etc/renderd.conf' > debian/renderd.conffiles
+	debuild -i -b -us -uc
+	
+	cd ~/src
+	sudo dpkg -i libapache2-mod-tile_0.4-12~precise2_amd64.deb
+	sudo a2enmod tile
+	
+	# make configs in /etc/apache2/mods-available/tile.conf
+	
+	sudo rm -rf /var/lib/mod_tile
+	sudo ln -s /var/lib/tirex/tiles /var/lib/mod_tile
+	
+	
+# Install osm2pgsql from source
+	sudo apt install cmake libbz2-dev libgeos-dev libgeos++-dev libproj-dev lua5.3 liblua5.3-dev
+
+	cd ~/src
+	git clone git://github.com/openstreetmap/osm2pgsql.git
+	cd osm2pgsql
+	mkdir build && cd build
+	cmake ..
+	make
+
+
+# Create user and database
+	sudo -u postgres createuser --createdb osmuser
+	createdb gis
+	sudo -u postgres psql -d gis -c 'CREATE EXTENSION postgis;'
+
+
+# Load data into database
+	cd ~/data
+	wget http://download.geofabrik.de/europe-latest.osm.pbf
+	cd ~/data/updates
+	wget http://download.geofabrik.de/europe-updates/state.txt
+
+	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/db/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
 
 
 
@@ -43,34 +105,6 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 ======== below not verified yet ==========================================================================
-# Install mod_tile from source
-	sudo apt-get install subversion git-core tar unzip wget bzip2 build-essential autoconf libtool libxml2-dev libgeos-dev libgeos++-dev libpq-dev libbz2-dev munin-node munin libprotobuf-c0-dev protobuf-c-compiler libfreetype6-dev libpng12-dev libtiff4-dev libicu-dev libgdal-dev libcairo2-dev libcairomm-1.0-dev apache2 apache2-dev libagg-dev lua5.2 liblua5.2-dev ttf-unifont
-	mkdir ~/src
-	cd ~/src
-	git clone git://github.com/openstreetmap/mod_tile.git
-	cd mod_tile
-	./autogen.sh
-	./configure
-	make
-	sudo make install
-	sudo make install-mod_tile
-	sudo ldconfig
-
-	sudo vi /etc/apache2/mods-enabled/mod_tile.load
-		LoadModule tile_module /usr/lib/apache2/modules/mod_tile.so
-		
-	# change in file /usr/local/etc/renderd.conf:
-	# /usr/local/lib/mapnik/input
-
-
-# Install osm2pgsql from source
-	cd ~/src
-	git clone git://github.com/openstreetmap/osm2pgsql.git
-	cd osm2pgsql
-	./autogen.sh
-	./configure
-	make
-	sudo make install
 
 
 # Install osmosis (for diff updates)
@@ -87,19 +121,6 @@ This guide is quite complete, but you should always think about before blindly c
 	osmosis --rrii workingDirectory=~/data/updates
 	# edit configuration.txt to baseUrl=http://download.geofabrik.de/europe/germany/bayern/mittelfranken-updates/
 
-
-# Create database gis
-	createdb gis
-	psql -d gis -c 'CREATE EXTENSION postgis; CREATE EXTENSION hstore;'
-
-
-# Load data into database
-	cd ~/data
-	wget http://download.geofabrik.de/europe-latest.osm.pbf
-	cd ~/data/updates
-	wget http://download.geofabrik.de/europe-updates/state.txt
-
-	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/db/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
 
 
 # Update data
