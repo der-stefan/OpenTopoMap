@@ -23,6 +23,9 @@ This guide is quite complete, but you should always think about before blindly c
 
 # Update your freshly installed Ubuntu 16.04:
 	sudo apt update && sudo apt upgrade
+	
+# Install some useful packages:
+	sudo apt install vim git screen htop iftop
 
 # Install the apache web server:
 	sudo apt install apache2
@@ -36,9 +39,9 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 # Install tirex from source
-	sudo apt install devscripts libjson-perl libipc-sharelite-perl libgd-perl
+	sudo apt install devscripts libjson-perl libipc-sharelite-perl libgd-perl debhelper
 	
-	cd ~/src
+	mkdir ~/src && cd ~/src
 	git clone https://github.com/geofabrik/tirex
 	cd tirex
 	make deb
@@ -53,7 +56,6 @@ This guide is quite complete, but you should always think about before blindly c
 # Install mod_tile from source
 	sudo apt install autoconf apache2-dev
 	
-	mkdir ~/src
 	cd ~/src
 	git clone git://github.com/openstreetmap/mod_tile.git
 	cd mod_tile
@@ -63,11 +65,15 @@ This guide is quite complete, but you should always think about before blindly c
 	cd ~/src
 	sudo dpkg -i libapache2-mod-tile_0.4-12~precise2_amd64.deb
 	sudo a2enmod tile
-	
-	# make configs in /etc/apache2/mods-available/tile.conf
+		
+	# write config file /etc/apache2/mods-available/tile.conf
+	# comment out "LoadTileConfigFile /etc/renderd.conf" in /etc/apache2/sites-available/tileserver-site.conf
 	
 	sudo rm -rf /var/lib/mod_tile
 	sudo ln -s /var/lib/tirex/tiles /var/lib/mod_tile
+	
+	# fix error of mod-tile installation:
+	sudo apt install -f
 	
 	
 # Install osm2pgsql from source
@@ -79,6 +85,7 @@ This guide is quite complete, but you should always think about before blindly c
 	mkdir build && cd build
 	cmake ..
 	make
+	sudo make install
 
 
 # Create user and database
