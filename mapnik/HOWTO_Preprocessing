@@ -18,7 +18,7 @@ This guide is quite complete, but you should always think before blindly copying
 
 # Create generalized database
 	createdb lowzoom
-	psql -d lowzoom -c 'CREATE EXTENSION postgis; CREATE EXTENSION hstore;'
+	psql -d lowzoom -c 'CREATE EXTENSION postgis;'
 	
 	
 # Problems still to solve:

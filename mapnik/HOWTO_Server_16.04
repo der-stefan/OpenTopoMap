@@ -16,24 +16,47 @@ http://opentopomap.org
 
 This guide is quite complete, but you should always think about before blindly copying the commands.
 
-# Info on file systems (use "sda" for system and home, "sdb" for tiles and "nvme0n1" for database)
-#	/mnt/database
-#	/mnt/tiles
+# Info on file systems:
+#	/mnt/database	on SSD
+#	/mnt/tiles		on HDD
 
 
 # Update your freshly installed Ubuntu 16.04:
 	sudo apt update && sudo apt upgrade
-	
+
+
 # Install some useful packages:
 	sudo apt install vim git screen htop iftop
+
 
 # Install the apache web server:
 	sudo apt install apache2
 
+
 # Install Postgresql database:
 	sudo apt install postgresql-9.5 postgresql-9.5-postgis-2.2
-
 	
+	# change default path via symlink (works better than changing postgres config):
+	sudo chown postgres /mnt/database
+	sudo chgrp postgres /mnt/database
+	sudo service postgresql stop
+	sudo cp -a /var/lib/postgresql/9.5/main /mnt/database
+	sudo rm -r /var/lib/postgresql/9.5
+	sudo ln -s /mnt/database /var/lib/postgresql/9.5
+	sudo service postgresql start
+
+	# Tweaks:
+		Edit the file /etc/postgresql/9.5/main/postgresql.conf and make the following changes:
+			shared_buffers = 128MB
+			work_mem = 256MB			
+			maintenance_work_mem = 256MB
+			autovacuum = off
+
+		As root, edit /etc/sysctl.conf and add these lines near the top after the other “kernel” definitions:
+			# Increase kernel shared memory segments - needed for large databases
+			kernel.shmmax=268435456
+
+
 # Install Mapnik renderer:
 	sudo apt install libmapnik3.0 libmapnik-dev mapnik-utils python-mapnik
 
@@ -88,6 +111,16 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo make install
 
 
+
+
+
+
+
+
+
+
+
+
 # Create user and database
 	sudo -u postgres createuser --createdb osmuser
 	createdb gis
@@ -101,14 +134,6 @@ This guide is quite complete, but you should always think about before blindly c
 	wget http://download.geofabrik.de/europe-updates/state.txt
 
 	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/db/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
-
-
-
-
-
-
-
-
 
 
 ======== below not verified yet ==========================================================================
