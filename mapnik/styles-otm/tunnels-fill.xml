@@ -5,7 +5,7 @@
 		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>[highway] = 'motorway'</Filter>
-		<LineSymbolizer stroke="#fdb548" stroke-width="3" />
+		<LineSymbolizer stroke="#fdd8a0" stroke-width="3" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;
@@ -17,7 +17,7 @@
 		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>[highway] = 'motorway_link'</Filter>
-		<LineSymbolizer stroke="#fdb548" stroke-width="2" />
+		<LineSymbolizer stroke="#fdd8a0" stroke-width="2" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;

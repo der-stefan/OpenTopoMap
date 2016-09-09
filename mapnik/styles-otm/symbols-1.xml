@@ -1,10 +1,30 @@
 <Style name="symbols-1">
 	<Rule>
 		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>[historic] = 'castle'</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/castle_z13.png" transform="translate(0 -3)"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>[historic] = 'castle'</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/castle.png" transform="translate(0 -3)"/>
+	</Rule>
+<!--
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>(([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/castle_z13.png" transform="translate(0 -3)"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>(([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle.png" transform="translate(0 -3)"/>
 	</Rule>
+	
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
@@ -25,17 +45,25 @@
 		<Filter>(([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="4">[name]</TextSymbolizer>
 	</Rule>
+-->
  
 	<Rule>
 		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel'))</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/church_z13.png" transform="translate(0 -3)"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
 		&minscale_zoom17;
-		<Filter>(([amenity] = 'place_of_worship') and ( not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel') or ([religion] = 'muslim') or ([religion] = 'jewish') or ([religion] = 'buddhist') or ([denomination] = 'baptist') or ([denomination] = 'apostolic') or ([denomination] = 'methodist') or ([denomination] = 'mormon') or ([denomination] = 'new_apostolic'))))</Filter>
+		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/church.png" transform="translate(0 -3)"/>
 	</Rule>
+	
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
-		<Filter>(([amenity] = 'place_of_worship') and ( not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel') or ([religion] = 'muslim') or ([religion] = 'jewish') or ([religion] = 'buddhist') or ([denomination] = 'baptist') or ([denomination] = 'apostolic') or ([denomination] = 'methodist') or ([denomination] = 'mormon') or ([denomination] = 'new_apostolic'))))</Filter>
+		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel'))</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 	
@@ -45,13 +73,35 @@
 		<Filter>(([amenity] = 'place_of_worship') and (([building] = 'chapel') or ([building] = 'wayside_chapel'))) or ([historic] = 'wayside_chapel') </Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/chapel.png" transform="translate(0 -3)"/>
 	</Rule>
+	
 	<Rule>
 		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([historic] = 'ruins') or (([ruins] = 'yes') and ([historic] = 'castle'))</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins_z13.png" transform="translate(2 -3)"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([historic] = 'ruins') or (([ruins] = 'yes') and ([historic] = 'castle'))</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins.png" transform="translate(2 -3)"/>
+	</Rule>
+<!--	
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>(([historic] = 'ruins') or
+(([ruins] = 'yes') and (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))))</Filter>
+		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins_z13.png" transform="translate(2 -3)"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>(([historic] = 'ruins') or
 (([ruins] = 'yes') and (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins.png" transform="translate(2 -3)"/>
 	</Rule>
+	
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
@@ -67,4 +117,5 @@
 		(([ruins] = 'yes') and (([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung'))))</Filter>
 		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="4">[name]</TextSymbolizer>
 	</Rule>
+-->
 </Style>

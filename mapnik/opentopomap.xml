@@ -75,8 +75,6 @@
 	<!ENTITY text-roads-ref SYSTEM "styles-otm/text-roads-ref.xml">
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
 	
-	<!ENTITY test SYSTEM "styles-otm/test.xml">
-	
 	<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
 	%entities;
 ]>
@@ -148,20 +146,19 @@
 	&text-roads-ref;
 	&text-waterways;
 	
-	&test;
 
 	<!-- layers -->
 	
 	&basemap-relief;
 	
-	<Layer name="landuse-lowzoom">
+	<!--<Layer name="landuse-lowzoom">
 		<StyleName>landuse-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT wkb_geometry,landuse,"natural" FROM landuse) AS landuse </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
+	</Layer>-->
 	
 	<Layer name="landuse">
 		<StyleName>landuse</StyleName>
@@ -185,6 +182,7 @@
 	
 	&basemap-sea;
 	
+	<!--
 	<Layer name="water-lowzoom">
 		<StyleName>water-casing-lowzoom</StyleName>
 		<StyleName>water-fill-lowzoom</StyleName>
@@ -193,7 +191,7 @@
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
+	</Layer>-->
 	
 	<Layer name="waterway-lines">
 		<StyleName>waterway-lines</StyleName>
@@ -271,14 +269,15 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="military">
+	<!--<Layer name="military">
 		<StyleName>military</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,landuse FROM planet_osm_polygon WHERE (landuse = 'military')) AS landuse </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
+	</Layer>-->
+
 
 	<Layer name="contours">
 		<StyleName>contours</StyleName>
@@ -289,7 +288,7 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="borders-lowzoom">
+<!--	<Layer name="borders-lowzoom">
 		<StyleName>borders-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT wkb_geometry,boundary,level FROM borders) AS borders</Parameter>
@@ -298,6 +297,7 @@
 		</Datasource>
 	</Layer>
 	
+	-->
 	<Layer name="borders">
 		<StyleName>borders</StyleName>
 		<Datasource>
@@ -307,6 +307,7 @@
 		</Datasource>
 	</Layer>
 	
+	<!--
 	<Layer name="railways-lowzoom">
 		<StyleName>railways-lowzoom</StyleName>
 		<Datasource>
@@ -315,6 +316,8 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+	
+	-->
 	
 	<Layer name="railways">
 		<StyleName>railways-embankment</StyleName>
@@ -336,6 +339,7 @@
 		</Datasource>
 	</Layer>
 	
+	<!--
 	<Layer name="roads-lowzoom">
 		<StyleName>roads-casing-lowzoom</StyleName>
 		<StyleName>roads-fill-lowzoom</StyleName>
@@ -345,6 +349,8 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+	
+	-->
 	
 	<Layer name="roads">
 		<StyleName>roads-casing</StyleName>
@@ -498,15 +504,6 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-	<!--<Layer name="motorway_junctions">
-		<StyleName>motorway_junctions</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way FROM planet_osm_point WHERE (highway = 'motorway_junction')) AS junction </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>-->
 	
 	<Layer name="text-natural-line">
 		<StyleName>text-natural-line</StyleName>
@@ -517,7 +514,7 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="text-cities">
+<!--	<Layer name="text-cities">
 		<StyleName>text-cities-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM planet_osm_point WHERE place='city' AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
@@ -538,15 +535,15 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	<Layer name="text-natural-poly-lowzoom">
+-->	
+	<!--<Layer name="text-natural-poly-lowzoom">
 		<StyleName>text-natural-poly-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT wkb_geometry,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
+	</Layer>-->
 	
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
@@ -605,25 +602,6 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	
-	<!--<Layer name="test">
-		<StyleName>test2</StyleName>
-		<StyleName>test</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,name,population::integer from planet_osm_point where capital='yes' and admin_level='2' and population::integer &gt; 1e5 ORDER BY population::integer) AS test</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>-->
-	
-	<!--<Layer name="test">
-		<StyleName>test</StyleName>
-		<Datasource>
-			<Parameter name="type">shape</Parameter>
-			<Parameter name="file">data/preprocessed/test/test-lowzoom</Parameter>
-		</Datasource>
-	</Layer>-->
 	
 	
 </Map>
