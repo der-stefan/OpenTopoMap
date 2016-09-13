@@ -2,9 +2,9 @@
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom17;
-		<!--<TextSymbolizer face-name="DejaVu Sans Book" size="10" placement="point" fill="red" allow-overlap="false">o</TextSymbolizer>-->
+		<!--<TextSymbolizer fontset-name="sans-book" size="10" placement="point" fill="red" allow-overlap="false">o</TextSymbolizer>-->
 		<PointSymbolizer file="symbols-otm/town_z8.png" allow-overlap="false" />
-		<TextSymbolizer face-name="DejaVu Sans Book" size="11" fill="black" placement="point" halo-radius="2" halo-fill="rgba(255,255,255,0.5)" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-book" size="11" fill="black" placement="point" halo-radius="2" halo-fill="rgba(255,255,255,0.5)" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
