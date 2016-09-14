@@ -19,6 +19,13 @@ This guide is quite complete, but you should always think before blindly copying
 # Create generalized database
 	createdb lowzoom
 	psql -d lowzoom -c 'CREATE EXTENSION postgis;'
+	psql -d lowzoom -c 'CREATE EXTENSION dblink;'
+	psql -d gis -c 'CREATE EXTENSION dblink;'
+	CREATE TABLE roads (way geometry(LineString,3857), highway text, name text);
+	
+	INSERT INTO roads SELECT * FROM dblink('dbname=gis','select ST_SimplifyPreserveTopology(way,100) AS way,highway,name from planet_osm_line WHERE name=''Frankenschnellweg''') AS test(way geometry(LineString,3857), highway text, name text);
+	
+	evtl. mit VIEW in gis?
 	
 	
 # Problems still to solve:

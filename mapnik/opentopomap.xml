@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO:
 	- Wasserfall, Sumpf verbessern
+	- cities_lowzoom
 	- generalization in database instead of shape files
 	- label positions places
 	- railway bridges for others than simple rails
@@ -339,18 +340,15 @@
 		</Datasource>
 	</Layer>
 	
-	<!--
 	<Layer name="roads-lowzoom">
 		<StyleName>roads-casing-lowzoom</StyleName>
 		<StyleName>roads-fill-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT wkb_geometry,highway FROM roads) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway FROM roads) AS roads </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	-->
 	
 	<Layer name="roads">
 		<StyleName>roads-casing</StyleName>
@@ -514,7 +512,7 @@
 		</Datasource>
 	</Layer>
 	
-<!--	<Layer name="text-cities">
+	<Layer name="text-cities">
 		<StyleName>text-cities-lowzoom</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM planet_osm_point WHERE place='city' AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
@@ -535,7 +533,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
--->	
+
 	<!--<Layer name="text-natural-poly-lowzoom">
 		<StyleName>text-natural-poly-lowzoom</StyleName>
 		<Datasource>
