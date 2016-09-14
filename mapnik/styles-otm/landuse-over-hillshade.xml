@@ -2,6 +2,12 @@
 
 	<!-- again forest quite transparent over hillshade to optimize result -->
 	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom11;
+		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
+		<PolygonSymbolizer fill="white" comp-op="soft-light" fill-opacity="0.2" />
+	</Rule>
+	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'coniferous'))</Filter>

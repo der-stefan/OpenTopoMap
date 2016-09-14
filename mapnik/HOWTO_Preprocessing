@@ -1,6 +1,6 @@
 ###############################################
 #   OpenTopoMap
-#   (c) 2012-2015 Stefan Erhardt
+#   (c) 2012-2016 Stefan Erhardt
 #   https://github.com/der-stefan/OpenTopoMap
 #
 #   opentopomap.org
@@ -15,35 +15,38 @@ A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
 http://opentopomap.org
 
 This guide is quite complete, but you should always think before blindly copying the commands.
+# Problems still to solve:
+	# Admin centers combined with city/population
+	# landuse residential
+	# Great lakes:
+		# https://github.com/gravitystorm/openstreetmap-carto/issues/754
+		# https://blog.jochentopf.com/2013-03-11-state-of-the-osm-coastline.html
 
 # Create generalized database
 	createdb lowzoom
-	psql -d lowzoom -c 'CREATE EXTENSION postgis;'
-	psql -d lowzoom -c 'CREATE EXTENSION dblink;'
-	psql -d gis -c 'CREATE EXTENSION dblink;'
-	CREATE TABLE roads (way geometry(LineString,3857), highway text, name text);
+	psql -d lowzoom -c "CREATE EXTENSION postgis;"
+	psql -d lowzoom -c "CREATE EXTENSION dblink;"
+	psql -d gis -c "CREATE EXTENSION dblink;"
 	
-	INSERT INTO roads SELECT * FROM dblink('dbname=gis','select ST_SimplifyPreserveTopology(way,100) AS way,highway,name from planet_osm_line WHERE name=''Frankenschnellweg''') AS test(way geometry(LineString,3857), highway text, name text);
+	# water
+	psql -d gis -c "CREATE VIEW lowzoom_water AS SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake') AND way_area > 50000;"
+	psql -d lowzoom -c "CREATE TABLE water (way geometry(LineString,3857), name text, \"natural\" text, waterway text, way_area real);"
+	psql -d lowzoom -c "INSERT INTO water SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_water') AS t(way geometry(LineString,3857), name text, \"natural\" text, waterway text, way_area real);"
 	
-	evtl. mit VIEW in gis?
-	
-	
-# Problems still to solve:
-# Great lakes:
-	# https://github.com/gravitystorm/openstreetmap-carto/issues/754
-	# https://blog.jochentopf.com/2013-03-11-state-of-the-osm-coastline.html
-# Admin centers combined with city/population
-
-# http://stackoverflow.com/questions/3195125/copy-a-table-from-one-database-to-another-in-postgres
-# pg_dump -t table_to_copy source_db | psql target_db
-# psql -h <host1> ... -c 'copy (select ... from <tablename> where ...) to stdout' | psql -h <host2> ...  -c 'copy <tablename> from stdin'
-# psql gis -c "copy (select way,name,waterway,way_area from planet_osm_polygon where waterway='riverbank AND way_area > 50000) to stdout"
-#### HOW IS IT DONE?? NO RELEASE OF OTM 2.0 BEFORE PROBLEM IS SOLVED.
+	# roads
+	psql -d gis -c "CREATE VIEW lowzoom_roads AS SELECT ST_SimplifyPreserveTopology(way,100) AS way,highway,ref FROM planet_osm_line WHERE highway IN ('motorway','trunk','primary','secondary','tertiary','motorway_link','trunk_link','primary_link','secondary_link','tertiary_link');"
+	psql -d lowzoom -c "CREATE TABLE roads (way geometry(LineString,3857), highway text, ref text);"
+	psql -d lowzoom -c "INSERT INTO roads SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_roads') AS t(way geometry(LineString,3857), highway text, ref text);"
 
 
 
 
 
+
+
+
+
+#################### old stuff below, but I am working on it ############
 # Generalize different things
 	pgsql2shp -k -f water gis "SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area,osm_id FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake') AND way_area > 50000"
 	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln water water.shp
