@@ -152,14 +152,14 @@
 	
 	&basemap-relief;
 	
-	<!--<Layer name="landuse-lowzoom">
+	<Layer name="landuse-lowzoom">
 		<StyleName>landuse-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT wkb_geometry,landuse,"natural" FROM landuse) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,landuse,"natural" FROM landuse) AS landuse </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>-->
+	</Layer>
 	
 	<Layer name="landuse">
 		<StyleName>landuse</StyleName>
@@ -183,16 +183,15 @@
 	
 	&basemap-sea;
 	
-	<!--
 	<Layer name="water-lowzoom">
 		<StyleName>water-casing-lowzoom</StyleName>
 		<StyleName>water-fill-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT wkb_geometry,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
+			<Parameter name="table">(SELECT way,"natural",water,waterway,way_area,name FROM water) AS water </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>-->
+	</Layer>
 	
 	<Layer name="waterway-lines">
 		<StyleName>waterway-lines</StyleName>
@@ -289,16 +288,15 @@
 		</Datasource>
 	</Layer>
 	
-<!--	<Layer name="borders-lowzoom">
+	<Layer name="borders-lowzoom">
 		<StyleName>borders-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT wkb_geometry,boundary,level FROM borders) AS borders</Parameter>
+			<Parameter name="table">(SELECT way,boundary,admin_level FROM borders) AS borders</Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
 	
-	-->
 	<Layer name="borders">
 		<StyleName>borders</StyleName>
 		<Datasource>
@@ -308,17 +306,14 @@
 		</Datasource>
 	</Layer>
 	
-	<!--
 	<Layer name="railways-lowzoom">
 		<StyleName>railways-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT wkb_geometry,railway,"service",tunnel FROM railways) AS railways</Parameter>
+			<Parameter name="table">(SELECT way,railway,"service",tunnel FROM railways) AS railways</Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	-->
 	
 	<Layer name="railways">
 		<StyleName>railways-embankment</StyleName>
@@ -512,17 +507,16 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="text-cities">
+	<Layer name="text-cities-lowzoom">
 		<StyleName>text-cities-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM planet_osm_point WHERE place='city' AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
-		  ) AS names</Parameter>
-			<Parameter name="dbname">gis</Parameter>
+			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM cities WHERE population IS NULL OR population SIMILAR TO '[[:digit:]]+' ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END)) AS cities</Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="text" clear-label-cache="on">
+	<Layer name="text-cities">
 		<StyleName>text-cities</StyleName>
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
@@ -534,14 +528,14 @@
 		</Datasource>
 	</Layer>
 
-	<!--<Layer name="text-natural-poly-lowzoom">
+	<Layer name="text-natural-poly-lowzoom">
 		<StyleName>text-natural-poly-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT wkb_geometry,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
+			<Parameter name="table">(SELECT way,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>-->
+	</Layer>
 	
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>

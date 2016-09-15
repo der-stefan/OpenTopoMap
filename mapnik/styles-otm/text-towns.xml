@@ -1,6 +1,6 @@
 <Style name="text-towns">
 	<!-- zoom 7 -->
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom7;
 		&minscale_zoom7;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
@@ -13,9 +13,9 @@
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
-	
+-->	
 	<!-- zoom 8 -->
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
@@ -28,9 +28,9 @@
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
-	
+-->	
 	<!-- zoom 9 -->
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom9;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
@@ -56,9 +56,9 @@
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
-
+-->
 	<!-- zoom 10 -->
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom10;
 		&minscale_zoom10;
 		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
@@ -97,6 +97,7 @@
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
+	-->
 
 	<!-- zoom 11 -->
 	<Rule>

@@ -1,7 +1,7 @@
 <Style name="roads-casing-lowzoom">
 
 <!-- zoom 6 -->
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom6;
 		&minscale_zoom6;
 		<Filter>[highway] = 'motorway'</Filter>
@@ -19,7 +19,7 @@
 		<Filter>[highway] = 'primary'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.4" />
 	</Rule>
-
+-->
 
 <!-- zoom 7 -->
 	<Rule>
