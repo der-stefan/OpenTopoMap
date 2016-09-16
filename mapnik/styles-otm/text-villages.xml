@@ -62,13 +62,13 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([place] = 'village') and ([population] &gt; 1000)</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="15" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="50" dy="-7" justify-alignment="center">[name] + "\n" <Format size="10">[ele]</Format></TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="16" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="50" dy="-7" justify-alignment="center">[name] + "\n" <Format size="10">[ele]</Format></TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([place] = 'village') and not ([population] &gt; 1000)</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="25" dy="-7">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="25" dy="-7">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -81,14 +81,14 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([place] = 'suburb') and not ([population] &gt; 1000)</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([place] = 'hamlet' or [place] = 'isolated_dwelling')</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="13" dy="-7">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="13" dy="-7">[name]</TextSymbolizer>
 	</Rule>
 
 <!-- zoom 15-17 -->

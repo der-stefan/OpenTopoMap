@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO:
-	- Wasserfall, Sumpf verbessern
-	- cities_lowzoom
-	- generalization in database instead of shape files
+	- waterfall
+	- cities_lowzoom (put towns with population>10000 in generalized db)
 	- label positions places
 	- railway bridges for others than simple rails
 	- generalize rivers
-	- generalize cities and admin_centre
 	- subway stations
-	- remove NULL in query for landuse after data re-import
 -->
 <!DOCTYPE Map
 [
@@ -33,7 +30,7 @@
 	<!ENTITY tunnels-middle SYSTEM "styles-otm/tunnels-middle.xml">
 	<!ENTITY cliffs SYSTEM "styles-otm/cliffs.xml">
 	<!ENTITY buildings SYSTEM "styles-otm/buildings.xml">
-	<!ENTITY military SYSTEM "styles-otm/military.xml">
+	<!ENTITY areas SYSTEM "styles-otm/areas.xml">
 	<!ENTITY contours SYSTEM "styles-otm/contours.xml">
 	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
 	<!ENTITY borders SYSTEM "styles-otm/borders.xml">
@@ -106,7 +103,7 @@
 	&tunnels-middle;
 	&cliffs;
 	&buildings;
-	&military;
+	&areas;
 	&contours;
 	&borders-lowzoom;
 	&borders;
@@ -271,15 +268,14 @@
 		</Datasource>
 	</Layer>
 	
-	<!--<Layer name="military">
-		<StyleName>military</StyleName>
+	<Layer name="areas">
+		<StyleName>areas</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,landuse FROM planet_osm_polygon WHERE (landuse = 'military')) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,landuse,leisure,way_area FROM planet_osm_polygon) AS area </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>-->
-
+	</Layer>
 
 	<Layer name="contours">
 		<StyleName>contours</StyleName>
@@ -518,7 +514,7 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="text-cities">
+	<Layer name="text-cities" clear-label-cache="on">
 		<StyleName>text-cities</StyleName>
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
@@ -542,7 +538,7 @@
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,"natural",way_area FROM planet_osm_polygon) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,"natural",leisure,way_area FROM planet_osm_polygon) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -556,7 +552,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
+
 	<Layer name="symbols-poly">
 		<StyleName>symbols-1</StyleName>
 		<StyleName>symbols-2</StyleName>
@@ -578,7 +574,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
+
 	<Layer name="text-roads-ref">
 		<StyleName>text-roads-ref</StyleName>
 		<Datasource>

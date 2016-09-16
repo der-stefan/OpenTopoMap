@@ -58,7 +58,7 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 # Install Mapnik renderer:
-	sudo apt install libmapnik3.0 libmapnik-dev mapnik-utils python-mapnik
+	sudo apt install libmapnik3.0 libmapnik-dev mapnik-utils python-mapnik unifont
 
 
 # Install tirex from source

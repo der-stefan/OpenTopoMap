@@ -21,12 +21,12 @@
 		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>[highway] = 'primary' or [highway] = 'secondary'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" spacing="400" minimum-path-length="50" minimum-padding="50" repeat-distance="400" dy="5" halo-radius="1" placement="line" margin="50" rotate-displacement="true">[ref]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" spacing="400" minimum-path-length="50" minimum-padding="50" repeat-distance="400" dy="5" halo-radius="1" placement="line" margin="50" rotate-displacement="true">[ref]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>[highway] = 'motorway' or [highway] = 'trunk'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" spacing="400" minimum-path-length="50" minimum-padding="50" repeat-distance="400" dy="8" halo-radius="1" placement="line" margin="50">[ref]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" spacing="400" minimum-path-length="50" minimum-padding="50" repeat-distance="400" dy="7" halo-radius="1" placement="line" margin="50">[ref]</TextSymbolizer>
 	</Rule>
 </Style>

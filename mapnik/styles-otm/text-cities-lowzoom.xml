@@ -217,4 +217,20 @@
 		</TextSymbolizer>
 	</Rule>
 
+
+<!-- capitals or not... -->
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>([place] = 'city')</Filter>
+		<PointSymbolizer file="symbols-otm/city.png"/>
+		<TextSymbolizer fontset-name="sans-condensed" size="15" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="10" dy="-5">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom10;
+		<Filter>([place] = 'city')</Filter>
+		<PointSymbolizer file="symbols-otm/city.png"/>
+		<TextSymbolizer fontset-name="sans-condensed" size="17" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="11" dy="-6">[name]</TextSymbolizer>
+	</Rule>
 </Style>
