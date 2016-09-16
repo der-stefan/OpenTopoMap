@@ -1,0 +1,29 @@
+<Style name="areas">
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>[landuse] = 'military'</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/military_area.png"/>
+		<LineSymbolizer stroke="#ff3939" stroke-width="2" stroke-opacity="0.5"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>[landuse] = 'military'</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/military_area_z12.png"/>
+		<LineSymbolizer stroke="#ff3939" stroke-width="3" stroke-opacity="0.5"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>[leisure] = 'nature_reserve' and [way_area] &gt; 500000</Filter>
+		<LineSymbolizer stroke="#94d84b" stroke-width="5" stroke-opacity="0.6"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>[leisure] = 'nature_reserve'</Filter>
+		<LineSymbolizer stroke="#94d84b" stroke-width="5" stroke-opacity="0.6"/>
+	</Rule>
+</Style>
