@@ -3,18 +3,18 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[natural] = 'water' and [way_area] &gt; 500000</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
 		<Filter>[natural] = 'water' and [way_area] &gt; 50000</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>[natural] = 'water'</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
 	</Rule>
 </Style>

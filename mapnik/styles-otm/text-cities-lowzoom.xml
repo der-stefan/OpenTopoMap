@@ -4,7 +4,7 @@
 		&minscale_zoom3;
 		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 500E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small2.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dy="4" />
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
@@ -16,7 +16,7 @@
 		&minscale_zoom4;
 		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 200E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small2.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dy="4" />
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
@@ -28,7 +28,7 @@
 		&minscale_zoom5;
 		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 100E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" text-transform="uppercase" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" text-transform="uppercase" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="7" />
@@ -40,21 +40,21 @@
 		&minscale_zoom6;
 		<Filter>([capital] = 'yes' and [admin_level] = '2')</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom7;
 		&minscale_zoom7;
 		<Filter>([capital] = 'yes' and [admin_level] = '2')</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="13" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="13" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
 		<Filter>([capital] = 'yes' and [admin_level] = '2')</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="15" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="15" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase">[name]</TextSymbolizer>
 	</Rule>
 
 
@@ -64,7 +64,7 @@
 		&minscale_zoom4;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &gt; 1E6)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small2.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dy="4" />
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
@@ -76,7 +76,7 @@
 		&minscale_zoom5;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &gt; 1E6)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
@@ -88,7 +88,7 @@
 		&minscale_zoom5;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &lt; 1E6) and ([population] &gt; 250E3)</Filter>
 		<PointSymbolizer file="symbols-otm/town_z8.png" />
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
@@ -105,7 +105,7 @@
 		&minscale_zoom6;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &gt; 1E6)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed Bold" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed-bold" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
@@ -119,7 +119,7 @@
 		&minscale_zoom6;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &lt; 1E6) and ([population] &gt; 400E3)</Filter>
 		<PointSymbolizer file="symbols-otm/town_z8.png" />
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
@@ -133,7 +133,7 @@
 		&minscale_zoom6;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ((([population] &lt; 400E3) and ([population] &gt; 100E3)) or [population] = null)</Filter>
 		<PointSymbolizer file="symbols-otm/town_z8.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
@@ -150,7 +150,7 @@
 		&minscale_zoom7;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &gt; 1E6)</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
 			<Placement dy="4" />
@@ -164,7 +164,7 @@
 		&minscale_zoom7;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &lt; 1E6) and ([population] &gt; 100E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
 			<Placement dx="5" dy="3" />
 			<Placement dy="5" />
@@ -178,7 +178,7 @@
 		&minscale_zoom7;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &lt; 100E3 or [population] = null)</Filter>
 		<PointSymbolizer file="symbols-otm/town_z8.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-2" />
 			<Placement dx="4" dy="2" />
 			<Placement dy="4" />
@@ -193,7 +193,7 @@
 		&minscale_zoom8;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &gt; 1E6)</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
 			<Placement dy="4" />
@@ -207,7 +207,7 @@
 		&minscale_zoom8;
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &lt; 1E6 or [population] = null)</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
 			<Placement dx="5" dy="4" />
 			<Placement dy="5" />

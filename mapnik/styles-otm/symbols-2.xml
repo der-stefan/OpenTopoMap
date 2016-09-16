@@ -42,7 +42,7 @@
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>( ([man_made] = 'tower') and (([tower:type] = 'observation') or ([tourism] = 'viewpoint')))</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="9">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="9">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -55,7 +55,7 @@
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'communications_tower') or ([communication:radio] = 'yes') or ([communication:television] = 'yes')</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="8">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="8">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -101,7 +101,7 @@
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'water_tower')</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="7" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="5">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="7" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="5">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
@@ -126,7 +126,7 @@
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([natural] = 'cave_entrance')</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -207,7 +207,7 @@
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([railway] = 'station')</Filter>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="#5427ff" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#5427ff" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
@@ -233,14 +233,14 @@
 		&minscale_zoom17;
  		<Filter>[tourism] = 'alpine_hut'</Filter>
 		<PointSymbolizer file="symbols-otm/hut_alpine.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
  		<Filter>[tourism] = 'wilderness_hut'</Filter>
 		<PointSymbolizer file="symbols-otm/hut_wilderness.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 	
 	<Rule>
@@ -269,7 +269,7 @@
 		&minscale_zoom17;
  		<Filter>([amenity] = 'hospital') </Filter>
 		<PointSymbolizer file="symbols-otm/hospital.png"/>
-		<TextSymbolizer face-name="DejaVu Sans Oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="6">[name]</TextSymbolizer>
 	</Rule>
 
 <!--	<Rule>
