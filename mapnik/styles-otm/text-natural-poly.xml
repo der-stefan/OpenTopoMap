@@ -23,38 +23,38 @@
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[leisure] = 'nature_reserve' and [way_area] &gt; 1E7</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="#77ad3c" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" character-spacing="1">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="#608c31" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" character-spacing="1">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[leisure] = 'nature_reserve' and [way_area] &lt; 1E7 and [way_area] &gt; 1E6</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="#77ad3c" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="#608c31" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[leisure] = 'nature_reserve' and [way_area] &gt; 1E7</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="16" fill="#77ad3c" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" character-spacing="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="16" fill="#608c31" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" character-spacing="6">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[leisure] = 'nature_reserve' and [way_area] &lt; 1E7 and [way_area] &gt; 1E6</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="#77ad3c" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="#608c31" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[leisure] = 'nature_reserve' and [way_area] &lt; 1E6</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="#77ad3c" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="#608c31" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 	
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[leisure] = 'nature_reserve'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="#77ad3c" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="#608c31" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 </Style>

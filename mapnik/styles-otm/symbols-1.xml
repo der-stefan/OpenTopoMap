@@ -11,41 +11,6 @@
 		<Filter>[historic] = 'castle'</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle.png" transform="translate(0 -3)"/>
 	</Rule>
-<!--
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom13;
-		<Filter>(([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/castle_z13.png" transform="translate(0 -3)"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom17;
-		<Filter>(([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/castle.png" transform="translate(0 -3)"/>
-	</Rule>
-	
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom17;
-		<Filter>
-(([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="4">[name]</TextSymbolizer>
-	</Rule>
-
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom17;
-		<Filter>(([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/chateau.png" transform="translate(1 -3)"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom17;
-		<Filter>(([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="4">[name]</TextSymbolizer>
-	</Rule>
--->
  
 	<Rule>
 		&maxscale_zoom13;
@@ -86,36 +51,4 @@
 		<Filter>([historic] = 'ruins') or (([ruins] = 'yes') and ([historic] = 'castle'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins.png" transform="translate(2 -3)"/>
 	</Rule>
-<!--	
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom13;
-		<Filter>(([historic] = 'ruins') or
-(([ruins] = 'yes') and (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins_z13.png" transform="translate(2 -3)"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom17;
-		<Filter>(([historic] = 'ruins') or
-(([ruins] = 'yes') and (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung')))))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins.png" transform="translate(2 -3)"/>
-	</Rule>
-	
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom17;
-		<Filter>(([ruins] = 'yes') and (([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung'))))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/chateau_ruins.png" transform="translate(2 -3)"/>
-	</Rule>
-	
-	<Rule>
-		&maxscale_zoom15;
-		&minscale_zoom17;
-		<Filter>(([historic] = 'ruins') or
-(([ruins] = 'yes') and (([historic] = 'castle') and (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung'))))) or
-		(([ruins] = 'yes') and (([historic] = 'castle') and not (([castle_type] = 'fortress') or ([castle_type] = 'defensive') or ([castle_type] = 'burg') or ([castle_type] = 'festung'))))</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="4">[name]</TextSymbolizer>
-	</Rule>
--->
 </Style>

@@ -508,7 +508,7 @@
 	<Layer name="text-cities-lowzoom">
 		<StyleName>text-cities-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population::INTEGER FROM cities WHERE population IS NULL OR population SIMILAR TO '[[:digit:]]+' ORDER BY (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END)) AS cities</Parameter>
+			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population FROM cities ORDER BY population DESC) AS cities</Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>

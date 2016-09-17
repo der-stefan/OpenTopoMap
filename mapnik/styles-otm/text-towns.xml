@@ -1,103 +1,4 @@
 <Style name="text-towns">
-	<!-- zoom 7 -->
-	<Rule>
-		&maxscale_zoom7;
-		&minscale_zoom7;
-		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
-		<PointSymbolizer file="symbols-otm/town_z8.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="70" wrap-before="true" placement="point" placement-type="list">[name]
-			<Placement dx="5" dy="-3" />
-			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
-			<Placement dy="5" />
-			<Placement dx="-3" dy="4" />
-		</TextSymbolizer>
-	</Rule>
-
-	<!-- zoom 8 -->
-	<Rule>
-		&maxscale_zoom8;
-		&minscale_zoom8;
-		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
-		<PointSymbolizer file="symbols-otm/town_z8.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="75" wrap-before="true" placement="point" placement-type="list">[name]
-			<Placement dx="5" dy="-3" />
-			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
-			<Placement dy="5" />
-			<Placement dx="-3" dy="4" />
-		</TextSymbolizer>
-	</Rule>
-
-	<!-- zoom 9 -->
-	<Rule>
-		&maxscale_zoom9;
-		&minscale_zoom9;
-		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
-		<PointSymbolizer file="symbols-otm/town.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="80" wrap-before="true" placement="point" placement-type="list">[name]
-			<Placement dx="5" dy="-3" />
-			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
-			<Placement dy="5" />
-			<Placement dx="-3" dy="4" />
-		</TextSymbolizer>
-	</Rule>
-	<Rule>
-		&maxscale_zoom9;
-		&minscale_zoom9;
-		<Filter>([place] = 'town') and ([population] &lt; 50000) and ([population] &gt; 10000)</Filter>
-		<PointSymbolizer file="symbols-otm/town.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="80" wrap-before="true" placement="point" placement-type="list">[name]
-			<Placement dx="5" dy="-3" />
-			<Placement dx="4" dy="3" />
-			<Placement dy="-6" />
-			<Placement dy="5" />
-			<Placement dx="-3" dy="4" />
-		</TextSymbolizer>
-	</Rule>
-
-	<!-- zoom 10 -->
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>([place] = 'town') and ([population] &gt; 50000)</Filter>
-		<PointSymbolizer file="symbols-otm/town.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
-			<Placement dx="7" dy="-5" />
-			<Placement dx="7" dy="5" />
-			<Placement dy="-8" />
-			<Placement dy="7" />
-			<Placement dx="-5" dy="6" />
-		</TextSymbolizer>
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>([place] = 'town') and ([population] &lt; 50000) and ([population] &gt; 10000)</Filter>
-		<PointSymbolizer file="symbols-otm/town.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="80" wrap-before="true" placement="point" placement-type="list">[name]
-			<Placement dx="6" dy="-4" />
-			<Placement dx="6" dy="4" />
-			<Placement dy="-7" />
-			<Placement dy="6" />
-			<Placement dx="-4" dy="5" />
-		</TextSymbolizer>
-	</Rule>
-	<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>([place] = 'town') and ([population] &lt; 10000) and ([population] &gt; 5000)</Filter>
-		<PointSymbolizer file="symbols-otm/small_town.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="75" wrap-before="true" placement="point" placement-type="list">[name]
-			<Placement dx="4" dy="-3" />
-			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
-			<Placement dy="5" />
-			<Placement dx="-3" dy="4" />
-		</TextSymbolizer>
-	</Rule>
-
 
 	<!-- zoom 11 -->
 	<Rule>
@@ -169,7 +70,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom12;
 		<Filter>([place] = 'town') and not ([population] &gt; 20000)</Filter>	
-		<TextSymbolizer fontset-name="sans-condensed" size="15" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" dx="30" dy="-3" justify-alignment="center" placement="point" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" dx="30" dy="-3" justify-alignment="center" placement="point" placement-type="list">[name]
 			<Placement dx="30" dy="-3" />
 			<Placement dx="7" dy="5" />
 			<Placement dy="-8" />
