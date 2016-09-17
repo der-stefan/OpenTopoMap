@@ -99,6 +99,7 @@
 		<TextSymbolizer fontset-name="sans-condensed" size="16" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="50" dy="-4" justify-alignment="center">[name] + "\n" <Format size="10">[ele]</Format></TextSymbolizer>
 	</Rule>
 
+	<!-- zoom 14 -->
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
@@ -118,6 +119,7 @@
 		<TextSymbolizer fontset-name="sans-condensed" size="17" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="50" dy="-4" justify-alignment="center">[name] + "\n" <Format size="10">[ele]</Format></TextSymbolizer>
 	</Rule>
 
+	<!-- zoom 15 -->
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;

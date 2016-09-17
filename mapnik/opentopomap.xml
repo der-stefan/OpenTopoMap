@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO:
 	- waterfall
-	- cities_lowzoom (put towns with population>10000 in generalized db)
 	- label positions places
 	- railway bridges for others than simple rails
 	- generalize rivers
@@ -519,7 +518,7 @@
 		<StyleName>text-towns</StyleName>
 		<StyleName>text-villages</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM planet_osm_point WHERE place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') AND (population IS NULL OR population SIMILAR TO '[[:digit:]]+') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) ASC, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
+			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM planet_osm_point WHERE (population IS NULL OR population SIMILAR TO '[[:digit:]]+') AND place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) ASC, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
 		  ) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
