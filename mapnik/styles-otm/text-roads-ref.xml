@@ -15,7 +15,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[highway] = 'primary'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" spacing="400" minimum-distance="400" minimum-path-length="50" minimum-padding="50" dy="4" halo-radius="1" placement="line">[ref]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" spacing="400" minimum-distance="400" minimum-path-length="50" minimum-padding="50" dy="4" halo-radius="1" placement="line">[ref]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
