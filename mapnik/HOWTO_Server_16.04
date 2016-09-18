@@ -119,6 +119,19 @@ This guide is quite complete, but you should always think about before blindly c
 	exit
 	createdb gis
 	sudo -u postgres psql -d gis -c 'CREATE EXTENSION postgis;'
+	
+
+# Download OpenTopoMap files
+	cd ~
+	git clone https://github.com/der-stefan/OpenTopoMap.git
+	cd ~/OpenTopoMap/mapnik
+	
+	# use the generalized water polygons from http://openstreetmapdata.com/
+	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
+	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
+
+	# You need the files for hillshade and contours
+	# Please create them on your own. A hint howto proceed is given in HOWTO_DEM
 
 
 # Load data into database
@@ -158,17 +171,4 @@ This guide is quite complete, but you should always think about before blindly c
 	osmosis --rri workingDirectory=~/data/updates --simplify-change --write-xml-change ~/data/updates/changes.osc.gz
 	osm2pgsql --append --slim -d gis  -C 12000 --number-processes 10 --flat-nodes ~/data/flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/updates/changes.osc.gz
 	rm ~/data/updates/changes.osc.gz
-
-
-# Download OpenTopoMap files
-	cd ~
-	git clone https://github.com/der-stefan/OpenTopoMap.git
-	cd ~/OpenTopoMap/mapnik
-	
-	# use the generalized water polygons from http://openstreetmapdata.com/
-	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
-	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
-
-	# You need the files for hillshade and contours
-	# Please create them on your own. A hint howto proceed is given in HOWTO_DEM
 
