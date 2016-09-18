@@ -16,7 +16,7 @@ http://opentopomap.org
 
 This guide is quite complete, but you should always think about before blindly copying the commands.
 
-# Info on file systems:
+# Recommendation for file systems:
 #	/mnt/database	on SSD
 #	/mnt/tiles		on HDD
 
@@ -72,8 +72,6 @@ This guide is quite complete, but you should always think about before blindly c
 	cd ~/src
 	sudo dpkg -i tirex-core_0.4.1precise1_amd64.deb
 	sudo dpkg -i tirex-backend-mapnik_0.4.1precise1_amd64.deb
-	
-	# sudo dpkg -i tirex-example-map_0.4.1precise1_amd64.deb
 
 
 # Install mod_tile from source
@@ -97,7 +95,7 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo rm -rf /var/lib/mod_tile
 	sudo ln -s /var/lib/tirex/tiles /var/lib/mod_tile
 	
-	# fix error of mod-tile installation:
+	# fix "error" of mod-tile installation (in fact there is no error, apache just can't load the default configs):
 	sudo apt install -f
 
 	
@@ -126,12 +124,14 @@ This guide is quite complete, but you should always think about before blindly c
 	git clone https://github.com/der-stefan/OpenTopoMap.git
 	cd ~/OpenTopoMap/mapnik
 	
-	# use the generalized water polygons from http://openstreetmapdata.com/
+	# get the generalized water polygons from http://openstreetmapdata.com/
+	mkdir data && cd data
 	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
 	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
+	unzip water-polygons*
 
-	# You need the files for hillshade and contours
-	# Please create them on your own. A hint howto proceed is given in HOWTO_DEM
+	# Now you need to create the hillshade and contours. We can't provide the data, since it consumes ~500 GB.
+	# But there is a long howto in HOWTO_DEM
 
 
 # Load data into database
@@ -140,8 +140,11 @@ This guide is quite complete, but you should always think about before blindly c
 	cd ~/data/updates
 	wget http://download.geofabrik.de/europe-updates/state.txt
 
-	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
+	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/europe-latest.osm.pbf
 
+
+# Now do the preprocessing of the OSM data for low zoom levels
+	# A complete copy-paste guide is HOWTO_Preprocessing
 
 
 
@@ -149,7 +152,6 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 ======== below not verified yet ==========================================================================
-# tirex-status --once --extended
 
 # Install osmosis (for diff updates)
 	sudo apt-get install default-jre-headless junit
@@ -164,7 +166,6 @@ This guide is quite complete, but you should always think about before blindly c
 # Set up osmosis working dir for daily updates
 	osmosis --rrii workingDirectory=~/data/updates
 	# edit configuration.txt to baseUrl=http://download.geofabrik.de/europe/germany/bayern/mittelfranken-updates/
-
 
 
 # Update data
