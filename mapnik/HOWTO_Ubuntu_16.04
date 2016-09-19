@@ -151,6 +151,7 @@ This guide is quite complete, but you should always think about before blindly c
 	
 # Optional: Install awstats, munin and letsencrypt
 	sudo apt install awstats libgeo-ip-perl libgeo-ipfree-perl
+	sudo apt install munin
 
 
 
