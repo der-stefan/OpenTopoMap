@@ -96,13 +96,13 @@
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>(([place] = 'village') or ([place] = 'suburb') or ([place] = 'neighbourhood')) and ([population] &gt; 1000)</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="17" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" character-spacing="5" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-extralight" size="20" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,1)" character-spacing="10" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>(([place] = 'village') or ([place] = 'suburb') or ([place] = 'neighbourhood')) and not ([population] &gt; 1000)</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="15" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" character-spacing="5" wrap-width="100" placement="point">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-extralight" size="18" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,1)" character-spacing="10" wrap-width="100" placement="point">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>

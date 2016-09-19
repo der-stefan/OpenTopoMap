@@ -4,7 +4,6 @@
 	- label positions places
 	- railway bridges for others than simple rails
 	- generalize rivers
-	- subway stations
 -->
 <!DOCTYPE Map
 [
@@ -33,6 +32,7 @@
 	<!ENTITY contours SYSTEM "styles-otm/contours.xml">
 	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
 	<!ENTITY borders SYSTEM "styles-otm/borders.xml">
+	<!ENTITY barriers SYSTEM "styles-otm/barriers.xml">
 	<!ENTITY railways-lowzoom SYSTEM "styles-otm/railways-lowzoom.xml">
 	<!ENTITY railways-embankment SYSTEM "styles-otm/railways-embankment.xml">
 	<!ENTITY railways SYSTEM "styles-otm/railways.xml">
@@ -55,9 +55,7 @@
 	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
-	<!ENTITY barriers SYSTEM "styles-otm/barriers.xml">
 	<!ENTITY text-natural-line SYSTEM "styles-otm/text-natural-line.xml">
-	<!ENTITY admin_centers SYSTEM "styles-otm/admin_centers.xml">
 	<!ENTITY text-cities-lowzoom SYSTEM "styles-otm/text-cities-lowzoom.xml">
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
@@ -106,6 +104,7 @@
 	&contours;
 	&borders-lowzoom;
 	&borders;
+	&barriers;
 	&railways-lowzoom;
 	&railways-embankment;
 	&railways;
@@ -128,9 +127,7 @@
 	&aerialways;
 	&powerlines;
 	&powertowers;
-	&barriers;
 	&text-natural-line;
-	&admin_centers;
 	&text-cities-lowzoom;
 	&text-cities;
 	&text-towns;
@@ -298,6 +295,23 @@
 		<StyleName>borders</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,boundary,admin_level,name FROM planet_osm_line WHERE boundary IN ('administrative')) AS borders </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="barriers-poly">
+		<StyleName>barriers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon) AS barriers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	<Layer name="barriers-line">
+		<StyleName>barriers</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Length(way) AS length FROM planet_osm_line) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -478,23 +492,6 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="barriers-poly">
-		<StyleName>barriers</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon) AS barriers </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	<Layer name="barriers-line">
-		<StyleName>barriers</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Length(way) AS length FROM planet_osm_line) AS barriers </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	
 	<Layer name="text-natural-line">
 		<StyleName>text-natural-line</StyleName>
 		<Datasource>
@@ -568,7 +565,7 @@
 		<StyleName>symbols-2</StyleName>
 		<StyleName>symbols-point</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,"summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway FROM planet_osm_point) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,"summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway,NULL AS train,NULL AS subway FROM planet_osm_point) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

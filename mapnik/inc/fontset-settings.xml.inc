@@ -18,6 +18,10 @@ python -c "from mapnik import FontEngine as e;print '\n'.join(e.instance().face_
   <Font face-name="DejaVu Sans Condensed" />
   <Font face-name="Unifont Medium" />
 </FontSet>
+<FontSet name="sans-extralight">
+  <Font face-name="DejaVu Sans ExtraLight" />
+  <Font face-name="Unifont Medium" />
+</FontSet>
 <FontSet name="sans-condensed-bold">
   <Font face-name="DejaVu Sans Condensed Bold" />
   <Font face-name="Unifont Medium" />

@@ -148,6 +148,7 @@ node,way   shop         text         polygon
 node,way   site_type    text         polygon
 node,way   sport        text         polygon
 node,way   station      text         polygon
+node		subway		text		polygon
 node       summit:cross text         linear
 node,way   surface      text         linear
 node,way	stream:type	text		linear
@@ -155,6 +156,7 @@ node,way   toll         text         linear
 node,way   tourism      text         polygon
 node,way   tower:type   text         linear
 way        tracktype    text         linear
+node		train		text		polygon
 node,way   tunnel       text         linear
 node,way   type         text         polygon
 node,way   voltage      text         linear

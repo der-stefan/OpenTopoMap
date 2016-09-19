@@ -1,12 +1,12 @@
 <Style name="symbols-1">
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>[historic] = 'castle'</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[historic] = 'castle'</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle.png" transform="translate(0 -3)"/>
@@ -14,12 +14,12 @@
  
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/church_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/church.png" transform="translate(0 -3)"/>
@@ -41,12 +41,12 @@
 	
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>([historic] = 'ruins') or (([ruins] = 'yes') and ([historic] = 'castle'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins_z13.png" transform="translate(2 -3)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([historic] = 'ruins') or (([ruins] = 'yes') and ([historic] = 'castle'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle_ruins.png" transform="translate(2 -3)"/>

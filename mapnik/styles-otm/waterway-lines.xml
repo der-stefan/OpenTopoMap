@@ -1,27 +1,6 @@
 <Style name="waterway-lines">
 
 <!-- important rivers -->
-	<!--<Rule>
-		&maxscale_zoom7;
-		&minscale_zoom7;
-		<Filter>([waterway] = 'river') and (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
-		<LineSymbolizer stroke="#1d4dff" stroke-width="1.1" stroke-opacity="0.6" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom8;
-		&minscale_zoom10;
-		<Filter>([waterway] = 'river') and (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
-		<LineSymbolizer stroke="#1d4dff" stroke-width="2" stroke-opacity="0.8" />
-	</Rule>-->
-	
-<!-- less important rivers -->
-	<!--<Rule>
-		&maxscale_zoom8;
-		&minscale_zoom10;
-		<Filter>([waterway] = 'river') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
-		<LineSymbolizer stroke="#1d4dff" stroke-width="1.1" stroke-opacity="0.5" />
-	</Rule>-->
-	
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom12;
@@ -34,19 +13,19 @@
 		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="2" />
 	</Rule>
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="4" />
-		<LineSymbolizer stroke="#a9ece9" stroke-width="3" />
-	</Rule>
+		<LineSymbolizer stroke="#a3dde8" stroke-width="3" />
+	</Rule>-->
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="7" />
-		<LineSymbolizer stroke="#a9ece9" stroke-width="6" />
+		<LineSymbolizer stroke="#a3dde8" stroke-width="6" />
 	</Rule>
 	
 	<Rule>
@@ -103,22 +82,7 @@
 		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([intermittent] = 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="0.5" stroke-dasharray="1.5,2" />
 	</Rule>
-	
-<!-- important canals -->
-	<!--<Rule>
-		&maxscale_zoom7;
-		&minscale_zoom7;
-		<Filter>([waterway] = 'canal') and (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
-		<LineSymbolizer stroke="#1d4dff" stroke-width="1.1" stroke-opacity="0.6" />
-		<LinePatternSymbolizer file="symbols-otm/canal.png" />
-	</Rule>
-	<Rule>
-		&maxscale_zoom8;
-		&minscale_zoom17;
-		<Filter>([waterway] = 'canal') and (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
-		<LineSymbolizer stroke="#1d4dff" stroke-width="2" stroke-opacity="0.6" />
-		<LinePatternSymbolizer file="symbols-otm/canal_2.png" />
-	</Rule>-->
+
 	
 <!-- less important canals -->
 	<Rule>

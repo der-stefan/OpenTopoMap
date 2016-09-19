@@ -145,6 +145,12 @@ This guide is quite complete, but you should always think about before blindly c
 
 # Now do the preprocessing of the OSM data for low zoom levels
 	# A complete copy-paste guide is HOWTO_Preprocessing
+	# Find out the sizes of the databases:
+	psql -d gis -c "SELECT pg_database.datname, pg_size_pretty(pg_database_size(pg_database.datname)) AS size FROM pg_database;"
+	
+	
+# Optional: Install awstats, munin and letsencrypt
+	sudo apt install awstats libgeo-ip-perl libgeo-ipfree-perl
 
 
 

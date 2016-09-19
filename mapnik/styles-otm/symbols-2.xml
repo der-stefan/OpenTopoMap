@@ -1,12 +1,12 @@
 <Style name="symbols-2">
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>([man_made] = 'tower') and ([tower:type] != 'communication' and [tower:type] != 'observation')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/tower_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'tower') and ([tower:type] != 'communication' and [tower:type] != 'observation')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/tower.png" transform="translate(0 -3)"/>
@@ -14,12 +14,12 @@
 	
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>([man_made] = 'chimney')</Filter>
 		<PointSymbolizer file="symbols-otm/chimney_z13.png"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'chimney')</Filter>
 		<PointSymbolizer file="symbols-otm/chimney.png"/>
@@ -33,12 +33,12 @@
 	
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>( ([man_made] = 'tower') and (([tower:type] = 'observation') or ([tourism] = 'viewpoint')))</Filter>
 		<PointSymbolizer file="symbols-otm/observation_tower_z13.png"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>( ([man_made] = 'tower') and (([tower:type] = 'observation') or ([tourism] = 'viewpoint')))</Filter>
 		<PointSymbolizer file="symbols-otm/observation_tower.png"/>
@@ -53,7 +53,7 @@
 
 	<Rule>
 		&maxscale_zoom11;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>([man_made] = 'communications_tower') or ([communication:radio] = 'yes') or ([communication:television] = 'yes')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/communications_tower_z13.png" transform="translate(0 -5)"/>
 	</Rule>
@@ -66,12 +66,12 @@
 
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>[man_made] = 'tower' and [tower:type] = 'communication'</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/communications_tower_z13.png" transform="translate(0 -5)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[man_made] = 'tower' and [tower:type] = 'communication'</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/communications_tower.png" transform="translate(0 -5)"/>
@@ -92,12 +92,12 @@
 	
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom13;
+		&minscale_zoom14;
 		<Filter>([man_made] = 'water_tower')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/water_tower_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'water_tower')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/water_tower.png" transform="translate(0 -3)"/>
@@ -202,19 +202,7 @@
 		<Filter>(([man_made] = 'mineshaft') or ([man_made] = 'adit')) and (([disused] = 'yes') or ([abandoned] = 'yes'))</Filter>
 		<PointSymbolizer file="symbols-otm/mineshaft_disused.png"/>
 	</Rule>
-
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom17;
-		<Filter>([railway] = 'station')</Filter>
-		<PointSymbolizer file="symbols-otm/station.png"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom16;
-		&minscale_zoom17;
-		<Filter>([railway] = 'station')</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#5427ff" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="6">[name]</TextSymbolizer>
-	</Rule>
+	
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
