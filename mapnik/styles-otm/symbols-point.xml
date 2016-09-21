@@ -33,6 +33,12 @@
 	
 	<Rule>
 		&maxscale_zoom13;
+		&minscale_zoom14;
+		<Filter>[railway] = 'station' and [subway] = 'yes'</Filter>
+		<PointSymbolizer file="symbols-otm/station_subway_z13.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[railway] = 'station' and [subway] = 'yes'</Filter>
 		<PointSymbolizer file="symbols-otm/station_subway.png"/>
