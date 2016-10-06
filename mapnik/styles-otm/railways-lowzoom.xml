@@ -2,19 +2,32 @@
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
+		<Filter>[railway] = 'rail'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom11;
-		<Filter>[tunnel] != 'yes'</Filter>
+		<Filter>[railway] = 'rail' and [tunnel] != 'yes'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.9" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>[railway] = 'light_rail' and [tunnel] != 'yes'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.9" />
 	</Rule>
 	
 	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom11;
-		<Filter>[tunnel] = 'yes'</Filter>
+		<Filter>[railway] = 'rail' and [tunnel] = 'yes'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1.5" stroke-opacity="0.5" stroke-dasharray="4,4" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>[railway] = 'light_rail' and [tunnel] = 'yes'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="4,4" />
 	</Rule>
 </Style>

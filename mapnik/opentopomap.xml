@@ -44,7 +44,7 @@
 	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
 	<!ENTITY housenumbers SYSTEM "styles-otm/housenumbers.xml">
 	<!ENTITY road-names-text SYSTEM "styles-otm/road-names-text.xml">
-	<!ENTITY railway-crossing SYSTEM "styles-otm/railway-crossing.xml">
+	<!ENTITY railway-points SYSTEM "styles-otm/railway-points.xml">
 	<!ENTITY symbols-road SYSTEM "styles-otm/symbols-road.xml">
 	<!ENTITY ferry-routes SYSTEM "styles-otm/ferry-routes.xml">
 	<!ENTITY railway-bridges-casing SYSTEM "styles-otm/railway-bridges-casing.xml">
@@ -114,7 +114,7 @@
 	&roads-fill-lowzoom;
 	&roads-casing;
 	&roads-fill;
-	&railway-crossing;
+	&railway-points;
 	&symbols-road;
 	&housenumbers;
 	&ferry-routes;
@@ -367,10 +367,10 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="railway-crossing">
-		<StyleName>railway-crossing</StyleName>
+	<Layer name="railway-points">
+		<StyleName>railway-points</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway FROM planet_osm_point) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,railway,subway FROM planet_osm_point) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

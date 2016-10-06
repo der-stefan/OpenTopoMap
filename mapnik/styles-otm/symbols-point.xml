@@ -22,31 +22,20 @@
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
-		<PointSymbolizer file="symbols-otm/station.png"/>
+		<PointSymbolizer file="symbols-otm/station.png" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6" wrap-width="100">[name]</TextSymbolizer>
 	</Rule>
 	
-	<Rule>
-		&maxscale_zoom13;
-		&minscale_zoom14;
-		<Filter>[railway] = 'station' and [subway] = 'yes'</Filter>
-		<PointSymbolizer file="symbols-otm/station_subway_z13.png"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom15;
-		&minscale_zoom17;
-		<Filter>[railway] = 'station' and [subway] = 'yes'</Filter>
-		<PointSymbolizer file="symbols-otm/station_subway.png"/>
-	</Rule>
+	<!-- see railway-points for subway icons -->
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>[railway] = 'station' and [subway] = 'yes'</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#5427ff" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="7">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#5427ff" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="7" wrap-width="100">[name]</TextSymbolizer>
 	</Rule>
 </Style>

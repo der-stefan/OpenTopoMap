@@ -18,12 +18,12 @@
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[leisure] = 'nature_reserve' and [way_area] &gt; 500000</Filter>
-		<LineSymbolizer stroke="#94d84b" stroke-width="5" stroke-opacity="0.6"/>
+		<LineSymbolizer stroke="#85c243" stroke-width="5" stroke-opacity="0.5"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>[leisure] = 'nature_reserve'</Filter>
-		<LineSymbolizer stroke="#94d84b" stroke-width="5" stroke-opacity="0.6"/>
+		<LineSymbolizer stroke="#85c243" stroke-width="5" stroke-opacity="0.5"/>
 	</Rule>
 </Style>
