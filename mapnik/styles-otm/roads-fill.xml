@@ -433,6 +433,13 @@
 		<LineSymbolizer stroke="#ffeded" stroke-width="6" />
 	</Rule>
 	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[oneway] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/oneway.png" />
+	</Rule>
+	
 	<!--<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;

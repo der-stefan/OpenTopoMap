@@ -232,7 +232,7 @@
 		<StyleName>tunnels-fill</StyleName>
 		<StyleName>tunnels-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,tracktype,ST_Length(way) AS length FROM planet_osm_line WHERE (tunnel = 'yes') AND highway IS NOT NULL) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,highway,service,tracktype,oneway,ST_Length(way) AS length FROM planet_osm_line WHERE (tunnel = 'yes') AND highway IS NOT NULL) AS roads </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -361,7 +361,7 @@
 		<StyleName>roads-fill</StyleName>
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,name,service,surface,tracktype,lanes,embankment FROM planet_osm_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
+			<Parameter name="table">(SELECT way,highway,name,service,surface,tracktype,lanes,embankment,oneway FROM planet_osm_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -436,7 +436,7 @@
 		<StyleName>bridges-middle</StyleName>
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM planet_osm_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway,oneway FROM planet_osm_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer IS NULL OR layer &lt;= '1')) AS roads </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -448,7 +448,7 @@
 		<StyleName>bridges-middle</StyleName>
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM planet_osm_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer = '2')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway,oneway FROM planet_osm_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer = '2')) AS roads </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -460,7 +460,7 @@
 		<StyleName>bridges-middle</StyleName>
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway FROM planet_osm_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,surface,tracktype,layer,name,railway,oneway FROM planet_osm_line WHERE (bridge != 'no') AND (highway IS NOT NULL OR railway = 'tram') AND (layer &gt; '2')) AS roads </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

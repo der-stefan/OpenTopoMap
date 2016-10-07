@@ -388,4 +388,11 @@
 		<LineSymbolizer stroke="white" stroke-width="2" stroke-linecap="round" />
 	</Rule>
 	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[oneway] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/oneway.png" />
+	</Rule>
+	
 </Style>

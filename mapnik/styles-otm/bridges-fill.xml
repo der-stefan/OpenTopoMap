@@ -425,5 +425,12 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="#ffeded" stroke-width="6" stroke-linecap="round" />
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[oneway] = 'yes'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/oneway.png" />
+	</Rule>
 
 </Style>
