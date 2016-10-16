@@ -1,0 +1,14 @@
+<Style name="housenumbers-poly">
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[way_area] &gt; 1000</Filter>
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.6)" wrap-width="70" placement="point">[name] + "\n" + [addr:housenumber]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[way_area] &lt; 1000</Filter>
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.6)" wrap-width="70" placement="point">[addr:housenumber]</TextSymbolizer>
+	</Rule>
+</Style>

@@ -42,7 +42,8 @@
 	<!ENTITY roads-fill-lowzoom SYSTEM "styles-otm/roads-fill-lowzoom.xml">
 	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
 	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
-	<!ENTITY housenumbers SYSTEM "styles-otm/housenumbers.xml">
+	<!ENTITY housenumbers-poly SYSTEM "styles-otm/housenumbers-poly.xml">
+	<!ENTITY housenumbers-point SYSTEM "styles-otm/housenumbers-point.xml">
 	<!ENTITY road-names-text SYSTEM "styles-otm/road-names-text.xml">
 	<!ENTITY railway-points SYSTEM "styles-otm/railway-points.xml">
 	<!ENTITY symbols-road SYSTEM "styles-otm/symbols-road.xml">
@@ -116,7 +117,8 @@
 	&roads-fill;
 	&railway-points;
 	&symbols-road;
-	&housenumbers;
+	&housenumbers-poly;
+	&housenumbers-point;
 	&ferry-routes;
 	&railway-bridges-casing;
 	&railway-bridges;
@@ -232,7 +234,7 @@
 		<StyleName>tunnels-fill</StyleName>
 		<StyleName>tunnels-middle</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,service,tracktype,oneway,ST_Length(way) AS length FROM planet_osm_line WHERE (tunnel = 'yes') AND highway IS NOT NULL) AS roads </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,service,tracktype,oneway FROM planet_osm_line WHERE (tunnel = 'yes') AND highway IS NOT NULL) AS roads </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -361,13 +363,13 @@
 		<StyleName>roads-fill</StyleName>
 		<StyleName>road-names-text</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway,name,service,surface,tracktype,lanes,embankment,oneway FROM planet_osm_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,name,service,surface,tracktype,lanes,embankment,oneway FROM planet_osm_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND highway IS NOT NULL ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
 	
-	<Layer name="railway-points">
+	<Layer name="railway-points" clear-label-cache="on">
 		<StyleName>railway-points</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,railway,subway FROM planet_osm_point) AS symbols </Parameter>
@@ -375,7 +377,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
+<!--	
 	<Layer name="symbols-road">
 		<StyleName>symbols-road</StyleName>
 		<Datasource>
@@ -384,24 +386,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	<Layer name="building-housenumbers-points">
-		<StyleName>housenumbers</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"addr:housenumber",name,building FROM planet_osm_point WHERE "addr:housenumber" IS NOT NULL) AS housenumbers </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	<Layer name="building-housenumbers-polygons">
-		<StyleName>housenumbers</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"addr:housenumber",name,building FROM planet_osm_polygon WHERE building IS NOT NULL) AS housenumbers </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	
+-->
 	<Layer name="ferry-routes">
 		<StyleName>ferry-routes</StyleName>
 		<Datasource>
@@ -500,27 +485,6 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	<Layer name="text-cities-lowzoom">
-		<StyleName>text-cities-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population FROM cities ORDER BY population DESC) AS cities</Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="text-cities" clear-label-cache="on">
-		<StyleName>text-cities</StyleName>
-		<StyleName>text-towns</StyleName>
-		<StyleName>text-villages</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM planet_osm_point WHERE (population IS NULL OR population SIMILAR TO '[[:digit:]]+') AND place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) ASC, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
-		  ) AS names</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 
 	<Layer name="text-natural-poly-lowzoom">
 		<StyleName>text-natural-poly-lowzoom</StyleName>
@@ -570,6 +534,23 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+	
+	<Layer name="building-housenumbers-polygons">
+		<StyleName>housenumbers-poly</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"addr:housenumber",name,building,way_area FROM planet_osm_polygon WHERE building IS NOT NULL) AS housenumbers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	<Layer name="building-housenumbers-points">
+		<StyleName>housenumbers-point</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"addr:housenumber",name,building FROM planet_osm_point WHERE "addr:housenumber" IS NOT NULL) AS housenumbers </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
 
 	<Layer name="text-roads-ref">
 		<StyleName>text-roads-ref</StyleName>
@@ -584,6 +565,27 @@
 		<StyleName>text-waterways</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,waterway FROM planet_osm_line) AS names</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
+	<Layer name="text-cities-lowzoom">
+		<StyleName>text-cities-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population FROM cities ORDER BY population DESC) AS cities</Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="text-cities" clear-label-cache="on">
+		<StyleName>text-cities</StyleName>
+		<StyleName>text-towns</StyleName>
+		<StyleName>text-villages</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM planet_osm_point WHERE (population IS NULL OR population SIMILAR TO '[[:digit:]]+') AND place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) ASC, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
+		  ) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
