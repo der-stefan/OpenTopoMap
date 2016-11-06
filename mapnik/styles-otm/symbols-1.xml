@@ -29,7 +29,7 @@
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel'))</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 	
 	<Rule>

@@ -1,0 +1,10 @@
+<Style name="test">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<!--<Filter>[waterway] = 'river'</Filter>-->
+		<LineSymbolizer stroke="red" stroke-width="1" />
+		<MarkersSymbolizer file="symbols-otm/test.png" placement="vertex-first" allow-overlap="true" />
+		<MarkersSymbolizer file="symbols-otm/test.png" placement="vertex-last" allow-overlap="true" />
+	</Rule>
+</Style>

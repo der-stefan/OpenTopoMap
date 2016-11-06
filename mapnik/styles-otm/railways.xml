@@ -142,7 +142,7 @@
 	</Rule>
 
 	<Rule>
-		&maxscale_zoom14;
+		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>[railway] = 'light_rail' and [tunnel] != 'yes'</Filter>
 		<LineSymbolizer stroke="white" stroke-width="4.5" stroke-opacity="0.8" />

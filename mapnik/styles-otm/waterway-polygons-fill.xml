@@ -9,8 +9,15 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'riverbank')</Filter>
+		<Filter>[waterway] = 'riverbank' and [intermittent] != 'yes'</Filter>
 		<PolygonSymbolizer fill="#a3dde8" />
+		<LineSymbolizer stroke="#a3dde8" stroke-width="0.7" /> <!-- avoid riverbank polygons -->
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>[waterway] = 'riverbank' and [intermittent] = 'yes'</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/riverbank-intermittent.png"/>
 		<LineSymbolizer stroke="#a3dde8" stroke-width="0.7" /> <!-- avoid riverbank polygons -->
 	</Rule>
 

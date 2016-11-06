@@ -30,7 +30,7 @@
 	
 	<Rule>
 		&maxscale_zoom11;
-		&minscale_zoom12;
+		&minscale_zoom17;
 		<Filter>([waterway] = 'river') and ([intermittent] = 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1.5" stroke-dasharray="1.5,2" />
 	</Rule>

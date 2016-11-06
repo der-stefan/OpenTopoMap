@@ -1,4 +1,4 @@
-<Style name="housenumbers">
+<Style name="housenumbers-point">
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;

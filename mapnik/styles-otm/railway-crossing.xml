@@ -1,8 +1,0 @@
-<Style name="railway-crossing">
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom17;
-		<Filter>[railway] = 'level_crossing'</Filter>
-		<PointSymbolizer file="symbols-otm/railway_crossing.png"/>
-	</Rule>
-</Style>
