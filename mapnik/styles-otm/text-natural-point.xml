@@ -3,19 +3,18 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>([natural] = 'peak' or [natural] = 'volcano') and ([name] = null)</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3">[ele]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[ele]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
 		<Filter>([natural] = 'peak' or [natural] = 'volcano') and not ([name] = null)</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>([natural] = 'peak' or [natural] = 'volcano') and not ([name] = null)</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3">[name]</TextSymbolizer>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="13">[ele]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[name]+"\n"+[ele]</TextSymbolizer>
 	</Rule>
 </Style>
