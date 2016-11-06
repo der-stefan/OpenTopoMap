@@ -1,0 +1,15 @@
+<Style name="symbols-important-point">
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom13;
+		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
+		<PointSymbolizer file="symbols-otm/station.png" allow-overlap="true" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
+		<PointSymbolizer file="symbols-otm/station.png" allow-overlap="true" />
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" allow-overlap="true" dy="6" wrap-width="100">[name]</TextSymbolizer>
+	</Rule>
+</Style>

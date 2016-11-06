@@ -61,6 +61,7 @@
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
+	<!ENTITY symbols-important-point SYSTEM "styles-otm/symbols-important-point.xml">
 	<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
 	<!ENTITY text-natural-point SYSTEM "styles-otm/text-natural-point.xml">
@@ -70,6 +71,7 @@
 	<!ENTITY symbols-point SYSTEM "styles-otm/symbols-point.xml">
 	<!ENTITY text-roads-ref SYSTEM "styles-otm/text-roads-ref.xml">
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
+	<!ENTITY test SYSTEM "styles-otm/test.xml">
 	
 	<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
 	%entities;
@@ -134,6 +136,7 @@
 	&text-cities;
 	&text-towns;
 	&text-villages;
+	&symbols-important-point;
 	&text-natural-poly-lowzoom;
 	&text-natural-poly;
 	&text-natural-point;
@@ -143,6 +146,7 @@
 	&symbols-point;
 	&text-roads-ref;
 	&text-waterways;
+	&test;
 	
 
 	<!-- layers -->
@@ -204,7 +208,7 @@
 		<StyleName>waterway-polygons-fill</StyleName>
 		<StyleName>water-areas</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,way_area FROM planet_osm_polygon) AS water </Parameter>
+			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,intermittent,way_area FROM planet_osm_polygon) AS water </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -495,6 +499,15 @@
 		</Datasource>
 	</Layer>
 	
+	<Layer name="symbols-important-point">
+		<StyleName>symbols-important-point</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,railway,train FROM planet_osm_point) AS names</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+	
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
 		<Datasource>
@@ -599,6 +612,15 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+	
+<!--	<Layer name="test">
+		<StyleName>test</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT l.way,l.name,l.waterway FROM planet_osm_line l JOIN planet_osm_polygon p ON ST_Intersects(p.way,l.way) WHERE p.waterway='riverbank' AND l.name='Wiesent' AND l.waterway='river') AS test</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>-->
 	
 	
 </Map>
