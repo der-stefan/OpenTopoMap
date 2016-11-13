@@ -31,7 +31,7 @@ This guide is quite complete, but you should always think before blindly copying
 	
 	
 	# landuse
-	psql -d gis -c "CREATE VIEW lowzoom_landuse AS SELECT ST_SimplifyPreserveTopology(way,150) AS way,landuse,\"natural\" FROM planet_osm_polygon WHERE landuse = 'forest' OR \"natural\" = 'wood' AND way_area > 50000"
+	psql -d gis -c "CREATE VIEW lowzoom_landuse AS SELECT ST_SimplifyPreserveTopology(way,150) AS way,landuse,\"natural\" FROM planet_osm_polygon WHERE landuse = 'forest' OR \"natural\" = 'wood' AND way_area > 50000;"
 	psql -d lowzoom -c "CREATE TABLE landuse (way geometry(Geometry,3857), landuse text, \"natural\" text);"
 	psql -d lowzoom -c "INSERT INTO landuse SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_landuse') AS t(way geometry(Geometry,3857), landuse text, \"natural\" text);"
 	
