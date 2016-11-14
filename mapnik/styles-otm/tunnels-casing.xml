@@ -208,13 +208,13 @@
 		&maxscale_zoom15;
 		&minscale_zoom15;
 		<Filter>[highway] = 'motorway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="10" stroke-dasharray="12,8" />
+		<LineSymbolizer stroke="black" stroke-width="9.2" stroke-dasharray="12,8" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
 		<Filter>[highway] = 'trunk'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="10" stroke-dasharray="6,4" />
+		<LineSymbolizer stroke="black" stroke-width="9.2" stroke-dasharray="6,4" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
