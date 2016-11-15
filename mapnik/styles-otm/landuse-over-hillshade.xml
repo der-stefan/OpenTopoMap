@@ -1,5 +1,18 @@
 <Style name="landuse-over-hillshade">
 
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom17;
+		<Filter>[natural] = 'bare_rock'</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/bare_rock.png" opacity="0.5"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom17;
+		<Filter>([natural] = 'scree')</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/scree.png"/>
+	</Rule>
+
 	<!-- again forest quite transparent over hillshade to optimize result -->
 	<Rule>
 		&maxscale_zoom11;
