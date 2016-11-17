@@ -1,0 +1,8 @@
+<Style name="road-areas">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>[highway] = 'pedestrian'</Filter>
+		<PolygonSymbolizer fill="white" />
+	</Rule>
+</Style>

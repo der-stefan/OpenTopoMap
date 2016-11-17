@@ -21,6 +21,7 @@
 	<!ENTITY waterway-polygons-fill SYSTEM "styles-otm/waterway-polygons-fill.xml">
 	<!ENTITY water-areas SYSTEM "styles-otm/water-areas.xml">
 	<!ENTITY landuse-over-water SYSTEM "styles-otm/landuse-over-water.xml">
+	<!ENTITY road-areas SYSTEM "styles-otm/road-areas.xml">
 	<!ENTITY water-weir SYSTEM "styles-otm/water-weir.xml">
 	<!ENTITY waterway-arrows SYSTEM "styles-otm/waterway-arrows.xml">
 	<!ENTITY tunnels-casing SYSTEM "styles-otm/tunnels-casing.xml">
@@ -96,6 +97,7 @@
 	&waterway-polygons-fill;
 	&water-areas;
 	&landuse-over-water;
+	&road-areas;
 	&water-weir;
 	&waterway-arrows;
 	&tunnels-casing;
@@ -183,6 +185,15 @@
 	</Layer>
 	
 	&basemap-sea;
+	
+	<Layer name="road-areas">
+		<StyleName>road-areas</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,highway FROM planet_osm_polygon) AS roadareas</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
 	
 	<Layer name="water-lowzoom">
 		<StyleName>water-casing-lowzoom</StyleName>
