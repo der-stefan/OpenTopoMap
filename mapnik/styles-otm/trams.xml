@@ -1,0 +1,22 @@
+<Style name="trams">
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[railway] = 'tram'</Filter>
+		<LineSymbolizer stroke="#3f3f3f" stroke-width="0.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[railway] = 'tram'</Filter>
+		<LineSymbolizer stroke="#3f3f3f" stroke-width="0.8" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[railway] = 'tram'</Filter>
+		<LineSymbolizer stroke="#3f3f3f" stroke-width="1.2" />
+	</Rule>
+
+</Style>
