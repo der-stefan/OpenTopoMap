@@ -20,8 +20,14 @@
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[natural] = 'water' and [way_area] &lt; 50000 and [way_area] &gt; 10000</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
 		&minscale_zoom17;
-		<Filter>[natural] = 'water' and [way_area] &lt; 50000</Filter>
+		<Filter>[natural] = 'water' and [way_area] &gt; 1000</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
 	</Rule>
 

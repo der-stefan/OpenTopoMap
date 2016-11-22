@@ -139,7 +139,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>(([natural] = 'tree') and (not ([name] = null) or ([denotation] = 'landmark')) and (not ([type] = 'conifer')))</Filter>
-		<MarkersSymbolizer placement="point" file="symbols-otm/conifer_tree.png" transform="translate(0 -5)"/>
+		<MarkersSymbolizer placement="point" file="symbols-otm/broadleaf_tree.png" transform="translate(0 -5)"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
