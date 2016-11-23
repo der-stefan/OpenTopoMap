@@ -41,7 +41,7 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY) RETURNS INTEGER AS $$
  DECLARE
   SearchArea   CONSTANT INTEGER := 100;
   SearchLimit  CONSTANT INTEGER :=  10;
-  MinDescent   CONSTANT INTEGER :=  20;
+  MinDescent   CONSTANT INTEGER :=  10;
 
   saddlepoint  TEXT := $1::TEXT;
   result       RECORD;
@@ -63,7 +63,7 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY) RETURNS INTEGER AS $$
 --
 -- build query string 
 --
-  querystring='SELECT wkb_geometry,height FROM contours WHERE 
+  querystring='SELECT wkb_geometry,height,ST_Distance(st_setsrid(wkb_geometry,900913),''' || saddlepoint || '''::geometry) as dist FROM contours WHERE 
                  st_setsrid(wkb_geometry,900913) && ST_Expand(''' || saddlepoint || '''::geometry,' || SearchArea || ') 
                  ORDER BY ST_Distance(st_setsrid(wkb_geometry,900913),''' || saddlepoint || '''::geometry) ASC LIMIT ' || SearchLimit;
 
@@ -73,9 +73,9 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY) RETURNS INTEGER AS $$
 -- Get contour lines and next point to this line from saddle
 --
   <<getcontourloop>>  
-  FOR result IN ( SELECT  height::FLOAT,ST_ClosestPoint(st_setsrid(way,900913),st_setsrid(saddlepoint::geometry,900913)) AS cp 
+  FOR result IN ( SELECT  height::FLOAT,ST_ClosestPoint(st_setsrid(way,900913),st_setsrid(saddlepoint::geometry,900913)) AS cp,dist::FLOAT
                          FROM dblink('saddle_contours_connection',querystring) 
-                              AS t1(way geometry,height integer)
+                              AS t1(way geometry,height integer,dist float)
                 ) LOOP
    i:=i+1;
 --
@@ -83,20 +83,34 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY) RETURNS INTEGER AS $$
 --
    IF (i=1) THEN
     saddleheight:=result.height; 
+    saddleheight:=result.height; 
+
+    RAISE NOTICE 'Height=%', result.height;
+    RAISE NOTICE 'Dist=  %', result.dist;
+    RAISE NOTICE 'saddle=%', st_astext(saddlepoint);
+    RAISE NOTICE 'cp=    %', st_astext(result.cp);
    ELSE
+    RAISE NOTICE 'next Height=%', result.height;
+    RAISE NOTICE 'next Dist=%', result.dist;
+    RAISE NOTICE 'cp=    %', st_astext(result.cp);
+
 --
 -- one of the next lines defines the orientation / pointing to the next lower point or 90° to the next higher point
 --
     IF (result.height<saddleheight-MinDescent) THEN
+     RAISE NOTICE 'SP RCP % %',saddlepoint,result.cp;
      SELECT CAST(d AS INTEGER) INTO direction FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
-     direction:=(720-(direction))%180;
---     RAISE NOTICE 'Found lower contour line';
+     RAISE NOTICE 'Dir: %',direction;
+     direction:=direction;
+     RAISE NOTICE 'Found lower contour line %',result.height;
      EXIT getcontourloop;
     END IF;
     IF (result.height>saddleheight+MinDescent) THEN
+     RAISE NOTICE 'SP RCP % %',saddlepoint,result.cp;
      SELECT CAST(d AS INTEGER) INTO direction FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
-     direction:=(720-(direction-90))%180;
---     RAISE NOTICE 'Found higher contour line';
+     RAISE NOTICE 'Dir: %',direction;
+     direction:=direction+90;
+     RAISE NOTICE 'Found higher contour line %',result.height;
      EXIT getcontourloop;
     END IF;
     
