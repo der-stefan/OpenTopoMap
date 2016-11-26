@@ -41,9 +41,9 @@
 CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY,TEXT) RETURNS INTEGER AS $$
 
  DECLARE
-  SearchArea   CONSTANT INTEGER := 150;
+  SearchArea   CONSTANT INTEGER := 200;
   SearchLimit  CONSTANT INTEGER :=  10;
-  MinDescent   CONSTANT INTEGER :=  10;
+  MinDescent   CONSTANT INTEGER :=   5;
 
   saddlepoint     TEXT := $1::TEXT;
   osmdirection    TEXT := $2::TEXT;
@@ -106,16 +106,17 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY,TEXT) RETURNS INTEGER AS 
     IF (i=1) THEN
      saddleheight:=result.height; 
      saddleheight:=result.height; 
+--   RAISE NOTICE 'Setting hight to %',saddleheight;
     ELSE
-     IF (ABS(saddleheight-MinDescent)>MinDescent) THEN
+     IF (ABS(saddleheight-result.height)>MinDescent) THEN
       SELECT CAST(d AS INTEGER) INTO thisdirection FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
 --
 -- decreasing slope: the saddle directs to the closest point on contour line
 -- increasing slope: it directs 90° to this point
 --
-      IF (result.height<saddleheight-MinDescent) THEN thisdirection:=(360+thisdirection)%180;    END IF;
-      IF (result.height>saddleheight+MinDescent) THEN thisdirection:=(360+thisdirection+90)%180; END IF;
---    RAISE NOTICE 'New direction in step % dir: % dist: %',i,thisdirection,result.dist;
+      IF (result.height<saddleheight) THEN thisdirection:=(360+thisdirection)%180;    END IF;
+      IF (result.height>saddleheight) THEN thisdirection:=(360+thisdirection+90)%180; END IF;
+--    RAISE NOTICE 'New direction in step % height: % dir: % dist: %',i,result.height,thisdirection,result.dist;
 --
 -- First choice is made by the first contour line
 --
@@ -134,7 +135,7 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY,TEXT) RETURNS INTEGER AS 
 --
        IF(diffdirection> 90) THEN diffdirection=180-diffdirection; END IF;
        IF(diffdirection<-90) THEN diffdirection=diffdirection+180; END IF;
----    RAISE NOTICE 'Correcting direction by %*%=%',diffdirection,firstdistance/result.dist,diffdirection*(firstdistance/result.dist);
+--     RAISE NOTICE 'Correcting direction by %*%=%',diffdirection,firstdistance/result.dist,diffdirection*(firstdistance/result.dist);
        direction:=(round(direction+diffdirection*(firstdistance/result.dist))::INTEGER)%180;
        IF (direction<0) THEN direction:=direction+180; END IF;
       END IF;
