@@ -1,6 +1,6 @@
 --
--- FUNCTION INTEGER getdirection(Point:GEOMETRY in EPSG:900913)
--- ------------------------------------------------------------
+-- FUNCTION INTEGER getdirection(Point:GEOMETRY in Mercator, Destination: Text)
+-- -------------------------------------------------------------------------------
 --
 -- returns the direction of a saddle at (Point) in degrees (0deg...179deg) (0:north 90:east 180:south)
 --
@@ -11,10 +11,13 @@
 --
 --
 -- Algorithm:
---    get all contour lines near the saddle
---    find the next contour line and define its height as "height of this saddle point"
---    find the next contour line which is at least MinDescent lower or higher than the "height of this saddle point", get the closest point on this line
---    get the azimuth between the saddle point and the closest point if the contour line was lower, azimuth+90deg if it was higher
+--    get the mappers oppinion about the direction, try to parse the value as number
+--    if that doesn't work:
+--     get a sample of contour lines near the saddle
+--     find the next contour line and define its height as "height of this saddle point"
+--     find the next contour line which is at least MinDescent lower or higher than the "height of this saddle point", get the closest point on this line
+--     get the azimuth between the saddle point and the closest point if the contour line was lower, azimuth+90deg if it was higher
+--     for all other contour lines in sample: (get the next contour line, calculate the azimuth and correct the first choice with a weight depending on the distance)
 --    if something went wrong, return -1, (-1 could be considered as error flag or as "default orientation" nearly to north direction)
 --
 -- Requirement:
@@ -25,7 +28,7 @@
 --    (as owner of the database where the saddles are, eg "gis")
 --    You also need to install the extension "dblink", but that you have allready done following "HOWTO_Preprocessing"
 --
---    For "dblink('dbname=mydb', 'select ...')" you have to be superuser or you have to provide a passwort with your query. Ig you don't like
+--    For "dblink('dbname=mydb', 'select ...')" you have to be superuser or you have to provide a passwort with your query. If you don't like
 --    that, you could open the connection to countours with "dblink_connect_u('contours_connection', 'dbname=contours')" and then do your query
 --    with "dblink('contours_connection','select ...')". In this case you just the exection right for dblink_connect_u.
 --
@@ -47,99 +50,101 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY,TEXT) RETURNS INTEGER AS 
   result          RECORD;
   saddleheight    FLOAT;
   direction       INTEGER;
+  thisdirection   INTEGER;
+  diffdirection   FLOAT;
+  firstdistance   INTEGER;
   SearchAreaMerc  INTEGER;
-  i               INTEGER;
   querystring     TEXT;
+  i               INTEGER;
 
  BEGIN
-  i:=0;direction:=-1;
+  i:=0;direction:=-1;firstdistance:=-1;
   osmdirection=LOWER(osmdirection);
 
 --
 -- -------------------  First try to parse the given direction ----------------------------------------------------------
 --
-  IF     (osmdirection ~ '^[1-9][0-9]+$')                                                         THEN direction=(osmdirection::INTEGER)%180;
-  ELSEIF (osmdirection ~ '^[0-9]+\.[0-9]+$')                                                      THEN direction=ROUND(osmdirection::FLOAT))%180;
-  ELSEIF (osmdirection='n'   or osmdirection='north' or osmdirection='s' or osmdirection='south') THEN direction:=0; 
-  ELSEIF (osmdirection='ssw' or osmdirection='nne' )                                              THEN direction:=22;
-  ELSEIF (osmdirection='sw'  or osmdirection='ne'  )                                              THEN direction:=45;
-  ELSEIF (osmdirection='wsw' or osmdirection='ene' )                                              THEN direction:=67;
-  ELSEIF (osmdirection='w'   or osmdirection='west'  or osmdirection='e' or osmdirection='east' ) THEN direction:=90;
-  ELSEIF (osmdirection='nw'  or osmdirection='se'  )                                              THEN direction:=135;
-  ELSEIF (osmdirection='wnw' or osmdirection='ese' )                                              THEN direction:=112;
-  ELSEIF (osmdirection='nnw' or osmdirection='sse' )                                              THEN direction:=157;
+  IF     (osmdirection ~ '^[0-9]+$')                                                                                    THEN direction=(osmdirection::INTEGER)%180;
+  ELSEIF (osmdirection ~ '^[0-9]+\.[0-9]+$')                                                                            THEN direction=(ROUND(osmdirection::FLOAT)::INTEGER)%180;
+  ELSEIF (osmdirection='s'   OR osmdirection='south'           OR osmdirection='n'   OR osmdirection='north')           THEN direction:=0; 
+  ELSEIF (osmdirection='ssw' OR osmdirection='south-southwest' OR osmdirection='nne' OR osmdirection='north-northeast') THEN direction:=22;
+  ELSEIF (osmdirection='sw'  OR osmdirection='southwest'       OR osmdirection='ne'  OR osmdirection='northeast')       THEN direction:=45;
+  ELSEIF (osmdirection='wsw' OR osmdirection='west-southwest'  OR osmdirection='ene' OR osmdirection='east-northeast')  THEN direction:=67;
+  ELSEIF (osmdirection='w'   OR osmdirection='west'            OR osmdirection='e'   OR osmdirection='east' )           THEN direction:=90;
+  ELSEIF (osmdirection='nw'  OR osmdirection='northwest'       OR osmdirection='se'  OR osmdirection='southeast' )      THEN direction:=135;
+  ELSEIF (osmdirection='wnw' OR osmdirection='west-northwest'  OR osmdirection='ese' OR osmdirection='east-southeast')  THEN direction:=112;
+  ELSEIF (osmdirection='nnw' OR osmdirection='north-northwest' OR osmdirection='sse' OR osmdirection='south-southeast') THEN direction:=157;
   ELSE
 --
--- -------------------- If there is still no direction, get it from contour lines ----------------------------------------
+-- -------------------  No given direction: estmate it ----------------------------------------------------------
 --
--- open dblink-connection
 --
-   IF ('saddle_contours_connection' = ANY(dblink_get_connections())) THEN
---   RAISE NOTICE 'connection to contours allready exists';
-   ELSE
+-- Open connection to database contours, if its not open
+--
+   IF ((dblink_get_connections() IS NULL) OR ('saddle_contours_connection' != ANY(dblink_get_connections()))) THEN
     PERFORM dblink_connect_u('saddle_contours_connection', 'dbname=contours');
    END IF;
---
--- build query string 
---
    select round(SearchArea/cos(st_y(st_transform(st_setsrid(saddlepoint::geometry,900913),4326))/180*3.14159)) INTO SearchAreaMerc;
-   querystring='SELECT wkb_geometry,height,ST_Distance(st_setsrid(wkb_geometry,900913),''' || saddlepoint || '''::geometry) as dist FROM contours WHERE 
-                  st_setsrid(wkb_geometry,900913) && ST_Expand(''' || saddlepoint || '''::geometry,' || SearchAreaMerc || ') 
-                  ORDER BY ST_Distance(st_setsrid(wkb_geometry,900913),''' || saddlepoint || '''::geometry) ASC LIMIT ' || SearchLimit;
 --
--- Get contour lines and next point to this line from saddle
+-- build query string, we need something like
+--  "select geom,height,ST_Distance(geom,saddle) FROM contours where st_intersects((saddle,search area),geom) order by distance limit searchlimit;"
+--
+   querystring='SELECT wkb_geometry,height,ST_Distance(st_setsrid(wkb_geometry,900913),''' || saddlepoint || '''::geometry) as dist FROM contours WHERE 
+                  ST_Intersects(ST_Expand(''' || saddlepoint || '''::geometry,' || SearchAreaMerc || '),st_setsrid(wkb_geometry,900913)) ORDER BY dist ASC LIMIT ' || SearchLimit;
+--
+-- Loop over this sample
 --
    <<getcontourloop>>  
-   FOR result IN ( SELECT  height::FLOAT,ST_ClosestPoint(st_setsrid(way,900913),st_setsrid(saddlepoint::geometry,900913)) AS cp,dist::FLOAT
+   FOR result IN ( SELECT height::FLOAT,ST_ClosestPoint(st_setsrid(way,900913),st_setsrid(saddlepoint::geometry,900913)) AS cp,dist::FLOAT
                           FROM dblink('saddle_contours_connection',querystring) 
                                AS t1(way geometry,height integer,dist float)
                  ) LOOP
     i:=i+1;
 --
--- First line found defines the "height" of the saddle
+-- first contour line defines the "height" of the saddle point
 --
     IF (i=1) THEN
      saddleheight:=result.height; 
      saddleheight:=result.height; 
- 
-     RAISE NOTICE 'Height=%', result.height;
-     RAISE NOTICE 'Dist=  %', result.dist;
-     RAISE NOTICE 'saddle=%', st_astext(saddlepoint);
-     RAISE NOTICE 'cp=    %', st_astext(result.cp);
     ELSE
-     RAISE NOTICE 'next Height=%', result.height;
-     RAISE NOTICE 'next Dist=%', result.dist;
-     RAISE NOTICE 'cp=    %', st_astext(result.cp);
- 
+     IF (ABS(saddleheight-MinDescent)>MinDescent) THEN
+      SELECT CAST(d AS INTEGER) INTO thisdirection FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
 --
--- one of the next lines defines the orientation / pointing to the next lower point or 90° to the next higher point
+-- decreasing slope: the saddle directs to the closest point on contour line
+-- increasing slope: it directs 90° to this point
 --
-     IF (result.height<saddleheight-MinDescent) THEN
-      RAISE NOTICE 'SP RCP % %',saddlepoint,result.cp;
-      SELECT CAST(d AS INTEGER) INTO direction FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
-      RAISE NOTICE 'Dir: %',direction;
-      direction:=(360+direction)%180;
-      RAISE NOTICE 'Found lower contour line %',result.height;
-      EXIT getcontourloop;
+      IF (result.height<saddleheight-MinDescent) THEN thisdirection:=(360+thisdirection)%180;    END IF;
+      IF (result.height>saddleheight+MinDescent) THEN thisdirection:=(360+thisdirection+90)%180; END IF;
+--    RAISE NOTICE 'New direction in step % dir: % dist: %',i,thisdirection,result.dist;
+--
+-- First choice is made by the first contour line
+--
+      IF(firstdistance<0) THEN
+       direction:=thisdirection;
+       firstdistance:=result.dist;
+--     RAISE NOTICE 'First direction: %',direction;
+      ELSE
+--
+-- all other contour lines may do corrections to the first choice weighted with (distane of the first point/distance of this point)
+--
+       diffdirection=thisdirection-direction;
+--     RAISE NOTICE 'difference %',diffdirection;
+--
+-- Instead of correcting clockwise by 170° do it 10° anti-clockwise
+--
+       IF(diffdirection> 90) THEN diffdirection=180-diffdirection; END IF;
+       IF(diffdirection<-90) THEN diffdirection=diffdirection+180; END IF;
+---    RAISE NOTICE 'Correcting direction by %*%=%',diffdirection,firstdistance/result.dist,diffdirection*(firstdistance/result.dist);
+       direction:=(round(direction+diffdirection*(firstdistance/result.dist))::INTEGER)%180;
+       IF (direction<0) THEN direction:=direction+180; END IF;
+      END IF;
+--    RAISE NOTICE 'Corrected direction: %',direction;     
      END IF;
-     IF (result.height>saddleheight+MinDescent) THEN
-      RAISE NOTICE 'SP RCP % %',saddlepoint,result.cp;
-      SELECT CAST(d AS INTEGER) INTO direction FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
-      RAISE NOTICE 'Dir: %',direction;
-      direction:=(360+direction+90)%180;
-      RAISE NOTICE 'Found higher contour line %',result.height;
-      EXIT getcontourloop;
-     END IF;
-     
     END IF;
    END LOOP getcontourloop;
---
--- close dblink-connection
---
-   PERFORM dblink_disconnect('saddle_contours_connection');
- 
+-- don't close dblink-connection, we will need it again soon
+-- PERFORM dblink_disconnect('saddle_contours_connection');
   END IF;
   RETURN direction;
  END;
 $$ LANGUAGE plpgsql;
- 
