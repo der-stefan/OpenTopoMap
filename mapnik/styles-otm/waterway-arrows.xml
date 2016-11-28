@@ -9,7 +9,7 @@
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
-		<MarkersSymbolizer file="symbols-otm/waterway-arrow.png" placement="line" spacing="400" transform="translate(0 -6)" max-error="0.3"/>
+		<MarkersSymbolizer file="symbols-otm/waterway-arrow.png" placement="line" spacing="600" max-error="0.3"/>
 	</Rule>
 
 	
