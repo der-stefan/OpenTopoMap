@@ -1,8 +1,12 @@
 --
 -- FUNCTION INTEGER getdirection(Point:GEOMETRY in Mercator, Destination: Text)
--- -------------------------------------------------------------------------------
+--          INTEGER getdirection(Point:GEOMETRY in Mercator, Destination: Text, ID BIGINT, updateflag TEXT)
+-- --------------------------------------------------------------------------------------------------------
 --
 -- returns the direction of a saddle at (Point) in degrees (0deg...179deg) (0:north 90:east 180:south)
+-- if ID!=0 and updateflag='update' this funktion updates the column "direction" in planet_osm_node if this column is NULL
+--
+--
 --
 -- Constants
 --    SearchArea:   limit where the next contour line must be (in meters)
@@ -37,16 +41,16 @@
 --     psql databasename -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text,text) to username;"
 --
 
+DROP FUNCTION getsaddledirection(geometry,text);
 
-CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY,TEXT) RETURNS INTEGER AS $$
+CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN TEXT,osm_id IN BIGINT DEFAULT 0,updateflag IN TEXT DEFAULT 'noupdate') RETURNS INTEGER AS $$
 
  DECLARE
   SearchArea   CONSTANT INTEGER := 200;
   SearchLimit  CONSTANT INTEGER :=  10;
   MinDescent   CONSTANT INTEGER :=   5;
 
-  saddlepoint     TEXT := $1::TEXT;
-  osmdirection    TEXT := $2::TEXT;
+  saddlepoint     TEXT := point::TEXT;
   result          RECORD;
   saddleheight    FLOAT;
   direction       INTEGER;
@@ -143,6 +147,13 @@ CREATE OR REPLACE FUNCTION getsaddledirection(GEOMETRY,TEXT) RETURNS INTEGER AS 
      END IF;
     END IF;
    END LOOP getcontourloop;
+--
+-- update planet_osm_point with the estimated direction
+--
+   IF((updateflag='update') AND (osm_id!=0) AND (direction>0))THEN
+    querystring:='UPDATE planet_osm_point SET direction=' || direction || ' WHERE osm_id=' || osm_id || ' AND direction IS NULL;';
+    EXECUTE querystring;
+   END IF;
 -- don't close dblink-connection, we will need it again soon
 -- PERFORM dblink_disconnect('saddle_contours_connection');
   END IF;
