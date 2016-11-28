@@ -4,7 +4,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>[natural] = 'bare_rock'</Filter>
-		<PolygonPatternSymbolizer file="symbols-otm/bare_rock.png" opacity="0.5"/>
+		<PolygonPatternSymbolizer file="symbols-otm/bare_rock.png" opacity="0.3"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom10;
