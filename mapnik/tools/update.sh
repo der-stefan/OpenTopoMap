@@ -18,6 +18,7 @@ else
 	echo $?
 	rm $HOME_PATH/data/updates/changes.osc.gz
 	#cat $HOME_PATH/data/updates/expire.list | /usr/local/bin/render_expired --map=opentopomap --min-zoom=14 --touch-from=12 -t /mnt/tiles/
+	# modify timestamp of meta tiles from exire list here...
 	rm $HOME_PATH/data/updates/expire.list
 	date
 fi
