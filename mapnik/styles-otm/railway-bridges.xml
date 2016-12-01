@@ -2,30 +2,60 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
-		<Filter>([railway] = 'rail')</Filter>
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and not ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/rail_small.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-		<Filter>([railway] = 'rail')</Filter>
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and not ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
 		<LineSymbolizer stroke="white" stroke-width="3.8"/>
 		<LinePatternSymbolizer file="symbols-otm/rail_z13.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>([railway] = 'rail')</Filter>
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and not ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
 		<LineSymbolizer stroke="white" stroke-width="4.5"/>
 		<LinePatternSymbolizer file="symbols-otm/rail_z14.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
-		<Filter>([railway] = 'rail')</Filter>
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and not ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
 		<LineSymbolizer stroke="white" stroke-width="6"/>
 		<LinePatternSymbolizer file="symbols-otm/rail_z15.png"/>
 	</Rule>
+	
+	
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/rail_small_service.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
+		<LineSymbolizer stroke="white" stroke-width="3.8"/>
+		<LinePatternSymbolizer file="symbols-otm/rail_z13_service.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
+		<LineSymbolizer stroke="white" stroke-width="4.5"/>
+		<LinePatternSymbolizer file="symbols-otm/rail_z14_service.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([railway] = 'rail' or [railway] = 'preserved') and ([service] = 'yard' or [service] = 'spur' or [service] = 'siding')</Filter>
+		<LineSymbolizer stroke="white" stroke-width="6"/>
+		<LinePatternSymbolizer file="symbols-otm/rail_z15_service.png"/>
+	</Rule>
+	
 
 	<Rule>
 		&maxscale_zoom13;

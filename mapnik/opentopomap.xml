@@ -408,7 +408,7 @@
 		<StyleName>railway-bridges-casing</StyleName>
 		<StyleName>railway-bridges</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM planet_osm_line WHERE (bridge != 'no') AND (railway IS NOT NULL) AND (layer IS NULL OR layer &lt;= '1')) AS railways </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,service,layer FROM planet_osm_line WHERE (bridge != 'no') AND (railway IS NOT NULL) AND (layer IS NULL OR layer &lt;= '1')) AS railways </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -417,7 +417,7 @@
 		<StyleName>railway-bridges-casing</StyleName>
 		<StyleName>railway-bridges</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,layer FROM planet_osm_line WHERE (bridge != 'no') AND (railway IS NOT NULL) AND (layer &gt; '1')) AS railways </Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,railway,service,layer FROM planet_osm_line WHERE (bridge != 'no') AND (railway IS NOT NULL) AND (layer &gt; '1')) AS railways </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
