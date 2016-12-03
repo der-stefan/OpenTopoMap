@@ -1,11 +1,8 @@
 --
 -- FUNCTION INTEGER getdirection(Point:GEOMETRY in Mercator, Destination: Text)
---          INTEGER getdirection(Point:GEOMETRY in Mercator, Destination: Text, ID BIGINT, updateflag TEXT)
 -- --------------------------------------------------------------------------------------------------------
 --
 -- returns the direction of a saddle at (Point) in degrees (0deg...179deg) (0:north 90:east 180:south)
--- if ID!=0 and updateflag='update' this funktion updates the column "direction" in planet_osm_node if this column is NULL
---
 --
 --
 -- Constants
@@ -22,28 +19,46 @@
 --     find the next contour line which is at least MinDescent lower or higher than the "height of this saddle point", get the closest point on this line
 --     get the azimuth between the saddle point and the closest point if the contour line was lower, azimuth+90deg if it was higher
 --     for all other contour lines in sample: (get the next contour line, calculate the azimuth and correct the first choice with a weight depending on the distance)
---    if something went wrong, return -1, (-1 could be considered as error flag or as "default orientation" nearly to north direction)
+--    if something went wrong, return -135, (this negative return value may be considered as error flag or as "default orientation" nearly to north direction)
 --
 -- Requirement:
 --    you need a database "contours" with a table "contours" with the columns "height" and "wkb_geometry" (in EPSG:900913)
 --    
--- Installation
+-- Installation:
 --    psql databasename < path_to_me/saddledirection.sql
 --    (as owner of the database where the saddles are, eg "gis")
 --    You also need to install the extension "dblink", but that you have allready done following "HOWTO_Preprocessing"
 --
---    For "dblink('dbname=mydb', 'select ...')" you have to be superuser or you have to provide a passwort with your query. If you don't like
---    that, you could open the connection to countours with "dblink_connect_u('contours_connection', 'dbname=contours')" and then do your query
---    with "dblink('contours_connection','select ...')". In this case you just the exection right for dblink_connect_u.
+--    For "dblink('dbname=mydb', 'select ...')" you have to be superuser or you have to provide a passwort with your query. 
+--    Because mapnik is not using the superuser account, the connection to countours is opened with "dblink_connect_u('contours_connection', 'dbname=contours')"
+--    and then the query is done with "dblink('contours_connection','select ...')". In this case mapnik just need the execution 
+--    right for dblink_connect_u.
 --
 --    as postgres
 --     psql databasename -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text) to username;"
 --     psql databasename -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text,text) to username;"
 --
+--    as database user (e.g. "gis"
+--     psql gis <  saddledirection.sql
+       
+--  Test:
+--     gis=> select osm_id,name,ele,direction,getsaddledirection(way,direction) from planet_osm_point where osm_id=321173195;   
+--     --->  getsaddledirection=94
+--     gis=> select osm_id,name,ele,getsaddledirection(way,'east') from planet_osm_point where osm_id=321173195;
+--     --->  getsaddledirection=90
+--     gis=> update planet_osm_point set direction='93.1' where osm_id=321173195;
+--     gis=> select osm_id,name,ele,getsaddledirection(way,direction) from planet_osm_point where osm_id=321173195;
+--     --->  getsaddledirection=93
+--
+--   Updating all unmapped directions:
+--     Getting the direction of a saddle with this fnktion needs a lot of time, but it's fast if the direction is allready mapped. Maybe you want to 
+--     set the direction of all unmapped saddles from time to time, until OSM has all the directions:
+--     psql gis -c "update planet_osm_point set direction=getsaddledirection(way,direction) where \"natural\" in ('saddle','col','notch') and direction is null;"
+--
+--     
+--
 
-DROP FUNCTION getsaddledirection(geometry,text);
-
-CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN TEXT,osm_id IN BIGINT DEFAULT 0,updateflag IN TEXT DEFAULT 'noupdate') RETURNS INTEGER AS $$
+CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN TEXT) RETURNS INTEGER AS $$
 
  DECLARE
   SearchArea   CONSTANT INTEGER := 200;
@@ -147,13 +162,6 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
      END IF;
     END IF;
    END LOOP getcontourloop;
---
--- update planet_osm_point with the estimated direction
---
-   IF((updateflag='update') AND (osm_id!=0) AND (direction>0))THEN
-    querystring:='UPDATE planet_osm_point SET direction=' || direction || ' WHERE osm_id=' || osm_id || ' AND direction IS NULL;';
-    EXECUTE querystring;
-   END IF;
 -- don't close dblink-connection, we will need it again soon
 -- PERFORM dblink_disconnect('saddle_contours_connection');
   END IF;
