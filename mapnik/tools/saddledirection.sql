@@ -51,7 +51,7 @@
 --     --->  getsaddledirection=93
 --
 --   Updating all unmapped directions:
---     Getting the direction of a saddle with this fnktion needs a lot of time, but it's fast if the direction is allready mapped. Maybe you want to 
+--     Getting the direction of a saddle with this funktion needs a lot of time, but it's fast if the direction is allready mapped. Maybe you want to 
 --     set the direction of all unmapped saddles from time to time, until OSM has all the directions:
 --     psql gis -c "update planet_osm_point set direction=getsaddledirection(way,direction) where \"natural\" in ('saddle','col','notch') and direction is null;"
 --
@@ -77,14 +77,14 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
   i               INTEGER;
 
  BEGIN
-  i:=0;direction:=-1;firstdistance:=-1;
+  i:=0;direction:=-135;firstdistance:=-1;
   osmdirection=LOWER(osmdirection);
 
 --
 -- -------------------  First try to parse the given direction ----------------------------------------------------------
 --
-  IF     (osmdirection ~ '^[0-9]+$')                                                                                    THEN direction=(osmdirection::INTEGER)%180;
-  ELSEIF (osmdirection ~ '^[0-9]+\.[0-9]+$')                                                                            THEN direction=(ROUND(osmdirection::FLOAT)::INTEGER)%180;
+  IF     (osmdirection ~ '^[0-9]+$')                                                                                    THEN direction=((osmdirection::INTEGER)+360)%180;
+  ELSEIF (osmdirection ~ '^[0-9]+\.[0-9]+$')                                                                            THEN direction=((ROUND(osmdirection::FLOAT)::INTEGER)+360)%180;
   ELSEIF (osmdirection='s'   OR osmdirection='south'           OR osmdirection='n'   OR osmdirection='north')           THEN direction:=0; 
   ELSEIF (osmdirection='ssw' OR osmdirection='south-southwest' OR osmdirection='nne' OR osmdirection='north-northeast') THEN direction:=22;
   ELSEIF (osmdirection='sw'  OR osmdirection='southwest'       OR osmdirection='ne'  OR osmdirection='northeast')       THEN direction:=45;
