@@ -22,7 +22,7 @@
 --    if something went wrong, return -135, (this negative return value may be considered as error flag or as "default orientation" nearly to north direction)
 --
 -- Requirement:
---    you need a database "contours" with a table "contours" with the columns "height" and "wkb_geometry" (in EPSG:900913)
+--    you need a database "contours" with a table "contours" with the columns "height" and "wkb_geometry" (in EPSG:3857)
 --    
 -- Installation:
 --    psql databasename < path_to_me/saddledirection.sql
@@ -103,18 +103,18 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
    IF ((dblink_get_connections() IS NULL) OR ('saddle_contours_connection' != ANY(dblink_get_connections()))) THEN
     PERFORM dblink_connect_u('saddle_contours_connection', 'dbname=contours');
    END IF;
-   select round(SearchArea/cos(st_y(st_transform(st_setsrid(saddlepoint::geometry,900913),4326))/180*3.14159)) INTO SearchAreaMerc;
+   select round(SearchArea/cos(st_y(st_transform(st_setsrid(saddlepoint::geometry,3857),4326))/180*3.14159)) INTO SearchAreaMerc;
 --
 -- build query string, we need something like
 --  "select geom,height,ST_Distance(geom,saddle) FROM contours where st_intersects((saddle,search area),geom) order by distance limit searchlimit;"
 --
-   querystring='SELECT wkb_geometry,height,ST_Distance(st_setsrid(wkb_geometry,900913),''' || saddlepoint || '''::geometry) as dist FROM contours WHERE 
-                  ST_Intersects(ST_Expand(''' || saddlepoint || '''::geometry,' || SearchAreaMerc || '),st_setsrid(wkb_geometry,900913)) ORDER BY dist ASC LIMIT ' || SearchLimit;
+   querystring='SELECT wkb_geometry,height,ST_Distance(st_setsrid(wkb_geometry,3857),''' || saddlepoint || '''::geometry) as dist FROM contours WHERE 
+                  ST_Intersects(ST_Expand(''' || saddlepoint || '''::geometry,' || SearchAreaMerc || '),st_setsrid(wkb_geometry,3857)) ORDER BY dist ASC LIMIT ' || SearchLimit;
 --
 -- Loop over this sample
 --
    <<getcontourloop>>  
-   FOR result IN ( SELECT height::FLOAT,ST_ClosestPoint(st_setsrid(way,900913),st_setsrid(saddlepoint::geometry,900913)) AS cp,dist::FLOAT
+   FOR result IN ( SELECT height::FLOAT,ST_ClosestPoint(st_setsrid(way,3857),st_setsrid(saddlepoint::geometry,3857)) AS cp,dist::FLOAT
                           FROM dblink('saddle_contours_connection',querystring) 
                                AS t1(way geometry,height integer,dist float)
                  ) LOOP
@@ -125,7 +125,6 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
     IF (i=1) THEN
      saddleheight:=result.height; 
      saddleheight:=result.height; 
---   RAISE NOTICE 'Setting hight to %',saddleheight;
     ELSE
      IF (ABS(saddleheight-result.height)>MinDescent) THEN
       SELECT CAST(d AS INTEGER) INTO thisdirection FROM (SELECT degrees(ST_Azimuth(saddlepoint,result.cp)) AS d) AS foo;
@@ -135,30 +134,25 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
 --
       IF (result.height<saddleheight) THEN thisdirection:=(360+thisdirection)%180;    END IF;
       IF (result.height>saddleheight) THEN thisdirection:=(360+thisdirection+90)%180; END IF;
---    RAISE NOTICE 'New direction in step % height: % dir: % dist: %',i,result.height,thisdirection,result.dist;
 --
 -- First choice is made by the first contour line
 --
       IF(firstdistance<0) THEN
        direction:=thisdirection;
        firstdistance:=result.dist;
---     RAISE NOTICE 'First direction: %',direction;
       ELSE
 --
 -- all other contour lines may do corrections to the first choice weighted with (distane of the first point/distance of this point)
 --
        diffdirection=thisdirection-direction;
---     RAISE NOTICE 'difference %',diffdirection;
 --
 -- Instead of correcting clockwise by 170° do it 10° anti-clockwise
 --
        IF(diffdirection> 90) THEN diffdirection=180-diffdirection; END IF;
        IF(diffdirection<-90) THEN diffdirection=diffdirection+180; END IF;
---     RAISE NOTICE 'Correcting direction by %*%=%',diffdirection,firstdistance/result.dist,diffdirection*(firstdistance/result.dist);
        direction:=(round(direction+diffdirection*(firstdistance/result.dist))::INTEGER)%180;
        IF (direction<0) THEN direction:=direction+180; END IF;
       END IF;
---    RAISE NOTICE 'Corrected direction: %',direction;     
      END IF;
     END IF;
    END LOOP getcontourloop;
