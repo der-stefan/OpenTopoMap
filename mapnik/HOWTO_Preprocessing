@@ -59,16 +59,25 @@ This guide is quite complete, but you should always think before blindly copying
 	psql -d lowzoom -c "CREATE TABLE cities (way geometry(Point,3857), admin_level text, name text, capital text, place text, population integer);"
 	psql -d lowzoom -c "INSERT INTO cities SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_cities') AS t(way geometry(Point,3857), admin_level text, name text, capital text, place text, population integer);"
 	
-	
-	
-
-
-
-
-
-
 
 	
+	
+HOWTO create a function to get saddle directions from contour lines
+===================================================================
+        
+        # alllow username to execute dblink_connect_u() to do cross database lookups 
+        # replace >username< with the account your renderd is using (maybe "gis" or "tirex" ...)
+
+        psql -d gis -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text) to username;"
+        psql -d gis -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text,text) to username;"
+
+        # install function getsaddledirection(GEOMETRY,TEXT)
+        psql gis <  mapnik/tools/saddledirection.sql
+
+        # Optional: Update all unmapped directions of saddles, cols and notches to improve rendering speed
+        UPDATE planet_osm_point SET direction=getsaddledirection(way,direction) WHERE "natural" in ('saddle','col','notch') AND direction IS NULL;
+
+
 	
 
 # below only tests, not necessary to execute
@@ -189,3 +198,17 @@ SELECT row_number() OVER() a AS row, unnest(members) AS member FROM planet_osm_r
     	FROM (
     	SELECT row_number() OVER() a AS row, unnest(members) AS member
     	FROM planet_osm_rels
+
+
+==================================================================================
+
+# Calculate direction by using the contour lines (direction should be something near north to south (around 0 oder 180)
+SELECT osm_id,name,ele,getsaddledirection(way,NULL) FROM planet_osm_point WHERE "natural"='saddle' AND name='Glaswandscharte';
+
+# Interprete mapped direction (direction should be 177)
+SELECT osm_id,name,ele,getsaddledirection(way,'177') FROM planet_osm_point WHERE "natural"='saddle' AND name='Glaswandscharte';
+
+# Interprete mapped direction as text (direction should be 157)
+SELECT osm_id,name,ele,getsaddledirection(way,'sse') FROM planet_osm_point WHERE "natural"='saddle' AND name='Glaswandscharte';
+
+

@@ -1,6 +1,6 @@
 --
--- FUNCTION INTEGER getdirection(Point:GEOMETRY in Mercator, Destination: Text)
--- --------------------------------------------------------------------------------------------------------
+-- FUNCTION INTEGER getsaddledirection(Point:GEOMETRY in Mercator, Direction: Text)
+-- --------------------------------------------------------------------------------
 --
 -- returns the direction of a saddle at (Point) in degrees (0deg...179deg) (0:north 90:east 180:south)
 --
@@ -9,6 +9,7 @@
 --    SearchArea:   limit where the next contour line must be (in meters)
 --    SearchLimit:  maximum number of examined contour lines
 --    MinDescent:   minimum distance to go down the slope and search for the next lower contour line (in units of your contour lines, normally meters)
+--    ErrorReturn:  direction which is returned in case of errors
 --
 --
 -- Algorithm:
@@ -61,9 +62,10 @@
 CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN TEXT) RETURNS INTEGER AS $$
 
  DECLARE
-  SearchArea   CONSTANT INTEGER := 200;
-  SearchLimit  CONSTANT INTEGER :=  10;
-  MinDescent   CONSTANT INTEGER :=   5;
+  SearchArea   CONSTANT INTEGER :=  200;
+  SearchLimit  CONSTANT INTEGER :=   10;
+  MinDescent   CONSTANT INTEGER :=    5;
+  ErrorReturn  CONSTANT INTEGER := -135;
 
   saddlepoint     TEXT := point::TEXT;
   result          RECORD;
@@ -77,9 +79,10 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
   i               INTEGER;
 
  BEGIN
-  i:=0;direction:=-135;firstdistance:=-1;
+  i:=0;
+  direction:=ErrorReturn;
+  firstdistance:=-1;
   osmdirection=LOWER(osmdirection);
-
 --
 -- -------------------  First try to parse the given direction ----------------------------------------------------------
 --
