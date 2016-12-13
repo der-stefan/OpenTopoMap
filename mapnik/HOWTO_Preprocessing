@@ -65,17 +65,17 @@ This guide is quite complete, but you should always think before blindly copying
 HOWTO create a function to get saddle directions from contour lines
 ===================================================================
         
-        # alllow username to execute dblink_connect_u() to do cross database lookups 
-        # replace >username< with the account your renderd is using (maybe "gis" or "tirex" ...)
+	# allow username to execute dblink_connect_u() to do cross database lookups 
+	# replace >username< with the account your renderd is using (maybe "gis" or "tirex" ...)
 
-        psql -d gis -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text) to username;"
-        psql -d gis -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text,text) to username;"
+	psql -d gis -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text) to username;"
+	psql -d gis -c "GRANT EXECUTE ON FUNCTION dblink_connect_u(text,text) to username;"
 
-        # install function getsaddledirection(GEOMETRY,TEXT)
-        psql gis <  mapnik/tools/saddledirection.sql
+	# install function getsaddledirection(GEOMETRY,TEXT)
+	psql gis <  mapnik/tools/saddledirection.sql
 
-        # Optional: Update all unmapped directions of saddles, cols and notches to improve rendering speed
-        UPDATE planet_osm_point SET direction=getsaddledirection(way,direction) WHERE "natural" in ('saddle','col','notch') AND direction IS NULL;
+	# Optional: Update all unmapped directions of saddles, cols and notches to improve rendering speed
+	UPDATE planet_osm_point SET direction=getsaddledirection(way,direction) WHERE "natural" in ('saddle','col','notch') AND direction IS NULL;
 
 
 	

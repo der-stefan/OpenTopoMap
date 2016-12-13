@@ -1,10 +1,17 @@
 <Style name="test">
-	<Rule>
+	<!--<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<!--<Filter>[waterway] = 'river'</Filter>-->
+		<Filter>[waterway] = 'river'</Filter>
 		<LineSymbolizer stroke="red" stroke-width="1" />
 		<MarkersSymbolizer file="symbols-otm/test.png" placement="vertex-first" allow-overlap="true" />
 		<MarkersSymbolizer file="symbols-otm/test.png" placement="vertex-last" allow-overlap="true" />
+	</Rule>-->
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
+				<MarkersSymbolizer file="symbols-otm/waterway-arrow.png" placement="line" spacing="500"/>
+				<TextSymbolizer fontset-name="sans-oblique" size="11" fill="#2020ff" minimum-path-length="200" max-char-angle-delta="30" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="line" spacing="500">[name]</TextSymbolizer>
 	</Rule>
 </Style>

@@ -553,7 +553,7 @@
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
-        </Layer>
+	</Layer>
 
 	<Layer name="symbols-point">
 		<StyleName>symbols-1</StyleName>
