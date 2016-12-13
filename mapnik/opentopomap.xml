@@ -71,6 +71,7 @@
 	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
 	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
 	<!ENTITY symbols-point SYSTEM "styles-otm/symbols-point.xml">
+        <!ENTITY symbols-saddle SYSTEM "styles-otm/symbols-saddle.xml">
 	<!ENTITY text-roads-ref SYSTEM "styles-otm/text-roads-ref.xml">
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
 	<!ENTITY test SYSTEM "styles-otm/test.xml">
@@ -143,6 +144,7 @@
 	&symbols-important-point;
 	&text-natural-poly-lowzoom;
 	&text-natural-poly;
+        &symbols-saddle;
 	&text-natural-point;
 	&symbols-1;
 	&symbols-2;
@@ -527,7 +529,7 @@
 	<Layer name="text-natural-point">
 		<StyleName>text-natural-point</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,"natural",ele FROM planet_osm_point) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,place,"natural",ele FROM planet_osm_point) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -544,6 +546,15 @@
 		</Datasource>
 	</Layer>
 
+	<Layer name="symbols-saddle">
+		<StyleName>symbols-saddle</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural",getsaddledirection(way,direction) as direction FROM planet_osm_point where "natural"='saddle' or "natural"='col' or "natural"='notch') AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+        </Layer>
+
 	<Layer name="symbols-point">
 		<StyleName>symbols-1</StyleName>
 		<StyleName>symbols-2</StyleName>
@@ -554,7 +565,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
+
 	<Layer name="road-names-text">
 		<StyleName>road-names-text</StyleName>
 		<Datasource>

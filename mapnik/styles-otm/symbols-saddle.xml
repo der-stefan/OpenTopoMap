@@ -1,0 +1,29 @@
+<Style name="symbols-saddle">
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom14;
+		<Filter>([natural] = 'saddle')</Filter>
+		<PointSymbolizer file="symbols-otm/saddle-10.svg" transform="rotate([direction]) scale(1)" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom14;
+		<Filter>([natural] = 'col' or [natural] = 'notch')</Filter>
+		<PointSymbolizer file="symbols-otm/saddle-10.svg" transform="rotate([direction]) scale(1)" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([natural] = 'saddle')</Filter>
+		<PointSymbolizer file="symbols-otm/saddle-15.svg" transform="rotate([direction]) scale(1)" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([natural] = 'col' or [natural] = 'notch')</Filter>
+		<PointSymbolizer file="symbols-otm/saddle-15.svg" transform="rotate([direction]) scale(0.8)" />
+	</Rule>
+</Style>
