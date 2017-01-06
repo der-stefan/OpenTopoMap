@@ -391,7 +391,7 @@
 	<Layer name="railway-points" clear-label-cache="on">
 		<StyleName>railway-points</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway,subway FROM planet_osm_point) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,railway,station,subway FROM planet_osm_point) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
