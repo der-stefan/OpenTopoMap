@@ -114,6 +114,6 @@
 		&minscale_zoom17;
 		<Filter>[leisure] = 'pitch'</Filter>
 		<LineSymbolizer stroke="#8eb961" stroke-width="0.5" />
-		<PolygonSymbolizer fill="#a3ff9e" fill-opacity="0.5" />
+		<PolygonSymbolizer fill="#b6dea4" fill-opacity="0.5" />
 	</Rule>
 </Style>

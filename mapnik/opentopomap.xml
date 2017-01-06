@@ -270,7 +270,7 @@
 	<Layer name="cliffs-polygons">
 		<StyleName>cliffs</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,area,"natural","man_made",highway,barrier FROM planet_osm_polygon WHERE (area != 'yes')) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier FROM planet_osm_polygon) AS cliff </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -391,7 +391,7 @@
 	<Layer name="railway-points" clear-label-cache="on">
 		<StyleName>railway-points</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway,subway FROM planet_osm_point) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,railway,station,subway FROM planet_osm_point) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -540,20 +540,20 @@
 		<StyleName>symbols-2</StyleName>
 		<StyleName>symbols-poly</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,NULL AS "summit:cross",tourism,"power","generator:source","site_type",sport,type,disused,abandoned,railway,way_area FROM planet_osm_polygon) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,NULL AS "summit:cross",tourism,"power","generator:source","site_type",leisure,sport,type,disused,abandoned,railway,way_area FROM planet_osm_polygon) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="symbols-saddle">
+<!--	<Layer name="symbols-saddle">
 		<StyleName>symbols-saddle</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,"natural",getsaddledirection(way,direction) as direction FROM planet_osm_point where "natural"='saddle' or "natural"='col' or "natural"='notch') AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
-        </Layer>
+	</Layer>-->
 
 	<Layer name="symbols-point">
 		<StyleName>symbols-1</StyleName>

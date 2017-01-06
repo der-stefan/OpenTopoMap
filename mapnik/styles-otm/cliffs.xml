@@ -77,6 +77,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'pier')</Filter>
+		<PolygonSymbolizer fill="white" />
 		<LineSymbolizer stroke="#505050" stroke-width="1"/>
 	</Rule>
 	<Rule>
