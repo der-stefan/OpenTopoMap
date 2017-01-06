@@ -6,4 +6,17 @@
 		<PolygonSymbolizer fill="#a6b7ff" fill-opacity="0.2" />
 		<PointSymbolizer file="symbols-otm/photovoltaic.png"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom14;
+		<Filter>([leisure] = 'pitch') and ([sport] = 'golf') and ([way_area] &gt; 25000)</Filter>
+		<PointSymbolizer file="symbols-otm/golf.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([leisure] = 'pitch') and ([sport] = 'golf') and ([way_area] &gt; 25000)</Filter>
+		<PointSymbolizer file="symbols-otm/golf_z15.png"/>
+	</Rule>
 </Style>
