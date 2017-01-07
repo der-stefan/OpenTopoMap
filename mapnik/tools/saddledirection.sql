@@ -1,5 +1,5 @@
 --
--- FUNCTION INTEGER getsaddledirection(Point:GEOMETRY in Mercator, Direction: Text)
+-- FUNCTION    TEXT getsaddledirection(Point:GEOMETRY in Mercator, Direction: Text)
 -- --------------------------------------------------------------------------------
 --
 -- returns the direction of a saddle at (Point) in degrees (0deg...179deg) (0:north 90:east 180:south)
@@ -9,7 +9,7 @@
 --    SearchArea:   limit where the next contour line must be (in meters)
 --    SearchLimit:  maximum number of examined contour lines
 --    MinDescent:   minimum distance to go down the slope and search for the next lower contour line (in units of your contour lines, normally meters)
---    ErrorReturn:  direction which is returned in case of errors
+--    ErrorReturn:  value which is returned in case of errors
 --
 --
 -- Algorithm:
@@ -20,7 +20,8 @@
 --     find the next contour line which is at least MinDescent lower or higher than the "height of this saddle point", get the closest point on this line
 --     get the azimuth between the saddle point and the closest point if the contour line was lower, azimuth+90deg if it was higher
 --     for all other contour lines in sample: (get the next contour line, calculate the azimuth and correct the first choice with a weight depending on the distance)
---    if something went wrong, return -135, (this negative return value may be considered as error flag or as "default orientation" nearly to north direction)
+--    if something went wrong, return ErrorReturn. You could use negative return value, which could be considered as error flag or as "default orientation" nearly to north
+--       direction. Or you may use NULL to diferent between calculated values and errors.
 --
 -- Requirement:
 --    you need a database "contours" with a table "contours" with the columns "height" and "wkb_geometry" (in EPSG:3857)
@@ -65,7 +66,7 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
   SearchArea   CONSTANT INTEGER :=  200;
   SearchLimit  CONSTANT INTEGER :=   10;
   MinDescent   CONSTANT INTEGER :=    5;
-  ErrorReturn  CONSTANT INTEGER := -135;
+  ErrorReturn  CONSTANT INTEGER := NULL;
 
   saddlepoint     TEXT := point::TEXT;
   result          RECORD;
@@ -86,8 +87,8 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
 --
 -- -------------------  First try to parse the given direction ----------------------------------------------------------
 --
-  IF     (osmdirection ~ '^[0-9]+$')                                                                                    THEN direction=((osmdirection::INTEGER)+360)%180;
-  ELSEIF (osmdirection ~ '^[0-9]+\.[0-9]+$')                                                                            THEN direction=((ROUND(osmdirection::FLOAT)::INTEGER)+360)%180;
+  IF     (osmdirection ~ '^-*[0-9]+$')                                                                                  THEN direction=((osmdirection::INTEGER)+360)%180;
+  ELSEIF (osmdirection ~ '^-*[0-9]+\.[0-9]+$')                                                                          THEN direction=((ROUND(osmdirection::FLOAT)::INTEGER)+360)%180;
   ELSEIF (osmdirection='s'   OR osmdirection='south'           OR osmdirection='n'   OR osmdirection='north')           THEN direction:=0; 
   ELSEIF (osmdirection='ssw' OR osmdirection='south-southwest' OR osmdirection='nne' OR osmdirection='north-northeast') THEN direction:=22;
   ELSEIF (osmdirection='sw'  OR osmdirection='southwest'       OR osmdirection='ne'  OR osmdirection='northeast')       THEN direction:=45;
@@ -162,6 +163,6 @@ CREATE OR REPLACE FUNCTION getsaddledirection(point IN GEOMETRY,osmdirection IN 
 -- don't close dblink-connection, we will need it again soon
 -- PERFORM dblink_disconnect('saddle_contours_connection');
   END IF;
-  RETURN direction;
+  RETURN direction::text;
  END;
 $$ LANGUAGE plpgsql;
