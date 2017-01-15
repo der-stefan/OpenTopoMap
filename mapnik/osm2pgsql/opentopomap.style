@@ -141,6 +141,7 @@ node,way   public_transport text     polygon
 node,way   railway      text         linear
 node,way   ref          text         linear
 node,way   religion     text         nocache
+node,way	resource	text		polygon
 node,way   route        text         linear
 node,way   ruins        text         polygon
 node,way   service      text         linear

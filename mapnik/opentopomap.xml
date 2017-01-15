@@ -71,7 +71,7 @@
 	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
 	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
 	<!ENTITY symbols-point SYSTEM "styles-otm/symbols-point.xml">
-        <!ENTITY symbols-saddle SYSTEM "styles-otm/symbols-saddle.xml">
+    <!ENTITY symbols-saddle SYSTEM "styles-otm/symbols-saddle.xml">
 	<!ENTITY text-roads-ref SYSTEM "styles-otm/text-roads-ref.xml">
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
 	<!ENTITY test SYSTEM "styles-otm/test.xml">
@@ -144,7 +144,7 @@
 	&symbols-important-point;
 	&text-natural-poly-lowzoom;
 	&text-natural-poly;
-        &symbols-saddle;
+    &symbols-saddle;
 	&text-natural-point;
 	&symbols-1;
 	&symbols-2;
