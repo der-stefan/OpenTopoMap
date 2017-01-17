@@ -51,7 +51,7 @@
 		&minscale_zoom17;
 		<Filter>( ([man_made] = 'tower') and (([tower:type] = 'observation') or ([tourism] = 'viewpoint')))</Filter>
 		<PointSymbolizer file="symbols-otm/observation_tower.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="9" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="9" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -64,7 +64,7 @@
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'communications_tower') or ([communication:radio] = 'yes') or ([communication:television] = 'yes')</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="8" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -111,7 +111,7 @@
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'water_tower')</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="5" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="5" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
@@ -124,7 +124,7 @@
 		&minscale_zoom17;
 		<Filter>([natural] = 'spring')</Filter>
 		<PointSymbolizer file="symbols-otm/spring_z15.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#2020ff" margin="1" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#2020ff" margin="1" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -137,7 +137,7 @@
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([natural] = 'cave_entrance')</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
@@ -195,7 +195,7 @@
 		&minscale_zoom17;
 		<Filter>(([historic] = 'archaeological_site') and ([site_type] = 'tumulus'))</Filter>
 		<PointSymbolizer file="symbols-otm/tumulus.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 	
 	<Rule>
@@ -241,14 +241,14 @@
 		&minscale_zoom17;
  		<Filter>[tourism] = 'alpine_hut'</Filter>
 		<PointSymbolizer file="symbols-otm/hut_alpine.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
  		<Filter>[tourism] = 'wilderness_hut'</Filter>
 		<PointSymbolizer file="symbols-otm/hut_wilderness.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="6" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 	
 	<Rule>
@@ -268,7 +268,7 @@
 		&minscale_zoom17;
  		<Filter>([tourism] = 'camp_site') </Filter>
 		<PointSymbolizer file="symbols-otm/campsite.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 
 
