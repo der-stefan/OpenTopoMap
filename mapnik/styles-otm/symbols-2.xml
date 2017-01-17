@@ -195,7 +195,7 @@
 		&minscale_zoom17;
 		<Filter>(([historic] = 'archaeological_site') and ([site_type] = 'tumulus'))</Filter>
 		<PointSymbolizer file="symbols-otm/tumulus.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#2020ff" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
 	</Rule>
 	
 	<Rule>
@@ -268,7 +268,7 @@
 		&minscale_zoom17;
  		<Filter>([tourism] = 'camp_site') </Filter>
 		<PointSymbolizer file="symbols-otm/campsite.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="#2020ff" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100">[name]</TextSymbolizer>
 	</Rule>
 
 
