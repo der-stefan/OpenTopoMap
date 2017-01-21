@@ -12,25 +12,29 @@ HOWTO create a DEM for contours and hillshade
 =============================================
 
 A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
-http://opentopomap.org
+https://opentopomap.org
 
-This guide is quite complete, but you should always think before blindly copying the commands.
 
 ########################
 # The new approach is to take the DEM and contours from opensnowmap
+########################
+
 createdb contours
 sudo -u postgres psql -d contours -c 'CREATE EXTENSION postgis;'
-# now import the contours...
+
+# Now import the contours e.g. from opensnowmap. If you want to create them on your on, see the old description below.
 
 sudo -u postgres psql -d contours -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;'
 sudo -u postgres psql -d contours -c 'GRANT CONNECT ON DATABASE contours TO tirex;'
+
+# create a geohash index if you have enough disk space:
 psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Transform(wkb_geometry,4326)));"
 
-# not necessary: psql -d contours -c "CLUSTER contours USING contours_geohash;"
 
 
 #########################
-# Old description:
+# Old description (not verified)
+#########################
 
 # Install needed packages
 	sudo apt-get install gdal-bin python-gdal
