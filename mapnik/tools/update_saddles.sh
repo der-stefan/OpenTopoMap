@@ -1,29 +1,24 @@
 #!/bin/bash
-
 #
 #  get all saddles, cols and notches with no direction, direction
 #  described as text ("north", "nne" ..) or negative directions ("-10" is not
-#  an error, but "170" is the same direction). 
-#  Write the result of getsaddledirection() to direction. 
+#  an error, but "170" is the same direction). Estimate directions with
+#  height data and write this estimation back to datsabase.
 #
-#  The first run will take a long time, because nearly no saddle has a
+#  The first run will update nearly all saddles, because most saddles has no
 #  mapped direction. The following runs will be faster, because only new
 #  saddles will be calculated.
 
 
-# Constants: Name of the database, path to saddledirection.sql
+# Constants: Name of the database, path tools and DEM file
 
 DBname='gis'
-Path='mapnik/tools/'
+toolpath='mapnik/tools/'
+demfile='mapnik/data/srtm.tiff'
 
-
-#
-# (re)install the function "getsaddledirection()" 
-#
-psql $DBname < $Path/saddledirection.sql
-
-#
-# Update all saddles with direction!=[0-180]
-#
-psql $DBname -c "UPDATE planet_osm_point SET direction=getsaddledirection(way,direction) WHERE \"natural\" IN ('saddle','col','notch') AND (direction IS NULL or direction NOT SIMILAR TO '[0-9]+');"
+psql -A -t -F ";" $DBname -c \
+  "SELECT osm_id,ST_X(ST_Astext(ST_Transform(way,4326))),ST_Y(ST_Astext(ST_Transform(way,4326))),direction \
+   FROM planet_osm_point WHERE \"natural\" IN ('saddle','col','notch') AND \
+                               (direction IS NULL or direction NOT SIMILAR TO '[0-9]+');;" \
+   | $toolpath/saddledirection -f $demfile -o sql | psql $DBname 
 

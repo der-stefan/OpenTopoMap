@@ -52,6 +52,7 @@ psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Tr
 
 
 # Merge all .tifs into one huge tif. This file will is the raw DEM with full resolution and the start for any further steps.
+# dont't delete raw.tif after these steps, you may use it for estimation of saddle directions
 	gdal_merge.py -n 32767 -co BIGTIFF=YES -co TILED=YES -co COMPRESS=LZW -co PREDICTOR=2 -o ../../raw.tif *.hgt.tif
 
 # Convert the raw file into Mercator projection, interpolate and shrink
