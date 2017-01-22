@@ -25,7 +25,7 @@
 	<StyleName>relief-5000</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">hillshade/relief-5000.tif</Parameter>
+		<Parameter name="file">dem/relief-5000.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
@@ -41,7 +41,7 @@
 	<StyleName>relief-500</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">hillshade/relief-500.tif</Parameter>
+		<Parameter name="file">dem/relief-500.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>

@@ -14,7 +14,7 @@
 
 DBname='gis'
 toolpath='mapnik/tools/'
-demfile='mapnik/data/srtm.tiff'
+demfile='mapnik/dem/dem-srtm.tiff'
 
 psql -A -t -F ";" $DBname -c \
   "SELECT osm_id,ST_X(ST_Astext(ST_Transform(way,4326))),ST_Y(ST_Astext(ST_Transform(way,4326))),direction \

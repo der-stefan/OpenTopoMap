@@ -9,7 +9,7 @@
 	<StyleName>hillshade-5000</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">hillshade/hillshade-5000.tif</Parameter>
+		<Parameter name="file">dem/hillshade-5000.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
@@ -25,7 +25,7 @@
 	<StyleName>hillshade-1000</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">hillshade/hillshade-1000.tif</Parameter>
+		<Parameter name="file">dem/hillshade-1000.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
@@ -41,7 +41,7 @@
 	<StyleName>hillshade-500</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">hillshade/hillshade-500.tif</Parameter>
+		<Parameter name="file">dem/hillshade-500.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
@@ -57,8 +57,8 @@
 	<StyleName>hillshade-90</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<!--Parameter name="file">hillshade/hillshade-90.tif</Parameter-->
-		<Parameter name="file">hillshade/hillshade-30m-jpeg.tif</Parameter>
+		<!--Parameter name="file">dem/hillshade-90.tif</Parameter-->
+		<Parameter name="file">dem/hillshade-30m-jpeg.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
