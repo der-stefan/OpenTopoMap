@@ -116,7 +116,7 @@ This guide is quite complete, but you should always think about before blindly c
 	createuser --createdb osmuser
 	exit
 	createdb gis
-	sudo -u postgres psql -d gis -c 'CREATE EXTENSION postgis;'
+	psql -d gis -c 'CREATE EXTENSION postgis;'
 	
 
 # Download OpenTopoMap files
@@ -140,7 +140,7 @@ This guide is quite complete, but you should always think about before blindly c
 	cd ~/data/updates
 	wget http://download.geofabrik.de/europe-updates/state.txt
 
-	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/europe-latest.osm.pbf
+	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
 
 
 # Now do the preprocessing of the OSM data for low zoom levels
