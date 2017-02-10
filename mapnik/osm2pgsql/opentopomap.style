@@ -144,6 +144,8 @@ node,way   religion     text         nocache
 node,way	resource	text		polygon
 node,way   route        text         linear
 node,way   ruins        text         polygon
+way        sac_scale    text         linear
+way        via_ferrata_scale    text         linear
 node,way   service      text         linear
 node,way   shop         text         polygon
 node,way   site_type    text         polygon
@@ -157,6 +159,7 @@ node,way   toll         text         linear
 node,way   tourism      text         polygon
 node,way   tower:type   text         linear
 way        tracktype    text         linear
+way        trail_visibility     text	linear
 node		train		text		polygon
 node,way   tunnel       text         linear
 node,way   type         text         polygon
