@@ -132,6 +132,7 @@ node,way   natural      text         polygon  # natural=coastline tags are disca
 node,way   office       text         polygon
 node,way   oneway       text         linear
 node,way   operator     text         linear
+node,way	orchard		text		polygon
 node,way   place        text         polygon
 node       poi          text
 node,way   population   text         linear
