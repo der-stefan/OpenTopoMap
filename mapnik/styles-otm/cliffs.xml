@@ -76,7 +76,13 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([man_made] = 'pier')</Filter>
+		<Filter>(([man_made] = 'pier') and ([area] = 'no'))</Filter>
+		<LineSymbolizer stroke="#505050" stroke-width="1"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>(([man_made] = 'pier') and ([area] = 'yes'))</Filter>
 		<PolygonSymbolizer fill="white" />
 		<LineSymbolizer stroke="#505050" stroke-width="1"/>
 	</Rule>

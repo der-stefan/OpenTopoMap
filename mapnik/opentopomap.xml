@@ -262,7 +262,7 @@
 	<Layer name="cliffs-lines">
 		<StyleName>cliffs</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier FROM planet_osm_line) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier,'no' as area FROM planet_osm_line) AS cliff </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -270,7 +270,7 @@
 	<Layer name="cliffs-polygons">
 		<StyleName>cliffs</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier FROM planet_osm_polygon) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier,'yes' as area FROM planet_osm_polygon) AS cliff </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
