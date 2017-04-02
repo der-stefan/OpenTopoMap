@@ -56,6 +56,7 @@
 	<!ENTITY bridges-fill SYSTEM "styles-otm/bridges-fill.xml">
 	<!ENTITY bridges-middle SYSTEM "styles-otm/bridges-middle.xml">
 	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
+	<!ENTITY aeroways-areas SYSTEM "styles-otm/aeroways-areas.xml">
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
 	<!ENTITY text-natural-line SYSTEM "styles-otm/text-natural-line.xml">
@@ -134,6 +135,7 @@
 	&bridges-fill;
 	&bridges-middle;
 	&aerialways;
+        &aeroways-areas;
 	&powerlines;
 	&powertowers;
 	&text-natural-line;
@@ -366,6 +368,16 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+	<Layer name="aerowaysareas">
+		<StyleName>aeroways-areas</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,aeroway,way_area FROM planet_osm_polygon WHERE aeroway IS NOT NULL) AS aeroareas</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
 	
 	<Layer name="roads-lowzoom">
 		<StyleName>roads-casing-lowzoom</StyleName>
@@ -472,6 +484,9 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+
+
 	
 	<Layer name="powerlines">
 		<StyleName>powerlines</StyleName>
