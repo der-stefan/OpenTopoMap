@@ -382,7 +382,7 @@
 		<StyleName>roads-fill</StyleName>
 		<StyleName>trams</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,name,service,surface,tracktype,lanes,embankment,oneway,railway FROM planet_osm_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND (highway IS NOT NULL OR railway='tram') ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
+			<Parameter name="table">(SELECT way,ST_Length(way) AS length,highway,name,sac_scale,trail_visibility,via_ferrata_scale,service,surface,tracktype,lanes,embankment,oneway,railway FROM planet_osm_line WHERE (!scale_denominator! &gt; 300000) OR ((bridge IS NULL OR bridge = 'no') AND (tunnel IS NULL OR tunnel != 'yes')) AND (highway IS NOT NULL OR railway='tram') ORDER BY (CASE WHEN highway IN ('motorway','trunk') THEN 5 WHEN highway='primary' THEN 1 WHEN highway='secondary' THEN 2 WHEN highway='tertiary' THEN 3 ELSE 4 END) DESC ) AS roads</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
