@@ -293,12 +293,7 @@
 		<Filter>[highway] = 'track' and [tracktype] = 'grade5'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5" stroke-dasharray="3,3" />
 	</Rule>
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom14;
-		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="0.6" stroke-dasharray="1.6,1.6"/>
-	</Rule>
+
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
@@ -311,6 +306,89 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="4.5" />
 	</Rule>
+
+
+<!-- pathes -->
+
+<!-- a tiny line for alle pathes to connect the dots -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'via_ferrata'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.1"/>
+	</Rule>
+
+<!-- visible path, sac_scale=T1-2, no ferrata, "normal way" -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;		
+                <Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6"/>
+	</Rule>
+
+
+<!-- visible path, sac_scale=T3-4, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_mountain_hiking' or [sac_scale] = 'alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,1.6,1.6,4.5"/>
+	</Rule>
+
+<!-- visible path, sac_scale=T5-6, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_alpine_hiking' or [sac_scale] = 'difficult_alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,5"/>
+	</Rule>
+
+<!-- invisible path, sac_scale=T1-2, no ferrata, "normal hidden way" -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6" stroke-opacity="0.5"/>
+	</Rule>
+
+
+<!-- invisible path, sac_scale=T3-4, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_mountain_hiking' or [sac_scale] = 'alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,1.6,1.6,4.5" stroke-opacity="0.6"/>
+	</Rule>
+
+<!-- invisible path, sac_scale=T5-6, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_alpine_hiking' or [sac_scale] = 'difficult_alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,5" stroke-opacity="0.6"/>
+	</Rule>
+
+
+
+<!-- ferratas are rendered like visible T5-6 -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([highway] = 'via_ferrata') or (([via_ferrata_scale] != null and [via_ferrata_scale] != '0') and ([highway] = 'path' or [highway] = 'footway'))</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,5"/>
+	</Rule>
+
+
+<!-- end of pathes -->
+
 
 
 <!-- zoom 15 -->
@@ -368,12 +446,89 @@
 		<Filter>[highway] = 'track' and [tracktype] = 'grade5'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.9" stroke-dasharray="4,4" />
 	</Rule>
+
+<!-- pathes -->
+
+<!-- a tiny line for alle pathes to connect the dots -->
+
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
-		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway'</Filter>
+		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'via_ferrata'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.05"/>
+	</Rule>
+
+<!-- visible path, sac_scale=T1-2, no ferrata, "normal way" -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
 		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2"/>
 	</Rule>
+
+
+<!-- visible path, sac_scale=T3-4, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_mountain_hiking' or [sac_scale] = 'alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2,1.1,2,1.1,6"/>
+	</Rule>
+
+<!-- visible path, sac_scale=T5-6, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_alpine_hiking' or [sac_scale] = 'difficult_alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2,1.1,8"/>
+	</Rule>
+
+<!-- invisible path, sac_scale=T1-2, no ferrata, "normal hidden way" -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2" stroke-opacity="0.5"/>
+	</Rule>
+
+
+<!-- invisible path, sac_scale=T3-4, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_mountain_hiking' or [sac_scale] = 'alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2,1.1,2,1.1,6" stroke-opacity="0.6"/>
+	</Rule>
+
+<!-- invisible path, sac_scale=T5-6, no ferrata -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_alpine_hiking' or [sac_scale] = 'difficult_alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2,1.1,8" stroke-opacity="0.6"/>
+	</Rule>
+
+
+
+<!-- ferratas are rendered like visible T5-6 -->
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>([highway] = 'via_ferrata') or (([via_ferrata_scale] != null and [via_ferrata_scale] != '0') and ([highway] = 'path' or [highway] = 'footway'))</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.1,2,1.1,8"/>
+	</Rule>
+
+
+<!-- end of pathes -->
+
+
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
