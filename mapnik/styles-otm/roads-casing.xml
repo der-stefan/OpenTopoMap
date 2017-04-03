@@ -316,7 +316,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'via_ferrata'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-opacity="0.1"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-opacity="0.1"/>
 	</Rule>
 
 <!-- visible path, sac_scale=T1-2, no ferrata, "normal way" -->
@@ -325,7 +325,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;		
                 <Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6"/>
 	</Rule>
 
 
@@ -335,7 +335,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_mountain_hiking' or [sac_scale] = 'alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,1.6,1.6,4.5"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6,1.6,1.6,1.6,4.5"/>
 	</Rule>
 
 <!-- visible path, sac_scale=T5-6, no ferrata -->
@@ -344,7 +344,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_alpine_hiking' or [sac_scale] = 'difficult_alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,5"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6,1.6,5"/>
 	</Rule>
 
 <!-- invisible path, sac_scale=T1-2, no ferrata, "normal hidden way" -->
@@ -353,7 +353,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6" stroke-opacity="0.5"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6" stroke-opacity="0.5"/>
 	</Rule>
 
 
@@ -363,7 +363,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_mountain_hiking' or [sac_scale] = 'alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,1.6,1.6,4.5" stroke-opacity="0.6"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6,1.6,1.6,1.6,4.5" stroke-opacity="0.6"/>
 	</Rule>
 
 <!-- invisible path, sac_scale=T5-6, no ferrata -->
@@ -372,7 +372,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([trail_visibility]='no' or [trail_visibility]='horrible' or [trail_visibility]='bad') and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] = 'demanding_alpine_hiking' or [sac_scale] = 'difficult_alpine_hiking') and ([highway] = 'path' or [highway] = 'footway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,5" stroke-opacity="0.6"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6,1.6,5" stroke-opacity="0.6"/>
 	</Rule>
 
 
@@ -383,7 +383,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>([highway] = 'via_ferrata') or (([via_ferrata_scale] != null and [via_ferrata_scale] != '0') and ([highway] = 'path' or [highway] = 'footway'))</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1" stroke-dasharray="1.6,1.6,1.6,5"/>
+		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6,1.6,5"/>
 	</Rule>
 
 
