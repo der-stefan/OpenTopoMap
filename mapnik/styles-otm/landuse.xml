@@ -63,8 +63,14 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([landuse] = 'orchard')</Filter>
+		<Filter>([landuse] = 'orchard') and ([orchard] != 'meadow_orchard')</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/orchard.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom17;
+		<Filter>[orchard] = 'meadow_orchard'</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/meadow_orchard.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;

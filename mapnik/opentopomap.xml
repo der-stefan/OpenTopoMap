@@ -173,7 +173,7 @@
 	<Layer name="landuse">
 		<StyleName>landuse</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity,crop FROM planet_osm_polygon ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,wood,amenity,crop,orchard FROM planet_osm_polygon ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
