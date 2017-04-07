@@ -57,6 +57,12 @@
 <tr><td><img src="img/legende/zaun.png"></td><td>Zaun</td><td><img src="img/legende/hecke.png"></td><td>Hecke</td></tr>
 </table>
 
+<p style="font-size:1.0em; font-variant:small-caps;">Fusswege</p>
+<table style="font-size: 0.7em;" width="550px;" cellpadding="2px">
+<tbody><tr><td><img src="img/legende/fussweg_t12.png"></td><td>Fuﬂweg</td><td><img src="img/legende/fussweg_t34.png"></td><td>schwieriger Weg (SAC-Skala T3 T4)</td></tr>
+<tr><td><img src="img/legende/fussweg_t56.png"></td><td>sehr schwieriger Weg (SAC-Skala T5 T6), Klettersteig</td><td></td><td></td></tr>
+</tbody></table>
+
 <p style="font-size:1.0em; font-variant:small-caps;">Symbole</p>
 <table cellpadding="2px" width="600px;" style="font-size: 0.7em;">
 <tr><td><img src="img/legende/kirche.png"></td><td>Kirche</td><td><img src="img/legende/kapelle.png"></td><td>Kapelle</td></tr>
