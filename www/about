@@ -57,10 +57,28 @@
 <tr><td><img src="img/legende/zaun.png"></td><td>Zaun</td><td><img src="img/legende/hecke.png"></td><td>Hecke</td></tr>
 </table>
 
-<p style="font-size:1.0em; font-variant:small-caps;">Fusswege</p>
+<p style="font-size:1.0em; font-variant:small-caps;">Straßen und Wege</p>
 <table style="font-size: 0.7em;" width="550px;" cellpadding="2px">
-<tbody><tr><td><img src="img/legende/fussweg_t12.png"></td><td>Fußweg</td><td><img src="img/legende/fussweg_t34.png"></td><td>schwieriger Weg (SAC-Skala T3 T4)</td></tr>
-<tr><td><img src="img/legende/fussweg_t56.png"></td><td>sehr schwieriger Weg (SAC-Skala T5 T6), Klettersteig</td><td></td><td></td></tr>
+ <tbody>
+  <tr><td><img src="img/legende/autobahn.png"></td><td>Autobahn, Bundesstraße</td>
+  <td><img src="img/legende/landstrasse.png"></td><td>Landstraße</td>
+ </tr><tr>
+  <tr><td><img src="img/legende/normalestrasse.png"></td><td>Kreisstraße, Ortsstraße</td>
+  <td><img src="img/legende/service.png"></td><td>Erschließungsweg</td>
+ </tr><tr>
+
+
+  <tr><td><img src="img/legende/track_grade1.png"></td><td>geteerter, gepflasterter Feldweg</td>
+  <td><img src="img/legende/track_grade2.png"></td><td>Kiesweg, Feldweg, Radweg<td></td>
+ </tr><tr>
+  <td><img src="img/legende/track_grade34.png"></td><td>Feldweg, teils weiche Oberfläche</td>
+  <td><img src="img/legende/track_grade5.png"></td><td>unbefestiger Feldweg</td>
+ </tr>
+  <tr><td><img src="img/legende/fussweg_t12.png"></td><td>Fußweg</td>
+  <td><img src="img/legende/fussweg_t34.png"></td><td>schwieriger Weg (SAC-Skala T3 T4)</td>
+ </tr><tr>
+  <td><img src="img/legende/fussweg_t56.png"></td><td>sehr schwieriger Weg (SAC-Skala T5 T6), Klettersteig</td><td></td><td></td>
+ </tr>
 </tbody></table>
 
 <p style="font-size:1.0em; font-variant:small-caps;">Symbole</p>
@@ -75,7 +93,7 @@
 <tr><td><img src="img/legende/unterstand.png"></td><td>Unterstand</td><td><img src="img/legende/huette.png"></td><td>Hütte</td><td><img src="img/legende/huette_bewirtschaftet.png"></td><td>Hütte (bewirtschaftet)</td></tr>
 <tr><td><img src="img/legende/denkmal.png"></td><td>Denkmal, Monument</td><td><img src="img/legende/wegkreuz.png"></td><td>Wegkreuz</td><td><img src="img/legende/huegelgrab.png"></td><td>Hügelgrab</td></tr>
 <tr><td><img src="img/legende/gipfel.png"></td><td>Gipfel</td><td><img src="img/legende/gipfelkreuz.png"></td><td>Gipfelkreuz</td><td><img src="img/legende/quelle.png"></td><td>Quelle</td></tr>
-<tr><td><img src="img/legende/hoehle.png"></td><td>Höhleneingang</td><td><img src="img/legende/kreuz.png"></td><td>Kreuz</td><td align="right"></td><td></td></tr>
+<tr><td><img src="img/legende/hoehle.png"></td><td>Höhleneingang</td><td><img src="img/legende/kreuz.png"></td><td>Kreuz</td><td><img src="img/legende/sattel.png"></td><td>Sattel</td></tr>
 <tr><td><img src="img/legende/laubbaum.png"> <img src="img/legende/nadelbaum.png"></td><td>hervorragender Baum</td></tr>
 <tr><td><img src="img/legende/kraftwerk.png"></td><td>Kraftwerk</td><td><img src="img/legende/photovoltaikanlage.png"></td><td>Photovoltaikanlage</td><td><img src="img/legende/windkraftanlage.png"></td><td>Windkraftanlage</td></tr>
 
