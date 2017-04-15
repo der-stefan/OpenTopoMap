@@ -94,7 +94,7 @@
 <tr><td><img src="img/legende/denkmal.png"></td><td>Denkmal, Monument</td><td><img src="img/legende/wegkreuz.png"></td><td>Wegkreuz</td><td><img src="img/legende/huegelgrab.png"></td><td>Hügelgrab</td></tr>
 <tr><td><img src="img/legende/gipfel.png"></td><td>Gipfel</td><td><img src="img/legende/gipfelkreuz.png"></td><td>Gipfelkreuz</td><td><img src="img/legende/quelle.png"></td><td>Quelle</td></tr>
 <tr><td><img src="img/legende/hoehle.png"></td><td>Höhleneingang</td><td><img src="img/legende/kreuz.png"></td><td>Kreuz</td><td><img src="img/legende/sattel.png"></td><td>Sattel</td></tr>
-<tr><td><img src="img/legende/laubbaum.png"> <img src="img/legende/nadelbaum.png"></td><td>hervorragender Baum</td></tr>
+<tr><td><img src="img/legende/laubbaum.png"> <img src="img/legende/nadelbaum.png"></td><td>hervorragender Baum</td><td><img src="img/legende/doline.png"></td><td>Doline</td></tr>
 <tr><td><img src="img/legende/kraftwerk.png"></td><td>Kraftwerk</td><td><img src="img/legende/photovoltaikanlage.png"></td><td>Photovoltaikanlage</td><td><img src="img/legende/windkraftanlage.png"></td><td>Windkraftanlage</td></tr>
 
 <tr><td><img src="img/legende/schornstein.png"></td><td>Schornstein</td></tr>
