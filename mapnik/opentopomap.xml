@@ -526,7 +526,7 @@
 	<Layer name="symbols-important-point">
 		<StyleName>symbols-important-point</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,railway,train FROM planet_osm_point) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,railway,train,subway,station FROM planet_osm_point) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

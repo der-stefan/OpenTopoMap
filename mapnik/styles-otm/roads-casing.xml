@@ -325,7 +325,7 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;		
                 <Filter>([trail_visibility] is null or ([trail_visibility]!='no' and [trail_visibility]!='horrible' and [trail_visibility]!='bad')) and ([via_ferrata_scale] is null or [via_ferrata_scale] = '0') and ([sac_scale] is null or [sac_scale] = 'hiking' or [sac_scale] = 'mountain_hiking') and (([highway] = 'path' and [surface] != 'asphalt') or [highway] = 'footway' or [highway] = 'bridleway')</Filter>
-		<LineSymbolizer stroke="black" stroke-width="0.8" stroke-dasharray="1.6,1.6"/>
+		<LineSymbolizer stroke="black" stroke-width="0.7" stroke-dasharray="1.6,1.6"/>
 	</Rule>
 
 

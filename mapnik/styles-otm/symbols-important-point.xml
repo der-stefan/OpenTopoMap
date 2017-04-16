@@ -2,19 +2,20 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom13;
+		<!-- bigger stations are normally tagged with train=yes -->
 		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
 		<PointSymbolizer file="symbols-otm/station_z12.png" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
+		<Filter>[railway] = 'station' and not ([subway] = 'yes' or [station] = 'subway')</Filter>
 		<PointSymbolizer file="symbols-otm/station.png" allow-overlap="true" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
-		<Filter>[railway] = 'station' and [train] = 'yes'</Filter>
+		<Filter>[railway] = 'station' and not ([subway] = 'yes' or [station] = 'subway')</Filter>
 		<PointSymbolizer file="symbols-otm/station.png" allow-overlap="true" />
 		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="5" wrap-width="100">[name]</TextSymbolizer>
 	</Rule>
