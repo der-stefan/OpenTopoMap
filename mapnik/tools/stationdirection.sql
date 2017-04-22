@@ -88,7 +88,6 @@ CREATE OR REPLACE FUNCTION getstationdirection(Point IN GEOMETRY,Stationlayer in
 --
    IF ( d IS NOT NULL ) THEN
     i:=i+1;
---  RAISE NOTICE '% osm_id=%  railway=% layer=% degrees=%',i,result.osm_id,result.railway,result.layer,d;
 --
 --  the first rail is taken, because we don't know if there will come better rails
 --  that's a fall back if we don't get rails with same layer as the station
@@ -100,7 +99,6 @@ CREATE OR REPLACE FUNCTION getstationdirection(Point IN GEOMETRY,Stationlayer in
 -- the first rail with the same layer as the station is taken 
 --
     IF ((foundnextrail=0) AND ((result.layer = Stationlayer) OR ((Stationlayer IS NULL AND result.layer IS NULL) AND (result.tunnel IS NULL)))) THEN
---   RAISE NOTICE '% take that rail',i;
      foundnextrail:=1;
      direction:=d;
     END IF;
@@ -116,12 +114,6 @@ $$ LANGUAGE plpgsql;
 -- Now use this funktion to update the database
 -- --------------------------------------------------------------------------
 
-SELECT now(),count(*) AS stations_to_be_updated  FROM  planet_osm_point 
-       WHERE (railway='station' OR railway='halt') 
-             AND (station IS NULL OR station!='subway') 
-             AND (subway IS NULL OR subway!='yes')
-             AND (direction IS NULL or direction NOT SIMILAR TO '[0-9]+');
-
 UPDATE planet_osm_point 
        SET direction=getstationdirection(way,layer)
        WHERE (railway='station' OR railway='halt') 
@@ -129,11 +121,6 @@ UPDATE planet_osm_point
              AND (subway IS NULL OR subway!='yes')
              AND (direction IS NULL or direction NOT SIMILAR TO '[0-9]+');
 
-SELECT  now(),count(*) AS stations_still_without_direction FROM  planet_osm_point 
-       WHERE (railway='station' OR railway='halt') 
-             AND (station IS NULL OR station!='subway') 
-             AND (subway IS NULL OR subway!='yes')
-             AND (direction IS NULL or direction NOT SIMILAR TO '[0-9]+');
 
 -- ----------------------------------------------------------------
 -- the end
