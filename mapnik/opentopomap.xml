@@ -184,7 +184,7 @@
 	<Layer name="landuse-over-hillshade">
 		<StyleName>landuse-over-hillshade</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,landuse,"natural",wood,amenity FROM planet_osm_polygon) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,landuse,"natural",wood,amenity,building,power FROM planet_osm_polygon) AS landuse </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

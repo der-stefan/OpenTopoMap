@@ -64,19 +64,19 @@
 	<Rule>
 		&maxscale_zoom10;
 		&minscale_zoom13;
-		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital' or [landuse] = 'farmyard'</Filter>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital' or [landuse] = 'farmyard' or (([power]='plant' or [power]='substation') and ([building]=null or [building]!='no'))</Filter>
 		<PolygonSymbolizer fill="#aaaaaa" fill-opacity="0.3" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital' or [landuse] = 'farmyard'</Filter>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital' or [landuse] = 'farmyard' or (([power]='plant' or [power]='substation') and ([building]=null or [building]!='no'))</Filter>
 		<PolygonSymbolizer fill="#aaaaaa" fill-opacity="0.15" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
-		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital' or [landuse] = 'farmyard'</Filter>
+		<Filter>[landuse] = 'residential' or [landuse] = 'industrial' or [amenity] = 'university' or [amenity] = 'school' or [amenity] = 'hospital' or [landuse] = 'farmyard' or (([power]='plant' or [power]='substation') and ([building]=null or [building]!='no'))</Filter>
 		<PolygonSymbolizer fill="#aaaaaa" fill-opacity="0.1" />
 	</Rule>
 </Style>
