@@ -39,6 +39,7 @@
 	<!ENTITY railways SYSTEM "styles-otm/railways.xml">
 	<!ENTITY airports-casing SYSTEM "styles-otm/airports-casing.xml">
 	<!ENTITY airports-fill SYSTEM "styles-otm/airports-fill.xml">
+	<!ENTITY aeroways-areas SYSTEM "styles-otm/aeroways-areas.xml">
 	<!ENTITY roads-casing-lowzoom SYSTEM "styles-otm/roads-casing-lowzoom.xml">
 	<!ENTITY roads-fill-lowzoom SYSTEM "styles-otm/roads-fill-lowzoom.xml">
 	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
@@ -56,7 +57,6 @@
 	<!ENTITY bridges-fill SYSTEM "styles-otm/bridges-fill.xml">
 	<!ENTITY bridges-middle SYSTEM "styles-otm/bridges-middle.xml">
 	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
-	<!ENTITY aeroways-areas SYSTEM "styles-otm/aeroways-areas.xml">
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
 	<!ENTITY text-natural-line SYSTEM "styles-otm/text-natural-line.xml">
@@ -118,6 +118,7 @@
 	&railways;
 	&airports-casing;
 	&airports-fill;
+	&aeroways-areas;
 	&roads-casing-lowzoom;
 	&roads-fill-lowzoom;
 	&roads-casing;
@@ -135,7 +136,6 @@
 	&bridges-fill;
 	&bridges-middle;
 	&aerialways;
-        &aeroways-areas;
 	&powerlines;
 	&powertowers;
 	&text-natural-line;
