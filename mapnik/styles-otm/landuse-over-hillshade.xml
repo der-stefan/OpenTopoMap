@@ -38,7 +38,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
-		<PolygonPatternSymbolizer file="symbols-otm/forest.png" opacity="0.2"/>
+		<PolygonPatternSymbolizer file="symbols-otm/forest_2.png" opacity="0.2"/>
 		<PolygonSymbolizer fill="white" comp-op="soft-light" fill-opacity="0.3" />
 	</Rule>
 	
