@@ -1,11 +1,10 @@
-<Style name="symbols-important-point">
+<Style name="symbols-stations">
 
 <!-- Stations without rotation -->
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom13;
-		<!-- bigger stations are normally tagged with train=yes -->
-		<Filter>[direction]=null and [railway] = 'station' and [train] = 'yes'</Filter>
+		<Filter>[direction]=null and [railway] = 'station' and not ([subway] = 'yes' or [station] = 'subway')</Filter>
 		<PointSymbolizer file="symbols-otm/station_square.svg" allow-overlap="true" />
 	</Rule>
 	<Rule>
@@ -40,8 +39,7 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom13;
-		<!-- bigger stations are normally tagged with train=yes -->
-		<Filter>[direction]!=null and [railway] = 'station' and [train] = 'yes'</Filter>
+		<Filter>[direction]!=null and [railway] = 'station' and not ([subway] = 'yes' or [station] = 'subway')</Filter>
 		<PointSymbolizer file="symbols-otm/station_rect.svg" allow-overlap="true" transform="rotate([direction]) scale(0.9)"/>
 	</Rule>
 	<Rule>

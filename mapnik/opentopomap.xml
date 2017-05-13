@@ -64,7 +64,7 @@
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
-	<!ENTITY symbols-important-point SYSTEM "styles-otm/symbols-important-point.xml">
+	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
 	<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
 	<!ENTITY text-natural-point SYSTEM "styles-otm/text-natural-point.xml">
@@ -143,7 +143,7 @@
 	&text-cities;
 	&text-towns;
 	&text-villages;
-	&symbols-important-point;
+	&symbols-stations;
 	&text-natural-poly-lowzoom;
 	&text-natural-poly;
     &symbols-saddle;
@@ -523,8 +523,8 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="symbols-important-point">
-		<StyleName>symbols-important-point</StyleName>
+	<Layer name="symbols-stations">
+		<StyleName>symbols-stations</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,name,railway,train,subway,station,direction FROM planet_osm_point WHERE (railway='station' OR railway='halt') AND ((direction IS NULL) OR direction SIMILAR TO '[0-9]+')) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
