@@ -163,7 +163,6 @@ way        tracktype    text         linear
 way        trail_visibility     text	linear
 node		train		text		polygon
 node,way   tunnel       text         linear
-node,way   type         text         polygon
 way        via_ferrata_scale    text         linear
 node,way   voltage      text         linear
 node,way   water        text         polygon
