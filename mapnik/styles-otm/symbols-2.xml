@@ -143,13 +143,13 @@
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'tree') and (not ([name] = null) or ([denotation] = 'landmark')) and (not ([type] = 'conifer')))</Filter>
+		<Filter>(([natural] = 'tree') and (([name] != null) or ([denotation] = 'landmark') or ([denotation] = 'natural_monument')) and (not ([leaf_type] = 'needleleaved')))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/broadleaf_tree.png" transform="translate(0 -5)"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'tree') and (not ([name] = null) or ([denotation] = 'landmark')) and ([type] = 'conifer'))</Filter>
+		<Filter>(([natural] = 'tree') and (([name] != null) or ([denotation] = 'landmark') or ([denotation] = 'natural_monument')) and ([leaf_type] = 'needleleaved'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/conifer_tree.png" transform="translate(0 -5)"/>
 	</Rule>
 	<Rule>
