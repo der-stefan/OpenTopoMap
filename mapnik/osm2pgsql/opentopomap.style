@@ -121,6 +121,7 @@ node,way   landuse      text         polygon
 node,way   lanes        text         linear
 node,way   layer        text         linear
 node,way   leisure      text         polygon
+node,way   leaf_type    text         linear
 node,way   lock         text         linear
 node,way   man_made     text         polygon
 node,way	memorial:type	text	polygon
@@ -162,7 +163,6 @@ way        tracktype    text         linear
 way        trail_visibility     text	linear
 node		train		text		polygon
 node,way   tunnel       text         linear
-node,way   type         text         polygon
 way        via_ferrata_scale    text         linear
 node,way   voltage      text         linear
 node,way   water        text         polygon
