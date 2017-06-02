@@ -666,5 +666,35 @@
 		<Filter>([highway] = 'primary' or [highway] = 'secondary') and ([embankment] = 'yes')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/embankment_12px.png"/>
 	</Rule>
+	
+<!-- bobsleigh -->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#333377" stroke-width="1.5" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#333377" stroke-width="2" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#333377" stroke-width="3" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#333377" stroke-width="3.5" />
+	</Rule>
+
 
 </Style>
