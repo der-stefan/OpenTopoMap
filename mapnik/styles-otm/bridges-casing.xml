@@ -730,7 +730,7 @@
 		<LineSymbolizer stroke="black" stroke-width="3" stroke-dasharray="1.1,2"/>
 	</Rule>
 
-<!-- bobsleight -->
+<!-- bobsleight and summer toboggan -->
 
 	<Rule>
 		&maxscale_zoom14;
@@ -787,5 +787,62 @@
 		<MarkersSymbolizer file="symbols-otm/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
 		<MarkersSymbolizer file="symbols-otm/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
 	</Rule>
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="1.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([length] &gt; 3 and [attraction]='summer_toboggan')</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="2" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([length] &gt; 3 and [attraction]='summer_toboggan')</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="3" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>([length] &gt; 3 and [attraction]='summer_toboggan')</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="black" stroke-width="3.5" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([length] &gt; 3 and [attraction]='summer_toboggan')</Filter>
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
+		<MarkersSymbolizer file="symbols-otm/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
+	</Rule>
+
 
 </Style>
