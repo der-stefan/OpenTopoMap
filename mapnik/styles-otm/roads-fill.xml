@@ -508,30 +508,27 @@
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[attraction]='summer_toboggan'</Filter>
-		<LineSymbolizer stroke="#eeeeee" stroke-width="1.2" />
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="1.0" />
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
 		<Filter>[attraction]='summer_toboggan'</Filter>
-		<LineSymbolizer stroke="#eeeeee" stroke-width="1.8" />
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="1.5" />
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>[attraction]='summer_toboggan'</Filter>
-		<LineSymbolizer stroke="#eeeeee" stroke-width="2.5" />
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="2.3" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[attraction]='summer_toboggan'</Filter>
-		<LineSymbolizer stroke="#eeeeee" stroke-width="3.0" />
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="2.8" />
 	</Rule>
-
-
-
 
 </Style>
