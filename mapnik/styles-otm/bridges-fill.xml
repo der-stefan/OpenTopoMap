@@ -439,4 +439,63 @@
 		<LinePatternSymbolizer file="symbols-otm/oneway_long.png" />
 	</Rule>
 
+<!-- bobsleigh and summer toboggan-->
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#DDEEFF" stroke-width="1" stroke-linecap="round"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#DDEEFF" stroke-width="1.5" stroke-linecap="round"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#DDEEFF" stroke-width="2" stroke-linecap="round"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([leisure] = 'track' and ( [sport] = 'bobsleigh' or [surface] = 'ice' or [surface] = 'snow' ))</Filter>
+		<LineSymbolizer stroke="#DDEEFF" stroke-width="2.5" stroke-linecap="round"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="1" stroke-linecap="round"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="1.5" stroke-linecap="round"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="2" stroke-linecap="round"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>([attraction]='summer_toboggan')</Filter>
+		<LineSymbolizer stroke="#e0e0e0" stroke-width="2.5" stroke-linecap="round"/>
+	</Rule>
+
+
+
 </Style>
+
