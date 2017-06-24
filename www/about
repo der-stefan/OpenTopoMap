@@ -73,6 +73,9 @@
  </tr><tr>
   <td><img src="img/legende/track_grade34.png"></td><td>Feldweg, teils weiche Oberfl‰che</td>
   <td><img src="img/legende/track_grade5.png"></td><td>unbefestiger Feldweg</td>
+ </tr><tr>
+  <td><img src="img/legende/bobsleigh.png"></td><td>Bobbahn</td>
+  <td><img src="img/legende/toboggan.png"></td><td>Sommerrodelbahn</td>
  </tr>
   <tr><td><img src="img/legende/fussweg_t12.png"></td><td>Fuﬂweg</td>
   <td><img src="img/legende/fussweg_t34.png"></td><td>schwieriger Weg (SAC-Skala T3 T4)</td>
