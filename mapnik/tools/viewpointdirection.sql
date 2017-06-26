@@ -1,6 +1,12 @@
+--
+-- data type for a direction with start,end and angle
+-- and the same for two directions
+CREATE TYPE otm_vp_viewrange     AS (s INTEGER, e INTEGER,a INTEGER);
+CREATE TYPE otm_vp_twoviewranges AS (s1 INTEGER, e1 INTEGER,a1 INTEGER,s2 INTEGER, e2 INTEGER,a2 INTEGER);
 
 
-CREATE OR REPLACE FUNCTION parseangle(intext IN TEXT) RETURNS INTEGER AS $$
+
+CREATE OR REPLACE FUNCTION otm_vp_parseangle(intext IN TEXT) RETURNS INTEGER AS $$
 -- interprets intext as angle, intext may be a number (-360..360) or a cardinal direction
 -- returns NULL or the angle as positive integer (0..359)
 
@@ -35,98 +41,124 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS TEXT AS $$
--- interprets osmdirection as number, cardinal direction or range of two numbers
--- returns <some strucure with angle/with >
+CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT) RETURNS otm_vp_viewrange AS $$
+-- parse a string like "N-E", "45-S", "270-90". Returns a otm_vp_viewrange with start, end and angle of this range.
+-- In a simple case a "range" is a singe value ("W", "270"). Thats interpreted as a viewing angle of 135° around this direction
 
  DECLARE
-  direction INTEGER;
-  d         INTEGER;
-  d1        INTEGER;
-  d2        INTEGER;
-  d3        INTEGER;
-  d4        INTEGER;
-  a         INTEGER;
-  a1        INTEGER;
-  a2        INTEGER;
+  ret otm_vp_viewrange;
+  d   INTEGER;
+  d1  INTEGER;
+  d2  INTEGER;
+  a   INTEGER;
 
  BEGIN
-  direction:=NULL;
+  ret.s:=NULL;ret.e:=NULL;ret.a:=NULL;d1:=NULL;d2:=NULL;
 --
--- simple cases: direction is NULL or empty: return a full circle from north to north
+-- simple case: "range" is a single number or cardinal direction -> viewing angle is 135° in this direction
 --
-  IF     (osmdirection IS NULL) THEN RETURN '0 360';
-  ELSEIF (osmdirection='')      THEN RETURN '0 360';
+  d:=otm_vp_parseangle(intext);
+  IF (d IS NOT NULL) THEN
+   d1:=(d-67+360)%360; 
+   a:=135;
+   d2:=d1+a;
+  ELSE
+--
+-- "range" are two numbers or cardinal direction separated by "-" -> viewing angle is calculated from left to right value
+-- and rounded up to the next angle for wich we have an icon.
+--
+   d1:=otm_vp_parseangle(split_part(intext,'-',1));
+   d2:=otm_vp_parseangle(split_part(intext,'-',2));
+   IF ((d1 IS NOT NULL) AND (d2 IS NOT NULL)) THEN
+    a:=d2-d1;
+    IF (a=0) THEN a:=360;   END IF;
+    IF (a<0) THEN a:=a+360; END IF;
+    IF     (a<=60  ) THEN d1:=d1-( 60-a)/2;a:=60;
+    ELSEIF (a<=90  ) THEN d1:=d1-( 90-a)/2;a:=90;
+    ELSEIF (a<=135 ) THEN d1:=d1-(135-a)/2;a:=135;
+    ELSEIF (a<=180 ) THEN d1:=d1-(180-a)/2;a:=180;
+    ELSEIF (a<=225 ) THEN d1:=d1-(225-a)/2;a:=225;
+    ELSEIF (a<=270 ) THEN d1:=d1-(270-a)/2;a:=270;
+    ELSEIF (a<=360 ) THEN d1:=0;           a:=360;
+    END IF;
+   END IF;
   END IF;
---
--- next simple case: direction is a single value: return a half circle from direction-90 to direction+90
---
-  osmdirection:=regexp_replace(LOWER(osmdirection),'[^a-z0-9;.,-]','','g');
-  direction:=parseangle(osmdirection);
-  IF (direction IS NOT NULL) THEN
-   d:=(direction-90+360)%360; 
-   RETURN d||' 180';
-  END IF;
---
--- a range with two angles ("10-20" or "W-E": get the difference between these two angles round it to the
--- next available icon (60,90,135,180...) and rotate the icon to the middle of these angles
---
-  d1:=parseangle(split_part(osmdirection,'-',1));
-  d2:=parseangle(split_part(osmdirection,'-',2));
-  IF ((d1 IS NOT NULL) AND (d2 IS NOT NULL)) THEN
-   a:=d2-d1;
-   IF (a<0) THEN a:=a+360; END IF;
-   IF     (a<=60  ) THEN d1:=d1-( 60-a)/2;a:=60;
-   ELSEIF (a<=90  ) THEN d1:=d1-( 90-a)/2;a:=90;
-   ELSEIF (a<=135 ) THEN d1:=d1-(135-a)/2;a:=135;
-   ELSEIF (a<=180 ) THEN d1:=d1-(180-a)/2;a:=180;
-   ELSEIF (a<=225 ) THEN d1:=d1-(225-a)/2;a:=225;
-   ELSEIF (a<=270 ) THEN d1:=d1-(270-a)/2;a:=270;
-   ELSEIF (a<=360 ) THEN d1:=0;           a:=360;
-   END IF;
-   IF (d1<0) THEN d1:=d1+360; END IF;
-   RETURN d1||' '||a;   
-  END IF; 
---
--- two ranges separated by semicolon ("N-E;S-W"): get two angles, test if the gaps between them
--- are more than 30°
---
-  d1:=parseangle(split_part(split_part(osmdirection,';',1),'-',1));
-  d2:=parseangle(split_part(split_part(osmdirection,';',1),'-',2));
-  d3:=parseangle(split_part(split_part(osmdirection,';',2),'-',1));
-  d4:=parseangle(split_part(split_part(osmdirection,';',2),'-',2));
-  IF ((d1 IS NOT NULL) AND (d2 IS NOT NULL) AND (d3 IS NOT NULL) AND (d4 IS NOT NULL)) THEN
-   a1:=d2-d1;
-   IF (a1<0) THEN a1:=a1+360; END IF;
-   a2:=d4-d3;
-   IF (a2<0) THEN a2:=a2+360; END IF;
-   IF     (a1<=60  ) THEN d1:=d1-( 60-a1)/2;d2:=d2+( 60-a1)/2;a1:=60;
-   ELSEIF (a1<=90  ) THEN d1:=d1-( 90-a1)/2;d2:=d2+( 90-a1)/2;a1:=90;
-   ELSEIF (a1<=135 ) THEN d1:=d1-(135-a1)/2;d2:=d2+(135-a1)/2;a1:=135;
-   ELSEIF (a1<=180 ) THEN d1:=d1-(180-a1)/2;d2:=d2+(180-a1)/2;a1:=180;
-   ELSEIF (a1<=225 ) THEN d1:=d1-(225-a1)/2;d2:=d2+(225-a1)/2;a1:=225;
-   ELSEIF (a1<=270 ) THEN d1:=d1-(270-a1)/2;d2:=d2+(270-a1)/2;a1:=270;
-   ELSEIF (a1<=360 ) THEN d1:=0            ;d2:=0            ;a1:=360;
-   END IF;
-   IF     (a2<=60  ) THEN d3:=d3-( 60-a2)/2;d4:=d4+( 60-a2)/2;a2:=60;
-   ELSEIF (a2<=90  ) THEN d3:=d3-( 90-a2)/2;d4:=d4+( 90-a2)/2;a2:=90;
-   ELSEIF (a2<=135 ) THEN d3:=d3-(135-a2)/2;d4:=d4+(135-a2)/2;a2:=135;
-   ELSEIF (a2<=180 ) THEN d3:=d3-(180-a2)/2;d4:=d4+(180-a2)/2;a2:=180;
-   ELSEIF (a2<=225 ) THEN d3:=d3-(225-a2)/2;d4:=d4+(225-a2)/2;a2:=225;
-   ELSEIF (a2<=270 ) THEN d3:=d3-(270-a2)/2;d4:=d4+(270-a2)/2;a2:=270;
-   ELSEIF (a2<=360 ) THEN d3:=0            ;d4:=0            ;a2:=360;
-   END IF;
-   IF (d1<0)    THEN d1:=d1+360; END IF;
-   IF (d3<0)    THEN d3:=d3+360; END IF;
-   IF (d2>=360) THEN d2:=d2-360; END IF;
-   IF (d4>=360) THEN d4:=d4-360; END IF;
-   IF ((abs((d2-d3)%360)>30) AND (abs((d1-d4)%360)>30) AND (abs((d2-d3)%360)<330) AND (abs((d1-d4)%360)<330)) THEN
-    RETURN d1||' '||a1||' '||d3||' '||a2;   
-   END IF;
-  END IF; 
---
--- No parseable test (or the gap between two ranges too small)
---
-  RETURN 'its complicated';
+  IF (d1<0)    THEN d1:=d1+360; END IF;
+  d2:=d1+a;
+  IF (d2>=360) THEN d2:=d2-360; END IF;
+  ret.s=d1;ret.e=d2;ret.a=a;
+  RETURN ret;   
  END;
 $$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_vp_twoviewranges AS $$
+-- interprets osmdirection as number, cardinal direction or range of two numbers
+-- returns otm_vp_twoviewranges with filled s1,e1,a1 and maybe also filled s2,e2,a2
+
+ DECLARE
+  ret    otm_vp_twoviewranges;
+  range1 otm_vp_viewrange; 
+  range2 otm_vp_viewrange;
+  
+
+ BEGIN
+  ret.s1:=NULL;ret.s2:=NULL;ret.e1:=NULL;ret.e2:=NULL;ret.a1:=NULL;ret.a2:=NULL;
+  osmdirection:=regexp_replace(LOWER(osmdirection),'[^a-z0-9;.,-]','','g');
+--
+-- simple cases: direction is NULL or empty: return a full circle from north to north
+--               direction=360 is also interpreted as full circle
+--
+  IF     (osmdirection IS NULL) THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
+  ELSEIF (osmdirection='')      THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
+  ELSEIF (osmdirection='360')   THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
+--
+-- One number, cardinal direction or a range of them, but not two ranges 
+--
+  ELSEIF (osmdirection NOT LIKE '%;%') THEN 
+   range1=otm_vp_parserange(osmdirection);
+   IF (range1.s IS NOT NULL) THEN
+    ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
+   END IF;
+  ELSE
+--
+-- Two ranges, separated by ";"
+--
+   range1=otm_vp_parserange(split_part(osmdirection,';',1));
+   range2=otm_vp_parserange(split_part(osmdirection,';',2));
+   IF (range1.s IS NOT NULL) THEN
+    ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
+   END IF;
+   IF (range2.s IS NOT NULL) THEN
+    ret.s2=range2.s;ret.e2:=range2.e;ret.a2:=range2.a;
+   END IF;
+--
+-- Do these two ranges overlap or the gap is smaller than 30°?
+-- (maybe, because of mapping, maybe because we expand the ranges to the next available icon range) 
+--
+   IF((range1.s IS NOT NULL) AND (range2.s IS NOT NULL)) THEN
+   END IF;
+  END IF;
+--
+-- No parseable text
+--
+  IF (ret.s1 IS NULL)  THEN
+   ret.s1=0;ret.e1:=360;ret.a1:=360;
+  END IF;
+  RETURN ret;
+ END;
+$$ LANGUAGE plpgsql;
+
+
+select '90',     viewpointdirection('90');
+select '270-85', viewpointdirection('270-85');
+select 'NNW-S',  viewpointdirection('NNW-S');
+select 'N;S', viewpointdirection('N;S');
+select 'N;E', viewpointdirection('N;E');
+select 'clockwise', viewpointdirection('clockwise');
+select '0-100;ddd', viewpointdirection('0-100;ddd');
+select '0-30;170-360',viewpointdirection('0-30;170-360');
+select '0-30;180-w',viewpointdirection('0-30;170-0');
+
+

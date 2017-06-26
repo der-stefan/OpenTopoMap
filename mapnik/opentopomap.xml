@@ -72,7 +72,8 @@
 	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
 	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
 	<!ENTITY symbols-point SYSTEM "styles-otm/symbols-point.xml">
-    <!ENTITY symbols-saddle SYSTEM "styles-otm/symbols-saddle.xml">
+        <!ENTITY symbols-viewpoint SYSTEM "styles-otm/symbols-viewpoint.xml">
+        <!ENTITY symbols-saddle SYSTEM "styles-otm/symbols-saddle.xml">
 	<!ENTITY text-roads-ref SYSTEM "styles-otm/text-roads-ref.xml">
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
 	<!ENTITY test SYSTEM "styles-otm/test.xml">
@@ -146,12 +147,13 @@
 	&symbols-stations;
 	&text-natural-poly-lowzoom;
 	&text-natural-poly;
-    &symbols-saddle;
+        &symbols-saddle;
 	&text-natural-point;
 	&symbols-1;
 	&symbols-2;
 	&symbols-poly;
 	&symbols-point;
+        &symbols-viewpoint;
 	&text-roads-ref;
 	&text-waterways;
 	&test;
@@ -565,6 +567,15 @@
 		<StyleName>symbols-saddle</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,"natural",direction FROM planet_osm_point where ("natural"='saddle' or "natural"='col' or "natural"='notch') AND direction SIMILAR TO '[0-9]+') AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="symbols-viewpoint">
+		<StyleName>symbols-viewpoint</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,tourism,(viewpointdirection(direction)).s1 as rotation,(viewpointdirection(direction)).a1 as angle FROM planet_osm_point WHERE tourism='viewpoint') AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
