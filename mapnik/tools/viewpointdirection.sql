@@ -110,11 +110,9 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
   osmdirection:=regexp_replace(LOWER(osmdirection),'[^a-z0-9;.,-]','','g');
 --
 -- simple cases: direction is NULL or empty: return a full circle from north to north
---               direction=360 is also interpreted as full circle
 --
   IF     (osmdirection IS NULL) THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
   ELSEIF (osmdirection='')      THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
-  ELSEIF (osmdirection='360')   THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
   ELSEIF (osmdirection='0-360') THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
   ELSEIF (osmdirection='0-359') THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
 --
