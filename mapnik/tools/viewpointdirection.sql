@@ -149,9 +149,9 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
       IF (abs(g1)>abs(g2)) THEN range1=otm_vp_parserange(range1.s||'-'||range2.e,135);
       ELSE                      range1=otm_vp_parserange(range2.s||'-'||range1.e,135);
       END IF;
+      ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
+      ret.s2:=NULL;ret.e2:=NULL;ret.a2:=NULL;
      END IF;
-     ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
-     ret.s2:=NULL;ret.e2:=NULL;ret.a2:=NULL;
     END IF;
    END IF;
   END IF;
