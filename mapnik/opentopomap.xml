@@ -575,7 +575,7 @@
 	<Layer name="symbols-viewpoint">
 		<StyleName>symbols-viewpoint</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,tourism,(viewpointdirection(direction)).s1 as rotation,(viewpointdirection(direction)).a1 as angle FROM planet_osm_point WHERE tourism='viewpoint') AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,tourism,(viewpointdirection(direction)).s1 as firstrotation,(viewpointdirection(direction)).a1 as firstangle,(viewpointdirection(direction)).s2 as secondrotation,(viewpointdirection(direction)).a2 as secondangle FROM planet_osm_point WHERE tourism='viewpoint') AS symbols </Parameter> 
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

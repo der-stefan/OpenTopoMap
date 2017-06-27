@@ -41,7 +41,7 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT) RETURNS otm_vp_viewrange AS $$
+CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT,defaultangle IN INTEGER) RETURNS otm_vp_viewrange AS $$
 -- parse a string like "N-E", "45-S", "270-90". Returns a otm_vp_viewrange with start, end and angle of this range.
 -- In a simple case a "range" is a singe value ("W", "270"). Thats interpreted as a viewing angle of 135° around this direction
 
@@ -55,12 +55,12 @@ CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT) RETURNS otm_vp_view
  BEGIN
   ret.s:=NULL;ret.e:=NULL;ret.a:=NULL;d1:=NULL;d2:=NULL;
 --
--- simple case: "range" is a single number or cardinal direction -> viewing angle is 135° in this direction
+-- simple case: "range" is a single number or cardinal direction -> viewing angle is defaultangle in this direction
 --
   d:=otm_vp_parseangle(intext);
   IF (d IS NOT NULL) THEN
-   d1:=(d-67+360)%360; 
-   a:=135;
+   a:=defaultangle;
+   d1:=(d-a/2+360)%360; 
    d2:=d1+a;
   ELSE
 --
@@ -68,17 +68,17 @@ CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT) RETURNS otm_vp_view
 -- and rounded up to the next angle for wich we have an icon.
 --
    d1:=otm_vp_parseangle(split_part(intext,'-',1));
-   d2:=otm_vp_parseangle(split_part(intext,'-',2));
+   d2:=otm_vp_parseangle(split_part(intext,'-',2));   
    IF ((d1 IS NOT NULL) AND (d2 IS NOT NULL)) THEN
     a:=d2-d1;
     IF (a=0) THEN a:=360;   END IF;
     IF (a<0) THEN a:=a+360; END IF;
-    IF     (a<=60  ) THEN d1:=d1-( 60-a)/2;a:=60;
-    ELSEIF (a<=90  ) THEN d1:=d1-( 90-a)/2;a:=90;
-    ELSEIF (a<=135 ) THEN d1:=d1-(135-a)/2;a:=135;
-    ELSEIF (a<=180 ) THEN d1:=d1-(180-a)/2;a:=180;
-    ELSEIF (a<=225 ) THEN d1:=d1-(225-a)/2;a:=225;
-    ELSEIF (a<=270 ) THEN d1:=d1-(270-a)/2;a:=270;
+    IF     (a<=75  ) THEN d1:=d1-( 60-a)/2;a:=60;
+    ELSEIF (a<=112 ) THEN d1:=d1-( 90-a)/2;a:=90;
+    ELSEIF (a<=177 ) THEN d1:=d1-(135-a)/2;a:=135;
+    ELSEIF (a<=202 ) THEN d1:=d1-(180-a)/2;a:=180;
+    ELSEIF (a<=247 ) THEN d1:=d1-(225-a)/2;a:=225;
+    ELSEIF (a<=300 ) THEN d1:=d1-(270-a)/2;a:=270;
     ELSEIF (a<=360 ) THEN d1:=0;           a:=360;
     END IF;
    END IF;
@@ -101,6 +101,8 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
   ret    otm_vp_twoviewranges;
   range1 otm_vp_viewrange; 
   range2 otm_vp_viewrange;
+  g1     INTEGER;
+  g2     INTEGER;
   
 
  BEGIN
@@ -113,11 +115,13 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
   IF     (osmdirection IS NULL) THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
   ELSEIF (osmdirection='')      THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
   ELSEIF (osmdirection='360')   THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
+  ELSEIF (osmdirection='0-360') THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
+  ELSEIF (osmdirection='0-359') THEN ret.s1=0;ret.e1:=0;ret.a1:=360;
 --
 -- One number, cardinal direction or a range of them, but not two ranges 
 --
   ELSEIF (osmdirection NOT LIKE '%;%') THEN 
-   range1=otm_vp_parserange(osmdirection);
+   range1=otm_vp_parserange(osmdirection,135);
    IF (range1.s IS NOT NULL) THEN
     ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
    END IF;
@@ -125,8 +129,8 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
 --
 -- Two ranges, separated by ";"
 --
-   range1=otm_vp_parserange(split_part(osmdirection,';',1));
-   range2=otm_vp_parserange(split_part(osmdirection,';',2));
+   range1=otm_vp_parserange(split_part(osmdirection,';',1),90);
+   range2=otm_vp_parserange(split_part(osmdirection,';',2),90);
    IF (range1.s IS NOT NULL) THEN
     ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
    END IF;
@@ -134,14 +138,27 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
     ret.s2=range2.s;ret.e2:=range2.e;ret.a2:=range2.a;
    END IF;
 --
--- Do these two ranges overlap or the gap is smaller than 30°?
+-- Do these two ranges overlap or the gap is smaller than 45°?
 -- (maybe, because of mapping, maybe because we expand the ranges to the next available icon range) 
 --
    IF((range1.s IS NOT NULL) AND (range2.s IS NOT NULL)) THEN
+    g1:=range1.s-range2.e;IF(range1.s<180 AND range2.e>=180) THEN g1:=-360-g1; END IF;
+    g2:=range2.s-range1.e;IF(range2.s<180 AND range1.e>=180) THEN g2:=-360-g2; END IF;
+    IF(abs(g1)<45 OR abs(g2)<45) THEN
+     IF (abs(g1)<45 AND abs(g2)<45) THEN
+      ret.s1=0;ret.e1:=0;ret.a1:=360;ret.s2:=NULL;ret.e2:=NULL;ret.a2:=NULL;
+     ELSE
+      IF (abs(g1)>abs(g2)) THEN range1=otm_vp_parserange(range1.s||'-'||range2.e,135);
+      ELSE                      range1=otm_vp_parserange(range2.s||'-'||range1.e,135);
+      END IF;
+     END IF;
+     ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
+     ret.s2:=NULL;ret.e2:=NULL;ret.a2:=NULL;
+    END IF;
    END IF;
   END IF;
 --
--- No parseable text
+-- No parseable text or buggy parser
 --
   IF (ret.s1 IS NULL)  THEN
    ret.s1=0;ret.e1:=360;ret.a1:=360;
@@ -149,16 +166,4 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
   RETURN ret;
  END;
 $$ LANGUAGE plpgsql;
-
-
-select '90',     viewpointdirection('90');
-select '270-85', viewpointdirection('270-85');
-select 'NNW-S',  viewpointdirection('NNW-S');
-select 'N;S', viewpointdirection('N;S');
-select 'N;E', viewpointdirection('N;E');
-select 'clockwise', viewpointdirection('clockwise');
-select '0-100;ddd', viewpointdirection('0-100;ddd');
-select '0-30;170-360',viewpointdirection('0-30;170-360');
-select '0-30;180-w',viewpointdirection('0-30;170-0');
-
 
