@@ -1,3 +1,29 @@
+-- FUNCTION viewpointdirection(intext IN TEXT) RETURNS otm_vp_twoviewranges 
+--
+-- Get a string as parameter and returns a composite type with
+--    s1,e1,a1 integer: start and end angle of the first viewing range, angle between them
+--    s2,e2,a2 integer: start, end, angle of the second viewing range
+--    If there is only one viewing range, (s1,e1,a1) is filled, (s2,e2,a2) is (NULL,NULL,NULL)
+
+--
+-- intext may be any string with
+--  * a number (0..360) is interpreted as a segment around this angle
+--  * a cardinal (NW or SSW or South) is interpreted as a segment around this direction
+--  * a range of numbers or cardinals (56-N or 30-90) is a clockwise segment between this two directions
+--  * a list of two numbers, cardinals or ranges separated by a semicolon (40-90;180-270) is interpreted
+--    as two segments.
+--
+--  The angles will be rounded to some values we have icons for. If the gap between two segments is too
+--  small, this gap will be filled (e.g. "10-30;40-100" will be converted to 10-100).
+--  Some unusefull characters are deleted but not all ("°" is deleted, commas or spaces are not). 
+--  If something goes wrong (e.g. "10 60", "N,S", "sometext", empty intext) intext is interpreted as "0-360".
+--  "360" is not interpreted as "all direction" but as "North" 
+--
+-- -----------------------------------------------------------------------------------------------------
+
+
+-- two helper functions --------------------------------------------------------------------------------
+
 --
 -- data type for a direction with start,end and angle
 -- and the same for two directions
@@ -11,28 +37,30 @@ CREATE OR REPLACE FUNCTION otm_vp_parseangle(intext IN TEXT) RETURNS INTEGER AS 
 -- returns NULL or the angle as positive integer (0..359)
 
  DECLARE
-  angle INTEGER;
+  angle    INTEGER;
+  inangle  TEXT;
 
  BEGIN
-  IF     (intext ~ '^-*[0-9]+$'              )   THEN angle:=(intext::INTEGER+360)%360;
-  ELSEIF (intext ~ '^-*[0-9]+\.[0-9]+$'      )   THEN angle:=((ROUND(intext::FLOAT)::INTEGER)+360)%360; 
-  ELSEIF (intext='n'   OR intext='north'     )   THEN angle:=0;
-  ELSEIF (intext='nne'                       )   THEN angle:=22;
-  ELSEIF (intext='ne'  OR intext='northeast' )   THEN angle:=45;
-  ELSEIF (intext='ene'                       )   THEN angle:=67;
-  ELSEIF (intext='e'   OR intext='east'      )   THEN angle:=90;
-  ELSEIF (intext='ese'                       )   THEN angle:=112;
-  ELSEIF (intext='se'  OR intext='southeast' )   THEN angle:=135;
-  ELSEIF (intext='sse'                       )   THEN angle:=157;
-  ELSEIF (intext='s'   OR intext='south'     )   THEN angle:=180;
-  ELSEIF (intext='ssw'                       )   THEN angle:=102;
-  ELSEIF (intext='sw'  OR intext='southwest' )   THEN angle:=225;
-  ELSEIF (intext='wsw'                       )   THEN angle:=247;
-  ELSEIF (intext='w'   OR intext='west'      )   THEN angle:=270;
-  ELSEIF (intext='wnw'                       )   THEN angle:=292;
-  ELSEIF (intext='nw'  OR intext='northwest' )   THEN angle:=315;
-  ELSEIF (intext='nnw'                       )   THEN angle:=337;
-  ELSE                                                angle:=NULL;
+  inangle:=btrim(intext);
+  IF     (inangle ~ E'^-*[0-9]+$'              )   THEN angle:=(inangle::INTEGER+360)%360;
+  ELSEIF (inangle ~ E'^-*[0-9]+\\.[0-9]+$'     )   THEN angle:=((ROUND(inangle::FLOAT)::INTEGER)+360)%360; 
+  ELSEIF (inangle='n'   OR inangle='north'     )   THEN angle:=0;
+  ELSEIF (inangle='nne'                        )   THEN angle:=22;
+  ELSEIF (inangle='ne'  OR inangle='northeast' )   THEN angle:=45;
+  ELSEIF (inangle='ene'                        )   THEN angle:=67;
+  ELSEIF (inangle='e'   OR inangle='east'      )   THEN angle:=90;
+  ELSEIF (inangle='ese'                        )   THEN angle:=112;
+  ELSEIF (inangle='se'  OR inangle='southeast' )   THEN angle:=135;
+  ELSEIF (inangle='sse'                        )   THEN angle:=157;
+  ELSEIF (inangle='s'   OR inangle='south'     )   THEN angle:=180;
+  ELSEIF (inangle='ssw'                        )   THEN angle:=202;
+  ELSEIF (inangle='sw'  OR inangle='southwest' )   THEN angle:=225;
+  ELSEIF (inangle='wsw'                        )   THEN angle:=247;
+  ELSEIF (inangle='w'   OR inangle='west'      )   THEN angle:=270;
+  ELSEIF (inangle='wnw'                        )   THEN angle:=292;
+  ELSEIF (inangle='nw'  OR inangle='northwest' )   THEN angle:=315;
+  ELSEIF (inangle='nnw'                        )   THEN angle:=337;
+  ELSE                                                  angle:=NULL;
   END IF;
   RETURN angle;
  END;
@@ -43,7 +71,8 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT,defaultangle IN INTEGER) RETURNS otm_vp_viewrange AS $$
 -- parse a string like "N-E", "45-S", "270-90". Returns a otm_vp_viewrange with start, end and angle of this range.
--- In a simple case a "range" is a singe value ("W", "270"). Thats interpreted as a viewing angle of 135° around this direction
+-- In a simple case a "range" is a singe value ("W", "270"). Thats interpreted as a viewing angle of defaultangle degrees
+-- around this direction
 
  DECLARE
   ret otm_vp_viewrange;
@@ -65,7 +94,7 @@ CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT,defaultangle IN INTE
   ELSE
 --
 -- "range" are two numbers or cardinal direction separated by "-" -> viewing angle is calculated from left to right value
--- and rounded up to the next angle for wich we have an icon.
+-- and rounded down or up to the next angle for wich we have an icon.
 --
    d1:=otm_vp_parseangle(split_part(intext,'-',1));
    d2:=otm_vp_parseangle(split_part(intext,'-',2));   
@@ -78,12 +107,12 @@ CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT,defaultangle IN INTE
     ELSEIF (a<=177 ) THEN d1:=d1-(135-a)/2;a:=135;
     ELSEIF (a<=202 ) THEN d1:=d1-(180-a)/2;a:=180;
     ELSEIF (a<=247 ) THEN d1:=d1-(225-a)/2;a:=225;
-    ELSEIF (a<=300 ) THEN d1:=d1-(270-a)/2;a:=270;
-    ELSEIF (a<=360 ) THEN d1:=0;           a:=360;
+    ELSEIF (a<=270 ) THEN d1:=d1-(270-a)/2;a:=270;
+    ELSEIF (a<=310 ) THEN d1:=0;           a:=360;
     END IF;
    END IF;
   END IF;
-  IF (d1<0)    THEN d1:=d1+360; END IF;
+  d1:=(d1+360)%360;
   d2:=d1+a;
   IF (d2>=360) THEN d2:=d2-360; END IF;
   ret.s=d1;ret.e=d2;ret.a=a;
@@ -92,22 +121,30 @@ CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT,defaultangle IN INTE
 $$ LANGUAGE plpgsql;
 
 
+-- main function --------------------------------------------------------------------------------------
 
-CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_vp_twoviewranges AS $$
+
+CREATE OR REPLACE FUNCTION viewpointdirection(intext IN TEXT) RETURNS otm_vp_twoviewranges AS $$
 -- interprets osmdirection as number, cardinal direction or range of two numbers
 -- returns otm_vp_twoviewranges with filled s1,e1,a1 and maybe also filled s2,e2,a2
 
  DECLARE
-  ret    otm_vp_twoviewranges;
-  range1 otm_vp_viewrange; 
-  range2 otm_vp_viewrange;
-  g1     INTEGER;
-  g2     INTEGER;
+  ret          otm_vp_twoviewranges;
+  range1       otm_vp_viewrange; 
+  range2       otm_vp_viewrange;
+  g1           INTEGER;
+  g2           INTEGER;
+  osmdirection TEXT;
   
 
  BEGIN
+--
+-- clean input, but leave some common invalid delimiters (" ",/). They will lead to errors later,
+-- but we shoult avoid to get a valid result because "0 90"="090" or "N/E"="NE"
+--
+  osmdirection:=intext;
   ret.s1:=NULL;ret.s2:=NULL;ret.e1:=NULL;ret.e2:=NULL;ret.a1:=NULL;ret.a2:=NULL;
-  osmdirection:=regexp_replace(LOWER(osmdirection),'[^a-z0-9;.,-]','','g');
+  osmdirection:=regexp_replace(LOWER(osmdirection),'[^a-z0-9;.,+/ -]','','g');
 --
 -- simple cases: direction is NULL or empty: return a full circle from north to north
 --
@@ -118,7 +155,7 @@ CREATE OR REPLACE FUNCTION viewpointdirection(osmdirection IN TEXT) RETURNS otm_
 --
 -- One number, cardinal direction or a range of them, but not two ranges 
 --
-  ELSEIF (osmdirection NOT LIKE '%;%') THEN 
+  ELSEIF (osmdirection NOT LIKE '%_;_%') THEN 
    range1=otm_vp_parserange(osmdirection,135);
    IF (range1.s IS NOT NULL) THEN
     ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;

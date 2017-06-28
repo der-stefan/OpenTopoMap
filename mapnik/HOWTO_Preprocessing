@@ -1,6 +1,6 @@
 ###############################################
 #   OpenTopoMap
-#   (c) 2012-2016 Stefan Erhardt
+#   (c) 2012-2017 Stefan Erhardt
 #   https://github.com/der-stefan/OpenTopoMap
 #
 #   opentopomap.org
@@ -22,6 +22,15 @@ HOWTO compile saddledirection to estimate direction of saddles with DEM data
 	apt-get install libgdal-dev
 	cd mapnik/tools/
 	cc -o saddledirection saddledirection.c -lm -lgdal
+
+
+
+HOWTO install the data type and functions for calculating viewpoint directions
+==============================================================================
+
+	cd mapnik/tools/
+	psql psql < viewpointdirection.sql
+
 
 	
 
