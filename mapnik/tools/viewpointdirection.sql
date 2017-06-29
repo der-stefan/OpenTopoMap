@@ -167,6 +167,11 @@ CREATE OR REPLACE FUNCTION viewpointdirection(intext IN TEXT) RETURNS otm_vp_two
 --
    range1=otm_vp_parserange(split_part(osmdirection,';',1),90);
    range2=otm_vp_parserange(split_part(osmdirection,';',2),90);
+--
+-- be sure that at least one segment got all values
+--
+   IF ((range1.e IS NULL) OR (range1.a IS NULL)) THEN range1.s:=NULL;range1.e:=NULL;range1.a:=NULL; END IF;
+   IF ((range2.e IS NULL) OR (range2.a IS NULL)) THEN range2.s:=NULL;range2.e:=NULL;range2.a:=NULL; END IF;
    IF (range1.s IS NOT NULL) THEN
     ret.s1=range1.s;ret.e1:=range1.e;ret.a1:=range1.a;
    END IF;
