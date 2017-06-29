@@ -107,14 +107,15 @@ CREATE OR REPLACE FUNCTION otm_vp_parserange(intext IN TEXT,defaultangle IN INTE
     ELSEIF (a<=177 ) THEN d1:=d1-(135-a)/2;a:=135;
     ELSEIF (a<=202 ) THEN d1:=d1-(180-a)/2;a:=180;
     ELSEIF (a<=247 ) THEN d1:=d1-(225-a)/2;a:=225;
-    ELSEIF (a<=270 ) THEN d1:=d1-(270-a)/2;a:=270;
-    ELSEIF (a<=310 ) THEN d1:=0;           a:=360;
+    ELSEIF (a<=315 ) THEN d1:=d1-(270-a)/2;a:=270;
+    ELSE                  d1:=0;           a:=360;
     END IF;
    END IF;
   END IF;
   d1:=(d1+360)%360;
   d2:=d1+a;
   IF (d2>=360) THEN d2:=d2-360; END IF;
+  IF (a=360)   THEN d1:=0;d2:=359; END IF;
   ret.s=d1;ret.e=d2;ret.a=a;
   RETURN ret;   
  END;
@@ -195,7 +196,7 @@ CREATE OR REPLACE FUNCTION viewpointdirection(intext IN TEXT) RETURNS otm_vp_two
 --
 -- No parseable text or buggy parser
 --
-  IF (ret.s1 IS NULL)  THEN
+  IF ((ret.s1 IS NULL) OR (ret.e1 IS NULL) OR (ret.a1 IS NULL))  THEN
    ret.s1=0;ret.e1:=360;ret.a1:=360;
   END IF;
   RETURN ret;
