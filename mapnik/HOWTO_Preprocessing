@@ -1,6 +1,6 @@
 ###############################################
 #   OpenTopoMap
-#   (c) 2012-2016 Stefan Erhardt
+#   (c) 2012-2017 Stefan Erhardt
 #   https://github.com/der-stefan/OpenTopoMap
 #
 #   opentopomap.org
@@ -11,7 +11,9 @@
 HOWTO create a generalized database for low zoom levels
 =======================================================
 
-	Execute the bash script tools/update_lowzoom.sh.
+	update_lowzoom.sh
+	update_saddles.sh 
+	psql gis < stationdirection.sql 
 	
 
 	
