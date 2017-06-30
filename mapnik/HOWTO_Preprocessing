@@ -7,34 +7,40 @@
 #
 ###############################################
 
-
-HOWTO create a generalized database for low zoom levels
-=======================================================
-
-	update_lowzoom.sh
-	update_saddles.sh 
-	psql gis < stationdirection.sql 
-	
-
-	
-	
-HOWTO compile saddledirection to estimate direction of saddles with DEM data
+First compile saddledirection to estimate direction of saddles with DEM data
 ============================================================================
 
 	apt-get install libgdal-dev
 	cd mapnik/tools/
 	cc -o saddledirection saddledirection.c -lm -lgdal
+	
 
-
-
-HOWTO install the data type and functions for calculating viewpoint directions
-==============================================================================
+HOWTO preprocess a newly imported database
+==========================================
 
 	cd mapnik/tools/
-	psql psql < viewpointdirection.sql
+
+	update_lowzoom.sh
+	update_saddles.sh 
+	psql gis < stationdirection.sql 
+	psql gis < viewpointdirection.sql
+		
+
+
+
+
 
 
 	
+
+
+
+
+
+
+
+
+
 
 # below only tests, not necessary to execute
 #########################################################################
