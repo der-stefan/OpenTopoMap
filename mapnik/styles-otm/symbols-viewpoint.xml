@@ -1,0 +1,89 @@
+<Style name="symbols-viewpoint">
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint') and [firstangle]=60</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_60.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [firstangle]=90)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_90.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [firstangle]=135)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_135.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [firstangle]=180)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_180.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [firstangle]=225)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_225.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [firstangle]=270)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_270.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [firstangle]=360)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_360.svg" transform="rotate([firstrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint') and [secondangle]=60</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_60.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [secondangle]=90)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_90.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [secondangle]=135)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_135.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [secondangle]=180)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_180.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [secondangle]=225)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_225.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [secondangle]=270)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_270.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+		<Filter>([tourism] = 'viewpoint' and [secondangle]=360)</Filter>
+                <PointSymbolizer file="symbols-otm/viewpoint_360.svg" transform="rotate([secondrotation]) scale(0.9)" ignore-placement="true"  />
+	</Rule>
+</Style>
+

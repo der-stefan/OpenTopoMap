@@ -25,6 +25,15 @@ HOWTO compile saddledirection to estimate direction of saddles with DEM data
 	cd mapnik/tools/
 	cc -o saddledirection saddledirection.c -lm -lgdal
 
+
+
+HOWTO install the data type and functions for calculating viewpoint directions
+==============================================================================
+
+	cd mapnik/tools/
+	psql psql < viewpointdirection.sql
+
+
 	
 
 # below only tests, not necessary to execute
