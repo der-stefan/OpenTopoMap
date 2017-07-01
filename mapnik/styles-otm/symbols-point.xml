@@ -9,7 +9,8 @@
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>(([natural] = 'peak') and ([summit:cross] = 'yes'))</Filter>
-		<PointSymbolizer file="symbols-otm/summit_cross.png"/>
+                <MarkersSymbolizer placement="point" file="symbols-otm/summit_cross.png" transform="translate(0 -3)"/>
+
 	</Rule>
 	
 	<!-- see railway-points for subway icons -->
