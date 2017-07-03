@@ -96,12 +96,12 @@
 	
 	<Rule>
 		&maxscale_zoom13;
-		&minscale_zoom14;
+		&minscale_zoom15;
 		<Filter>([man_made] = 'water_tower')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/water_tower_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom15;
+		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([man_made] = 'water_tower')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/water_tower.png" transform="translate(0 -3)"/>
