@@ -66,7 +66,7 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
    a12:=degrees(ST_Azimuth(ST_PointN(way,1),ST_PointN(way,2)));
    a23:=degrees(ST_Azimuth(ST_PointN(way,2),ST_PointN(way,3)));
    angle_diff:=cast(abs(a12-a23) as integer)%180;
-   angle:=(a12+a23+90)/2;
+   angle:=90+(a12+a23+90)/2;
 --
 -- we need a correction factor, because we calculate all distances with ST_DistanceSphere() in m and have maps and icons in 3857
 --
@@ -85,23 +85,27 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
       IF ((d12>20) AND (d12<45) AND (d23>8) AND (d23<30)) THEN icon:='tennis';                END IF; 
       IF ((d23>20) AND (d23<45) AND (d12>8) AND (d12<30)) THEN icon:='tennis';angle:=angle+90;END IF;
      END IF;
+    END IF;
 --
 -- similar checks for other sports (for soccer pitch_area hast to be checked in the style) 
 --    
-    ELSIF (sportlist like '%;soccer;%') THEN
+    IF ((icon IS NULL) AND (sportlist like '%;soccer;%')) THEN
      IF ((d12>90) AND (d12<130) AND (d23>45) AND (d23<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';                END IF;
      IF ((d23>80) AND (d23<130) AND (d12>45) AND (d12<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';angle:=angle+90;END IF;
-    ELSIF (sportlist like '%;basketball;%') THEN
+    END IF;
+    IF ((icon IS NULL) AND (sportlist like '%;basketball;%')) THEN
      IF ((pitch_area<450) AND (d13>20) AND (d13<35) ) THEN
-      IF ((d12>20) AND (d12<30) AND (d23>10) AND (d23<20)) THEN icon:='bascetball';                END IF;
-      IF ((d23>20) AND (d23<30) AND (d12>10) AND (d12<20)) THEN icon:='bascetball';angle:=angle+90;END IF;
+      IF ((d12>20) AND (d12<30) AND (d23>10) AND (d23<20)) THEN icon:='basketball';                END IF;
+      IF ((d23>20) AND (d23<30) AND (d12>10) AND (d12<20)) THEN icon:='basketball';angle:=angle+90;END IF;
      END IF;
-    ELSIF (sportlist like '%rugby%') THEN
+    END IF;
+    IF ((icon IS NULL) AND (sportlist like '%rugby%')) THEN
      IF ((pitch_area>6000) AND (pitch_area<11000) AND (d13>100) AND (d13<170)) THEN
       IF ((d23>50) AND (d23<100) AND (d12>100) AND (d12<170)) THEN icon:='rugby';                END IF;
       IF ((d12>50) AND (d12<100) AND (d23>100) AND (d23<170)) THEN icon:='rugby';angle:=angle+90;END IF;
      END IF;
-    ELSIF (sportlist like '%;american_football;%') THEN
+    END IF;
+    IF ((icon IS NULL) AND (sportlist like '%;american_football;%')) THEN
      IF ((pitch_area>3500) AND (pitch_area<8500) AND (d13>80) AND (d13<170)) THEN
       IF ((d23>32) AND (d23<65) AND (d12>80) AND (d12<130)) THEN icon:='football';                END IF; 
       IF ((d12>32) AND (d12<65) AND (d23>80) AND (d23<130)) THEN icon:='football';angle:=angle+90;END IF;
