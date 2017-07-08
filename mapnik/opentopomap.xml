@@ -71,6 +71,7 @@
 	<!ENTITY symbols-1 SYSTEM "styles-otm/symbols-1.xml">
 	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
 	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
+        <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-point SYSTEM "styles-otm/symbols-point.xml">
         <!ENTITY symbols-viewpoint SYSTEM "styles-otm/symbols-viewpoint.xml">
         <!ENTITY symbols-saddle SYSTEM "styles-otm/symbols-saddle.xml">
@@ -152,6 +153,7 @@
 	&symbols-1;
 	&symbols-2;
 	&symbols-poly;
+        &symbols-sport;
 	&symbols-point;
         &symbols-viewpoint;
 	&text-roads-ref;
@@ -562,6 +564,17 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+	<Layer name="symbols-sport">
+		<StyleName>symbols-sport</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,(pitchdata).icon AS icon,(pitchdata).angle AS angle,(pitchdata).pitch_area AS pitch_area,(pitchdata).labelsizefactor AS labelsizefactor FROM (select way,getpitchicon(way,sport) as pitchdata FROM planet_osm_polygon WHERE leisure='pitch' AND (building IS NULL OR building = 'no')) AS pitches) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
+
 
 	<Layer name="symbols-saddle">
 		<StyleName>symbols-saddle</StyleName>
