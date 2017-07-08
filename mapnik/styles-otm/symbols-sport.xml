@@ -1,4 +1,19 @@
 <Style name="symbols-sport">
+	<!-- zoom 13-15 -->
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>([icon]='soccer' and [pitch_area] &gt; 3500)</Filter>
+		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-soccer-oval.svg" transform="rotate([angle]) scale(0.2*[labelsizefactor])"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([icon]='soccer' and [pitch_area] &gt; 3500)</Filter>
+		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-soccer-oval.svg" transform="rotate([angle]) scale(0.31*[labelsizefactor])"/>
+	</Rule>
+	
+	<!-- zoom 16+ -->
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;

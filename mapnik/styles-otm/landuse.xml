@@ -116,7 +116,7 @@
 		<PolygonSymbolizer fill="#a9df82" fill-opacity="0.5" />
 	</Rule>
 	<Rule>
-		&maxscale_zoom13;
+		&maxscale_zoom15;
 		&minscale_zoom17;
 		<Filter>[leisure] = 'pitch'</Filter>
 		<LineSymbolizer stroke="#8eb961" stroke-width="0.5" />
