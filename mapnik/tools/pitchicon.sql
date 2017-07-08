@@ -66,7 +66,7 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
    a12:=degrees(ST_Azimuth(ST_PointN(way,1),ST_PointN(way,2)));
    a23:=degrees(ST_Azimuth(ST_PointN(way,2),ST_PointN(way,3)));
    angle_diff:=cast(abs(a12-a23) as integer)%180;
-   angle:=90+(a12+a23+90)/2;
+   angle:=(a12+a23+90)/2;
 --
 -- we need a correction factor, because we calculate all distances with ST_DistanceSphere() in m and have maps and icons in 3857
 --
@@ -90,8 +90,8 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
 -- similar checks for other sports (for soccer pitch_area hast to be checked in the style) 
 --    
     IF ((icon IS NULL) AND (sportlist like '%;soccer;%')) THEN
-     IF ((d12>90) AND (d12<130) AND (d23>45) AND (d23<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';                END IF;
-     IF ((d23>80) AND (d23<130) AND (d12>45) AND (d12<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';angle:=angle+90;END IF;
+     IF ((d23>80) AND (d23<130) AND (d12>45) AND (d12<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';                END IF;
+     IF ((d12>90) AND (d12<130) AND (d23>45) AND (d23<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';angle:=angle+90;END IF;
     END IF;
     IF ((icon IS NULL) AND (sportlist like '%;basketball;%')) THEN
      IF ((pitch_area<450) AND (d13>20) AND (d13<35) ) THEN
