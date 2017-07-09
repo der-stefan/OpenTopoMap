@@ -574,8 +574,6 @@
 		</Datasource>
 	</Layer>
 
-
-
 	<Layer name="symbols-saddle">
 		<StyleName>symbols-saddle</StyleName>
 		<Datasource>
