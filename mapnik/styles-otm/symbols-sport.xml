@@ -12,12 +12,6 @@
 		<Filter>([icon]='soccer' and [pitch_area] &gt; 3500)</Filter>
 		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-soccer-oval_z14.svg" transform="rotate([angle]) scale(0.31*[labelsizefactor])"/>
 	</Rule>
-	<Rule>
-		&maxscale_zoom15;
-		&minscale_zoom15;
-		<Filter>([icon]='soccer' and [pitch_area] &gt; 3500)</Filter>
-		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-soccer-oval_z14.svg" transform="rotate([angle]) scale(0.65*[labelsizefactor])"/>
-	</Rule>
 	
 	<!-- soccer -->
 	<Rule>

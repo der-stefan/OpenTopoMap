@@ -24,7 +24,7 @@ HOWTO preprocess a newly imported database
 	update_saddles.sh 
 	psql gis < stationdirection.sql 
 	psql gis < viewpointdirection.sql
-        psql gis < pitchicon.sql
+	psql gis < pitchicon.sql
 
 		
 
