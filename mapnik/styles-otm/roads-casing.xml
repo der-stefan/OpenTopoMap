@@ -176,7 +176,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[highway] = 'track' and [tracktype] = 'grade1'</Filter>
-		<LineSymbolizer stroke="black" stroke-width="1.3" />
+		<LineSymbolizer stroke="black" stroke-width="1.2" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
