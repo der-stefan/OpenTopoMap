@@ -114,11 +114,11 @@
 		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-foot-us.svg" transform="rotate([angle]) scale(0.207*[labelsizefactor])"/>
 	</Rule>
 
-	<!-- no icon -->
+	<!-- no icon but colored pitches -->
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
-		<Filter>([icon]='multi' or [icon]=null)</Filter>
+		<Filter>([icon]='multi' or [icon]='basketball' or [icon]=null)</Filter>
 		<PolygonSymbolizer fill="#b6dea4" fill-opacity="0.8" />
 	</Rule>
 	<Rule>
