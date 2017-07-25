@@ -106,8 +106,6 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
       IF ((d12>20) AND (d12<35) AND (d23>10) AND (d23<35)) THEN icon:='basketball';                END IF;
       IF ((d23>20) AND (d23<35) AND (d12>10) AND (d12<35)) THEN icon:='basketball';angle:=angle+90;END IF;
      END IF;
-     IF (icon IS NULL) THEN raise notice 'Basketball neg id % d12 % d23 % d13 % pa %',0,d12,d23,d13,pitch_area; 
-     else                   raise notice 'Basketball pos id % d12 % d23 % d13 % pa %',0,d12,d23,d13,pitch_area; END IF;
     END IF;
     IF ((icon IS NULL) AND (sportlist like '%rugby%')) THEN
      IF ((pitch_area>6000) AND (pitch_area<11000) AND (d13>100) AND (d13<170)) THEN
