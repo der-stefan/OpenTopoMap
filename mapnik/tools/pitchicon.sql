@@ -19,7 +19,8 @@ CREATE TYPE otm_pitch AS (icon TEXT,pitch_area FLOAT,angle FLOAT,labelsizefactor
 --
 -- the function
 --
-CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS otm_pitch AS $$
+
+CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_pitch AS $$
 
  DECLARE
   way             GEOMETRY;
@@ -47,7 +48,7 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
 --
   IF((sportlist like '%;tennis;%')            OR (sportlist like '%;soccer;%')      OR (sportlist like '%;basketball;%')    OR
      (sportlist like '%;rugby;%')             OR (sportlist like '%;rugby_union;%') OR (sportlist like '%;rugby_league;%')  OR 
-     (sportlist like '%;american_football;%') ) THEN
+     (sportlist like '%;american_football;%') OR (sportlist like '%;multi;%') ) THEN
 --
 -- get a simplified rectangle around the way, get the first 3 corners of this rectangle
 --
@@ -91,13 +92,22 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
 --    
     IF ((icon IS NULL) AND (sportlist like '%;soccer;%')) THEN
      IF ((d12>90) AND (d12<130) AND (d23>45) AND (d23<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';                END IF;
-     IF ((d23>80) AND (d23<130) AND (d12>45) AND (d12<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';angle:=angle+90;END IF;
+     IF ((d23>90) AND (d23<130) AND (d12>45) AND (d12<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';angle:=angle+90;END IF;
+    END IF;
+--
+-- We don't have a icon for sport=multi, but we use a oval for soccer and multi in lower zoom levels (multis may be a little bit lager than soccer)
+--
+    IF ((icon IS NULL) AND (sportlist like '%;multi;%')) THEN
+     IF ((d12>90) AND (d12<140) AND (d23>45) AND (d23<120) AND (d13>100) AND (d13<180)) THEN icon:='multi';                END IF;
+     IF ((d23>90) AND (d23<140) AND (d12>45) AND (d12<120) AND (d13>100) AND (d13<180)) THEN icon:='multi';angle:=angle+90;END IF;
     END IF;
     IF ((icon IS NULL) AND (sportlist like '%;basketball;%')) THEN
-     IF ((pitch_area<450) AND (d13>20) AND (d13<35) ) THEN
-      IF ((d12>20) AND (d12<30) AND (d23>10) AND (d23<20)) THEN icon:='basketball';                END IF;
-      IF ((d23>20) AND (d23<30) AND (d12>10) AND (d12<20)) THEN icon:='basketball';angle:=angle+90;END IF;
+     IF ((pitch_area<600) AND (d13>20) AND (d13<38) ) THEN
+      IF ((d12>20) AND (d12<35) AND (d23>10) AND (d23<35)) THEN icon:='basketball';                END IF;
+      IF ((d23>20) AND (d23<35) AND (d12>10) AND (d12<35)) THEN icon:='basketball';angle:=angle+90;END IF;
      END IF;
+     IF (icon IS NULL) THEN raise notice 'Basketball neg id % d12 % d23 % d13 % pa %',0,d12,d23,d13,pitch_area; 
+     else                   raise notice 'Basketball pos id % d12 % d23 % d13 % pa %',0,d12,d23,d13,pitch_area; END IF;
     END IF;
     IF ((icon IS NULL) AND (sportlist like '%rugby%')) THEN
      IF ((pitch_area>6000) AND (pitch_area<11000) AND (d13>100) AND (d13<170)) THEN
@@ -124,4 +134,3 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway IN GEOMETRY,sport IN TEXT) RETURNS
   return ret;
  END;
 $$ LANGUAGE plpgsql;
-
