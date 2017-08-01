@@ -3,7 +3,7 @@
 		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
-		<PolygonSymbolizer fill="#abda74" />
+		<PolygonSymbolizer fill="#b3d97e" /> <!-- #abda74 -->
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
