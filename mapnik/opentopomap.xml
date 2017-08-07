@@ -39,7 +39,7 @@
 	<!ENTITY railways SYSTEM "styles-otm/railways.xml">
 	<!ENTITY airports-casing SYSTEM "styles-otm/airports-casing.xml">
 	<!ENTITY airports-fill SYSTEM "styles-otm/airports-fill.xml">
-	<!ENTITY aeroways-areas SYSTEM "styles-otm/aeroways-areas.xml">
+	<!ENTITY airports-poly SYSTEM "styles-otm/airports-poly.xml">
 	<!ENTITY roads-casing-lowzoom SYSTEM "styles-otm/roads-casing-lowzoom.xml">
 	<!ENTITY roads-fill-lowzoom SYSTEM "styles-otm/roads-fill-lowzoom.xml">
 	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
@@ -120,7 +120,7 @@
 	&railways;
 	&airports-casing;
 	&airports-fill;
-	&aeroways-areas;
+	&airports-poly;
 	&roads-casing-lowzoom;
 	&roads-fill-lowzoom;
 	&roads-casing;
@@ -363,20 +363,20 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="airports">
+	<Layer name="airports-line">
 		<StyleName>airports-casing</StyleName>
 		<StyleName>airports-fill</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,aeroway FROM planet_osm_line WHERE aeroway IS NOT NULL) AS airports </Parameter>
+			<Parameter name="table">(SELECT way,aeroway FROM planet_osm_line WHERE aeroway IS NOT NULL) AS airports_line</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
 
-	<Layer name="aerowaysareas">
-		<StyleName>aeroways-areas</StyleName>
+	<Layer name="airports-poly">
+		<StyleName>airports-poly</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,aeroway,way_area FROM planet_osm_polygon WHERE aeroway IS NOT NULL) AS aeroareas</Parameter>
+			<Parameter name="table">(SELECT way,aeroway,way_area FROM planet_osm_polygon WHERE aeroway IS NOT NULL) AS airports_poly</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
