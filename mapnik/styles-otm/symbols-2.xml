@@ -51,7 +51,7 @@
 		&minscale_zoom17;
 		<Filter>( ([man_made] = 'tower') and (([tower:type] = 'observation') or ([tourism] = 'viewpoint')))</Filter>
 		<PointSymbolizer file="symbols-otm/observation_tower.png"/>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="9" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" halo-radius="1" halo-fill="rgba(255,255,255,0.7)" placement="point" dy="12" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
