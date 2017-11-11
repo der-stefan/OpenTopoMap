@@ -1,17 +1,31 @@
 <Style name="symbols-sport">
-	<!-- zoom 13-15 -->
+	<!-- sports ovals at zoom 13-14 -->
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-		<Filter>(([icon]='soccer' or [icon]='multi') and [pitch_area] &gt; 3500)</Filter>
-		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-soccer-oval_z13.svg" transform="rotate([angle]) scale(0.19*[labelsizefactor])"/>
+		<Filter>((([icon]='soccer' or [icon]='multi') <!--and [athletics_track] = 'yes'-->) and [pitch_area] &gt; 3500)</Filter>
+		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-oval-track_z13.svg" transform="rotate([angle]) scale(0.19*[labelsizefactor])"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>(([icon]='soccer' or [icon]='multi') and [pitch_area] &gt; 3500)</Filter>
-		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-soccer-oval_z14.svg" transform="rotate([angle]) scale(0.31*[labelsizefactor])"/>
+		<Filter>((([icon]='soccer' or [icon]='multi') <!--and [athletics_track] = 'yes'-->) and [pitch_area] &gt; 3500)</Filter>
+		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-oval-track_z14.svg" transform="rotate([angle]) scale(0.31*[labelsizefactor])"/>
 	</Rule>
+    <Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>((([icon]='soccer' or [icon]='multi') <!--and [athletics_track] != 'yes'-->) and [pitch_area] &gt; 3500)</Filter>
+		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-oval_z13.svg" transform="rotate([angle]) scale(0.19*[labelsizefactor])"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>((([icon]='soccer' or [icon]='multi') <!--and [athletics_track] != 'yes'-->) and [pitch_area] &gt; 3500)</Filter>
+		<PointSymbolizer allow-overlap="yes" file="symbols-otm/sports-oval_z14.svg" transform="rotate([angle]) scale(0.31*[labelsizefactor])"/>
+	</Rule>
+
+    <!-- zoom 15 -->
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
