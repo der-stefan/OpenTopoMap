@@ -115,7 +115,7 @@ int interpolate_direction(double lon,double lat,double radius, int steps,double 
   minstep=0;dhmin=100000000;
   for(i=0;i<steps/2;i++){
    if(i<steps/4){
-    if(i<=24){
+    if(steps<=24){
      dh[i]= h[i] + h[(i+steps/2)%steps] - h[(i+steps/4)%steps] - h[(i+steps*3/4)%steps];
     }else{
      dh[i]=        (h[i] + h[(i+steps/2)%steps]      - h[(i+steps/4)%steps] - h[(i+steps*3/4)%steps]) 
