@@ -489,9 +489,6 @@
 		</Datasource>
 	</Layer>
 
-
-
-	
 	<Layer name="powerlines">
 		<StyleName>powerlines</StyleName>
 		<Datasource>
