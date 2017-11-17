@@ -98,7 +98,7 @@ void get_isolation_by_ele(struct list_peak *peak,long int numpeaks,double radius
  
  for(i=0;i<numpeaks;i++){
   ccos=cos(peak[i].lat*PI/180);
-  if(debuglevel>3){printf("calc dist for peak %lld\n",peak[i].id);}
+  if(debuglevel>2){printf("calc dist for peak %lld\n",peak[i].id);}
   for(j=i+1;j<numpeaks;j++){
    dy=(peak[j].lat-peak[i].lat)*40000000/360;
    if(debuglevel>3){printf("   compare with other peak %lld\n",peak[j].id);}
@@ -107,14 +107,14 @@ void get_isolation_by_ele(struct list_peak *peak,long int numpeaks,double radius
     d=sqrt(dx*dx+dy*dy);
     if(d>radius){d=radius;}
     if(debuglevel>3){printf("   compare with other peak %lld, d=%f\n",peak[j].id,d);}
-    if((d < peak[j].isolation)&&(peak[i].ele >= peak[j].ele)){
+    if((d < peak[j].isolation)&&(peak[i].ele > peak[j].ele)){
      peak[j].isolation=d;
      peak[j].heigherpeak_id=peak[i].id;
      peak[j].heigherpoint_lon=peak[i].lon;
      peak[j].heigherpoint_lat=peak[i].lat;
      if(debuglevel>3){printf("   assign isolation to other peak %lld, d=%f\n",peak[j].id,d);}
     }
-    if((d < peak[i].isolation)     &&(peak[i].ele <= peak[j].ele)){
+    if((d < peak[i].isolation)     &&(peak[i].ele < peak[j].ele)){
      peak[i].isolation=d;
      peak[i].heigherpeak_id=peak[j].id;
      peak[i].heigherpoint_lon=peak[j].lon;
@@ -164,13 +164,13 @@ void get_isolation_by_DEM(struct list_peak *peak,long int numpeaks,double radius
   
   DEMarea=malloc((w)*(h)*sizeof(int16_t));
   GDALRasterIO(hBand,GF_Read,le,up,w,h,DEMarea,w,h,GDT_Int16,0,0); 
-  if(debuglevel>3){printf("calc isolation for peak %lld iso=%.7lf (%ld %ld points) le=%ld ri=%ld  dw=%ld up=%ld\n",peak[i].id,r,w,h,le,ri,dw,up);}
+  if(debuglevel>2){printf("calc isolation for peak %lld iso=%.7lf (%ld %ld points) le=%ld ri=%ld  dw=%ld up=%ld\n",peak[i].id,r,w,h,le,ri,dw,up);}
 
 /* get distance between peak and up/le (if<0 something got wrong...) and point width (in m) */
 
   dy=((adfGeoTransform[3]+up*adfGeoTransform[5])-peak[i].lat)/360*40000000;
   dx=(peak[i].lon-(adfGeoTransform[0]+le*adfGeoTransform[1]))/360*40000000*ccos;
-  if(debuglevel>3){printf(" peak is dx=%lf m east and dy=%lf m south of DEM corner\n",dx,dy);}
+  if(debuglevel>2){printf(" peak is dx=%lf m east and dy=%lf m south of DEM corner\n",dx,dy);}
 
 /* search for DEM values higher than that peak */
 
