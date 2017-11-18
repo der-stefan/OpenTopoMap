@@ -164,7 +164,7 @@ void get_isolation_by_DEM(struct list_peak *peak,long int numpeaks,double radius
   
   DEMarea=malloc((w)*(h)*sizeof(int16_t));
   GDALRasterIO(hBand,GF_Read,le,up,w,h,DEMarea,w,h,GDT_Int16,0,0); 
-  if(debuglevel>2){printf("calc isolation for peak %lld iso=%.7lf (%ld %ld points) le=%ld ri=%ld  dw=%ld up=%ld\n",peak[i].id,r,w,h,le,ri,dw,up);}
+  if(debuglevel>2){printf("calc isolation for peak %lld iso=%.7lf (%ld %ld points) le=%ld ri=%ld  dw=%ld up=%ld ddx=%lf ddy=%lf\n",peak[i].id,r,w,h,le,ri,dw,up,ddx,ddy);}
 
 /* get distance between peak and up/le (if<0 something got wrong...) and point width (in m) */
 
@@ -177,10 +177,14 @@ void get_isolation_by_DEM(struct list_peak *peak,long int numpeaks,double radius
   if((dy>=0)&&(dx>=0)){
    for(y=up;y<dw;y++){
     for(x=le;x<ri;x++){
+     if(debuglevel>3){printf(" testing DEM at %ld %ld\n",x,y);}
      if(DEMarea[(x-le)+(y-up)*w]>peak[i].ele+MINDIFF){ 
       rx=dx-((x-le)*ddx);
       ry=dy-((y-up)*ddy);
       d=sqrt(rx*rx+ry*ry);
+      if(debuglevel>3){
+       printf(" testing DEM at %ld %ld h=%d dx=%f lat=%f lon=%f\n",x-le,y-up,DEMarea[(x-le)+(y-up)*w],d,adfGeoTransform[3]+adfGeoTransform[5]*y,adfGeoTransform[0]+adfGeoTransform[1]*x);
+      }
       if((d>MINISO)&&(d<peak[i].isolation)){
        peak[i].isolation=d;
        peak[i].heigherpoint_lon=adfGeoTransform[0]+adfGeoTransform[1]*x;
@@ -207,7 +211,7 @@ int main(int argc, char *argv[]){
  char             *demfile=NULL;
  char             *outputformat=NULL;
  char             *textrest;
- double           radius=50000.0;
+ double           radius=100000.0;
  char             line[100],elestring[100];
  long long int    id;
  long int         n=0,i=0,st_s=0,st_g=0,maxnumpeaks=2000000,numpeaks=0;
@@ -315,7 +319,7 @@ int main(int argc, char *argv[]){
    if(debuglevel>0){printf("%lld;%.7lf;%.7lf;%.0lf;%.0lf;%lld;%.7lf;%.7lf\n",peak[n].id,peak[n].lon,peak[n].lat,peak[n].ele,peak[n].isolation,peak[n].heigherpeak_id,peak[n].heigherpoint_lon,peak[n].heigherpoint_lat);}
    else            {printf("%lld;%.7lf;%.7lf;%.0f\n",peak[n].id,peak[n].lon,peak[n].lat,peak[n].isolation);}
   }
-  else              if(strcmp(outputformat,"sql")==0) {printf("update planet_osm_point set isolation='%.0lf' where osm_id=%lld;\n",peak[n].isolation,peak[n].id);}
+  else              if(strcmp(outputformat,"sql")==0) {printf("update planet_osm_point set otm_isolation='%.0lf' where osm_id=%lld;\n",peak[n].isolation,peak[n].id);}
  } 
  exit(0);
 }
