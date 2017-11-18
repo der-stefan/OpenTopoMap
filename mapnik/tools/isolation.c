@@ -30,7 +30,7 @@ struct list_peak{
 /* min isolation of a peak */
 #define MINISO         100
 /* difference between the heigts of DEM and peak to define a isolation */
-#define MINDIFF         30
+#define MINDIFF         10
 
 
 int    debuglevel=0;
@@ -41,7 +41,7 @@ void printhelp(){
  printf("Usage:   isolation -f demfile [options]\n");
  printf("         -f demfile\n         -d debuglevel (0-4, default=0)\n");
  printf("         -n maximal number of peaks (default 2000000)\n");
- printf("         -r maximal search radius (100..500000,default 50000)\n");
+ printf("         -r maximal search radius (100..500000,default 100000)\n");
  printf("         -o output format csv or sql (default csv)\n");
  printf("demfile is a geotiff (1 band int16, SRS=EPSG 4326)\n");
  printf("stdin   is a csv with \"id;lon;lat;ele\" where \n");
@@ -133,20 +133,18 @@ void get_isolation_by_DEM(struct list_peak *peak,long int numpeaks,double radius
 /* gets a list of peaks, calculate isolation of each peak, returns nothing */
 
  long int  i,up,le,ri,dw,w,h,maxw,maxh,x,y;
- double    d,r,rx,ry,dx,dy,ddx,ddy;
+ double    d,r,rx,ry;
  double    ccos;
  int16_t   *DEMarea;
  
  
  maxw=GDALGetRasterXSize(hDataset);
  maxh=GDALGetRasterYSize(hDataset);
- ddy=abs(adfGeoTransform[5]*40000000/360);
  
  for(i=0;i<numpeaks;i++){
   r=peak[i].isolation;
   if(r<MINISO){r=MINISO;}
   ccos=cos(peak[i].lat*PI/180);
-  ddx=adfGeoTransform[1]*40000000/360*ccos;
  
 /* calc up/le and dw/ri corner of an rectangular area with diameter 2r around each peak */ 
   
@@ -164,33 +162,22 @@ void get_isolation_by_DEM(struct list_peak *peak,long int numpeaks,double radius
   
   DEMarea=malloc((w)*(h)*sizeof(int16_t));
   GDALRasterIO(hBand,GF_Read,le,up,w,h,DEMarea,w,h,GDT_Int16,0,0); 
-  if(debuglevel>2){printf("calc isolation for peak %lld iso=%.7lf (%ld %ld points) le=%ld ri=%ld  dw=%ld up=%ld ddx=%lf ddy=%lf\n",peak[i].id,r,w,h,le,ri,dw,up,ddx,ddy);}
-
-/* get distance between peak and up/le (if<0 something got wrong...) and point width (in m) */
-
-  dy=((adfGeoTransform[3]+up*adfGeoTransform[5])-peak[i].lat)/360*40000000;
-  dx=(peak[i].lon-(adfGeoTransform[0]+le*adfGeoTransform[1]))/360*40000000*ccos;
-  if(debuglevel>2){printf(" peak is dx=%lf m east and dy=%lf m south of DEM corner\n",dx,dy);}
+  if(debuglevel>2){printf("calc isolation for peak %lld iso=%.7lf (%ld %ld points) le=%ld ri=%ld  dw=%ld up=%ld\n",peak[i].id,r,w,h,le,ri,dw,up);}
 
 /* search for DEM values higher than that peak */
 
-  if((dy>=0)&&(dx>=0)){
-   for(y=up;y<dw;y++){
-    for(x=le;x<ri;x++){
-     if(debuglevel>3){printf(" testing DEM at %ld %ld\n",x,y);}
-     if(DEMarea[(x-le)+(y-up)*w]>peak[i].ele+MINDIFF){ 
-      rx=dx-((x-le)*ddx);
-      ry=dy-((y-up)*ddy);
-      d=sqrt(rx*rx+ry*ry);
-      if(debuglevel>3){
-       printf(" testing DEM at %ld %ld h=%d dx=%f lat=%f lon=%f\n",x-le,y-up,DEMarea[(x-le)+(y-up)*w],d,adfGeoTransform[3]+adfGeoTransform[5]*y,adfGeoTransform[0]+adfGeoTransform[1]*x);
-      }
-      if((d>MINISO)&&(d<peak[i].isolation)){
-       peak[i].isolation=d;
-       peak[i].heigherpoint_lon=adfGeoTransform[0]+adfGeoTransform[1]*x;
-       peak[i].heigherpoint_lat=adfGeoTransform[3]+adfGeoTransform[5]*y;
-       if(debuglevel>3){printf(" found higher DEM at %ld %ld h=%d dx=%f lat=%f lon=%f\n",x-le,y-up,DEMarea[(x-le)+(y-up)*w],d,peak[i].heigherpoint_lat,peak[i].heigherpoint_lon);}
-      }
+  for(y=up;y<dw;y++){
+   for(x=le;x<ri;x++){
+    if(DEMarea[(x-le)+(y-up)*w]>peak[i].ele+MINDIFF){ 
+     rx=(peak[i].lon-(adfGeoTransform[0]+adfGeoTransform[1]*x))*40000000/360*ccos;
+     ry=(peak[i].lat-(adfGeoTransform[3]+adfGeoTransform[5]*y))*40000000/360;
+     d=sqrt(rx*rx+ry*ry);
+     if(debuglevel>3){printf(" testing DEM at %ld %ld h=%d d=%f lat=%f lon=%f\n",x-le,y-up,DEMarea[(x-le)+(y-up)*w],d,adfGeoTransform[3]+adfGeoTransform[5]*y,adfGeoTransform[0]+adfGeoTransform[1]*x);}
+     if((d>MINISO)&&(d<peak[i].isolation)){
+      peak[i].isolation=d;
+      peak[i].heigherpoint_lon=adfGeoTransform[0]+adfGeoTransform[1]*x;
+      peak[i].heigherpoint_lat=adfGeoTransform[3]+adfGeoTransform[5]*y;
+      if(debuglevel>3){printf(" found higher DEM at %ld %ld h=%d d=%f lat=%f lon=%f\n",x-le,y-up,DEMarea[(x-le)+(y-up)*w],d,peak[i].heigherpoint_lat,peak[i].heigherpoint_lon);}
      }
     }
    }
