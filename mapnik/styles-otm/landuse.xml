@@ -14,19 +14,19 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'coniferous'))</Filter>
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([leaf_type] = 'needleleaved'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest-coniferous.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'deciduous'))</Filter>
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([leaf_type] = 'broadleaved'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest-deciduous.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([leaf_type] = 'needleleaved' or [leaf_type] = 'broadleaved')))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest.png"/>
 	</Rule>
 	<Rule>
