@@ -2,6 +2,7 @@
 * isolation -f /path/demfile [-d 0] [-r 100000]                                                             *
 *                                                                                                           *
 * Calculates topographic isolation of peaks based on elevation data                                         *
+* Doc: https://wiki.openstreetmap.org/wiki/User:Maxbe/Dominanz_von_Gipfeln                                  *
 *                                                                                                           *
 * For installation you need the GDAL-libraries (debian: package libgdal-dev)                                *
 * Compiling with "cc -Wall -o isolation isolation.c -lgdal -lm -O2"                                         *
