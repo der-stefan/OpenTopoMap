@@ -1,14 +1,29 @@
 <Style name="symbols-point">
+
 	<Rule>
-		&maxscale_zoom12;
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>(([natural] = 'peak' or [natural] = 'volcano') and (not [summit:cross] = 'yes') and ([otm_isolation] &gt; 300))</Filter>
+		<PointSymbolizer file="symbols-otm/peak.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+        <Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([summit:cross] = 'yes') and ([otm_isolation] &gt; 300))</Filter>
+        <MarkersSymbolizer placement="point" file="symbols-otm/summit_cross.png" transform="translate(0 -3)"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>(([natural] = 'peak' or [natural] = 'volcano') and (not [summit:cross] = 'yes'))</Filter>
 		<PointSymbolizer file="symbols-otm/peak.png"/>
 	</Rule>
+
 	<Rule>
-		&maxscale_zoom12;
+		&maxscale_zoom14;
 		&minscale_zoom17;
-        <Filter>(([natural] = 'peak') and ([summit:cross] = 'yes'))</Filter>
+        <Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([summit:cross] = 'yes'))</Filter>
         <MarkersSymbolizer placement="point" file="symbols-otm/summit_cross.png" transform="translate(0 -3)"/>
 	</Rule>
 	
