@@ -30,19 +30,19 @@ cd ~/OpenTopoMap/
 # Check if otm_isolation is a column of planet_osm_point, if not, create it
 #
 
-column=`psql -t $DBname -c "SELECT attname FROM pg_attribute \
+column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
          WHERE attrelid = ( SELECT oid FROM pg_class WHERE relname = 'planet_osm_point' ) \
          AND attname = 'otm_isolation';"`
 
 if [ "$column" != " otm_isolation" ] ; then
- psql -c "ALTER TABLE planet_osm_point ADD COLUMN otm_isolation text;"
+ psql -d $DBname -c "ALTER TABLE planet_osm_point ADD COLUMN otm_isolation text;"
 fi
 
 #
 # Check once again. If the column doesn't exist -> EXIT
 #
 
-column=`psql -t $DBname -c "SELECT attname FROM pg_attribute \
+column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
          WHERE attrelid = ( SELECT oid FROM pg_class WHERE relname = 'planet_osm_point' ) \
          AND attname = 'otm_isolation';"`
 

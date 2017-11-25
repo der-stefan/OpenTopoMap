@@ -7,13 +7,18 @@
 #
 ###############################################
 
-First compile saddledirection to estimate direction of saddles with DEM data
-============================================================================
+Compile saddledirection to estimate direction of saddles with DEM data
+======================================================================
 
 	apt-get install libgdal-dev
 	cd mapnik/tools/
 	cc -o saddledirection saddledirection.c -lm -lgdal
 	
+
+Compile isolation to calculate topographic isolation of peaks
+=============================================================
+    cc -Wall -o isolation isolation.c -lgdal -lm -O2
+
 
 HOWTO preprocess a newly imported database
 ==========================================
@@ -22,6 +27,7 @@ HOWTO preprocess a newly imported database
 
 	./update_lowzoom.sh
 	./update_saddles.sh 
+    ./update_isolations.sh
 	psql gis < stationdirection.sql 
 	psql gis < viewpointdirection.sql
 	psql gis < pitchicon.sql
