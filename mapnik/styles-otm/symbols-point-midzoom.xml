@@ -1,4 +1,10 @@
 <Style name="symbols-point-midzoom">
+    <Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+        	<Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([otm_isolation] = 100000))</Filter>
+        	<MarkersSymbolizer placement="point" file="symbols-otm/peak.png"/>
+	</Rule>
 
 	<Rule>
 		&maxscale_zoom9;
