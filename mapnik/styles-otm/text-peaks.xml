@@ -1,4 +1,4 @@
-<Style name="text-natural-point-midzoom">
+<Style name="text-peaks">
     <Rule>
 		&maxscale_zoom8;
 		&minscale_zoom9;
