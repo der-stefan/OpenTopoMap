@@ -564,10 +564,10 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="text-natural-point-midzoom">
-		<StyleName>text-natural-point-midzoom</StyleName>
+	<Layer name="text-peaks">
+		<StyleName>text-peaks</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,place,"natural",ele,otm_isolation::INTEGER FROM planet_osm_point WHERE "natural"='peak' OR "natural"='volcano') AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,place,"natural",ele,otm_isolation::INTEGER FROM planet_osm_point) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

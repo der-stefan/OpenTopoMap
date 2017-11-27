@@ -1,9 +1,16 @@
 <Style name="text-peaks">
     <Rule>
 		&maxscale_zoom8;
-		&minscale_zoom9;
+		&minscale_zoom8;
 		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] = 100000)</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="100">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="50">[name]</TextSymbolizer>
+	</Rule>
+
+    <Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 50000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="50">[name]</TextSymbolizer>
 	</Rule>
 
 	<Rule>
