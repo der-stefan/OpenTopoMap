@@ -31,7 +31,7 @@ struct list_peak{
 /* min isolation of a peak */
 #define MINISO         100
 /* difference between the heigts of DEM and peak to define a isolation */
-#define MINDIFF         15
+#define MINDIFF         20
 
 
 int    debuglevel=0;
