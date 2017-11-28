@@ -1,0 +1,64 @@
+<Style name="text-peaks">
+    <Rule>
+		&maxscale_zoom8;
+		&minscale_zoom8;
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] = 100000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="50">[name]</TextSymbolizer>
+	</Rule>
+
+    <Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 50000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="50">[name]</TextSymbolizer>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom10;
+		&minscale_zoom10;
+<<<<<<< HEAD:mapnik/styles-otm/text-natural-point-midzoom.xml
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 18000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[name]</TextSymbolizer>
+=======
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 16000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="100">[name]</TextSymbolizer>
+>>>>>>> upstream/master:mapnik/styles-otm/text-peaks.xml
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom11;
+<<<<<<< HEAD:mapnik/styles-otm/text-natural-point-midzoom.xml
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 9000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[name]</TextSymbolizer>
+=======
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 6000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="100">[name]</TextSymbolizer>
+>>>>>>> upstream/master:mapnik/styles-otm/text-peaks.xml
+	</Rule>
+
+
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+<<<<<<< HEAD:mapnik/styles-otm/text-natural-point-midzoom.xml
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and ([name] = null) and ([otm_isolation] &gt; 2000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[ele]</TextSymbolizer>
+=======
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and ([name] = null) and ([otm_isolation] &gt; 1200)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="100">[ele]</TextSymbolizer>
+>>>>>>> upstream/master:mapnik/styles-otm/text-peaks.xml
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+<<<<<<< HEAD:mapnik/styles-otm/text-natural-point-midzoom.xml
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 2000)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="3" wrap-width="100">[name]</TextSymbolizer>
+=======
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 1200)</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" allow-overlap="true" dy="3" wrap-width="100">[name]</TextSymbolizer>
+>>>>>>> upstream/master:mapnik/styles-otm/text-peaks.xml
+	</Rule>
+</Style>
