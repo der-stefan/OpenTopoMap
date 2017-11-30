@@ -61,6 +61,26 @@ int compare_function(const void *a,const void *b) {
  return 0;
 }
 
+double checkele(char *elestring){
+/* sanitize ele: substitute "," by ".", ignore "m", convert "ft" to meter, check if ele >> Mount Everest */
+/* returns ele or -32000                                                                                 */
+ char   *textrest;
+ double ele;
+ int    i,eleok;
+
+ eleok=1;
+ i=0;while(elestring[i]){if(elestring[i]==','){elestring[i]='.';}i++;}
+ ele=strtod(elestring,&textrest);
+ if(textrest[0]!='\0'){
+  eleok=0;
+  if((strcmp(textrest,"m") ==0)||(strcmp(textrest," m") ==0)){eleok=1;}
+  if((strcmp(textrest,"ft")==0)||(strcmp(textrest," ft")==0)){ele=ele*0.3048;eleok=1;}
+ }
+ if((!eleok)||(ele>9000.0)||(ele<-12000.0)){ele=-32000.0;}
+ return ele;
+}
+
+
 
 double get_height(double lon,double lat,double *adfGeoTransform,GDALRasterBandH hBand,long int xsize,long int ysize){
 /* get height at lon/lat with elevation data from hBand (parameters in adfGeoTransform) */
@@ -198,7 +218,7 @@ int main(int argc, char *argv[]){
  double           adfGeoTransform[6];
  char             *demfile=NULL;
  char             *outputformat=NULL;
- char             *textrest;
+ char             *textrest=NULL;
  double           radius=100000.0;
  char             line[100],elestring[100];
  long long int    id;
@@ -255,11 +275,11 @@ int main(int argc, char *argv[]){
   i=sscanf(line,"%lld;%lf;%lf;%[^\n]",&id,&lon,&lat,elestring);
   if(i==3){elestring[0]='\0';}
   strtok(elestring,";\n");
-  ele=strtod(elestring,&textrest);
+  ele=checkele(elestring);
 
-/* If ele is not a float, get it from DEMfile... */
+/* If ele is not parseable, get it from DEMfile... */
 
-  if(((ele<0.1)&&(ele>-0.1))||(textrest[0]!='\0')){
+  if((ele<=-32000.0)){
    ele=get_height(lon,lat,adfGeoTransform,hBand,GDALGetRasterXSize(hDataset),GDALGetRasterYSize(hDataset));
    elestring[0]='\0';
    st_s++;
