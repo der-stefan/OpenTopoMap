@@ -5,7 +5,12 @@
 		&minscale_zoom11;
 		<Filter>([place] = 'village') and ([population] &gt; 1000)</Filter>
 		<PointSymbolizer file="symbols-otm/small_town.png"/>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" dx="4" dy="-3">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="75" wrap-before="true" placement="point" placement-type="list">[name]
+            <Placement dx="4" dy="-3" />
+            <Placement dx="0" dy="5" />
+            <Placement dx="4" dy="3" />
+            <Placement dx="-4" dy="3" />
+        </TextSymbolizer>
 	</Rule>
 
 
