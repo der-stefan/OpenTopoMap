@@ -68,15 +68,17 @@ double checkele(char *elestring){
  double ele;
  int    i,eleok;
 
- eleok=1;
- i=0;while(elestring[i]){if(elestring[i]==','){elestring[i]='.';}i++;}
- ele=strtod(elestring,&textrest);
- if(textrest[0]!='\0'){
-  eleok=0;
-  if((strcmp(textrest,"m") ==0)||(strcmp(textrest," m") ==0)){eleok=1;}
-  if((strcmp(textrest,"ft")==0)||(strcmp(textrest," ft")==0)){ele=ele*0.3048;eleok=1;}
- }
- if((!eleok)||(ele>9000.0)||(ele<-12000.0)){ele=-32000.0;}
+ ele=-32000.0;eleok=1;
+ if(elestring[0]!='\0'){
+  i=0;while(elestring[i]){if(elestring[i]==','){elestring[i]='.';}i++;}
+  ele=strtod(elestring,&textrest);
+  if(textrest[0]!='\0'){
+   eleok=0;
+   if((strcmp(textrest,"m") ==0)||(strcmp(textrest," m") ==0)){eleok=1;}
+   if((strcmp(textrest,"ft")==0)||(strcmp(textrest," ft")==0)){ele=ele*0.3048;eleok=1;}
+  }
+  if((!eleok)||(ele>9000.0)||(ele<-12000.0)){ele=-32000.0;}
+ }else{ele=-32000.0;}
  return ele;
 }
 
