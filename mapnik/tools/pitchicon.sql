@@ -88,14 +88,14 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
      END IF;
     END IF;
 --
--- similar checks for other sports (for soccer pitch_area hast to be checked in the style) 
+-- similar checks for other sports (for soccer pitch_area has to be checked in the style) 
 --    
     IF ((icon IS NULL) AND (sportlist like '%;soccer;%')) THEN
      IF ((d12>90) AND (d12<130) AND (d23>45) AND (d23<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';                END IF;
      IF ((d23>90) AND (d23<130) AND (d12>45) AND (d12<110) AND (d13>100) AND (d13<170)) THEN icon:='soccer';angle:=angle+90;END IF;
     END IF;
 --
--- We don't have a icon for sport=multi, but we use a oval for soccer and multi in lower zoom levels (multis may be a little bit lager than soccer)
+-- We don't have a icon for sport=multi, but we use a oval for soccer and multi in lower zoom levels (multis may be a little bit larger than soccer)
 --
     IF ((icon IS NULL) AND (sportlist like '%;multi;%')) THEN
      IF ((d12>90) AND (d12<140) AND (d23>45) AND (d23<120) AND (d13>100) AND (d13<180)) THEN icon:='multi';                END IF;
