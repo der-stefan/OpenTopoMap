@@ -3,28 +3,28 @@
 		&maxscale_zoom8;
 		&minscale_zoom8;
         	<Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([otm_isolation] = 100000))</Filter>
-        	<MarkersSymbolizer placement="point" file="symbols-otm/peak.png"/>
+        	<MarkersSymbolizer placement="point" file="symbols-otm/peak_z8.png"/>
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom9;
         	<Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([otm_isolation] &gt; 25000))</Filter>
-        	<MarkersSymbolizer placement="point" file="symbols-otm/peak.png"/>
+        	<MarkersSymbolizer placement="point" file="symbols-otm/peak_z8.png"/>
 	</Rule>
 
 	<Rule>
 		&maxscale_zoom10;
 		&minscale_zoom10;
         	<Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([otm_isolation] &gt;  8000))</Filter>
-        	<MarkersSymbolizer placement="point" file="symbols-otm/peak.png"/>
+        	<MarkersSymbolizer placement="point" file="symbols-otm/peak_z8.png"/>
 	</Rule>
 
 	<Rule>
 	 	&maxscale_zoom11;
  		&minscale_zoom11;
         	<Filter>(([natural] = 'peak' or [natural] = 'volcano') and ([otm_isolation] &gt;  3000))</Filter>
-        	<MarkersSymbolizer placement="point" file="symbols-otm/peak.png"/>
+        	<MarkersSymbolizer placement="point" file="symbols-otm/peak_z8.png"/>
 	</Rule>
 
 	<Rule>
