@@ -1,7 +1,7 @@
 -- -------------------------------------------------------------------------------------
 -- stationdirection.sql
 -- 
--- defines a funktion to rotate railway stations to the direction of their rails.
+-- defines a function to rotate railway stations to the direction of their rails.
 -- updates planet_osm_point and sets direction. direction is null, if there are no
 -- rails or other errors.
 --
@@ -109,9 +109,9 @@ CREATE OR REPLACE FUNCTION getstationdirection(Point IN GEOMETRY,Stationlayer in
 $$ LANGUAGE plpgsql;
 
 -- --------------------------------------------------------------------------
--- end of funktion  getstationdirection()
+-- end of function  getstationdirection()
 --
--- Now use this funktion to update the database
+-- Now use this function to update the database
 -- --------------------------------------------------------------------------
 
 UPDATE planet_osm_point 

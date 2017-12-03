@@ -28,7 +28,7 @@ HOWTO preprocess a newly imported database
 	./update_lowzoom.sh
 	./update_saddles.sh 
     ./update_isolations.sh
-	psql gis < stationdirection.sql 
+	psql gis < stationdirection.sql
 	psql gis < viewpointdirection.sql
 	psql gis < pitchicon.sql
 
@@ -49,6 +49,10 @@ HOWTO preprocess a newly imported database
 
 # below only tests, not necessary to execute
 #########################################################################
+SELECT sport from planet_osm_polygon WHERE ST_DWithin(way,Point,SearchArea_m)
+
+
+======================================================
 	pgsql2shp -k -f waterways gis "SELECT ST_SimplifyPreserveTopology(way,100) AS way,\"CEMT\",intermittent,motorboat,waterway,tunnel FROM planet_osm_line WHERE \"CEMT\" IN ('IV','Va','Vb','VIa','VIb','VIc','VII') OR motorboat = 'yes'"
 	ogr2ogr -explodecollections -a_srs epsg:3857 -append -f "PostgreSQL" 'PG:dbname='lowzoom'' -nln waterways waterways.shp
 	
