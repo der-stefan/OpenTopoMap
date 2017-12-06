@@ -386,7 +386,6 @@
 		</Datasource>
 	</Layer>
 
-	
 	<Layer name="roads-lowzoom">
 		<StyleName>roads-casing-lowzoom</StyleName>
 		<StyleName>roads-fill-lowzoom</StyleName>
@@ -435,6 +434,7 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
 	<Layer name="railway-bridges-layer2" group-by="layer">
 		<StyleName>railway-bridges-casing</StyleName>
 		<StyleName>railway-bridges</StyleName>
@@ -484,7 +484,7 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="aerialways">
+	<Layer name="cablecars">
 		<StyleName>aerialways</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,aerialway FROM planet_osm_line WHERE aerialway IS NOT NULL) AS aerialway </Parameter>
@@ -527,6 +527,15 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+	<Layer name="text-natural-poly">
+		<StyleName>text-natural-poly</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,"natural",leisure,way_area FROM planet_osm_polygon) AS names</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
 	
 	<Layer name="symbols-stations">
 		<StyleName>symbols-stations</StyleName>
@@ -545,34 +554,34 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	<Layer name="text-natural-poly">
-		<StyleName>text-natural-poly</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,name,"natural",leisure,way_area FROM planet_osm_polygon) AS names</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 
-	<Layer name="text-natural-point">
+	<!--<Layer name="text-natural-point">
 		<StyleName>text-natural-point</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,place,"natural",ele,otm_isolation::INTEGER FROM planet_osm_point) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,place,"natural",ele,otm_isolation::INTEGER FROM planet_osm_point ORDER BY otm_isolation) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
+	</Layer>-->
 
-	<Layer name="text-peaks">
+	<!--<Layer name="text-peaks">
 		<StyleName>text-peaks</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,place,"natural",ele,otm_isolation::INTEGER FROM planet_osm_point) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,place,"natural",ele,otm_isolation::INTEGER FROM planet_osm_point ORDER BY ) AS names</Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>-->
+
+	<Layer name="symbols-peaks">
+		<StyleName>symbols-peaks</StyleName>
+        <StyleName>text-peaks</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural",name,ele,"summit:cross",otm_isolation::INTEGER FROM planet_osm_point ORDER BY otm_isolation::INTEGER DESC) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-
 
 	<Layer name="symbols-poly">
 		<StyleName>symbols-1</StyleName>
@@ -580,6 +589,17 @@
 		<StyleName>symbols-poly</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,NULL AS "summit:cross",tourism,"power","generator:source","site_type",leisure,sport,leaf_type,disused,abandoned,railway,way_area FROM planet_osm_polygon) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
+	<Layer name="symbols-point">
+		<StyleName>symbols-1</StyleName>
+		<StyleName>symbols-2</StyleName>
+		<StyleName>symbols-point</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,leaf_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,"summit:cross",tourism,"power","generator:source","site_type",sport,disused,abandoned,railway,train,subway,otm_isolation::INTEGER FROM planet_osm_point) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -598,26 +618,6 @@
 		<StyleName>symbols-viewpoint</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,tourism,(int_dir).s1 as firstrotation,(int_dir).a1 as firstangle,(int_dir).s2 as secondrotation,(int_dir).a2 as secondangle FROM (SELECT way,tourism,viewpointdirection(direction) AS int_dir FROM planet_osm_point WHERE (tourism='viewpoint' AND direction IS NOT NULL)) AS viewpoints) AS symbols</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="symbols-point">
-		<StyleName>symbols-1</StyleName>
-		<StyleName>symbols-2</StyleName>
-		<StyleName>symbols-point</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,access,amenity,highway,historic,"memorial:type",castle_type,leaf_type,religion,denomination,denotation,"man_made","tower:type","communication:radio","communication:television",building,"natural",name,ruins,"summit:cross",tourism,"power","generator:source","site_type",sport,disused,abandoned,railway,train,subway,otm_isolation::INTEGER FROM planet_osm_point) AS symbols </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="symbols-peaks">
-		<StyleName>symbols-peaks</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",name,"summit:cross",otm_isolation::INTEGER FROM planet_osm_point ORDER BY otm_isolation::INTEGER DESC) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
