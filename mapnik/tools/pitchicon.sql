@@ -52,7 +52,7 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
 --
 -- get a simplified rectangle around the way, get the first 3 corners of this rectangle
 --
-   way=ST_ExteriorRing(ST_SimplifyPreserveTopology((st_dump(inway)).geom,100));
+   way=ST_ExteriorRing(ST_SimplifyPreserveTopology((st_dump(inway)).geom,100)) LIMIT 1;
    n1:=ST_Transform(ST_PointN(way,1),4326);
    n2:=ST_Transform(ST_PointN(way,2),4326);
    n3:=ST_Transform(ST_PointN(way,3),4326);
