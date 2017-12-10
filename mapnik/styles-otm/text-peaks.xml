@@ -14,7 +14,7 @@
     <Rule>
 		&maxscale_zoom10;
 		&minscale_zoom10;
-		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 20000)</Filter>
+		<Filter>([natural] = 'peak' or [natural] = 'volcano') and (not ([name] = null)) and ([otm_isolation] &gt; 30000)</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" size="9" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="4" wrap-width="100">[name]+"\n"+[ele]</TextSymbolizer>
 	</Rule>
 	<Rule>
