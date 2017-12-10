@@ -64,8 +64,8 @@
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
-	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
     <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
+	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
 	<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
     <!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
@@ -146,8 +146,8 @@
 	&text-cities;
 	&text-towns;
 	&text-villages;
-	&symbols-stations;
     &symbols-sport;
+	&symbols-stations;
 	&text-natural-poly-lowzoom;
     &text-natural-poly;
     &symbols-peaks;
@@ -534,20 +534,20 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	<Layer name="symbols-stations">
-		<StyleName>symbols-stations</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,name,railway,train,subway,station,direction FROM planet_osm_point WHERE (railway='station' OR railway='halt') AND ((direction IS NULL) OR direction SIMILAR TO '[0-9]+')) AS names</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 
 	<Layer name="symbols-sport">
 		<StyleName>symbols-sport</StyleName>
 		<Datasource>
 			<Parameter name="table">(SELECT way,(pitchdata).icon AS icon,(pitchdata).angle AS angle,(pitchdata).pitch_area AS pitch_area,(pitchdata).labelsizefactor AS labelsizefactor FROM (select way,getpitchicon(way,sport) as pitchdata FROM planet_osm_polygon WHERE leisure='pitch' AND (building IS NULL OR building = 'no')) AS pitches) AS symbols </Parameter>
+			<Parameter name="dbname">gis</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
+    <Layer name="symbols-stations">
+		<StyleName>symbols-stations</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,name,railway,train,subway,station,direction FROM planet_osm_point WHERE (railway='station' OR railway='halt') AND ((direction IS NULL) OR direction SIMILAR TO '[0-9]+')) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

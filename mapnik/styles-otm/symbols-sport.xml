@@ -32,7 +32,8 @@
 		&maxscale_zoom15;
 		&minscale_zoom15;
 		<Filter>(([icon]='soccer' or [icon]='multi') and [pitch_area] &gt; 3500)</Filter>
-		<PointSymbolizer allow-overlap="true" ignore-placement="true" file="symbols-otm/sports-soccer.svg" transform="rotate([angle]) scale(0.052*[labelsizefactor])"/>
+		<!--<PointSymbolizer allow-overlap="true" ignore-placement="true" file="symbols-otm/sports-soccer.svg" transform="rotate([angle]) scale(0.052*[labelsizefactor])"/>-->
+        <PointSymbolizer allow-overlap="true" ignore-placement="true" file="symbols-otm/sports-oval_z15.svg" transform="rotate([angle]) scale(0.65*[labelsizefactor])"/>
 	</Rule>
 	
 	<!-- soccer -->
@@ -131,7 +132,7 @@
 
 	<!-- no icon but colored outline -->
 	<Rule>
-		&maxscale_zoom15;
+		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>([icon]='multi' or [icon]=null)</Filter>
 		<LineSymbolizer stroke="#cde2b6" stroke-width="0.5" />
