@@ -117,15 +117,15 @@
 	</Rule>
 	
 	<Rule>
-		&maxscale_zoom15;
-		&minscale_zoom15;
+		&maxscale_zoom16;
+		&minscale_zoom16;
 		<Filter>[leisure] = 'pitch'</Filter>
 		<LineSymbolizer stroke="#8eb961" stroke-width="0.5" />
 		<PolygonSymbolizer fill="#b6dea4" fill-opacity="0.5" />
 	</Rule>
 	<!-- eventual icon or outline in symbols-sport -->
 	<Rule>
-		&maxscale_zoom15;
+		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>[leisure] = 'pitch'</Filter>
 		<PolygonSymbolizer fill="#b6dea4" fill-opacity="0.5" />

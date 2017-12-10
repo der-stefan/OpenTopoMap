@@ -55,7 +55,7 @@
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-		<Filter>([natural] = 'water' or [landuse] = 'basin' or [landuse] = 'reservoir') and [waterway] != 'riverbank'</Filter>
+		<Filter>([natural] = 'water' or [landuse] = 'basin' or [landuse] = 'reservoir') and ([waterway] != 'riverbank') and ([intermittent] = 'yes')</Filter>
         <PolygonPatternSymbolizer file="symbols-otm/water-intermittent.png"/>
 		<LineSymbolizer stroke="blue" stroke-width="0.5" />
 	</Rule>
