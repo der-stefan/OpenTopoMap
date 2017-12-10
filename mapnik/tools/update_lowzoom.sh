@@ -8,7 +8,7 @@ psql -d gis -c "CREATE EXTENSION dblink;"
 
 # water
 echo "Simplifying water polygons..."
-psql -d gis -c "CREATE VIEW lowzoom_water AS SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake') AND way_area > 50000;"
+psql -d gis -c "CREATE VIEW lowzoom_water AS SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake' OR landuse IN ('basin','reservoir')) AND way_area > 50000;"
 psql -d lowzoom -c "CREATE TABLE water (way geometry(Geometry,3857), name text, \"natural\" text, waterway text, way_area real);"
 psql -d lowzoom -c "INSERT INTO water SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_water') AS t(way geometry(Geometry,3857), name text, \"natural\" text, waterway text, way_area real);"
 
