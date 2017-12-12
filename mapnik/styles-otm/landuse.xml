@@ -5,6 +5,12 @@
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
 		<PolygonSymbolizer fill="#b9d984" />
 	</Rule>
+    <Rule>
+		&maxscale_zoom12;
+		&minscale_zoom13;
+		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
+        <LineSymbolizer stroke="#399b3c" stroke-width="0.7" stroke-opacity="0.9" />
+	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
@@ -113,7 +119,7 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>[leisure] = 'park'</Filter>
-		<PolygonSymbolizer fill="#a9df82" fill-opacity="0.5" />
+		<PolygonSymbolizer fill="#c1dfac" fill-opacity="0.5" />
 	</Rule>
 
 	<!-- for pitch overlays see "symbols-sport" -->	
