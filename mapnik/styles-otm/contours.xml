@@ -68,7 +68,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom12;
 		<Filter>([height] % 100 != 0) and ([height] % 20 = 0) and ([height] != 0)</Filter>
-		<LineSymbolizer stroke="#d45500" stroke-width="0.2"  smooth="0.5" />
+		<LineSymbolizer stroke="#d45500" stroke-width="0.2" smooth="0.5" />
 	</Rule>
 
 	<!-- 10 m -->
