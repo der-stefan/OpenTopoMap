@@ -130,12 +130,7 @@
 		<PointSymbolizer allow-overlap="true" ignore-placement="true" file="symbols-otm/sports-foot-us.svg" transform="rotate([angle]) scale(0.207*[labelsizefactor])"/>
 	</Rule>
 
-	<!-- no icon but colored outline -->
-	<Rule>
-		&maxscale_zoom16;
-		&minscale_zoom17;
-		<Filter>([icon]='multi' or [icon]=null)</Filter>
-		<LineSymbolizer stroke="#cde2b6" stroke-width="0.5" />
-	</Rule>
+	<!-- On zoom 16 and 17 the color of pitches is defined in "landuse", since they should be rendered semi-transparent with the DEM -->
+
 </Style>
 
