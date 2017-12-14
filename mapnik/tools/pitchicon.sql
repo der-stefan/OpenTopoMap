@@ -4,8 +4,10 @@
 -- size and the direction of a label and returns a composite type with
 --
 --  icon            text:  something like 'soccer', 'tennis' derived from sport
+--                         if there is a track arround the pitch icon is something
+--                         like 'soccer_with_track' or 'multi_with_track'
 --  pitch_area      float: area of the pitch im m^2
---  angle           float: rotation of the pitch (0°=North) 
+--  angle           float: rotation of the pitch (0=North) 
 --  labelsizefactor float: a factor to strech the icon, depends on the latitude
 --
 --  derived from https://github.com/giggls/openstreetmap-carto-de, which was
@@ -23,7 +25,7 @@ CREATE TYPE otm_pitch AS (icon TEXT,pitch_area FLOAT,angle FLOAT,labelsizefactor
 CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_pitch AS $$
 
  DECLARE
-  way             GEOMETRY;
+  myway           GEOMETRY;
   d12             FLOAT;
   d23             FLOAT;
   d13             FLOAT;
@@ -39,10 +41,17 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
   sportlist       TEXT;
   icon            TEXT;
   ret             otm_pitch;
+  trackdist       FLOAT;
+  trackid         BIGINT;
 
  BEGIN
+--
+-- "trackdist" is the distance in which we are searching a track arround the pitch
+--
+  trackdist=40;
   ret.icon=NULL;
   sportlist=';'||sport||';';
+  trackdist=40;
 --
 -- first we check, that its a kind of sport, we have a icon for. If not we don't have to calculate
 --
@@ -52,10 +61,10 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
 --
 -- get a simplified rectangle around the way, get the first 3 corners of this rectangle
 --
-   way=ST_ExteriorRing(ST_SimplifyPreserveTopology((st_dump(inway)).geom,100)) LIMIT 1;
-   n1:=ST_Transform(ST_PointN(way,1),4326);
-   n2:=ST_Transform(ST_PointN(way,2),4326);
-   n3:=ST_Transform(ST_PointN(way,3),4326);
+   myway=ST_ExteriorRing(ST_SimplifyPreserveTopology((st_dump(inway)).geom,100)) LIMIT 1;
+   n1:=ST_Transform(ST_PointN(myway,1),4326);
+   n2:=ST_Transform(ST_PointN(myway,2),4326);
+   n3:=ST_Transform(ST_PointN(myway,3),4326);
 --
 -- calculate length of the first 2 sides (d12,d23), the diagonal (d13),
 -- the angle between the sides and one angle to the north direction of d12 or d23
@@ -64,8 +73,8 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
    d23:=ST_DistanceSphere(n2,n3);
    d13:=ST_DistanceSphere(n1,n3);
    pitch_area:=d12*d23;
-   a12:=degrees(ST_Azimuth(ST_PointN(way,1),ST_PointN(way,2)));
-   a23:=degrees(ST_Azimuth(ST_PointN(way,2),ST_PointN(way,3)));
+   a12:=degrees(ST_Azimuth(ST_PointN(myway,1),ST_PointN(myway,2)));
+   a23:=degrees(ST_Azimuth(ST_PointN(myway,2),ST_PointN(myway,3)));
    angle_diff:=cast(abs(a12-a23) as integer)%180;
    angle:=(a12+a23+90)/2;
 --
@@ -120,6 +129,37 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
      END IF;
     END IF;
    END IF;
+
+   if (icon='soccer' OR icon='multi') THEN
+--
+-- Search for surrounding leisure=track
+-- at first for closed tracks around the pitch in planet_osm_line
+--
+    trackid=osm_id FROM planet_osm_line
+              WHERE planet_osm_line.way && ST_EXPAND(myway,trackdist/labelsizefactor) 
+              AND   leisure='track' 
+              AND   ST_ISCLOSED(planet_osm_line.way)
+              AND   ST_CONTAINS(ST_MakePolygon(planet_osm_line.way),myway)
+              LIMIT 1;
+--
+-- then for track areas around the pitch in planet_osm_polygon
+--
+    IF (trackid IS NULL) THEN
+    trackid=osm_id FROM planet_osm_polygon
+              WHERE planet_osm_polygon.way && ST_EXPAND(myway,trackdist/labelsizefactor) 
+              AND   leisure='track' 
+              AND   ST_NumGeometries(planet_osm_polygon.way)=1
+              AND   ST_CONTAINS(ST_MakePolygon(ST_ExteriorRing(planet_osm_polygon.way)),myway)
+              LIMIT 1;
+    END IF;
+--
+--  if there was a leisure=track append "_with_track" to icon
+--
+    IF (trackid IS NOT NULL) THEN
+     icon=icon||'_with_track';
+    END IF;
+   END IF;
+
    if (icon IS NOT NULL) THEN
     ret.icon:=icon;
     ret.angle:=angle;
@@ -132,3 +172,4 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
   return ret;
  END;
 $$ LANGUAGE plpgsql;
+
