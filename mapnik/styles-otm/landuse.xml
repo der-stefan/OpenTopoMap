@@ -9,7 +9,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom13;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
-        <LineSymbolizer stroke="#399b3c" stroke-width="0.7" stroke-opacity="0.9" />
+        <LineSymbolizer stroke="#658d41" stroke-width="0.7" stroke-opacity="0.9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
