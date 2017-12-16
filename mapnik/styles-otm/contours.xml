@@ -31,7 +31,7 @@
 		<LineSymbolizer stroke="#d45500" stroke-width="0.6" smooth="0.5" />
 	</Rule>
 	<Rule>
-		&maxscale_zoom11;
+		&maxscale_zoom13;
 		&minscale_zoom14;
 		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
 		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,1)" halo-comp-op="soft-light" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="200" spacing="200">[height]</TextSymbolizer>
@@ -68,7 +68,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom12;
 		<Filter>([height] % 100 != 0) and ([height] % 20 = 0) and ([height] != 0)</Filter>
-		<LineSymbolizer stroke="#d45500" stroke-width="0.2"  smooth="0.5" />
+		<LineSymbolizer stroke="#d45500" stroke-width="0.2" smooth="0.5" />
 	</Rule>
 
 	<!-- 10 m -->

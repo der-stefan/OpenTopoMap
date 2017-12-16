@@ -177,8 +177,12 @@ This guide is quite complete, but you should always think about before blindly c
 	# touch -d "$(date -R -r 0.meta) - 10 years" 0.meta
 	rm ~/data/updates/changes.osc.gz
 	
+	
 # Install cronjob:
 	crontab -e
 	*/5 * * * * update.sh > output
 
+
+# perhaps we need to source out the index planet_osm_ways_nodes to the HDD in order to save space on the SSD:
+CREATE TABLESPACE anderertablespace LOCATION '/home/irgendwas'; ALTER INDEX planet_osm_ways_nodes SET TABLESPACE anderertablespace;
 

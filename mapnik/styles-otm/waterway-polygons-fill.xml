@@ -17,7 +17,7 @@
 		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>[waterway] = 'riverbank' and [intermittent] = 'yes'</Filter>
-		<PolygonPatternSymbolizer file="symbols-otm/riverbank-intermittent.png"/>
+		<PolygonPatternSymbolizer file="symbols-otm/water-intermittent.png"/>
 		<LineSymbolizer stroke="#a3dde8" stroke-width="0.7" /> <!-- avoid riverbank polygons -->
 	</Rule>
 

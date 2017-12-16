@@ -17,6 +17,28 @@
 		<Filter>([natural] = 'cliff') or ([man_made] = 'embankment')</Filter>
 		<LinePatternSymbolizer file="symbols-otm/cliff_z15.png"/>
 	</Rule>
+
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>([natural] = 'crevasse')</Filter>
+                <LineSymbolizer stroke="#000088" stroke-width="0.5" stroke-opacity="0.05"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>([natural] = 'crevasse')</Filter>
+                <LineSymbolizer stroke="#000088" stroke-width="0.5" stroke-opacity="0.1"/>
+	</Rule>
+
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([natural] = 'crevasse')</Filter>
+                <LineSymbolizer stroke="#000088" stroke-width="0.25" stroke-opacity="0.2"/>
+	</Rule>
 	
 	<Rule>
 		&maxscale_zoom14;

@@ -38,7 +38,7 @@
 	<Rule>
 		&maxscale_zoom6;
 		&minscale_zoom6;
-		<Filter>([capital] = 'yes' and [admin_level] = '2')</Filter>
+		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 25E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
@@ -50,7 +50,7 @@
 	<Rule>
 		&maxscale_zoom7;
 		&minscale_zoom7;
-		<Filter>([capital] = 'yes' and [admin_level] = '2')</Filter>
+		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 25E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="13" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
@@ -62,7 +62,7 @@
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
-		<Filter>([capital] = 'yes' and [admin_level] = '2')</Filter>
+		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 10E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="15" fill="black" halo-radius="2" wrap-width="100" dx="5" dy="-3" text-transform="uppercase" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-4" />

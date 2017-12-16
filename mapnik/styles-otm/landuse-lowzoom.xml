@@ -2,6 +2,6 @@
 	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom10;
-		<PolygonSymbolizer fill="#abda74" />
+		<PolygonSymbolizer fill="#b9d984" />
 	</Rule>
 </Style>

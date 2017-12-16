@@ -1,22 +1,4 @@
 <Style name="symbols-point">
-	<Rule>
-		&maxscale_zoom14;
-		&minscale_zoom17;
-		<Filter>([tourism] = 'viewpoint')</Filter>
-		<PointSymbolizer file="symbols-otm/viewpoint.png"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom12;
-		&minscale_zoom17;
-		<Filter>(([natural] = 'peak' or [natural] = 'volcano') and (not [summit:cross] = 'yes'))</Filter>
-		<PointSymbolizer file="symbols-otm/peak.png"/>
-	</Rule>
-	<Rule>
-		&maxscale_zoom12;
-		&minscale_zoom17;
-		<Filter>(([natural] = 'peak') and ([summit:cross] = 'yes'))</Filter>
-		<PointSymbolizer file="symbols-otm/summit_cross.png"/>
-	</Rule>
 	
 	<!-- see railway-points for subway icons -->
 	<Rule>

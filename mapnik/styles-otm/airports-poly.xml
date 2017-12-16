@@ -1,15 +1,12 @@
-<Style name="aeroways-areas">
-
-<!-- aeroway areas -->
-	
+<Style name="airports-poly">
+<!-- aeroway areas -->	
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom13;
 		<Filter> ([aeroway] = 'apron' or [aeroway] = 'helipad' or [aeroway] = 'runway' or [aeroway] = 'taxilane' or [aeroway] = 'taxiway' ) and ([way_area] &gt; 10000)</Filter>
-		<PolygonSymbolizer fill="#999999" />
-		<LineSymbolizer stroke="#cccccc" stroke-width="0.25" />
+		<PolygonSymbolizer fill="#dddddd" />
+		<LineSymbolizer stroke="#666666" stroke-width="0.25" />
 	</Rule>
-
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
@@ -17,6 +14,4 @@
 		<PolygonSymbolizer fill="#dddddd" />
 		<LineSymbolizer stroke="black" stroke-width="0.5" />
 	</Rule>
-
-
 </Style>

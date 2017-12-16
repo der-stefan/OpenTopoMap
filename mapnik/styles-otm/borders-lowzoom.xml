@@ -5,28 +5,28 @@
 		&maxscale_zoom4;
 		&minscale_zoom5;
 		<Filter>([admin_level] = '2')</Filter>
-		<LineSymbolizer stroke="#a101d9" stroke-width="0.4" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.4" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom6;
 		&minscale_zoom6;
 		<Filter>([admin_level] = '2')</Filter>
-		<LineSymbolizer stroke="#cb82d9" stroke-width="6" stroke-opacity="0.2" />
-		<LineSymbolizer stroke="#8301b1" stroke-width="0.5" stroke-opacity="0.9" />
+		<LineSymbolizer stroke="#646464" stroke-width="2" stroke-opacity="0.1" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.5" stroke-opacity="0.9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom7;
 		&minscale_zoom7;
 		<Filter>([admin_level] = '2')</Filter>
-		<LineSymbolizer stroke="#cb82d9" stroke-width="8" stroke-opacity="0.2" />
-		<LineSymbolizer stroke="#8301b1" stroke-width="0.6" stroke-opacity="0.9" />
+		<LineSymbolizer stroke="#646464" stroke-width="5.5" stroke-opacity="0.15" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.6" stroke-opacity="0.9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
 		<Filter>([admin_level] = '2')</Filter>
-		<LineSymbolizer stroke="#cb82d9" stroke-width="8" stroke-opacity="0.2" />
-		<LineSymbolizer stroke="#8301b1" stroke-width="0.6" stroke-opacity="0.9" />
+		<LineSymbolizer stroke="#646464" stroke-width="5.5" stroke-opacity="0.15" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.6" stroke-opacity="0.9" />
 	</Rule>
  
 <!-- admin_level = 4 -->
@@ -34,13 +34,13 @@
 		&maxscale_zoom7;
 		&minscale_zoom7;
 		<Filter>([admin_level] = '4')</Filter>
-		<LineSymbolizer stroke="#a101d9" stroke-width="0.4" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.4" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
 		<Filter>([admin_level] = '4')</Filter>
-		<LineSymbolizer stroke="#a101d9" stroke-width="0.8" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.8" />
 	</Rule>
  
 <!-- admin_level = 5 -->
@@ -48,7 +48,7 @@
 		&maxscale_zoom8;
 		&minscale_zoom8;
 		<Filter>([admin_level] = '5')</Filter>
-		<LineSymbolizer stroke="#a101d9" stroke-width="0.3" />
+		<LineSymbolizer stroke="#4d4d4d" stroke-width="0.3" />
 	</Rule>
 	
 

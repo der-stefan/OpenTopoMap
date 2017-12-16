@@ -3,7 +3,13 @@
 		&maxscale_zoom11;
 		&minscale_zoom11;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
-		<PolygonSymbolizer fill="#abda74" />
+		<PolygonSymbolizer fill="#b9d984" />
+	</Rule>
+    <Rule>
+		&maxscale_zoom12;
+		&minscale_zoom13;
+		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
+        <LineSymbolizer stroke="#658d41" stroke-width="0.7" stroke-opacity="0.9" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
@@ -14,19 +20,19 @@
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'coniferous'))</Filter>
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([leaf_type] = 'needleleaved'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest-coniferous.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([wood] = 'deciduous'))</Filter>
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and ([leaf_type] = 'broadleaved'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest-deciduous.png"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom17;
-		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([wood] = 'coniferous' or [wood] = 'deciduous')))</Filter>
+		<Filter>(([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest') and (not ([leaf_type] = 'needleleaved' or [leaf_type] = 'broadleaved')))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/forest.png"/>
 	</Rule>
 	<Rule>
@@ -113,13 +119,15 @@
 		&maxscale_zoom13;
 		&minscale_zoom17;
 		<Filter>[leisure] = 'park'</Filter>
-		<PolygonSymbolizer fill="#a9df82" fill-opacity="0.5" />
+		<PolygonSymbolizer fill="#c1dfac" fill-opacity="0.5" />
 	</Rule>
+
+	<!-- for pitch overlays see "symbols-sport" -->	
 	<Rule>
-		&maxscale_zoom13;
+		&maxscale_zoom16;
 		&minscale_zoom17;
-		<Filter>[leisure] = 'pitch'</Filter>
+		<Filter>[leisure] = 'pitch' or [leisure] = 'track'</Filter>
 		<LineSymbolizer stroke="#8eb961" stroke-width="0.5" />
-		<PolygonSymbolizer fill="#b6dea4" fill-opacity="0.5" />
+        <PolygonSymbolizer fill="#b6dea4" fill-opacity="0.5" />
 	</Rule>
 </Style>

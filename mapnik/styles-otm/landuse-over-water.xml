@@ -28,7 +28,13 @@
 	</Rule>
 	
 	<Rule>
-		&maxscale_zoom10;
+		&maxscale_zoom9;
+		&minscale_zoom11;
+		<Filter>(([natural] = 'wetland') and ([wetland] = 'tidalflat'))</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/tidalflat_z9.png" opacity="0.7"/>
+	</Rule>
+    <Rule>
+		&maxscale_zoom12;
 		&minscale_zoom17;
 		<Filter>(([natural] = 'wetland') and ([wetland] = 'tidalflat'))</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/tidalflat.png" opacity="0.7"/>

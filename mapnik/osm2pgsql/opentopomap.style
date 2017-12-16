@@ -84,6 +84,7 @@ node,way   aerialway    text         linear
 node,way   aeroway      text         polygon
 node,way   amenity      text         polygon
 node,way   area         text         # hard coded support for area=1/yes => polygon is in osm2pgsql
+node,way   attraction   text         linear
 node,way   barrier      text         linear
 node,way   bicycle      text
 node,way   brand        text         linear
@@ -121,6 +122,7 @@ node,way   landuse      text         polygon
 node,way   lanes        text         linear
 node,way   layer        text         linear
 node,way   leisure      text         polygon
+node,way   leaf_type    text         linear
 node,way   lock         text         linear
 node,way   man_made     text         polygon
 node,way	memorial:type	text	polygon
@@ -162,14 +164,12 @@ way        tracktype    text         linear
 way        trail_visibility     text	linear
 node		train		text		polygon
 node,way   tunnel       text         linear
-node,way   type         text         polygon
 way        via_ferrata_scale    text         linear
 node,way   voltage      text         linear
 node,way   water        text         polygon
 node,way   waterway     text         polygon
 node,way   wetland      text         polygon
 node,way   width        text         linear
-node,way   wood         text         linear
 node,way   z_order      int4         linear # This is calculated during import
 way        way_area     real                # This is calculated during import
 
