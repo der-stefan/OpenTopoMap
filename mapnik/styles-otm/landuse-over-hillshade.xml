@@ -44,6 +44,12 @@
 	
 	<!-- forest outlines again -->
     <Rule>
+		&maxscale_zoom11;
+		&minscale_zoom11;
+		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
+        <LineSymbolizer stroke="#61983c" stroke-width="0.3" stroke-opacity="0.4" />
+	</Rule>
+    <Rule>
 		&maxscale_zoom12;
 		&minscale_zoom13;
 		<Filter>([natural] = 'wood' or [landuse] = 'wood' or [landuse] = 'forest')</Filter>
