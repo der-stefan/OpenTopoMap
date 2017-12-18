@@ -26,12 +26,12 @@
 	</Rule>
 
     <!-- zoom 15 -->
-    <Rule>
+    <!--<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;
 		<Filter>(([icon]='soccer_with_track' or [icon]='multi_with_track') and [pitch_area] &gt; 3500)</Filter>
                 <PointSymbolizer allow-overlap="true" ignore-placement="true" file="symbols-otm/sports-oval-track_z15.svg" transform="rotate([angle]) scale(0.65*[labelsizefactor])"/>
-	</Rule>
+	</Rule>-->
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom15;

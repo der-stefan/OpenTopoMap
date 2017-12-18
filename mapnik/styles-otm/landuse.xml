@@ -126,6 +126,12 @@
 	</Rule>
 
 	<!-- for pitch overlays see "symbols-sport" -->	
+    <Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[leisure] = 'track'</Filter>
+		<LineSymbolizer stroke="black" stroke-width="0.8" />
+	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
