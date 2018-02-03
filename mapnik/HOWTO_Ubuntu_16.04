@@ -88,6 +88,10 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo a2enmod tile
 		
 	# copy conf/tile.conf into /etc/apache2/mods-available/tile.conf
+    # in /etc/tirex/renderer/mapnik.conf:
+     # plugindir=/usr/lib/mapnik/3.0/input
+     # fontdir=/usr/share/fonts/truetype
+     # fontdir_recurse=1
 	# in /etc/apache2/sites-available/tileserver_site.conf change:
 	 # comment out "LoadTileConfigFile /etc/renderd.conf"
 	 # change "ModTileRenderdSocketName /var/lib/tirex/modtile.sock"
