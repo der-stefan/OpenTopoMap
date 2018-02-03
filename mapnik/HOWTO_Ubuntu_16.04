@@ -70,8 +70,8 @@ This guide is quite complete, but you should always think about before blindly c
 	make deb
 	
 	cd ~/src
-	sudo dpkg -i tirex-core_0.4.1precise1_amd64.deb
-	sudo dpkg -i tirex-backend-mapnik_0.4.1precise1_amd64.deb
+	sudo dpkg -i tirex-core_0.5.2_amd64.deb
+	sudo dpkg -i tirex-backend-mapnik_0.5.2_amd64.deb
 
 
 # Install mod_tile from source
