@@ -113,7 +113,8 @@ This guide is quite complete, but you should always think about before blindly c
 
 # Create user and database
 	sudo -u postgres -i
-	createuser --createdb osmuser
+	createuser --createdb osmuser   // superuser!?
+    createuser tirex                // read only!?
 	exit
 	createdb gis
 	psql -d gis -c 'CREATE EXTENSION postgis;'
