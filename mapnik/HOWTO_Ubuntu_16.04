@@ -1,6 +1,6 @@
 ###############################################
 #   OpenTopoMap
-#   (c) 2012-2016 Stefan Erhardt
+#   (c) 2012-2018 Stefan Erhardt
 #   https://github.com/der-stefan/OpenTopoMap
 #
 #   opentopomap.org
@@ -8,11 +8,9 @@
 ###############################################
 
 
-HOWTO install OpenTopoMap on Ubuntu 16.04 LTS
-=============================================
+HOWTO install OpenTopoMap on Ubuntu (verified on 16.04 LTS)
+===========================================================
 
-A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
-http://opentopomap.org
 
 This guide is quite complete, but you should always think about before blindly copying the commands.
 

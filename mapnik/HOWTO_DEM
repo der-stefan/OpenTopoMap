@@ -1,6 +1,6 @@
 ###############################################
 #   OpenTopoMap
-#   (c) 2012-2016 Stefan Erhardt
+#   (c) 2012-2018 Stefan Erhardt
 #   https://github.com/der-stefan/OpenTopoMap
 #
 #   opentopomap.org
@@ -11,35 +11,12 @@
 HOWTO create a DEM for contours and hillshade
 =============================================
 
-A guide by der-stefan (https://github.com/der-stefan/OpenTopoMap)
-https://opentopomap.org
-
-
-########################
-# The new approach is to take the DEM and contours from opensnowmap
-########################
-
-createdb contours
-sudo -u postgres psql -d contours -c 'CREATE EXTENSION postgis;'
-
-# Now import the contours e.g. from opensnowmap. If you want to create them on your on, see the old description below.
-
-sudo -u postgres psql -d contours -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;'
-sudo -u postgres psql -d contours -c 'GRANT CONNECT ON DATABASE contours TO tirex;'
-
-# create a geohash index if you have enough disk space:
-psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Transform(wkb_geometry,4326)));"
-
-
-
-#########################
-# Old description (not verified)
-#########################
 
 # Install needed packages
 	sudo apt-get install gdal-bin python-gdal
 
-# Download all SRTM tiles you need (Viewfinder), for example with the help of http://www.imagico.de/map/demsearch.php
+
+# Download all SRTM tiles you need (for example from viewfinderpanoramas.org), for example with the help of http://www.imagico.de/map/demsearch.php
 	wget -i list.txt
 
 
@@ -54,6 +31,7 @@ psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Tr
 # Merge all .tifs into one huge tif. This file will is the raw DEM with full resolution and the start for any further steps.
 # don't delete raw.tif after these steps, you may use it for estimation of saddle directions
 	gdal_merge.py -n 32767 -co BIGTIFF=YES -co TILED=YES -co COMPRESS=LZW -co PREDICTOR=2 -o ../../raw.tif *.hgt.tif
+
 
 # Convert the raw file into Mercator projection, interpolate and shrink
 	gdalwarp -co BIGTIFF=YES -co TILED=YES -co COMPRESS=LZW -co PREDICTOR=2 -t_srs "+proj=merc +ellps=sphere +R=6378137 +a=6378137 +units=m" -r bilinear -tr 1000 1000 raw.tif warp-1000.tif
@@ -87,15 +65,23 @@ psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Tr
 	# sudo python setup.py install
 	phyghtmap --max-nodes-per-tile=0 -s 10 -0 --pbf warp-90.tif
 
+
 # Create contours database
-	sudo -u postgres -i
-	createdb -E UTF8 -O username contours
-	exit
-	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/postgis.sql -d contours
-	psql -f /usr/share/postgresql/9.3/contrib/postgis-2.1/spatial_ref_sys.sql -d contours
-	psql -d contours -c "ALTER TABLE geometry_columns OWNER TO username; ALTER TABLE spatial_ref_sys OWNER TO username;"
-	#psql -f /usr/local/share/osm2pgsql/900913.sql -d contours
+    createdb contours
+    sudo -u postgres psql -d contours -c 'CREATE EXTENSION postgis;'
 	
+
 # Load contour file into database
 	screen osm2pgsql --slim -d contours -C 12000 --number-processes 10 --style ~/OpenTopoMap/mapnik/osm2pgsql/contours.style contours.pbf
+
+
+
+
+
+# Propably not necessary any more:
+#    sudo -u postgres psql -d contours -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;'
+#    sudo -u postgres psql -d contours -c 'GRANT CONNECT ON DATABASE contours TO tirex;'
+#
+#    # create a geohash index if you have enough disk space:
+#    psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Transform(wkb_geometry,4326)));"
 

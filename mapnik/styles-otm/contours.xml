@@ -1,73 +1,67 @@
 <Style name="contours">
 	<!-- 100 m -->
-	<!--<Rule>
-		&maxscale_zoom10;
-		&minscale_zoom10;
-		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
-		<LineSymbolizer stroke="#d45500" stroke-width="0.1" />
-	</Rule>-->
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom11;
-		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.2" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
-		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.4" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.5"  />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.6" smooth="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom14;
-		<Filter>([height] % 100 = 0) and ([height] != 0)</Filter>
-		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,1)" halo-comp-op="soft-light" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="200" spacing="200">[height]</TextSymbolizer>
+		<Filter>([ele] % 100 = 0) and ([ele] != 0)</Filter>
+		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,1)" halo-comp-op="soft-light" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="200" spacing="200">[ele]</TextSymbolizer>
 	</Rule>
 
 	<!-- 50 m -->
 	 <Rule>
 		&maxscale_zoom11;
 		&minscale_zoom11;
-		<Filter>([height] % 100 != 0) and ([height] % 50 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 != 0) and ([ele] % 50 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.2" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-		<Filter>([height] % 100 != 0) and ([height] % 50 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 != 0) and ([ele] % 50 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.3"  />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-		<Filter>([height] % 100 != 0) and ([height] % 50 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 != 0) and ([ele] % 50 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.4" smooth="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
-		<Filter>([height] % 100 != 0) and ([height] % 50 = 0) and ([height] != 0)</Filter>
-		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" halo-comp-op="soft-light" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="200" spacing="200">[height]</TextSymbolizer>
+		<Filter>([ele] % 100 != 0) and ([ele] % 50 = 0) and ([ele] != 0)</Filter>
+		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" halo-comp-op="soft-light" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="200" spacing="200">[ele]</TextSymbolizer>
 	</Rule>
 
 	<!-- 20 m -->
 	 <Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
-		<Filter>([height] % 100 != 0) and ([height] % 20 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 100 != 0) and ([ele] % 20 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.2" smooth="0.5" />
 	</Rule>
 
@@ -75,13 +69,13 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([height] % 50 != 0) and ([height] % 10 = 0) and ([height] != 0)</Filter>
+		<Filter>([ele] % 50 != 0) and ([ele] % 10 = 0) and ([ele] != 0)</Filter>
 		<LineSymbolizer stroke="#d45500" stroke-width="0.2" smooth="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom15;
 		&minscale_zoom17;
-		<Filter>([height] % 10 = 0) and ([height] != 0)</Filter>
-		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,0.3)" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="300" spacing="800">[height]</TextSymbolizer>
+		<Filter>([ele] % 10 = 0) and ([ele] != 0)</Filter>
+		<TextSymbolizer fontset-name="sans-book" size="7" fill="#bc7e55" halo-radius="1" halo-fill="rgba(255,255,255,0.3)" placement="line" max-char-angle-delta="10" label-position-tolerance="100" minimum-path-length="300" spacing="800">[ele]</TextSymbolizer>
 	</Rule>
 </Style>
