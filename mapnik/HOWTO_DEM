@@ -83,5 +83,5 @@ HOWTO create a DEM for contours and hillshade
 #    sudo -u postgres psql -d contours -c 'GRANT CONNECT ON DATABASE contours TO tirex;'
 #
 #    # create a geohash index if you have enough disk space:
-#    psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Transform(wkb_geometry,4326)));"
+#    psql -d contours -c "CREATE INDEX contours_geohash ON contours (ST_GeoHash(ST_Transform(way,4326)));"
 

@@ -305,9 +305,9 @@
 	<Layer name="contours">
 		<StyleName>contours</StyleName>
 		<Datasource>
-			<!-- If you imported the contour lines as suggested in the HOWTO_DEM, use following line:
-            <Parameter name="table">(SELECT way,ele FROM contours) AS contours </Parameter>-->
-            <Parameter name="table">(SELECT wkb_geometry,height AS ele FROM contours) AS contours </Parameter>
+			<!-- If you imported the contour lines as suggested in the HOWTO_DEM, use following:
+            <Parameter name="table">(SELECT way,ele FROM planet_osm_line) AS contours </Parameter>-->
+            <Parameter name="table">(SELECT way,ele FROM contours) AS contours </Parameter>
 			<Parameter name="dbname">contours</Parameter>
 			&postgis-settings;
 		</Datasource>
