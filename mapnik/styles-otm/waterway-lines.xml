@@ -79,7 +79,7 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([intermittent] = 'yes')</Filter>
+		<Filter>(([waterway] = 'ditch' or [waterway] = 'drain') and ([intermittent] = 'yes')) or ([waterway] = 'wadi')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="0.5" stroke-dasharray="1.5,2" />
 	</Rule>
 
