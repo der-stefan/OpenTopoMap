@@ -25,9 +25,9 @@ HOWTO preprocess a newly imported database
 
 	cd mapnik/tools/
 
-	./update_lowzoom.sh
-	./update_saddles.sh 
-    ./update_isolations.sh
+	screen ./update_lowzoom.sh
+	screen ./update_saddles.sh 
+    screen ./update_isolations.sh
 	psql gis < stationdirection.sql
 	psql gis < viewpointdirection.sql
 	psql gis < pitchicon.sql
