@@ -76,7 +76,7 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
    a12:=degrees(ST_Azimuth(ST_PointN(myway,1),ST_PointN(myway,2)));
    a23:=degrees(ST_Azimuth(ST_PointN(myway,2),ST_PointN(myway,3)));
    angle_diff:=cast(abs(a12-a23) as integer)%180;
-   angle:=(a12+a23+90)/2;
+   angle:=90+(a12+a23+90)/2;
 --
 -- we need a correction factor, because we calculate all distances with ST_DistanceSphere() in m and have maps and icons in 3857
 --
