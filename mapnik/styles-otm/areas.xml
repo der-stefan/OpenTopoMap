@@ -9,13 +9,19 @@
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom11;
-		<Filter>[landuse] = 'military' and [way_area] &gt; 1E5</Filter>
+		<Filter>[landuse] = 'military' and [way_area] &gt; 1E6</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/military_area.png"/>
 		<LineSymbolizer stroke="#ff3939" stroke-width="2" stroke-opacity="0.5"/>
 	</Rule>
-	
-	<Rule>
+<Rule>
 		&maxscale_zoom12;
+		&minscale_zoom13;
+		<Filter>[landuse] = 'military' and [way_area] &gt; 1E5</Filter>
+		<PolygonPatternSymbolizer file="symbols-otm/military_area_z12.png"/>
+		<LineSymbolizer stroke="#ff3939" stroke-width="3" stroke-opacity="0.5"/>
+	</Rule>	
+	<Rule>
+		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>[landuse] = 'military'</Filter>
 		<PolygonPatternSymbolizer file="symbols-otm/military_area_z12.png"/>
