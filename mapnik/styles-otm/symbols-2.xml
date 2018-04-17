@@ -57,7 +57,7 @@
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom15;
-		<Filter>([man_made] = 'communications_tower') or ([communication:radio] = 'yes') or ([communication:television] = 'yes')</Filter>
+		<Filter>([man_made] = 'communications_tower' or [communication:radio] = 'yes' or [communication:television] = 'yes') or ([tower:type] = 'communication' and [height] &gt; 100)</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/communications_tower_z13.png" transform="translate(0 -5)"/>
 	</Rule>
 	<Rule>
