@@ -18,9 +18,7 @@ CREATE TYPE otm_al_grid AS
 -- Thanks to Gabor Farkas
 -- https://gis.stackexchange.com/questions/56835/how-to-perform-sia-or-bezier-line-smoothing-in-postgis
 --
-CREATE OR REPLACE FUNCTION OTM_CreateCurve(geom geometry, percent int DEFAULT 40)
-    RETURNS geometry AS
-$$
+CREATE OR REPLACE FUNCTION OTM_CreateCurve(geom geometry, percent int DEFAULT 40) RETURNS geometry AS $$
 DECLARE
     result text;
     p0 geometry;
@@ -67,7 +65,9 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETURNS GEOMETRY AS $$
-
+--
+-- estimates a axis for a label through "myway"
+--
  DECLARE
   bbox            GEOMETRY;
   tmpway          GEOMETRY;
@@ -516,17 +516,41 @@ CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETUR
 $$ LANGUAGE plpgsql;
 
 
-delete from planet_osm_point where man_made='lakepoint';
-delete from planet_osm_line where man_made='lakeaxis';
-delete from planet_osm_polygon where man_made='lakepoint';
 
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where (osm_id=8102889)  and "natural"='water';
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where (osm_id=-32246)  and "natural"='water';
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where (osm_id=-32246 or osm_id=-3597692 or  osm_id=-1156846 or osm_id=-2066758 or osm_id=-154667 or osm_id=-2068020 or osm_id=-168897 or osm_id=-168892)  and "natural"='water';
- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where (way && st_expand((select way from planet_osm_polygon where osm_id=-32246 and "natural"='water'),20000) OR (osm_id=-32246 or osm_id=-3597692 or  osm_id=-1156846 or osm_id=-2066758 or osm_id=-154667 or osm_id=-2068020 or osm_id=-168897 or osm_id=-168892)) and name is not null and "natural"='water' or ((osm_id=-32246 or osm_id=-3597692 or  osm_id=-1156846 or osm_id=-2066758 or osm_id=-154667 or osm_id=-2068020 or osm_id=-168897 or osm_id=-168892)  and "natural"='water');
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where ((osm_id=-32246 or osm_id=-3597692 or  osm_id=-1156846 or osm_id=-2066758 or osm_id=-154667 or osm_id=-2068020 or osm_id=-168897 or osm_id=-168892) or (way && st_expand((select way from planet_osm_polygon where "natural"='water' and osm_id=-32246),20000)) or (way && st_expand((select way from planet_osm_polygon where "natural"='water' and osm_id=24764378),20000))) and name is not null and "natural"='water';
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where "natural"='water' and osm_id=8116779;
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where osm_id=81275368;
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where "natural"='water' ;
--- SELECT osm_id,name,arealabel(osm_id,way) from planet_osm_polygon where ( "natural"='water' or landuse='basin' or "natural"='bay' or water='lake' or landuse='reservoir' ) and name  is not null;
+CREATE OR REPLACE FUNCTION OTM_lakeaxis() RETURNS INTEGER AS $$
+--
+-- calculates the axises, inserts otm_bayaxis / otm_lakeaxis in planet_osm_line
+--
+ DECLARE
+  result    RECORD;
+  labelway  GEOMETRY;
+  i         INTEGER := 0;
+  s         INTEGER := 0;
+ 
+ BEGIN
+  SELECT alllakes INTO s FROM (SELECT count(osm_id) AS alllakes FROM  planet_osm_polygon WHERE
+                               ( "natural"='water' OR landuse='basin' OR "natural"='bay' OR water='lake' OR landuse='reservoir' )
+                               AND name IS NOT NULL) AS foo;
+  RAISE NOTICE 'Have to label % lakes and bays',s;
+  FOR result IN (SELECT osm_id,name,way,"natural" as n FROM  planet_osm_polygon WHERE 
+                 ( "natural"='water' OR landuse='basin' OR "natural"='bay' OR water='lake' OR landuse='reservoir' ) 
+                 AND name IS NOT NULL) LOOP
+  labelway:=arealabel(result.osm_id,result.way);
+  IF (labelway IS NOT NULL) THEN
+   i:=i+1;
+   IF (i%10000=0) THEN RAISE NOTICE 'labeled % / %',i,s; END IF;
+   IF ( result.n='bay' ) THEN
+    INSERT INTO planet_osm_line (osm_id,way,man_made,name) VALUES (result.osm_id,labelway,'otm_bayaxis',result.name);
+   ELSE
+    INSERT INTO planet_osm_line (osm_id,way,man_made,name) VALUES (result.osm_id,labelway,'otm_lakeaxis',result.name);
+   END IF;
+  END IF;  
+  END LOOP;
+  RETURN s;
+ END
+$$ LANGUAGE plpgsql;
 
+
+delete from planet_osm_line where man_made='otm_lakeaxis';
+delete from planet_osm_line where man_made='otm_bayaxis';
+select OTM_lakeaxis();
