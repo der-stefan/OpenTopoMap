@@ -66,7 +66,8 @@
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
     <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
-	<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">
+    <!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
+	<!--<!ENTITY text-natural-poly-lowzoom SYSTEM "styles-otm/text-natural-poly-lowzoom.xml">-->
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
     <!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
     <!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
@@ -148,7 +149,8 @@
 	&text-villages;
     &symbols-sport;
 	&symbols-stations;
-	&text-natural-poly-lowzoom;
+    &text-water-lowzoom;
+	<!--&text-natural-poly-lowzoom;-->
     &text-natural-poly;
     &symbols-peaks;
     &text-peaks;
@@ -519,14 +521,23 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="text-natural-poly-lowzoom">
-		<StyleName>text-natural-poly-lowzoom</StyleName>
+    <Layer name="text-water-lowzoom">
+		<StyleName>text-water-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",water,waterway,way_area,name FROM water) AS contours </Parameter>
+			<Parameter name="table">(SELECT way,name,label,waterway,lake_area FROM lakelabels) AS lakelabels </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+	<!--<Layer name="text-natural-poly-lowzoom">
+		<StyleName>text-natural-poly-lowzoom</StyleName>
+		<Datasource>
+			<Parameter name="table">(SELECT way,"natural",water,waterway,way_area,name FROM water) AS names </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>-->
 
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>

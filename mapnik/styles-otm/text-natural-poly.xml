@@ -1,5 +1,5 @@
 <Style name="text-natural-poly">
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom14;
 		&minscale_zoom14;
 		<Filter>[natural] = 'water' and [way_area] &gt; 500000</Filter>
@@ -30,7 +30,7 @@
 		<Filter>[natural] = 'water' and [way_area] &gt; 1000</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="interior">[name]</TextSymbolizer>
 	</Rule>
-
+-->
 
 <!-- glaciers -->	
 	<Rule>
