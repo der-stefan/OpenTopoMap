@@ -31,8 +31,8 @@ HOWTO preprocess a newly imported database
 	psql gis < stationdirection.sql
 	psql gis < viewpointdirection.sql
 	psql gis < pitchicon.sql
-        nohup psql gis < arealabel.sql >/tmp/arealabel.stdout 2>/tmp/arealabel.stderr &
-        tail -f /tmp/arealabel.stderr  # to watch the output 
+    nohup psql gis < lakelabel.sql >/tmp/lakelabel.stdout 2>/tmp/lakelabel.stderr &
+    tail -f /tmp/lakelabel.stderr  # to watch the output 
 
 
 		
