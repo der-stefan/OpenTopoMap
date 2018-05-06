@@ -365,7 +365,7 @@ CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETUR
 --
      p:=ABS(x/(xmax-xmin));
      m:=ABS(y/(ymax-ymin));
-     IF ((p>0.75) OR (m>0.75)) THEN
+     IF (((p>0.75) OR (m>0.75)) AND ST_Within(ST_Buffer(tmpway,(x1+y1)/8,'endcap=flat'),ST_SetSRID(myway,3857))) THEN
       linestring:=ST_astext(tmpway);
       endindex:=middleindex;
       areashape:='diagonal';
@@ -531,14 +531,14 @@ CREATE OR REPLACE FUNCTION OTM_lakeaxis() RETURNS INTEGER AS $$
   SELECT alllakes INTO s FROM (SELECT count(osm_id) AS alllakes FROM  planet_osm_polygon WHERE
                                ( "natural"='water' OR landuse='basin' OR "natural"='bay' OR water='lake' OR landuse='reservoir' )
                                AND name IS NOT NULL) AS foo;
-  RAISE NOTICE 'Have to label % lakes and bays',s;
+  RAISE NOTICE 'We have to label % lakes and bays',s;
   FOR result IN (SELECT osm_id,name,way,"natural" as n FROM  planet_osm_polygon WHERE 
                  ( "natural"='water' OR landuse='basin' OR "natural"='bay' OR water='lake' OR landuse='reservoir' ) 
                  AND name IS NOT NULL) LOOP
   labelway:=arealabel(result.osm_id,result.way);
   IF (labelway IS NOT NULL) THEN
    i:=i+1;
-   IF (i%10000=0) THEN RAISE NOTICE 'labeled % / %',i,s; END IF;
+   IF ((i=1000) OR (i%10000=0)) THEN RAISE NOTICE 'labeled % / %',i,s; END IF;
    IF ( result.n='bay' ) THEN
     INSERT INTO planet_osm_line (osm_id,way,man_made,name) VALUES (result.osm_id,labelway,'otm_bayaxis',result.name);
    ELSE
@@ -546,7 +546,8 @@ CREATE OR REPLACE FUNCTION OTM_lakeaxis() RETURNS INTEGER AS $$
    END IF;
   END IF;  
   END LOOP;
-  RETURN s;
+  RAISE NOTICE 'Finish: labeled % / %',i,s;
+  RETURN i;
  END
 $$ LANGUAGE plpgsql;
 
