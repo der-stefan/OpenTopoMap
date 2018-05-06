@@ -25,14 +25,13 @@ HOWTO preprocess a newly imported database
 
 	cd mapnik/tools/
 
+    psql gis < arealabel.sql 
 	screen ./update_lowzoom.sh
 	screen ./update_saddles.sh 
     screen ./update_isolations.sh
 	psql gis < stationdirection.sql
 	psql gis < viewpointdirection.sql
 	psql gis < pitchicon.sql
-    nohup psql gis < lakelabel.sql >/tmp/lakelabel.stdout 2>/tmp/lakelabel.stderr &
-    tail -f /tmp/lakelabel.stderr  # to watch the output 
 
 
 		
