@@ -2,7 +2,7 @@
     <Rule>
 		&maxscale_zoom5;
 		&minscale_zoom17;
-		<TextSymbolizer fontset-name="sans-oblique" size="12" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="line" placement-type="list">[name]
+		<TextSymbolizer fontset-name="sans-oblique" size="12" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" placement="line" placement-type="list">" "+[name]+" "
             <Placement size="11"/>
             <Placement size="10"/>
             <Placement size="9"/>
