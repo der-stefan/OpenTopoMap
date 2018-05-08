@@ -343,6 +343,7 @@ Now you can Login via SSH (PuTTY) again.
 cd ~/OpenTopoMap/mapnik/tools/
 cc -o saddledirection saddledirection.c -lm -lgdal
 cc -Wall -o isolation isolation.c -lgdal -lm -O2
+psql gis < arealabel.sql
 ./update_lowzoom.sh
 ```
 The message
