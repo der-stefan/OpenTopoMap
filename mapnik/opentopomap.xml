@@ -524,7 +524,8 @@
     <Layer name="text-water-lowzoom">
 		<StyleName>text-water-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name FROM lakelabels) AS lakelabels </Parameter>
+			<!-- char_length(name) AS charlength -->
+            <Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name, FROM lakelabels) AS lakelabels </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
