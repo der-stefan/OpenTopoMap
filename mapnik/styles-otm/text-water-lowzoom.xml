@@ -9,13 +9,23 @@
             <Placement size="9"/>
         </TextSymbolizer>
 	</Rule>
+
+    <Rule>
+		&maxscale_zoom6;
+		&minscale_zoom6;
+        <Filter>[lake_area] &gt; 1E10</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="13" placement-type="list">[name]
+            <Placement size="12"/>
+            <Placement size="11"/>
+            <Placement size="10"/>
+            <Placement size="9"/>
+        </TextSymbolizer>
+	</Rule>
     <Rule>
 		&maxscale_zoom6;
 		&minscale_zoom6;
         <Filter>[lake_area] &gt; 1E8</Filter>
-		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="13" placement-type="list">[name]
-            <Placement size="12"/>
-            <Placement size="11"/>
+		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="11" placement-type="list">[name]
             <Placement size="10"/>
             <Placement size="9"/>
         </TextSymbolizer>
