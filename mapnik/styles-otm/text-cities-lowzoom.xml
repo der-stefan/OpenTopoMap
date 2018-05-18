@@ -5,7 +5,7 @@
 		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 500E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small2.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
 			<Placement dx="-3" dy="2" />
@@ -17,7 +17,7 @@
 		<Filter>([capital] = 'yes' and [admin_level] = '2' and [population] &gt; 200E3)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small2.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
 			<Placement dx="-3" dy="2" />
@@ -30,7 +30,7 @@
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" text-transform="uppercase" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
-			<Placement dy="7" />
+			<Placement dx="0" dy="7" />
 			<Placement dx="5" dy="3" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -42,7 +42,7 @@
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="12" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
-			<Placement dy="7" />
+			<Placement dx="0" dy="7" />
 			<Placement dx="5" dy="3" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -54,7 +54,7 @@
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="13" fill="black" halo-radius="2" wrap-width="100" placement="point" dx="5" dy="-3" text-transform="uppercase" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
-			<Placement dy="7" />
+			<Placement dx="0" dy="7" />
 			<Placement dx="5" dy="3" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -66,9 +66,9 @@
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="15" fill="black" halo-radius="2" wrap-width="100" dx="5" dy="-3" text-transform="uppercase" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-4" />
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="4" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="5" />
 			<Placement dx="-4" dy="4" />
 		</TextSymbolizer>
@@ -97,7 +97,7 @@
 		<Filter>(([place] = 'city') and not ([capital] = 'yes')) and ([population] &gt; 1E6)</Filter>
 		<PointSymbolizer file="symbols-otm/city_small2.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="1" wrap-width="100" placement="point" placement-type="list">[name]
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="-3" />
 			<Placement dx="4" dy="3" />
 			<Placement dx="-3" dy="2" />
@@ -110,7 +110,7 @@
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -122,9 +122,9 @@
 		<PointSymbolizer file="symbols-otm/town_z8.png" />
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -139,9 +139,9 @@
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
 		<TextSymbolizer fontset-name="sans-condensed-bold" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -153,9 +153,9 @@
 		<PointSymbolizer file="symbols-otm/town_z8.png" />
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -167,9 +167,9 @@
 		<PointSymbolizer file="symbols-otm/town_z8.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -184,9 +184,9 @@
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-3" />
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-4" dy="5" />
 		</TextSymbolizer>
@@ -198,9 +198,9 @@
 		<PointSymbolizer file="symbols-otm/city_small.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-5" dy="5" />
 		</TextSymbolizer>
@@ -212,9 +212,9 @@
 		<PointSymbolizer file="symbols-otm/town_z8.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-2" />
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="2" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-4" dy="5" />
 		</TextSymbolizer>
@@ -227,9 +227,9 @@
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="14" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-3" />
-			<Placement dy="4" />
+			<Placement dx="0" dy="4" />
 			<Placement dx="4" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 			<Placement dx="-4" dy="5" />
 		</TextSymbolizer>
@@ -241,9 +241,9 @@
 		<PointSymbolizer file="symbols-otm/city.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-4" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="4" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="5" />
 			<Placement dx="-5" dy="6" />
 		</TextSymbolizer>
@@ -274,9 +274,9 @@
 		<PointSymbolizer file="symbols-otm/town_z8.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="9" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="70" wrap-before="true" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
@@ -289,9 +289,9 @@
 		<PointSymbolizer file="symbols-otm/town_z8.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="75" wrap-before="true" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
@@ -304,9 +304,9 @@
 		<PointSymbolizer file="symbols-otm/town.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="80" wrap-before="true" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-            <Placement dy="5" />
+            <Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />	
+			<Placement dx="0" dy="-6" />	
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
@@ -317,9 +317,9 @@
 		<PointSymbolizer file="symbols-otm/town.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="80" wrap-before="true" placement="point" placement-type="list">[name]
 			<Placement dx="5" dy="-3" />
-            <Placement dy="5" />
+            <Placement dx="0" dy="5" />
 			<Placement dx="4" dy="3" />
-			<Placement dy="-6" />	
+			<Placement dx="0" dy="-6" />	
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
@@ -332,9 +332,9 @@
 		<PointSymbolizer file="symbols-otm/town.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="13" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="100" placement="point" placement-type="list">[name]
 			<Placement dx="7" dy="-5" />
-            <Placement dy="7" />
+            <Placement dx="0" dy="7" />
 			<Placement dx="7" dy="5" />
-			<Placement dy="-8" />
+			<Placement dx="0" dy="-8" />
 			<Placement dx="-5" dy="6" />
 		</TextSymbolizer>
 	</Rule>
@@ -345,9 +345,9 @@
 		<PointSymbolizer file="symbols-otm/town.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="12" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="80" wrap-before="true" placement="point" placement-type="list">[name]
 			<Placement dx="6" dy="-4" />
-			<Placement dy="6" />
+			<Placement dx="0" dy="6" />
 			<Placement dx="6" dy="4" />
-			<Placement dy="-7" />
+			<Placement dx="0" dy="-7" />
 			<Placement dx="-4" dy="5" />
 		</TextSymbolizer>
 	</Rule>
@@ -358,9 +358,9 @@
 		<PointSymbolizer file="symbols-otm/small_town.png"/>
 		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" wrap-width="75" wrap-before="true" placement="point" placement-type="list">[name]
 			<Placement dx="4" dy="-3" />
-			<Placement dy="5" />
+			<Placement dx="0" dy="5" />
 			<Placement dx="5" dy="3" />
-			<Placement dy="-6" />
+			<Placement dx="0" dy="-6" />
 			<Placement dx="-3" dy="4" />
 		</TextSymbolizer>
 	</Rule>
