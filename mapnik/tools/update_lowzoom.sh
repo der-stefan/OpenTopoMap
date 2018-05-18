@@ -54,11 +54,11 @@ psql -d lowzoom -c "INSERT INTO cities SELECT * FROM dblink('dbname=gis','SELECT
 psql -d lowzoom -c "CREATE INDEX cities_way_idx ON cities USING GIST (way);"
 
 
-# label lines for lakes
-echo "Create lines for labels of lakes..."
+# water polygon labels
+echo "Create lines for labels of water polygons..."
 psql -d gis -c "CREATE VIEW lowzoom_lakelabel AS SELECT arealabel(osm_id,way) AS way,name,'lakeaxis'::text AS label,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR water='lake' OR landuse IN ('basin','reservoir')) AND name IS NOT NULL;"
 psql -d gis -c "CREATE VIEW lowzoom_baylabel  AS SELECT arealabel(osm_id,way) AS way,name,'bayaxis'::text  AS label,way_area FROM planet_osm_polygon WHERE  \"natural\" = 'bay' AND name IS NOT NULL;"
-psql -d lowzoom -c "CREATE TABLE lakelabels (way geometry(LineString,3857), name text, label text, way_area real);"
+psql -d lowzoom -c "CREATE TABLE lakelabels (way geometry(LineString,3857), name text, label text, lake_area real);"
 psql -d lowzoom -c "INSERT INTO lakelabels SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_lakelabel') AS t(way geometry(LineString,3857), name text, label text, way_area real);"
 psql -d lowzoom -c "INSERT INTO lakelabels SELECT * FROM dblink('dbname=gis','SELECT * FROM lowzoom_baylabel')  AS t(way geometry(LineString,3857), name text, label text, way_area real);"
 psql -d lowzoom -c "CREATE INDEX lakelabels_way_idx ON lakelabels USING GIST (way);"
