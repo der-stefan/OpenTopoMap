@@ -67,6 +67,7 @@
     <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
     <!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
+	<!ENTITY text-glacier-lowzoom SYSTEM "styles-otm/text-glacier-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
     <!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
     <!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
@@ -149,6 +150,7 @@
     &symbols-sport;
 	&symbols-stations;
     &text-water-lowzoom;
+	&text-glacier-lowzoom;
     &text-natural-poly;
     &symbols-peaks;
     &text-peaks;
@@ -527,6 +529,16 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+    <Layer name="text-glacier-lowzoom">
+		<StyleName>text-glacier-lowzoom</StyleName>
+		<Datasource>
+            <Parameter name="table">(SELECT way,name,lake_area FROM lakelabels WHERE label='glacieraxis') AS lakelabels </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
+
 
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
