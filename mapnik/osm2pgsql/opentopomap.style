@@ -144,6 +144,7 @@ node,way   power_source text         linear
 node,way   public_transport text     polygon
 node,way   railway      text         linear
 node,way   ref          text         linear
+way        region:type  text         polygon
 node,way   religion     text         nocache
 node,way	resource	text		polygon
 node,way   route        text         linear
