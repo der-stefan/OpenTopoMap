@@ -33,7 +33,7 @@
 -->
 
 <!-- glaciers -->	
-	<Rule>
+<!--	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[natural] = 'glacier' and [way_area] &gt; 1E6</Filter>
@@ -45,7 +45,7 @@
 		<Filter>[natural] = 'glacier'</Filter>
 		<TextSymbolizer fontset-name="sans-condensed-oblique" size="10" fill="#6199ca" halo-radius="1" halo-fill="rgba(208,248,255,0.8)" wrap-width="100" wrap-before="true" placement="interior" character-spacing="1">[name]</TextSymbolizer>
 	</Rule>
-
+-->
 
 <!-- nature reserve -->
 	<Rule>
