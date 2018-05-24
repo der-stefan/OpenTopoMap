@@ -126,9 +126,18 @@
     <Rule>
 		&maxscale_zoom10;
 		&minscale_zoom10;
-        <Filter>[lake_area] &gt; 1E6 and [lake_area] &lt; 1E9</Filter>
+        <Filter>[lake_area] &gt; 1E8 and [lake_area] &lt; 1E9</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="12" placement-type="list">[name]
             <Placement size="11"/>
+            <Placement size="10"/>
+            <Placement size="9"/>
+        </TextSymbolizer>
+	</Rule>
+    <Rule>
+		&maxscale_zoom10;
+		&minscale_zoom10;
+        <Filter>[lake_area] &gt; 1E6 and [lake_area] &lt; 1E8</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" placement="line" size="11" placement-type="list">[name]
             <Placement size="10"/>
             <Placement size="9"/>
         </TextSymbolizer>
@@ -186,9 +195,18 @@
     <Rule>
 		&maxscale_zoom12;
 		&minscale_zoom12;
-        <Filter>[lake_area] &gt; 1E5 and [lake_area] &lt; 1E8</Filter>
+        <Filter>[lake_area] &gt; 1E7 and [lake_area] &lt; 1E8</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" placement="line" size="12" placement-type="list">[name]
             <Placement size="11"/>
+            <Placement size="10"/>
+            <Placement size="9"/>
+        </TextSymbolizer>
+	</Rule>
+    <Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+        <Filter>[lake_area] &gt; 1E5 and [lake_area] &lt; 1E7</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" placement="line" size="11" placement-type="list">[name]
             <Placement size="10"/>
             <Placement size="9"/>
         </TextSymbolizer>
@@ -242,7 +260,7 @@
     <Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-        <Filter>[lake_area] &gt; 1E5 and [lake_area] &lt; 1E8</Filter>
+        <Filter>[lake_area] &gt; 1E7 and [lake_area] &lt; 1E8</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="15" placement-type="list">[name]
             <Placement size="14"/>
             <Placement size="13"/>
@@ -252,7 +270,16 @@
     <Rule>
 		&maxscale_zoom14;
 		&minscale_zoom17;
-        <Filter>[lake_area] &lt; 1E5</Filter>
+        <Filter>[lake_area] &gt; 1E6 and [lake_area] &lt; 1E7</Filter>
+		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="13" placement-type="list">[name]
+            <Placement size="12"/>
+            <Placement size="11"/>
+        </TextSymbolizer>
+	</Rule>
+    <Rule>
+		&maxscale_zoom14;
+		&minscale_zoom17;
+        <Filter>[lake_area] &lt; 1E6</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" placement="line" size="12" placement-type="list">[name]
             <Placement size="11"/>
             <Placement size="10"/>
