@@ -227,7 +227,7 @@
     <Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-        <Filter>[lake_area] &gt; 1E5 and [lake_area] &lt; 1E8</Filter>
+        <Filter>[lake_area] &gt; 1E7 and [lake_area] &lt; 1E8</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="13" placement-type="list">[name]
             <Placement size="12"/>
             <Placement size="11"/>
@@ -237,7 +237,7 @@
     <Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
-        <Filter>[lake_area] &lt; 1E5</Filter>
+        <Filter>[lake_area] &lt; 1E7</Filter>
 		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" placement="line" size="12" placement-type="list">[name]
             <Placement size="11"/>
             <Placement size="10"/>
