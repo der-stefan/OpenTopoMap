@@ -8,18 +8,37 @@
 	
 	<Rule>
 		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>[way_area] &gt; 3000000</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="0.8" stroke-opacity="0.8" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>([way_area] &gt; 500000) and ([way_area] &lt; 3000000)</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="0.8" stroke-opacity="0.4" />
+	</Rule>
+	<Rule>
+		&maxscale_zoom9;
+		&minscale_zoom9;
+		<Filter>[way_area] &lt; 500000</Filter>
+		<LineSymbolizer stroke="blue" stroke-width="0.8" stroke-opacity="0.2" />
+	</Rule>
+
+<Rule>
+		&maxscale_zoom10;
 		&minscale_zoom10;
 		<Filter>[way_area] &gt; 3000000</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="1" stroke-opacity="0.8" />
 	</Rule>
 	<Rule>
-		&maxscale_zoom9;
+		&maxscale_zoom10;
 		&minscale_zoom10;
 		<Filter>([way_area] &gt; 500000) and ([way_area] &lt; 3000000)</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="1" stroke-opacity="0.4" />
 	</Rule>
 	<Rule>
-		&maxscale_zoom9;
+		&maxscale_zoom10;
 		&minscale_zoom10;
 		<Filter>[way_area] &lt; 500000</Filter>
 		<LineSymbolizer stroke="blue" stroke-width="1" stroke-opacity="0.2" />
