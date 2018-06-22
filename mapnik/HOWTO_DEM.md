@@ -1,7 +1,10 @@
-[//]: # (OpenTopoMap)
-[//]: # ((c) 2012-2018 Stefan Erhardt)
-[//]: # (https://github.com/der-stefan/OpenTopoMap)
-[//]: # (opentopomap.org)
+<!--
+OpenTopoMap
+(c) 2012-2018 Stefan Erhardt
+https://github.com/der-stefan/OpenTopoMap
+
+opentopomap.org
+-->
 
 # How To Create a DEM for Contours and Hillshade
 This document will guide you through creating DEMs used for hillshading and contours.  These instructions are for Ubuntu 16.04 only.
