@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dropdb lowzoom
+dropdb --if-exists lowzoom
 createdb lowzoom
 psql -d lowzoom -c "CREATE EXTENSION postgis;"
 psql -d lowzoom -c "CREATE EXTENSION dblink;"

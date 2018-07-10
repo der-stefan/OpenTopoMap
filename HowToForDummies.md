@@ -346,9 +346,6 @@ cc -Wall -o isolation isolation.c -lgdal -lm -O2
 psql gis < arealabel.sql
 ./update_lowzoom.sh
 ```
-The message
-*dropdb: database removal failed: ERROR:  database "lowzoom" does not exist*
-is correct.
 
 ### Edit update_saddles.sh
 ```
