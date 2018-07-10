@@ -88,14 +88,14 @@
 	<Rule>
 		&maxscale_zoom11;	<!-- 10 -->
 		&minscale_zoom17;
-		<Filter>([waterway] = 'canal') and ([tunnel] != 'yes') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
+		<Filter>([waterway] = 'canal') and ([tunnel] != 'yes') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIc') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1.8" stroke-opacity="0.5" />
 		<LinePatternSymbolizer file="symbols-otm/canal.png" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;	<!-- 10 -->
 		&minscale_zoom17;
-		<Filter>([waterway] = 'canal') and ([tunnel] = 'yes') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
+		<Filter>([waterway] = 'canal') and ([tunnel] = 'yes') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIc') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="5,5" />
 		<!--LinePatternSymbolizer file="symbols-otm/canal.png" /-->
 	</Rule>
