@@ -267,9 +267,9 @@ Create snapshot, start
 Create color relief for different zoom level
 ```
 cd ~/data
-gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-5000.tif ~/OpenTopoMap/mapnik/relief.txt relief-5000.tif
+gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-5000.tif ~/OpenTopoMap/mapnik/relief_color_text_file.txt relief-5000.tif
 
-gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-500.tif ~/OpenTopoMap/mapnik/relief.txt relief-500.tif
+gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-500.tif ~/OpenTopoMap/mapnik/relief_color_text_file.txt relief-500.tif
 ```
 ### Create hillshade for different zoom levels
 ```
