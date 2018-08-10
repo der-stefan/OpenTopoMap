@@ -145,6 +145,8 @@ This guide is quite complete, but you should always think about before blindly c
 
 	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
 
+    screen osm2pgsql --slim -d gis -C 12000 --tablespace-slim-data hdd --tablespace-slim-index hdd --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
+
 
 # Now do the preprocessing of the OSM data for low zoom levels
 	# A complete copy-paste guide is HOWTO_Preprocessing
