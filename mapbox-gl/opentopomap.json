@@ -261,7 +261,7 @@
         "hospital"
       ],
       "paint": {
-        "fill-color": "#fde"
+        "fill-color": "rgba(227, 224, 225, 1)"
       }
     },
     {
@@ -312,8 +312,8 @@
         "wood"
       ],
       "paint": {
-        "fill-color": "rgba(136, 188, 13, 1)",
-        "fill-opacity": 0.3,
+        "fill-color": "rgba(157, 213, 32, 1)",
+        "fill-opacity": 0.4,
         "fill-outline-color": "hsla(0, 0%, 0%, 0.03)",
         "fill-antialias": {
           "base": 1,
@@ -477,7 +477,7 @@
         "line-cap": "round"
       },
       "paint": {
-        "line-color": "#a0c8f0",
+        "line-color": "rgba(20, 1, 255, 1)",
         "line-width": {
           "base": 1.2,
           "stops": [
@@ -591,6 +591,7 @@
       },
       "source": "openmaptiles",
       "source-layer": "building",
+      "minzoom": 13.5,
       "layout": {
         "visibility": "visible"
       },
@@ -607,6 +608,7 @@
       },
       "source": "openmaptiles",
       "source-layer": "building",
+      "minzoom": 13.5,
       "layout": {
         "visibility": "visible"
       },
@@ -630,21 +632,32 @@
             ]
           ]
         },
-        "fill-outline-color": "#dfdbd7",
-        "fill-color": "rgba(0, 0, 0, 1)",
-        "fill-opacity": {
-          "base": 1,
+        "fill-outline-color": {
           "stops": [
             [
-              14,
-              0
+              13,
+              "rgba(0, 0, 0, 1)"
             ],
             [
-              15,
-              1
+              16,
+              "rgba(0, 0, 0, 1)"
             ]
           ]
-        }
+        },
+        "fill-color": {
+          "stops": [
+            [
+              13,
+              "rgba(0, 0, 0, 1)"
+            ],
+            [
+              16,
+              "rgba(39, 39, 39, 1)"
+            ]
+          ]
+        },
+        "fill-opacity": 1,
+        "fill-antialias": true
       }
     },
     {
@@ -1663,7 +1676,7 @@
         "line-join": "round"
       },
       "paint": {
-        "line-color": "#cfcdca",
+        "line-color": "rgba(0, 0, 0, 1)",
         "line-opacity": {
           "stops": [
             [
@@ -1680,16 +1693,12 @@
           "base": 1.2,
           "stops": [
             [
-              12,
+              11,
               0.5
             ],
             [
-              13,
-              1
-            ],
-            [
-              14,
-              4
+              12.5,
+              3.1
             ],
             [
               20,
@@ -1735,7 +1744,7 @@
           "stops": [
             [
               8,
-              1.3
+              2.5
             ],
             [
               20,
@@ -1784,7 +1793,7 @@
             ],
             [
               8,
-              1
+              0.9
             ]
           ]
         },
@@ -1797,11 +1806,11 @@
             ],
             [
               8,
-              0.6
+              2
             ],
             [
               9,
-              1.5
+              3
             ],
             [
               20,
@@ -1923,7 +1932,7 @@
             ],
             [
               7,
-              1.5
+              4
             ],
             [
               20,
@@ -2146,11 +2155,11 @@
           "base": 1.2,
           "stops": [
             [
-              13.5,
+              12,
               0
             ],
             [
-              14,
+              12.5,
               2.5
             ],
             [
@@ -2200,7 +2209,7 @@
             ],
             [
               8,
-              0.5
+              1
             ],
             [
               20,
@@ -2256,7 +2265,7 @@
             ],
             [
               9,
-              0.5
+              1.5
             ],
             [
               20,
@@ -2369,7 +2378,7 @@
             ],
             [
               7,
-              0.5
+              1.8
             ],
             [
               20,
@@ -2621,7 +2630,7 @@
         ]
       ],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "rgba(0, 0, 0, 1)",
         "line-width": {
           "base": 1.4,
           "stops": [
@@ -3482,7 +3491,7 @@
             ],
             [
               12,
-              3
+              1.5
             ]
           ]
         }
@@ -3707,10 +3716,11 @@
         "text-rotation-alignment": "map",
         "symbol-placement": "line",
         "symbol-spacing": 350,
-        "text-letter-spacing": 0.2
+        "text-letter-spacing": 0.2,
+        "text-justify": "center"
       },
       "paint": {
-        "text-color": "#74aee9",
+        "text-color": "rgba(0, 74, 255, 1)",
         "text-halo-width": 1.5,
         "text-halo-color": "rgba(255,255,255,0.7)"
       }
@@ -4455,7 +4465,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "#633",
+        "text-color": "rgba(0, 0, 0, 1)",
         "text-halo-width": 1.2,
         "text-halo-color": "rgba(255,255,255,0.8)"
       }
@@ -4583,7 +4593,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "text-color": "#333",
+        "text-color": "rgba(0, 0, 0, 1)",
         "text-halo-width": 1.2,
         "text-halo-color": "rgba(255,255,255,0.8)"
       }
