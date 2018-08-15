@@ -563,7 +563,7 @@
 		<StyleName>symbols-peaks</StyleName>
         <StyleName>text-peaks</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",name,ele,"summit:cross",otm_isolation::INTEGER FROM planet_osm_point ORDER BY otm_isolation::INTEGER DESC) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,"natural",name,ele,"summit:cross",otm_isolation::INTEGER FROM planet_osm_point WHERE ("natural" = 'peak' or "natural" = 'volcano') ORDER BY otm_isolation::INTEGER DESC) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
