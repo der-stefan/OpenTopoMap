@@ -2,14 +2,20 @@ max-jobs
 gmapsupp
 latin1
 index
+split-name-index
 housenumbers
+bounds=../bounds.zip
+precomp-sea=../sea.zip
 family-id=6868
 product-id=1
+family-name="family-name"
+series-name="series-name"
+area-name="area-name"
+dem=../dem/
+dem-dists=9942,9942,19884,39768,53024,100000,100000,200000
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
 route
-adjust-turn-headings
-add-pois-to-areas
 make-opposite-cycleways
 link-pois-to-ways
 process-destination

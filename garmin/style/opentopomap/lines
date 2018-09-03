@@ -210,6 +210,7 @@ boundary=political [0x1c resolution 19]
 
 natural=cliff [0x31 resolution 24]
 barrier=fence | fenced=yes [0x33 resolution 24]
+natural=wood | landuse=forest [0x11002  resolution 24 continue] 
 
 include 'inc/water_lines';
 include 'inc/contour_lines';
