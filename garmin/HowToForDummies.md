@@ -1,6 +1,6 @@
-# Building a custom Garmin map
+# Building a custom Garmin map - a complete walkthrough
 
-Based on the [HOWTO](HOWTO) this describes how to create a custom garmin map
+Based on the [HOWTO](HOWTO) this guide describes how to create a custom Garmin map.
 using OpenTopoMap styles.
 
 ## Required tools & OpenTopoMap repository

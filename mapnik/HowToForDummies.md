@@ -1,6 +1,6 @@
-# HowTo for dummies
+# Setting up a OpenTopoMap tile server - a complete walkthrough
 
-How to render OpenTopoMaps on your own ubuntu server.
+Based on the [HOWTO_Ubuntu_16.04](HOWTO) this guide describes how to install your own OpenTopoMap tile server on Ubuntu 16.04.
 
 ## Create a virtual computer
 * Generation 2
