@@ -6,6 +6,8 @@
 #   opentopomap.org
 #
 ###############################################
+NOTE: THIS GUIDE WAS FOR UBUNTU 16.04. AND WILL BE REPLACED BY HOWTO_Ubuntu_18.04 IN THE FUTURE
+===============================================================================================
 
 The OpenTopoMap Garmin Edition makes uses of several hacks:
 - Overloading style definitions for different zoom levels
