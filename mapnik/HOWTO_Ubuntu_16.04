@@ -100,7 +100,22 @@ This guide is quite complete, but you should always think about before blindly c
 	# fix "error" of mod-tile installation (in fact there is no error, apache just can't load the default configs):
 	sudo apt install -f
 
-	
+
+# Tweak Apache for huge tile delivery speed-up
+    # edit /etc/apache2/mods-available/mpm_prefork.conf:
+        <IfModule mpm_prefork_module>
+                ServerLimit             5000
+                StartServers            500
+                MinSpareServers         20
+                MaxSpareServers         5000
+                MaxRequestWorkers       5000
+                MaxConnectionsPerChild  1000
+        </IfModule>
+
+    a2dismod mpm_event
+    a2enmod mpm_prefork
+
+
 # Install osm2pgsql from source
 	sudo apt install cmake libbz2-dev libgeos-dev libgeos++-dev libproj-dev lua5.3 liblua5.3-dev
 
