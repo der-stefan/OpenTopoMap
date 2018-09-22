@@ -8,7 +8,7 @@
 ###############################################
 
 
-HOWTO install OpenTopoMap on Ubuntu (verified on 18.04 LTS)
+HOWTO install OpenTopoMap on Ubuntu 18.04 LTS
 ===========================================================
 
 
@@ -26,6 +26,20 @@ This guide is quite complete, but you should always think about before blindly c
 
 # Install some useful packages:
 	sudo apt install vim git screen htop iptraf
+
+# Download OpenTopoMap files
+	cd ~
+	git clone https://github.com/der-stefan/OpenTopoMap.git
+	cd ~/OpenTopoMap/mapnik
+	
+	# get the generalized water polygons from http://openstreetmapdata.com/
+	mkdir data && cd data
+	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
+	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
+	unzip water-polygons*
+
+	# Now you need to create the hillshade and contours. We can't provide the data, since it consumes ~500 GB.
+	# But there is a long howto in HOWTO_DEM
 
 
 # Install the apache web server:
@@ -58,15 +72,14 @@ This guide is quite complete, but you should always think about before blindly c
 		As root, edit /etc/sysctl.conf and add these lines near the top after the other “kernel” definitions:
 			# Increase kernel shared memory segments - needed for large databases
 			kernel.shmmax=268435456
-
+################################### above not verified yet #########################
 
 # Install Mapnik renderer:
 	sudo apt install libmapnik3.0 libmapnik-dev mapnik-utils python-mapnik unifont
 
 
 # Install tirex from source
-    #alt: sudo apt install devscripts libjson-perl libipc-sharelite-perl libgd-perl debhelper
-	sudo apt install devscripts debhelper
+	sudo apt install devscripts debhelper libjson-perl libipc-sharelite-perl libgd-gd2-perl
 	
 	mkdir ~/src && cd ~/src
 	git clone https://github.com/geofabrik/tirex
@@ -88,8 +101,9 @@ This guide is quite complete, but you should always think about before blindly c
 	debuild -i -b -us -uc
 	
 	cd ~/src
-	sudo dpkg -i libapache2-mod-tile_0.4-12~precise2_amd64.deb
+    sudo dpkg -i libapache2-mod-tile_0.4-12~precise2_amd64.deb
 	sudo a2enmod tile
+
 		
 	# copy conf/tile.conf into /etc/apache2/mods-available/tile.conf
     # in /etc/tirex/renderer/mapnik.conf:
@@ -121,7 +135,19 @@ This guide is quite complete, but you should always think about before blindly c
     a2dismod mpm_event
     a2enmod mpm_prefork
 
+# install certbot for letsencrypt ssl certificate
+    sudo apt install letsencrypt
+    cd ~/src
+    wget https://dl.eff.org/certbot-auto
+    chmod a+x certbot-auto
+    sudo ./certbot-auto --apache
 
+
+# enable logrotate compression - remove option "delaycompress"
+    sudo vi /etc/logrotate.d/apache2 
+
+
+######################################### below not verified yet ###########
 # Install osm2pgsql from source
 	sudo apt install cmake libbz2-dev libgeos-dev libgeos++-dev libproj-dev lua5.3 liblua5.3-dev
 
@@ -141,21 +167,6 @@ This guide is quite complete, but you should always think about before blindly c
 	exit
 	createdb gis
 	psql -d gis -c 'CREATE EXTENSION postgis;'
-	
-
-# Download OpenTopoMap files
-	cd ~
-	git clone https://github.com/der-stefan/OpenTopoMap.git
-	cd ~/OpenTopoMap/mapnik
-	
-	# get the generalized water polygons from http://openstreetmapdata.com/
-	mkdir data && cd data
-	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
-	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
-	unzip water-polygons*
-
-	# Now you need to create the hillshade and contours. We can't provide the data, since it consumes ~500 GB.
-	# But there is a long howto in HOWTO_DEM
 
 
 # Load data into database
