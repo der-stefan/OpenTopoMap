@@ -135,6 +135,12 @@ This guide is quite complete, but you should always think about before blindly c
     a2dismod mpm_event
     a2enmod mpm_prefork
 
+    # add CORS settings in /etc/apache2/sites-enabled/tileserver_site-le-ssl.conf
+    # Header set Access-Control-Allow-Origin "*"
+    sudo a2enmod headers
+    sudo systemctl restart apache2
+
+
 # install certbot for letsencrypt ssl certificate
     sudo apt install letsencrypt
     cd ~/src
