@@ -42,6 +42,15 @@
     "openmaptiles": {
       "type": "vector",
       "url": "https://free.tilehosting.com/data/v3.json?key={key}"
+    },
+    "hillshading": {
+      "type": "raster",
+      "url": "https://maps.tilehosting.com/data/hillshades.json?key=ErAN2Z6WaV5UkvDpj3CZ",
+      "tileSize": 256
+    },
+    "contours": {
+      "type": "vector",
+      "url": "https://maps.tilehosting.com/data/contours.json?key=ErAN2Z6WaV5UkvDpj3CZ"
     }
   },
   "sprite": "https://openmaptiles.github.io/osm-bright-gl-style/sprite",
@@ -52,6 +61,149 @@
       "type": "background",
       "paint": {
         "background-color": "#f8f4f0"
+      }
+    },
+    {
+      "id": "hillshading",
+      "type": "raster",
+      "source": "hillshading",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "raster-opacity": {
+          "base": 0.5,
+          "stops": [
+            [
+              3,
+              0
+            ],
+            [
+              5,
+              0.2
+            ],
+            [
+              12,
+              0.4
+            ]
+          ]
+        },
+        "raster-fade-duration": 300,
+        "raster-contrast": 0
+      }
+    },
+    {
+      "id": "contour_label",
+      "type": "symbol",
+      "metadata": {},
+      "source": "contours",
+      "source-layer": "contour",
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "in",
+          "nth_line",
+          100,
+          50,
+          10
+        ],
+        [
+          ">",
+          "height",
+          0
+        ]
+      ],
+      "layout": {
+        "text-size": {
+          "base": 1,
+          "stops": [
+            [
+              15,
+              9.5
+            ],
+            [
+              20,
+              12
+            ]
+          ]
+        },
+        "text-allow-overlap": false,
+        "symbol-avoid-edges": true,
+        "text-ignore-placement": false,
+        "symbol-placement": "line",
+        "text-padding": 10,
+        "text-rotation-alignment": "map",
+        "text-field": "{height} m",
+        "text-font": [
+          "Noto Sans Regular"
+        ]
+      },
+      "paint": {
+        "text-color": "hsl(0, 0%, 37%)",
+        "text-halo-color": "hsla(0, 0%, 100%, 0.5)",
+        "text-halo-width": 1.5
+      }
+    },
+    {
+      "id": "contour_index",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "contour",
+      "filter": [
+        "all",
+        [
+          ">",
+          "height",
+          0
+        ],
+        [
+          "in",
+          "nth_line",
+          100,
+          50,
+          10
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "#d45500",
+        "line-opacity": 0.4,
+        "line-width": 1.1
+      }
+    },
+    {
+      "id": "contour",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "contour",
+      "filter": [
+        "all",
+        [
+          "!in",
+          "nth_line",
+          10,
+          5
+        ],
+        [
+          ">",
+          "height",
+          0
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "#d45500",
+        "line-opacity": 0.3,
+        "line-width": 0.6
       }
     },
     {
