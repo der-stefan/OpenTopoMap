@@ -3855,6 +3855,48 @@
         "text-halo-color": "rgba(255,255,255,0.7)"
       }
     },
+    
+    {
+      "id": "mountain-peak",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "mountain_peak",
+      "minzoom": 7,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "Point"
+        ],
+        [
+          "<=",
+          "rank",
+          2
+        ]
+      ],
+      "layout": {
+        "text-size": 11,
+        "text-font": [
+          "sans-oblique"
+        ],
+        "visibility": "visible",
+        "text-offset": [
+          0,
+          0.5
+        ],
+        "icon-size": 1,
+        "text-anchor": "bottom",
+        "text-field": "{name:latin} {name:nonlatin}\n{ele} m\n▲",
+        "text-max-width": 8
+      },
+      "paint": {
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-width": 2,
+        "text-halo-color": "rgba(255,255,255,0.8)",
+        "text-halo-blur": 3
+      }
+    },
     {
       "id": "poi-level-3",
       "type": "symbol",
