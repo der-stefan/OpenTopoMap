@@ -596,39 +596,19 @@
         "visibility": "visible"
       },
       "paint": {
-        "fill-color": "rgba(0, 0, 0, 0)",
-        "fill-antialias": true
-      }
-    },
-    {
-      "id": "building-top",
-      "type": "fill",
-      "metadata": {
-        "mapbox:group": "1444849364238.8171"
-      },
-      "source": "openmaptiles",
-      "source-layer": "building",
-      "minzoom": 13.5,
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "fill-translate": {
-          "base": 1,
+        "fill-color": {
           "stops": [
             [
-              14,
-              [
-                0,
-                0
-              ]
+              13,
+              "#777777"
             ],
             [
-              16,
-              [
-                -2,
-                -2
-              ]
+              15,
+              "#555555"
+            ],
+            [
+              17,
+              "black"
             ]
           ]
         },
@@ -636,28 +616,40 @@
           "stops": [
             [
               13,
-              "rgba(0, 0, 0, 1)"
+              "#777777"
             ],
             [
-              16,
+              14,
               "rgba(0, 0, 0, 1)"
             ]
           ]
         },
-        "fill-color": {
-          "stops": [
-            [
-              13,
-              "rgba(0, 0, 0, 1)"
-            ],
-            [
-              16,
-              "rgba(39, 39, 39, 1)"
-            ]
-          ]
-        },
-        "fill-opacity": 1,
         "fill-antialias": true
+      }
+    },
+    {
+      "id": "housenumber",
+      "type": "symbol",
+      "metadata": {
+        "mapbox:group": "1444849364238.8171"
+      },
+      "source": "openmaptiles",
+      "source-layer": "housenumber",
+      "minzoom": 17,
+      "filter": [
+        "all"
+      ],
+      "layout": {
+        "text-field": "{housenumber}",
+        "text-size": 10,
+        "text-font": [
+          "sans-condensed"
+        ]
+      },
+      "paint": {
+        "text-color": "rgba(255, 255, 255, 0.51)",
+        "text-halo-color": "hsl(39, 41%, 86%)",
+        "text-halo-width": 0.5
       }
     },
     {
