@@ -51,7 +51,7 @@
       "id": "background",
       "type": "background",
       "paint": {
-        "background-color": "#f8f4f0"
+        "background-color": "#e0e0e0"
       }
     },
     {
@@ -312,7 +312,7 @@
         "wood"
       ],
       "paint": {
-        "fill-color": "rgba(157, 213, 32, 1)",
+        "fill-color": "#b9d984",
         "fill-opacity": 0.4,
         "fill-outline-color": "hsla(0, 0%, 0%, 0.03)",
         "fill-antialias": {
@@ -1946,6 +1946,67 @@
       }
     },
     {
+      "id": "highway-path-steps",
+      "type": "line",
+      "metadata": {
+        "mapbox:group": "1444849345966.4436"
+      },
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "minzoom": 12,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "all",
+          [
+            "!in",
+            "brunnel",
+            "bridge",
+            "tunnel"
+          ],
+          [
+            "==",
+            "class",
+            "path"
+          ],
+          [
+            "==",
+            "subclass",
+            "steps"
+          ]
+        ]
+      ],
+      "paint": {
+        "line-color": "rgba(0, 0, 0, 1)",
+        "line-dasharray": [
+          0.2,
+          0.5
+        ],
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              7,
+              5
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        },
+        "line-translate-anchor": "map",
+        "line-blur": 0,
+        "line-offset": 0
+      }
+    },
+    {
       "id": "highway-path",
       "type": "line",
       "metadata": {
@@ -1974,6 +2035,11 @@
             "==",
             "class",
             "path"
+          ],
+          [
+            "!=",
+            "subclass",
+            "steps"
           ]
         ]
       ],
@@ -2686,11 +2752,11 @@
             ],
             [
               15,
-              0.75
+              3
             ],
             [
               20,
-              2
+              8
             ]
           ]
         }
@@ -2731,10 +2797,10 @@
         ]
       ],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "#FFF",
         "line-dasharray": [
-          0.2,
-          8
+          4,
+          4
         ],
         "line-width": {
           "base": 1.4,
@@ -3855,7 +3921,6 @@
         "text-halo-color": "rgba(255,255,255,0.7)"
       }
     },
-    
     {
       "id": "mountain-peak",
       "type": "symbol",
