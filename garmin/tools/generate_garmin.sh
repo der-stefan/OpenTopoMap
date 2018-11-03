@@ -1,33 +1,33 @@
 #!/bin/bash
 
-# (c) OpenTopoMap under CC-BY-SA license
-# author: Martin Schuetz
-# An interactive script for generating worldwide garmin files
+# (c) 2018 OpenTopoMap under CC-BY-SA license
+# authors: Martin Schuetz, Stefan Erhardt
+# An interactive script for generating worldwide Garmin files
 
-ROOT_DIR=/home/otmuser/garmintest
-ROOT_DIR=/home/mortl/garminworld
+GIT_DIR=/home/otmuser/OpenTopoMap/garmin
+DATA_DIR=/home/garminotm/garmin_world
 
-# Programme
+# Programs
 SPLITTER_JAR=/usr/src/splitter/splitter.jar
 MKGMAP_JAR=/usr/src/mkgmap/mkgmap.jar
-POLY24_CMD=$ROOT_DIR/poly24.py
+POLY24_CMD=$GIT_DIR/tools/poly24.py
 
 # Temp dirs
-SPLITTER_OUTPUT_ROOT_DIR=$ROOT_DIR/out/splitter_out
-MKGMAP_OUTPUT_ROOT_DIR=$ROOT_DIR/out/mkgmap_out
+SPLITTER_OUTPUT_ROOT_DIR=$DATA_DIR/out/splitter_out
+MKGMAP_OUTPUT_ROOT_DIR=$DATA_DIR/out/mkgmap_out
 MKGMAP_CONTOURS_OUTPUT_ROOT_DIR=$MKGMAP_OUTPUT_ROOT_DIR
 
 # Data dirs
-OSM_WORLD_FILE=$ROOT_DIR/bayern-latest.osm.pbf
+OSM_WORLD_FILE=$DATA_DIR/bayern-latest.osm.pbf
 
 # Log files
-SPLITTER_LOG=$ROOT_DIR/splitter.log
-MKGMAP_LOG=$ROOT_DIR/mkgmap.log
+SPLITTER_LOG=$DATA_DIR/splitter.log
+MKGMAP_LOG=$DATA_DIR/mkgmap.log
 
 # Option files
-MKGMAP_OPTS=$ROOT_DIR/git/OpenTopoMap/garmin/opentopomap_options
-MKGMAP_STYLE_FILE=$ROOT_DIR/git/OpenTopoMap/garmin/style/opentopomap
-MKGMAP_TYP_FILE=$ROOT_DIR/git/OpenTopoMap/garmin/style/typ/OpenTopoMap.typ
+MKGMAP_OPTS=$GIT_DIR/opentopomap_options
+MKGMAP_STYLE_FILE=$GIT_DIR/style/opentopomap
+MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.typ
 
 #README_FILE=/var/www/otm_garmin/osm/readme.txt
 #OSM_DATA_DIR=/var/www/otm_garmin/osm/data
