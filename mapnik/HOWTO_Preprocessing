@@ -10,7 +10,7 @@
 Compile saddledirection to estimate direction of saddles with DEM data
 ======================================================================
 
-	apt-get install libgdal-dev
+	sudo apt install libgdal-dev
 	cd mapnik/tools/
 	cc -o saddledirection saddledirection.c -lm -lgdal
 	

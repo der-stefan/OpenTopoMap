@@ -4,12 +4,12 @@
 # authors: Martin Schuetz, Stefan Erhardt
 # An interactive script for generating worldwide Garmin files
 
-GIT_DIR=/home/otmuser/OpenTopoMap/garmin
+GIT_DIR=/home/garminotm/OpenTopoMap/garmin
 DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
-SPLITTER_JAR=/usr/src/splitter/splitter.jar
-MKGMAP_JAR=/usr/src/mkgmap/mkgmap.jar
+SPLITTER_JAR=/home/garminotm/src/splitter-r591/splitter.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4245/mkgmap.jar
 POLY24_CMD=$GIT_DIR/tools/poly24.py
 
 # Temp dirs
@@ -87,16 +87,16 @@ do
 
 		echo "Generate $countryname with polyfile $polyfile"
 
-                SPLITTER_OUTPUT_ROOT_DIR="$continent-splitter-out"
+                SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
 
-		osmpbfs=`$POLY24_CMD $polyfile $SPLITTER_OUTPUT_ROOT_DIR/areas.list`
+		osmpbfs=`$POLY24_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
 
 		mkgmapin=""
 
 		for p in $osmpbfs
 		do
 #			mkgmapin="${mkgmapin}input-file=$SPLITTER_OUTPUT_ROOT_DIR/$p\n"
-			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_ROOT_DIR/$p "
+			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_DIR/$p "
 		done
 
                 echo "mkmapin: $mkgmapin"
