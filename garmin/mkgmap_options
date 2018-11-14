@@ -1,3 +1,12 @@
+family-id: 6868
+product-id: 1
+draw-priority: 20
+family-name: family-name
+series-name: series-name
+area-name: area-name
+country-name: country-name
+country-abbr: ca
+overview-mapname: 68680000
 max-jobs
 gmapsupp
 latin1
@@ -6,11 +15,6 @@ split-name-index
 housenumbers
 bounds=../bounds.zip
 precomp-sea=../sea.zip
-family-id=6868
-product-id=1
-family-name="family-name"
-series-name="series-name"
-area-name="area-name"
 dem=../dem/
 dem-dists=9942,9942,19884,39768,53024,100000,100000,200000
 min-size-polygon=8
