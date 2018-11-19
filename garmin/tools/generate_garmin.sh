@@ -114,7 +114,7 @@ do
 
                 rm *.img
 
-		java -jar $MKGMAP_JAR $mkgmapin -c $MKGMAP_OPTS --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE $MKGMAP_TYP_FILE
+		java -jar $MKGMAP_JAR $mkgmapin -c $MKGMAP_OPTS --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE -c $SPLITTER_OUTPUT_DIR/template.args $MKGMAP_TYP_FILE
 
                 mv *.img $MKGMAP_OUTPUT_DIR/.
 	done
