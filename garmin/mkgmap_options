@@ -1,4 +1,4 @@
-family-id: 6868
+family-id: 5353
 product-id: 1
 draw-priority: 20
 family-name: family-name
@@ -6,16 +6,16 @@ series-name: series-name
 area-name: area-name
 country-name: country-name
 country-abbr: ca
-overview-mapname: 68680000
+overview-mapname: 53530000
 max-jobs
 gmapsupp
 latin1
 index
 split-name-index
 housenumbers
-bounds=../bounds.zip
-precomp-sea=../sea.zip
-dem=../dem/
+# bounds=../bounds.zip
+# precomp-sea=../sea.zip
+dem=$DATA_DIR/hgt/viewfinderpanoramas.zip
 dem-dists=9942,9942,19884,39768,53024,100000,100000,200000
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0

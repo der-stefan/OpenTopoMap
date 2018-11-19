@@ -25,7 +25,7 @@ SPLITTER_LOG=$DATA_DIR/splitter.log
 MKGMAP_LOG=$DATA_DIR/mkgmap.log
 
 # Option files
-MKGMAP_OPTS=$GIT_DIR/opentopomap_options
+MKGMAP_OPTS=$GIT_DIR/mkgmap_options
 MKGMAP_STYLE_FILE=$GIT_DIR/style/opentopomap
 MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.typ
 
