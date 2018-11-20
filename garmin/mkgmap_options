@@ -1,11 +1,12 @@
 family-id: 5353
 product-id: 1
 draw-priority: 20
-family-name: familyname
-series-name: seriesname
-area-name: areaname
-country-name: countryname
-country-abbr: ca
+description="OTM"
+family-name="familyname"
+series-name="seriesname"
+area-name="areaname"
+country-name="countryname"
+country-abbr"ca"
 overview-mapname: 53530000
 max-jobs
 gmapsupp
@@ -15,8 +16,9 @@ split-name-index
 housenumbers
 # bounds=../bounds.zip
 # precomp-sea=../sea.zip
-dem=~/garmin_world/hgt/viewfinderpanoramas.zip
+dem=/home/garminotm/garmin_world/hgt/viewfinderpanoramas.zip
 dem-dists=9942,9942,19884,39768,53024,100000,100000,200000
+overview-dem-dist=200000
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
 route
