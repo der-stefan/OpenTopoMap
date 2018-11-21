@@ -1,6 +1,6 @@
-# HowTo for dummies
+# Setting up a OpenTopoMap tile server - a complete walkthrough
 
-How to render OpenTopoMaps on your own ubuntu server.
+Based on the [HOWTO](HOWTO_Ubuntu_16.04) this guide describes how to install your own OpenTopoMap tile server on Ubuntu 16.04.
 
 ## Create a virtual computer
 * Generation 2
@@ -267,9 +267,9 @@ Create snapshot, start
 Create color relief for different zoom level
 ```
 cd ~/data
-gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-5000.tif ~/OpenTopoMap/mapnik/relief.txt relief-5000.tif
+gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-5000.tif ~/OpenTopoMap/mapnik/relief_color_text_file.txt relief-5000.tif
 
-gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-500.tif ~/OpenTopoMap/mapnik/relief.txt relief-500.tif
+gdaldem color-relief -co COMPRESS=LZW -co PREDICTOR=2 -alpha warp-500.tif ~/OpenTopoMap/mapnik/relief_color_text_file.txt relief-500.tif
 ```
 ### Create hillshade for different zoom levels
 ```
@@ -346,9 +346,6 @@ cc -Wall -o isolation isolation.c -lgdal -lm -O2
 psql gis < arealabel.sql
 ./update_lowzoom.sh
 ```
-The message
-*dropdb: database removal failed: ERROR:  database "lowzoom" does not exist*
-is correct.
 
 ### Edit update_saddles.sh
 ```

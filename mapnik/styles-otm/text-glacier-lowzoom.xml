@@ -1,6 +1,18 @@
 <Style name="text-glacier-lowzoom">
 
 	<Rule>
+		&maxscale_zoom11;
+		&minscale_zoom11;
+		<Filter>[lake_area] &gt; 1E8</Filter>
+		<TextSymbolizer fontset-name="sans-condensed-oblique" size="10" fill="#6199ca" halo-radius="1" halo-fill="rgba(208,248,255,0.8)" max-char-angle-delta="30" smooth="0.5" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>[lake_area] &gt; 8E6</Filter>
+		<TextSymbolizer fontset-name="sans-condensed-oblique" size="10" fill="#6199ca" halo-radius="1" halo-fill="rgba(208,248,255,0.8)" max-char-angle-delta="30" smooth="0.5" placement="line">[name]</TextSymbolizer>
+	</Rule>
+	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom13;
 		<Filter>[lake_area] &gt; 1E6</Filter>

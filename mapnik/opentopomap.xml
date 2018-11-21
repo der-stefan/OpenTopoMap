@@ -227,7 +227,6 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
 
 	<Layer name="text-cities" clear-label-cache="on">
 		<StyleName>text-cities</StyleName>

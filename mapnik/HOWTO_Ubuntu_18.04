@@ -8,7 +8,7 @@
 ###############################################
 
 
-HOWTO install OpenTopoMap on Ubuntu (verified on 16.04 LTS)
+HOWTO install OpenTopoMap on Ubuntu 18.04 LTS
 ===========================================================
 
 
@@ -19,12 +19,27 @@ This guide is quite complete, but you should always think about before blindly c
 #	/mnt/tiles		on HDD
 
 
-# Update your freshly installed Ubuntu 16.04:
+# Update your freshly installed Ubuntu 18.04:
+# Add to /etc/apt/sources.list: main restricted universe multiverse
 	sudo apt update && sudo apt upgrade
 
 
 # Install some useful packages:
-	sudo apt install vim git screen htop iftop
+	sudo apt install vim git screen htop iptraf
+
+# Download OpenTopoMap files
+	cd ~
+	git clone https://github.com/der-stefan/OpenTopoMap.git
+	cd ~/OpenTopoMap/mapnik
+	
+	# get the generalized water polygons from http://openstreetmapdata.com/
+	mkdir data && cd data
+	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
+	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
+	unzip water-polygons*
+
+	# Now you need to create the hillshade and contours. We can't provide the data, since it consumes ~500 GB.
+	# But there is a long howto in HOWTO_DEM
 
 
 # Install the apache web server:
@@ -32,27 +47,25 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 # Install Postgresql database:
-	sudo apt install postgresql-9.5 postgresql-9.5-postgis-2.2
-	
+	sudo apt install postgresql postgresql-10-postgis-2.4
+
+
 	# change default path via symlink (works better than changing postgres config):
 	sudo chown postgres /mnt/database
 	sudo chgrp postgres /mnt/database
 	sudo service postgresql stop
-	sudo cp -a /var/lib/postgresql/9.5/main /mnt/database
-	sudo rm -r /var/lib/postgresql/9.5
-	sudo ln -s /mnt/database /var/lib/postgresql/9.5
+	sudo cp -a /var/lib/postgresql/10/main /mnt/database
+	sudo rm -r /var/lib/postgresql/10
+	sudo ln -s /mnt/database /var/lib/postgresql/10
 	sudo service postgresql start
 
+
 	# Tweaks:
-		Edit the file /etc/postgresql/9.5/main/postgresql.conf and make the following changes:
+		Edit the file /etc/postgresql/10/main/postgresql.conf and make the following changes:
 			shared_buffers = 128MB
 			work_mem = 256MB			
 			maintenance_work_mem = 256MB
 			autovacuum = off
-
-		As root, edit /etc/sysctl.conf and add these lines near the top after the other “kernel” definitions:
-			# Increase kernel shared memory segments - needed for large databases
-			kernel.shmmax=268435456
 
 
 # Install Mapnik renderer:
@@ -60,7 +73,7 @@ This guide is quite complete, but you should always think about before blindly c
 
 
 # Install tirex from source
-	sudo apt install devscripts libjson-perl libipc-sharelite-perl libgd-perl debhelper
+	sudo apt install devscripts debhelper libjson-perl libipc-sharelite-perl libgd-gd2-perl
 	
 	mkdir ~/src && cd ~/src
 	git clone https://github.com/geofabrik/tirex
@@ -82,8 +95,9 @@ This guide is quite complete, but you should always think about before blindly c
 	debuild -i -b -us -uc
 	
 	cd ~/src
-	sudo dpkg -i libapache2-mod-tile_0.4-12~precise2_amd64.deb
+    sudo dpkg -i libapache2-mod-tile_0.4-12~precise2_amd64.deb
 	sudo a2enmod tile
+
 		
 	# copy conf/tile.conf into /etc/apache2/mods-available/tile.conf
     # in /etc/tirex/renderer/mapnik.conf:
@@ -96,6 +110,7 @@ This guide is quite complete, but you should always think about before blindly c
 	
 	sudo rm -rf /var/lib/mod_tile
 	sudo ln -s /var/lib/tirex/tiles /var/lib/mod_tile
+    sudo ln -s /mnt/tiles /var/lib/tirex/tiles
 	
 	# fix "error" of mod-tile installation (in fact there is no error, apache just can't load the default configs):
 	sudo apt install -f
@@ -115,10 +130,26 @@ This guide is quite complete, but you should always think about before blindly c
     a2dismod mpm_event
     a2enmod mpm_prefork
 
+    # add CORS settings in /etc/apache2/sites-enabled/tileserver_site-le-ssl.conf
+    # Header set Access-Control-Allow-Origin "*"
+    sudo a2enmod headers
+    sudo systemctl restart apache2
+
+
+# install certbot for letsencrypt ssl certificate
+    sudo apt install letsencrypt
+    cd ~/src
+    wget https://dl.eff.org/certbot-auto
+    chmod a+x certbot-auto
+    sudo ./certbot-auto --apache
+
+
+# enable logrotate compression - remove option "delaycompress"
+    sudo vi /etc/logrotate.d/apache2 
+
 
 # Install osm2pgsql from source
-	sudo apt install cmake libbz2-dev libgeos-dev libgeos++-dev libproj-dev lua5.3 liblua5.3-dev
-
+	sudo apt install cmake libbz2-dev libgeos-dev libpq-dev libproj-dev lua5.3 liblua5.3-dev
 	cd ~/src
 	git clone git://github.com/openstreetmap/osm2pgsql.git
 	cd osm2pgsql
@@ -130,37 +161,26 @@ This guide is quite complete, but you should always think about before blindly c
 
 # Create user and database
 	sudo -u postgres -i
-	createuser --createdb osmuser   // superuser!?
-    createuser tirex                // read only!?
+	createuser --superuser osmuser
+    createuser tirex
 	exit
 	createdb gis
 	psql -d gis -c 'CREATE EXTENSION postgis;'
-	
+    psql -d gis -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;'
+    psql -d lowzoom -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;'
+    psql -d gis -c 'GRANT CONNECT ON DATABASE gis TO tirex;'
 
-# Download OpenTopoMap files
-	cd ~
-	git clone https://github.com/der-stefan/OpenTopoMap.git
-	cd ~/OpenTopoMap/mapnik
-	
-	# get the generalized water polygons from http://openstreetmapdata.com/
-	mkdir data && cd data
-	wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
-	wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
-	unzip water-polygons*
-
-	# Now you need to create the hillshade and contours. We can't provide the data, since it consumes ~500 GB.
-	# But there is a long howto in HOWTO_DEM
 
 
 # Load data into database
 	mkdir ~/data && cd ~/data
-	wget http://download.geofabrik.de/europe-latest.osm.pbf
-	cd ~/data/updates
-	wget http://download.geofabrik.de/europe-updates/state.txt
+	screen wget https://planet.openstreetmap.org/pbf/planet-latest.osm.pbf
 
-	screen osm2pgsql --slim -d gis -C 12000 --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
+    # add hdd tablespace for temporary slim import file
+    psql -d gis -c "CREATE TABLESPACE hdd LOCATION '/mnt/tiles/database';"
 
     screen osm2pgsql --slim -d gis -C 12000 --tablespace-slim-data hdd --tablespace-slim-index hdd --number-processes 10 --flat-nodes /mnt/database/flat-nodes/gis-flat-nodes.bin --style ~/OpenTopoMap/mapnik/osm2pgsql/opentopomap.style ~/data/planet-latest.osm.pbf
+
 
 
 # Now do the preprocessing of the OSM data for low zoom levels

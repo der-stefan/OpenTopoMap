@@ -1,6 +1,6 @@
 OpenTopoMap
 ===========
-OpenTopoMap is a topographic map out of data from OpenStreetMap and SRTM.
+OpenTopoMap is a topographic map out of data from OpenStreetMap and SRTM. If you are interested in building your own OpenTopoMap, see the beginner's guides for [a tile server](mapnik/README.md) and for [Garmin files](garmin/README.md).
 
 ### Mapnik
 The main OpenTopoMap is a online rendered raster map. It can be used with the web interface on https://opentopomap.org, which gives you nice features like a search function or loading your gpx tracks. Futhermore, OpenTopoMap can be included into other applications. See https://opentopomap.org/about#verwendung for information on usage. The license of the online map is CC-BY-SA.

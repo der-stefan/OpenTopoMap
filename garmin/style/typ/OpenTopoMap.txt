@@ -2289,6 +2289,17 @@ Xpm="0 0 1 0"
 [end]
 
 [_line]
+Type=0x2e
+String=0x02,Bahntunnel
+String=0x04,railway tunnel
+Xpm="32 2 2 1"
+"  c none"
+"# c #000000"
+"####    ####    ####    ####    "
+"####    ####    ####    ####    "
+[end]
+
+[_line]
 Type=0x31
 String=0x02,Hang
 String=0x04,cliff
@@ -2315,6 +2326,15 @@ Xpm="32 5 2 1"
 "       #                #       "
 [end]
 
+[_line]
+Type=0x11002
+String=0x02,Waldrand
+String=0x04,edge of the forest
+Xpm="32 1 2 1"
+"  c none"
+"# c #4eb539"
+"# # # # # # # # # # # # # # # # "
+[end]
 
 
 
@@ -2480,7 +2500,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "0 c #77cc77"
-"1 c #c7fa9b"
+"1 c #c7fc65"
 "11111111111111111111111111111111"
 "11111111111111111111111111111111"
 "11111111111111111111111111111111"
@@ -2523,7 +2543,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "0 c #77cc77"
-"1 c #c7fa9b"
+"1 c #c7fc65"
 "11111111111111111111111111111111"
 "11111111111111111111111111111111"
 "11111111111111111111111111111111"
@@ -2709,7 +2729,7 @@ ExtendedLabels=Y
 FontStyle=NoLabel (invisible)
 Xpm="32 32 2 1"
 "0 c #77cc77"
-"1 c #c7fa9b"
+"1 c #c7fc65"
 "11111111111111111111111111111111"
 "11111111111111111111111111111111"
 "11111111111111111111111111111111"

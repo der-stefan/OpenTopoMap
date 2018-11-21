@@ -10,24 +10,29 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes') and ([tunnel] != 'yes' and [tunnel] != 'culvert')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="2" />
 	</Rule>
-<!--	<Rule>
-		&maxscale_zoom16;
-		&minscale_zoom17;
-		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
-		<LineSymbolizer stroke="#1d4dff" stroke-width="4" />
-		<LineSymbolizer stroke="#a3dde8" stroke-width="3" />
-	</Rule>-->
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom15;
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes') and ([tunnel] = 'yes' or [tunnel] = 'culvert')</Filter>
+		<LineSymbolizer stroke="#1d4dff" stroke-width="1.3" stroke-dasharray="4,2"/>
+	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'river') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes') and ([tunnel] != 'yes' and [tunnel] != 'culvert')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="7" />
 		<LineSymbolizer stroke="#a3dde8" stroke-width="6" />
 	</Rule>
-	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>([waterway] = 'river') and ([intermittent] != 'yes') and ([tunnel] = 'yes' or [tunnel] = 'culvert')</Filter>
+                <LineSymbolizer stroke="#1d4dff" stroke-width="6" stroke-dasharray="8,5"/>
+		<LineSymbolizer stroke="#a3dde8" stroke-width="5" stroke-dasharray="8,5"/>
+	</Rule>
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom17;
@@ -40,32 +45,32 @@
 	<Rule>
 		&maxscale_zoom11;
 		&minscale_zoom12;
-		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes' and [tunnel] != 'culvert') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'stream') and ([tunnel] != 'yes' and [tunnel] != 'culvert') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'stream') and ([tunnel] = 'yes') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'stream') and ([tunnel] = 'yes' or [tunnel] = 'culvert') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1" stroke-dasharray="5,5" />
 	</Rule>
 	
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] != 'yes') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] != 'yes' and [tunnel] != 'culvert') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="0.5" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] = 'yes') and ([intermittent] != 'yes')</Filter>
+		<Filter>([waterway] = 'ditch' or [waterway] = 'drain') and ([tunnel] = 'yes' or [tunnel] = 'culvert') and ([intermittent] != 'yes')</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="0.5" stroke-dasharray="5,5" />
 	</Rule>
 	
@@ -88,14 +93,14 @@
 	<Rule>
 		&maxscale_zoom11;	<!-- 10 -->
 		&minscale_zoom17;
-		<Filter>([waterway] = 'canal') and ([tunnel] != 'yes') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
+		<Filter>([waterway] = 'canal') and ([tunnel] != 'yes' and [tunnel] != 'culvert') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIc') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1.8" stroke-opacity="0.5" />
 		<LinePatternSymbolizer file="symbols-otm/canal.png" />
 	</Rule>
 	<Rule>
 		&maxscale_zoom11;	<!-- 10 -->
 		&minscale_zoom17;
-		<Filter>([waterway] = 'canal') and ([tunnel] = 'yes') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIb') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
+		<Filter>([waterway] = 'canal') and ([tunnel] = 'yes' or [tunnel] = 'culvert') and not (([CEMT] = 'IV') or ([CEMT] = 'Va') or ([CEMT] = 'Vb') or ([CEMT] = 'VIa') or ([CEMT] = 'VIb') or ([CEMT] = 'VIc') or ([CEMT] = 'VII') or ([motorboat] = 'yes'))</Filter>
 		<LineSymbolizer stroke="#1d4dff" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="5,5" />
 		<!--LinePatternSymbolizer file="symbols-otm/canal.png" /-->
 	</Rule>

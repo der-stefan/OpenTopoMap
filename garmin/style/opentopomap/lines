@@ -187,10 +187,11 @@ power=minor_line {delete name} [0x29 resolution 24]
 
 #railway=abandoned [0x0a road_class=0 road_speed=1 resolution 22]
 railway=platform [0x16 road_class=0 road_speed=0 resolution 23]
-railway=* & highspeedtrain=yes [0x2d resolution 18-18 continue]
-railway=* & tunnel!=yes [0x2d resolution 19-23 continue]
-railway=* & tunnel=yes [0x2c resolution 24]
-railway=* [0x14 resolution 24]
+(railway=rail | railway=disused | railway=light_rail | railway=monorail | railway=narrow_gauge | railway=subway) & highspeedtrain=yes [0x2d resolution 18-18 continue]
+(railway=rail | railway=disused | railway=light_rail | railway=monorail | railway=narrow_gauge | railway=subway) & tunnel!=yes [0x2d resolution 19-23 continue]
+(railway=rail | railway=disused | railway=light_rail | railway=monorail | railway=narrow_gauge | railway=subway) & tunnel=yes [0x2e resolution 19-23 continue]
+(railway=rail | railway=disused | railway=light_rail | railway=monorail | railway=narrow_gauge | railway=subway) & tunnel=yes [0x2c resolution 24]
+(railway=rail | railway=disused | railway=light_rail | railway=monorail | railway=narrow_gauge | railway=subway) [0x14 resolution 24]
 
 (man_made=cable|(man_made=* & man_made ~ '.*pipe.*')) & area!=yes &
 tunnel!=yes & location != underground
@@ -210,6 +211,7 @@ boundary=political [0x1c resolution 19]
 
 natural=cliff [0x31 resolution 24]
 barrier=fence | fenced=yes [0x33 resolution 24]
+natural=wood | landuse=forest [0x11002  resolution 24 continue] 
 
 include 'inc/water_lines';
 include 'inc/contour_lines';
