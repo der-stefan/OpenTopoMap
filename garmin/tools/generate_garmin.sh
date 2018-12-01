@@ -114,7 +114,7 @@ do
 
                 rm *.img
 
-		        java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE
+		        java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM $countryname" -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE
 
                 mv *.img $MKGMAP_OUTPUT_DIR/.
 	done
