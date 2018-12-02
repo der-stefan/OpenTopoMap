@@ -10,7 +10,7 @@ DATA_DIR=/home/garminotm/garmin_world
 # Programs
 SPLITTER_JAR=/home/garminotm/src/splitter-r591/splitter.jar
 MKGMAP_JAR=/home/garminotm/src/mkgmap-r4245/mkgmap.jar
-POLY24_CMD=$GIT_DIR/tools/poly24.py
+POLY2TILELIST_CMD=$GIT_DIR/tools/poly2tilelist.py
 
 # Temp dirs
 SPLITTER_OUTPUT_ROOT_DIR=$DATA_DIR/out/splitter_out
@@ -89,7 +89,7 @@ do
 
                 SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
 
-		osmpbfs=`$POLY24_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
+		osmpbfs=`$POLY2TILELIST_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
 
 		mkgmapin=""
 

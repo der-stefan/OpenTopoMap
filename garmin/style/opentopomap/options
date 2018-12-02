@@ -6,7 +6,9 @@
 # The levels specification for this style
 # 
 # More levels may make zooming smoother, but it will generate larger map tiles.
-levels = 0:24, 1:22, 2:21, 3:20, 4:19, 5:18, 6:17
+#levels = 0:24, 1:22, 2:21, 3:20, 4:19, 5:18, 6:17
+#overview-levels = 7:16, 8:15, 9:14
 
-overview-levels = 7:16, 8:15, 9:14
+levels = 0:24, 1:22, 2:21, 3:20, 4:19, 5:18, 6:16
+overview-levels = 7:15, 8:13, 9:11
 

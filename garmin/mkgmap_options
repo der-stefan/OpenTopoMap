@@ -16,10 +16,10 @@ housenumbers
 # bounds=../bounds.zip
 # precomp-sea=../sea.zip
 dem=/home/garminotm/garmin_world/hgt/viewfinderpanoramas.zip
-dem-dists=9942,19884,39768,53024,106048,212096,276160
-overview-dem-dist=276160,276160
+dem-dists=9942,9942,19884,39768,53024,106048
+#overview-dem-dist=276160,276160
 reduce-point-density=4
-reduce-point-density-polygon=8
+reduce-point-density-polygon=4
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
 route
@@ -28,5 +28,5 @@ link-pois-to-ways
 process-destination
 process-exits
 order-by-decreasing-area
-tdbfile
-nsis
+#tdbfile
+#nsis
