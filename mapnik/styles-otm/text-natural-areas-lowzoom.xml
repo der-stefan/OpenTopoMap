@@ -1,11 +1,7 @@
 <Style name="text-natural-areas-lowzoom">
-    <Rule>
-		&maxscale_zoom5;
+	<Rule>
+		&maxscale_zoom7;
 		&minscale_zoom17;
-		<TextSymbolizer fontset-name="sans-oblique" fill="#2020ff" halo-radius="1" halo-fill="rgba(255,255,255,0.8)" max-char-angle-delta="0" smooth="0.5" horizontal-alignment="adjust" placement="line" size="12" placement-type="list">[name]
-            <Placement size="11"/>
-            <Placement size="10"/>
-            <Placement size="9"/>
-        </TextSymbolizer>
+		<LineSymbolizer stroke="black" stroke-width="1"/>
 	</Rule>
 </Style>

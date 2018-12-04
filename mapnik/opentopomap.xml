@@ -81,7 +81,7 @@
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
 	<!ENTITY test SYSTEM "styles-otm/test.xml">
 	<!ENTITY natural-areas SYSTEM "styles-otm/natural-areas.xml">
-
+        <!ENTITY text-natural-areas-lowzoom SYSTEM "styles-otm/text-natural-areas-lowzoom.xml">
 	<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
 	%entities;
 ]>
@@ -165,7 +165,7 @@
 	&text-waterways;
 	&test;
 	&natural-areas;
-	
+        &text-natural-areas-lowzoom;
 
 	<!-- layers -->
 	
@@ -248,8 +248,14 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-	
+    <Layer name="text-natural-areas-lowzoom">
+		<StyleName>text-natural-areas-lowzoom</StyleName>
+		<Datasource>
+            <Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+    </Layer>
 	
 </Map>
 
