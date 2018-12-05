@@ -1,5 +1,6 @@
 family-id: 5353
 product-id: 1
+product-version=1
 draw-priority: 20
 family-name="familyname"
 series-name="seriesname"
@@ -13,11 +14,10 @@ latin1
 index
 split-name-index
 housenumbers
-# bounds=../bounds.zip
-# precomp-sea=../sea.zip
+bounds=/home/garminotm/garmin_world/bounds-latest.zip
+precomp-sea=/home/garminotm/garmin_world/sea-latest.zip
 dem=/home/garminotm/garmin_world/hgt/viewfinderpanoramas.zip
 dem-dists=9942,9942,19884,39768,53024,106048
-#overview-dem-dist=276160,276160
 reduce-point-density=4
 reduce-point-density-polygon=4
 min-size-polygon=8
