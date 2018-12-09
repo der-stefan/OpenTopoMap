@@ -81,6 +81,7 @@
 	<!ENTITY text-waterways SYSTEM "styles-otm/text-waterways.xml">
 	<!ENTITY test SYSTEM "styles-otm/test.xml">
 	<!ENTITY natural-areas SYSTEM "styles-otm/natural-areas.xml">
+	<!ENTITY natural-areas-lines SYSTEM "styles-otm/natural-areas-lines.xml">
         <!ENTITY text-natural-areas-lowzoom SYSTEM "styles-otm/text-natural-areas-lowzoom.xml">
 	<!ENTITY % entities SYSTEM "inc/entities.xml.inc">
 	%entities;
@@ -164,7 +165,8 @@
 	&text-roads-ref;
 	&text-waterways;
 	&test;
-	&natural-areas;
+        &natural-areas;
+        &natural-areas-lines;
         &text-natural-areas-lowzoom;
 
 	<!-- layers -->
@@ -239,16 +241,24 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-	<Layer name="natural-areas">
+
+        <Layer name="natural-areas">
 		<StyleName>natural-areas</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"region:type" as region_type from  planet_osm_polygon WHERE "region:type"='mountain_area') AS test</Parameter>
+			<Parameter name="table">(SELECT way,"region:type" as region_type from  planet_osm_polygon WHERE "region:type" IN ('natural_area','mountain_area')) AS regions</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
-    <Layer name="text-natural-areas-lowzoom">
+       </Layer>	
+       <Layer name="natural-areas-lines">
+		<StyleName>natural-areas-lines</StyleName>
+		<Datasource>
+            <Parameter name="table">(SELECT way FROM naturalarealabels) AS naturallines </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
+			&postgis-settings;
+		</Datasource>
+       </Layer>
+       <Layer name="text-natural-areas-lowzoom">
 		<StyleName>text-natural-areas-lowzoom</StyleName>
 		<Datasource>
             <Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>

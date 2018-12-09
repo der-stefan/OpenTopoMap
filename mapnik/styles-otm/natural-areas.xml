@@ -1,8 +1,8 @@
 <Style name="natural-areas">
 	<Rule>
-		&maxscale_zoom6;
+		&maxscale_zoom0;
 		&minscale_zoom17;
 		<PolygonSymbolizer fill="#cccccc" fill-opacity="0.5"/>
-		<LineSymbolizer stroke="black" stroke-width="0.5" />
+		<LineSymbolizer stroke="black" stroke-width="0.1" />
 	</Rule>
 </Style>
