@@ -115,36 +115,35 @@ highway=* & construction=* & maxspeed!=* { add mkgmap:road-speed = '-1' }
 highway=* & disused=yes & maxspeed!=* { add mkgmap:road-speed = '-2' }
 
 # Ways sorted roughly by descending order of class
-#highway=motorway & network=e-road [0x01 resolution 14-14 continue]
-#highway=motorway [0x03 resolution 10-16 continue]
 highway=motorway [0x09 resolution 14-17 continue]
 highway=motorway [0x01 road_class=4 road_speed=7 resolution 18]
+
 highway=motorway_link & (mkgmap:exit_hint=true | mkgmap:dest_hint=true) [0x06 road_class=3 road_speed=2 resolution 20]
 highway=motorway_link [0x09 road_class=3 road_speed=2 resolution 20]
 
-#highway=trunk & ( network=e-road | int_ref=* ) [0x09 resolution 15-17 continue]
-#highway=trunk [0x03 resolution 18-18 continue]
 highway=trunk [0x0b resolution 16-17 continue]
 highway=trunk [0x04 resolution 18-18 continue]
-highway=trunk [0x02 road_class=4 road_speed=5 resolution 19]
+highway=trunk [0x02 road_class=4 road_speed=6 resolution 19]
+
 highway=trunk_link & (mkgmap:exit_hint=true | mkgmap:dest_hint=true) [0x06 road_class=3 road_speed=2 resolution 20]
 highway=trunk_link [0x09 road_class=3 road_speed=2 resolution 20]
-#highway=* & highway!=proposed & motorroad=yes [0x02 road_class=4 road_speed=4 resolution 18]
 
-#highway=primary & ( network=e-road | int_ref=* ) [0x08 resolution 15-17 continue]
-highway=primary [0x0b resolution 17-18 continue]
-highway=primary [0x03 road_class=3 road_speed=4 resolution 19]
+highway=primary [0x06 resolution 16-17 continue]
+highway=primary [0x0b resolution 18-18 continue]
+highway=primary [0x03 road_class=3 road_speed=5 resolution 19]
 highway=primary_link [0x08 road_class=3 road_speed=1 resolution 21]
 
-#highway=secondary & ( network=e-road | int_ref=* ) [0x06 resolution 18-18 continue]
 highway=secondary [0x06 resolution 18-18 continue]
 highway=secondary [0x0b resolution 19-20 continue]
-highway=secondary [0x04 road_class=2 road_speed=3 resolution 21]
+highway=secondary [0x04 road_class=2 road_speed=4 resolution 21]
+
 highway=secondary_link [0x08 road_class=2 road_speed=1 resolution 22]
 
 highway=tertiary [0x06 resolution 19-21 continue]
-highway=tertiary [0x05 road_class=1 road_speed=3 resolution 22]
+highway=tertiary [0x05 road_class=1 road_speed=4 resolution 22]
+
 highway=tertiary_link [0x08 road_class=1 road_speed=1 resolution 22]
+
 highway=minor [0x06 road_class=1 road_speed=3 resolution 21]
 
 highway=unclassified [0x0a resolution 20-20 continue]
@@ -173,6 +172,8 @@ highway=cycleway [0x07 road_class=0 road_speed=1 resolution 23]
 (highway=footway|highway=path) & tracktype~'grade[1-2]' {add access = no; add foot = yes} [0x16 road_class=0 road_speed=0 resolution 22]
 highway=footway|highway=path [0x16 road_class=0 road_speed=0 resolution 23]
 highway=steps [0x13 road_class=0 road_speed=0 resolution 23]
+
+highway=track & tracktype=grade1 [0x0a resolution 21-21 continue]
 highway=track & tracktype=grade1 [0x07 road_class=0 road_speed=1 resolution 22]
 highway=track [0x0a road_class=0 road_speed=1 resolution 22]
 highway=unsurfaced [0x0a road_class=0 road_speed=1 resolution 22]

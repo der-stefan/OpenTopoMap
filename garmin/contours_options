@@ -1,15 +1,19 @@
-transparent
+family-id: 5354
+product-id=2
+product-version=1
 draw-priority=99
+family-name="familyname"
+series-name="seriesname"
+area-name="areaname"
+country-name="countryname"
+country-abbr"ca"
+overview-mapname: 53540000
 max-jobs
 gmapsupp
 latin1
-index
-overview-mapname=Contours
-family-id=6868
-product-id=2
-product-version=1
-series-name=Contours
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
-tdbfile
-nsis
+transparent
+#index
+#tdbfile
+#nsis
