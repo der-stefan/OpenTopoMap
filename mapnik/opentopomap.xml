@@ -59,18 +59,18 @@
 	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
-	<!ENTITY text-natural-line SYSTEM "styles-otm/text-natural-line.xml">
 	<!ENTITY text-cities-lowzoom SYSTEM "styles-otm/text-cities-lowzoom.xml">
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
-    <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
+    	<!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
-    <!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
+	<!ENTITY text-natural-areas-lowzoom SYSTEM "styles-otm/text-natural-areas-lowzoom.xml">
+    	<!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
 	<!ENTITY text-glacier-lowzoom SYSTEM "styles-otm/text-glacier-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
-    <!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
-    <!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
+    	<!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
+    	<!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
 	<!ENTITY symbols-1 SYSTEM "styles-otm/symbols-1.xml">
 	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
 	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
@@ -142,13 +142,13 @@
 	&aerialways;
 	&powerlines;
 	&powertowers;
-	&text-natural-line;
 	&text-cities-lowzoom;
 	&text-cities;
 	&text-towns;
 	&text-villages;
     &symbols-sport;
 	&symbols-stations;
+	&text-natural-areas-lowzoom;
     &text-water-lowzoom;
 	&text-glacier-lowzoom;
     &text-natural-poly;
@@ -511,17 +511,20 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+
+<!-- Create lowzoom.naturalarealabels first...
 	
-	<Layer name="text-natural-line">
-		<StyleName>text-natural-line</StyleName>
+       <Layer name="text-natural-areas-lowzoom">
+		<StyleName>text-natural-areas-lowzoom</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,"natural" FROM planet_osm_line) AS names</Parameter>
-			<Parameter name="dbname">gis</Parameter>
+            <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
+			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
-	</Layer>
+      </Layer>
+-->
 
-    <Layer name="text-water-lowzoom">
+      <Layer name="text-water-lowzoom">
 		<StyleName>text-water-lowzoom</StyleName>
 		<Datasource>
             <Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name,lake_area FROM lakelabels WHERE label='lakeaxis' OR label='bayaxis' OR label='straitaxis') AS lakelabels </Parameter>
