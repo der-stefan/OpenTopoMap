@@ -1,7 +1,0 @@
-<Style name="natural-areas-lines">
-	<Rule>
-		&maxscale_zoom0;
-		&minscale_zoom17;
-		<LineSymbolizer stroke="red" stroke-width="2" stroke-opacity="0.1"/>
-	</Rule>
-</Style>
