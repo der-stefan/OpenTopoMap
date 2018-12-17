@@ -171,77 +171,8 @@
 
 	<!-- layers -->
 	
-	&basemap-relief;
+<!--	&basemap-relief; -->
 	
-	<Layer name="water-lowzoom">
-		<StyleName>water-casing-lowzoom</StyleName>
-		<StyleName>water-fill-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",water,waterway,way_area,name FROM water) AS water </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	
-	<Layer name="waterway-lines">
-		<StyleName>waterway-lines</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"CEMT",intermittent,motorboat,tunnel,waterway FROM planet_osm_line) AS water </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="water-polygons">
-		<StyleName>waterway-polygons-casing</StyleName>
-		<StyleName>waterway-polygons-fill</StyleName>
-		<StyleName>water-areas</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,intermittent,way_area FROM planet_osm_polygon) AS water </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	
-	<Layer name="landuse-over-water">
-		<StyleName>landuse-over-water</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",wetland FROM planet_osm_polygon) AS landuse </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="borders-lowzoom">
-		<StyleName>borders-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,boundary,admin_level FROM borders) AS borders</Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	
-	<Layer name="borders">
-		<StyleName>borders</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,boundary,admin_level,name FROM planet_osm_line WHERE boundary IN ('administrative')) AS borders </Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="text-cities" clear-label-cache="on">
-		<StyleName>text-cities</StyleName>
-		<StyleName>text-towns</StyleName>
-		<StyleName>text-villages</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,'('&#124;&#124;substring(ele from '^[\d]+')&#124;&#124;')' as ele,place,population::INTEGER FROM planet_osm_point WHERE (population IS NULL OR population SIMILAR TO '[[:digit:]]+') AND place IN ('city','town','village','suburb','hamlet','isolated_dwelling','locality') ORDER BY (CASE WHEN place='city' THEN 0 WHEN place='town' THEN 1 WHEN place='village' THEN 2 ELSE 3 END) ASC, (CASE WHEN population IS NUll THEN 0 WHEN population similar to '[[:digit:]]+' THEN population::integer ELSE 0 END) DESC
-		  ) AS names</Parameter>
-			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
         <Layer name="natural-areas">
 		<StyleName>natural-areas</StyleName>
 		<Datasource>
@@ -261,7 +192,7 @@
        <Layer name="text-natural-areas-lowzoom">
 		<StyleName>text-natural-areas-lowzoom</StyleName>
 		<Datasource>
-            <Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
+            <Parameter name="table">(SELECT way,name AS name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
 			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
