@@ -43,5 +43,5 @@
 <!ENTITY maxscale_zoom18 "<MaxScaleDenominator>2500</MaxScaleDenominator>">
 <!ENTITY minscale_zoom18 "">
 
-<!ENTITY color_roads_1 "#fb9e2a">
-<!ENTITY color_roads_2 "#f6eb60">
+<!ENTITY color_roads_1 "#f59729">
+<!ENTITY color_roads_2 "#f7e761">

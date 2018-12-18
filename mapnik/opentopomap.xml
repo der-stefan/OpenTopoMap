@@ -63,14 +63,14 @@
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
-    	<!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
+    <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
 	<!ENTITY text-natural-areas-lowzoom SYSTEM "styles-otm/text-natural-areas-lowzoom.xml">
-    	<!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
+    <!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
 	<!ENTITY text-glacier-lowzoom SYSTEM "styles-otm/text-glacier-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
-    	<!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
-    	<!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
+    <!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
+    <!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
 	<!ENTITY symbols-1 SYSTEM "styles-otm/symbols-1.xml">
 	<!ENTITY symbols-2 SYSTEM "styles-otm/symbols-2.xml">
 	<!ENTITY symbols-poly SYSTEM "styles-otm/symbols-poly.xml">
@@ -511,18 +511,15 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-<!-- Create lowzoom.naturalarealabels first...
 	
-       <Layer name="text-natural-areas-lowzoom">
-		<StyleName>text-natural-areas-lowzoom</StyleName>
-		<Datasource>
+    <Layer name="text-natural-areas-lowzoom">
+        <StyleName>text-natural-areas-lowzoom</StyleName>
+        <Datasource>
             <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-      </Layer>
--->
+            <Parameter name="dbname">lowzoom</Parameter>
+            &postgis-settings;
+        </Datasource>
+    </Layer>
 
       <Layer name="text-water-lowzoom">
 		<StyleName>text-water-lowzoom</StyleName>
@@ -532,8 +529,6 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-
-
 
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
