@@ -7,7 +7,7 @@
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
 		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>		
+		<Placement character-spacing="2" halo-radius="1.7"/>		
                 </TextSymbolizer>                
 	</Rule>
 	<Rule>
@@ -18,7 +18,7 @@
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
 		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="2" halo-radius="1.7"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -28,8 +28,8 @@
 		<TextSymbolizer size="9" character-spacing="40" spacing="500" fontset-name="sans-oblique" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -39,8 +39,8 @@
 		<TextSymbolizer size="9" character-spacing="40" spacing="500" fontset-name="sans-oblique" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -50,8 +50,8 @@
 		<TextSymbolizer size="9" character-spacing="40" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -61,8 +61,8 @@
 		<TextSymbolizer size="11" character-spacing="40" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -72,8 +72,8 @@
 		<TextSymbolizer size="11" character-spacing="40" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -83,8 +83,8 @@
 		<TextSymbolizer size="11" character-spacing="40" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -95,8 +95,8 @@
 		<Placement character-spacing="40"/>
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
@@ -108,36 +108,36 @@
 		<Placement character-spacing="40"/>
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
 		<Filter>[way_area] &lt; 5e7 and [way_area] &gt; 5e4</Filter>
-		<TextSymbolizer size="14" character-spacing="100" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
+		<TextSymbolizer size="12" character-spacing="100" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="80"/>
 		<Placement character-spacing="60"/>
 		<Placement character-spacing="40"/>
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[way_area] &lt; 5e7</Filter>
-		<TextSymbolizer size="14" character-spacing="100" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
+		<TextSymbolizer size="12" character-spacing="100" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="true" placement-type="list">[name]
 		<Placement character-spacing="80"/>
 		<Placement character-spacing="60"/>
 		<Placement character-spacing="40"/>
 		<Placement character-spacing="20"/>
 		<Placement character-spacing="10"/>
-		<Placement character-spacing="5"/>
-		<Placement character-spacing="2"/>
+		<Placement character-spacing="5" halo-radius="1.7"/>
+		<Placement character-spacing="2" halo-radius="1.5"/>
 		</TextSymbolizer>
 	</Rule>
 </Style>
