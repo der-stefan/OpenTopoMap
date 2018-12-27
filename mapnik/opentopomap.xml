@@ -512,15 +512,6 @@
 		</Datasource>
 	</Layer>
 	
-    <Layer name="text-natural-areas-lowzoom">
-        <StyleName>text-natural-areas-lowzoom</StyleName>
-        <Datasource>
-            <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
-            <Parameter name="dbname">lowzoom</Parameter>
-            &postgis-settings;
-        </Datasource>
-    </Layer>
-
       <Layer name="text-water-lowzoom">
 		<StyleName>text-water-lowzoom</StyleName>
 		<Datasource>
@@ -607,6 +598,14 @@
 		</Datasource>
 	</Layer>
 
+	<Layer name="text-natural-areas-lowzoom">
+	 <StyleName>text-natural-areas-lowzoom</StyleName>
+	 <Datasource>
+	   <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
+	   <Parameter name="dbname">lowzoom</Parameter>
+	   &postgis-settings;
+	 </Datasource>
+	</Layer>
 
 	<Layer name="symbols-viewpoint">
 		<StyleName>symbols-viewpoint</StyleName>
@@ -660,6 +659,8 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+	
+
 	
 	<Layer name="text-cities-lowzoom">
 		<StyleName>text-cities-lowzoom</StyleName>
