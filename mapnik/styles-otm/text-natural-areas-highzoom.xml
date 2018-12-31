@@ -1,0 +1,189 @@
+<Style name="text-natural-areas-highzoom">
+	<Rule>
+		&maxscale_zoom12;
+		&minscale_zoom12;
+		<Filter>[way_area] &lt; 1.3e9  and ([way_area] &gt; 3e7  and [nextregionsize] &gt; 1.3e9)</Filter>
+		<TextSymbolizer size="11" character-spacing="50" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="false" placement-type="list">[name]
+                <Placement character-spacing="50" dx="0" dy="0"/>
+                <Placement character-spacing="50" dx="0" dy="9"/>
+                <Placement character-spacing="50" dx="0" dy="-9"/>
+                <Placement character-spacing="40" dx="0" dy="0"/>
+		<Placement character-spacing="40" dx="0" dy="9"/>
+		<Placement character-spacing="40" dx="0" dy="-9"/>
+                <Placement character-spacing="30" dx="0" dy="0"/>
+                <Placement character-spacing="30" dx="0" dy="9"/>
+                <Placement character-spacing="30" dx="0" dy="-9"/>
+		<Placement character-spacing="20" dx="0" dy="0"/>
+		<Placement character-spacing="20" dx="0" dy="9"/>
+		<Placement character-spacing="20" dx="0" dy="-9"/>
+		<Placement character-spacing="10" dx="0" dy="0"/>
+		<Placement character-spacing="10" dx="0" dy="9"/>
+		<Placement character-spacing="10" dx="0" dy="-9"/>
+		<Placement character-spacing="5" dx="0" dy="0" halo-radius="1.7"/>
+		<Placement character-spacing="5" dx="0" dy="9" halo-radius="1.7"/>
+                <Placement character-spacing="5" dx="0" dy="-9" halo-radius="1.7"/>
+		<Placement character-spacing="2" dx="0" dy="0" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="9" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="-9" halo-radius="1.5"/>
+		</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>[way_area] &lt; 5e8 and ( [way_area] &gt; 5e6 and [nextregionsize] &gt; 5e8)</Filter>
+		<TextSymbolizer size="11" character-spacing="60" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="false" placement-type="list">[name]
+                <Placement character-spacing="50" dx="0" dy="0"/>
+                <Placement character-spacing="50" dx="0" dy="9"/>
+                <Placement character-spacing="50" dx="0" dy="-9"/>
+                <Placement character-spacing="40" dx="0" dy="0"/>
+		<Placement character-spacing="40" dx="0" dy="9"/>
+		<Placement character-spacing="40" dx="0" dy="-9"/>
+                <Placement character-spacing="30" dx="0" dy="0"/>
+                <Placement character-spacing="30" dx="0" dy="9"/>
+                <Placement character-spacing="30" dx="0" dy="-9"/>
+		<Placement character-spacing="20" dx="0" dy="0"/>
+		<Placement character-spacing="20" dx="0" dy="9"/>
+		<Placement character-spacing="20" dx="0" dy="-9"/>
+		<Placement character-spacing="10" dx="0" dy="0"/>
+		<Placement character-spacing="10" dx="0" dy="9"/>
+		<Placement character-spacing="10" dx="0" dy="-9"/>
+		<Placement character-spacing="5" dx="0" dy="0" halo-radius="1.7"/>
+		<Placement character-spacing="5" dx="0" dy="9" halo-radius="1.7"/>
+                <Placement character-spacing="5" dx="0" dy="-9" halo-radius="1.7"/>
+		<Placement character-spacing="2" dx="0" dy="0" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="9" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="-9" halo-radius="1.5"/>
+		</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[way_area] &lt; 1e8 and ( [way_area] &gt; 1e6 and [nextregionsize] &gt; 1e8)</Filter>
+		<TextSymbolizer size="11" character-spacing="70" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="false" placement-type="list">[name]
+                <Placement character-spacing="60" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="9"/>
+                <Placement character-spacing="60" dx="0" dy="-9"/>
+                <Placement character-spacing="50" dx="0" dy="0"/>
+                <Placement character-spacing="50" dx="0" dy="9"/>
+                <Placement character-spacing="50" dx="0" dy="-9"/>
+                <Placement character-spacing="40" dx="0" dy="0"/>
+		<Placement character-spacing="40" dx="0" dy="9"/>
+		<Placement character-spacing="40" dx="0" dy="-9"/>
+                <Placement character-spacing="30" dx="0" dy="0"/>
+                <Placement character-spacing="30" dx="0" dy="9"/>
+                <Placement character-spacing="30" dx="0" dy="-9"/>
+		<Placement character-spacing="20" dx="0" dy="0"/>
+		<Placement character-spacing="20" dx="0" dy="9"/>
+		<Placement character-spacing="20" dx="0" dy="-9"/>
+		<Placement character-spacing="10" dx="0" dy="0"/>
+		<Placement character-spacing="10" dx="0" dy="9"/>
+		<Placement character-spacing="10" dx="0" dy="-9"/>
+		<Placement character-spacing="5" dx="0" dy="0" halo-radius="1.7"/>
+		<Placement character-spacing="5" dx="0" dy="9" halo-radius="1.7"/>
+                <Placement character-spacing="5" dx="0" dy="-9" halo-radius="1.7"/>
+		<Placement character-spacing="2" dx="0" dy="0" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="9" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="-9" halo-radius="1.5"/>
+		</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[way_area] &lt; 1e8 and [way_area] &gt; 1e5</Filter>
+		<TextSymbolizer size="11" character-spacing="80" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="false" placement-type="list">[name]
+                <Placement character-spacing="70" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="9"/>
+                <Placement character-spacing="60" dx="0" dy="-9"/>
+                <Placement character-spacing="50" dx="0" dy="0"/>
+                <Placement character-spacing="50" dx="0" dy="9"/>
+                <Placement character-spacing="50" dx="0" dy="-9"/>
+                <Placement character-spacing="40" dx="0" dy="0"/>
+		<Placement character-spacing="40" dx="0" dy="9"/>
+		<Placement character-spacing="40" dx="0" dy="-9"/>
+                <Placement character-spacing="30" dx="0" dy="0"/>
+                <Placement character-spacing="30" dx="0" dy="9"/>
+                <Placement character-spacing="30" dx="0" dy="-9"/>
+		<Placement character-spacing="20" dx="0" dy="0"/>
+		<Placement character-spacing="20" dx="0" dy="9"/>
+		<Placement character-spacing="20" dx="0" dy="-9"/>
+		<Placement character-spacing="10" dx="0" dy="0"/>
+		<Placement character-spacing="10" dx="0" dy="9"/>
+		<Placement character-spacing="10" dx="0" dy="-9"/>
+		<Placement character-spacing="5" dx="0" dy="0" halo-radius="1.7"/>
+		<Placement character-spacing="5" dx="0" dy="9" halo-radius="1.7"/>
+                <Placement character-spacing="5" dx="0" dy="-9" halo-radius="1.7"/>
+		<Placement character-spacing="2" dx="0" dy="0" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="9" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="-9" halo-radius="1.5"/>
+		</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[way_area] &lt; 5e7 and [way_area] &gt; 5e4</Filter>
+		<TextSymbolizer size="11" character-spacing="100" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="false" placement-type="list">[name]
+                <Placement character-spacing="90" dx="0" dy="0"/>
+                <Placement character-spacing="80" dx="0" dy="0"/>
+                <Placement character-spacing="70" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="9"/>
+                <Placement character-spacing="60" dx="0" dy="-9"/>
+                <Placement character-spacing="50" dx="0" dy="0"/>
+                <Placement character-spacing="50" dx="0" dy="9"/>
+                <Placement character-spacing="50" dx="0" dy="-9"/>
+                <Placement character-spacing="40" dx="0" dy="0"/>
+		<Placement character-spacing="40" dx="0" dy="9"/>
+		<Placement character-spacing="40" dx="0" dy="-9"/>
+                <Placement character-spacing="30" dx="0" dy="0"/>
+                <Placement character-spacing="30" dx="0" dy="9"/>
+                <Placement character-spacing="30" dx="0" dy="-9"/>
+		<Placement character-spacing="20" dx="0" dy="0"/>
+		<Placement character-spacing="20" dx="0" dy="9"/>
+		<Placement character-spacing="20" dx="0" dy="-9"/>
+		<Placement character-spacing="10" dx="0" dy="0"/>
+		<Placement character-spacing="10" dx="0" dy="9"/>
+		<Placement character-spacing="10" dx="0" dy="-9"/>
+		<Placement character-spacing="5" dx="0" dy="0" halo-radius="1.7"/>
+		<Placement character-spacing="5" dx="0" dy="9" halo-radius="1.7"/>
+                <Placement character-spacing="5" dx="0" dy="-9" halo-radius="1.7"/>
+		<Placement character-spacing="2" dx="0" dy="0" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="9" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="-9" halo-radius="1.5"/>
+		</TextSymbolizer>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[way_area] &lt; 5e7</Filter>
+		<TextSymbolizer size="11" character-spacing="100" spacing="500" fontset-name="sans-oblique" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="line" allow-overlap="false" placement-type="list">[name]
+                <Placement character-spacing="90" dx="0" dy="0"/>
+                <Placement character-spacing="80" dx="0" dy="0"/>
+                <Placement character-spacing="70" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="0"/>
+                <Placement character-spacing="60" dx="0" dy="9"/>
+                <Placement character-spacing="60" dx="0" dy="-9"/>
+                <Placement character-spacing="50" dx="0" dy="0"/>
+                <Placement character-spacing="50" dx="0" dy="9"/>
+                <Placement character-spacing="50" dx="0" dy="-9"/>
+                <Placement character-spacing="40" dx="0" dy="0"/>
+		<Placement character-spacing="40" dx="0" dy="9"/>
+		<Placement character-spacing="40" dx="0" dy="-9"/>
+                <Placement character-spacing="30" dx="0" dy="0"/>
+                <Placement character-spacing="30" dx="0" dy="9"/>
+                <Placement character-spacing="30" dx="0" dy="-9"/>
+		<Placement character-spacing="20" dx="0" dy="0"/>
+		<Placement character-spacing="20" dx="0" dy="9"/>
+		<Placement character-spacing="20" dx="0" dy="-9"/>
+		<Placement character-spacing="10" dx="0" dy="0"/>
+		<Placement character-spacing="10" dx="0" dy="9"/>
+		<Placement character-spacing="10" dx="0" dy="-9"/>
+		<Placement character-spacing="5" dx="0" dy="0" halo-radius="1.7"/>
+		<Placement character-spacing="5" dx="0" dy="9" halo-radius="1.7"/>
+                <Placement character-spacing="5" dx="0" dy="-9" halo-radius="1.7"/>
+		<Placement character-spacing="2" dx="0" dy="0" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="9" halo-radius="1.5"/>
+		<Placement character-spacing="2" dx="0" dy="-9" halo-radius="1.5"/>
+		</TextSymbolizer>
+	</Rule>
+</Style>

@@ -66,6 +66,7 @@
     <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
 	<!ENTITY text-natural-areas-lowzoom SYSTEM "styles-otm/text-natural-areas-lowzoom.xml">
+	<!ENTITY text-natural-areas-highzoom SYSTEM "styles-otm/text-natural-areas-highzoom.xml">
     <!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
 	<!ENTITY text-glacier-lowzoom SYSTEM "styles-otm/text-glacier-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
@@ -149,6 +150,7 @@
     &symbols-sport;
 	&symbols-stations;
 	&text-natural-areas-lowzoom;
+	&text-natural-areas-highzoom;
     &text-water-lowzoom;
 	&text-glacier-lowzoom;
     &text-natural-poly;
@@ -511,16 +513,17 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
-	
-    <Layer name="text-natural-areas-lowzoom">
-        <StyleName>text-natural-areas-lowzoom</StyleName>
-        <Datasource>
-            <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
-            <Parameter name="dbname">lowzoom</Parameter>
-            &postgis-settings;
-        </Datasource>
-    </Layer>
 
+	<Layer name="text-natural-areas-lowzoom">
+	 <StyleName>text-natural-areas-lowzoom</StyleName>
+	 <Datasource>
+	   <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
+	   <Parameter name="dbname">lowzoom</Parameter>
+	   &postgis-settings;
+	 </Datasource>
+	</Layer>
+
+	
       <Layer name="text-water-lowzoom">
 		<StyleName>text-water-lowzoom</StyleName>
 		<Datasource>
@@ -607,6 +610,14 @@
 		</Datasource>
 	</Layer>
 
+	<Layer name="text-natural-areas-highzoom">
+	 <StyleName>text-natural-areas-highzoom</StyleName>
+	 <Datasource>
+	   <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
+	   <Parameter name="dbname">lowzoom</Parameter>
+	   &postgis-settings;
+	 </Datasource>
+	</Layer>
 
 	<Layer name="symbols-viewpoint">
 		<StyleName>symbols-viewpoint</StyleName>
