@@ -139,7 +139,7 @@ CREATE OR REPLACE FUNCTION getpitchicon(inway geometry, sport text) RETURNS otm_
               WHERE planet_osm_line.way && ST_EXPAND(myway,trackdist/labelsizefactor) 
               AND   leisure='track' 
               AND   CASE WHEN ST_ISCLOSED(planet_osm_line.way)
-                          THEN ST_CONTAINS(ST_MakePolygon(planet_osm_line.way),myway) 
+                          THEN ST_CONTAINS(ST_MakePolygon(ST_ExteriorRing(planet_osm_line.way)),myway) 
                          ELSE FALSE 
                     END
               LIMIT 1;
