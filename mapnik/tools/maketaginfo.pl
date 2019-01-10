@@ -35,6 +35,7 @@ $jsonfile='taginfo.json';                       # json output, path relative to 
 # tag is taken. For some keys that doesn't work because (a) they are only used while preprocessing or (b) they are used 
 # in sql queries but not in any style. These tags we have to classify by hand:
 
+%keytype=();
 $keytype{'bridge'}                     = "way";
 $keytype{'boundary'}                   = "relation";
 $keytype{'layer'}                      = "way";
@@ -58,12 +59,14 @@ $keytype{'natural=strait'}             = "way,area";
 # For some tags we want to give some extra description
 #
 
+%description=();
 $description{'direction'}                  = "direction of viewpoints and saddles";
 $description{'memorial:type=stolperstein'} = "used to exclude this object from rendering";
 
 
 # For the other tags we get the type from the type of the database table:
 
+%dbtabletype=();
 $dbtabletype{'planet_osm_line'}   ='way';
 $dbtabletype{'planet_osm_point'}  ='node';
 $dbtabletype{'planet_osm_polygon'}='area';
@@ -221,7 +224,7 @@ while ($xmlrow = <$f>) {
 #
  if(($part[1] eq "Parameter") and ($part[2] eq "name=\"table\"")){
   foreach $k (keys %dbtabletype){
-   if(index($xmlrow,$k)!=-1){$tabletype=$dbtabletype{$k};}
+   if(index($xmlrow,"FROM ".$k)!=-1){$tabletype=$dbtabletype{$k};}
   }
  }
 #
