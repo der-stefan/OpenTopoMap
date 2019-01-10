@@ -63,6 +63,10 @@ $keytype{'natural=strait'}             = "way,area";
 $description{'direction'}                  = "direction of viewpoints and saddles";
 $description{'memorial:type=stolperstein'} = "used to exclude this object from rendering";
 
+#
+# some styles we dont't want to parse
+#
+$stylestoignore="test dummy";
 
 # For the other tags we get the type from the type of the database table:
 
@@ -163,6 +167,11 @@ while ($xmlrow = <$f>){
 }
 close($f);
 
+@g= split(' ',$stylestoignore);
+foreach $m (@g){
+ $styletaglist{$m}='';
+ $stylevaluelist{$m}='';
+}
 
 # ############## Second step: sort points, ways and areas
 # Now we have a hash like $styletaglist{'waterway-lines'}="[waterway][intermittent][tunnel][CEMT][motorboat]"
@@ -273,9 +282,9 @@ while ($pgrow = <$f>) {
   foreach $m(@uniq){
    if(index($m,$part[1]."=")==0){
     $object_types=$keytype{$m};
-    if(index($features{'node'},$m)!=-1){$object_types.=',node';}
-    if(index($features{'way'},$m)!=-1) {$object_types.=',way';}
-    if(index($features{'area'},$m)!=-1){$object_types.=',area';}
+    if(index($features{'node'}," ".$m." ")!=-1){$object_types.=',node';}
+    if(index($features{'way'}," ".$m." ")!=-1) {$object_types.=',way';}
+    if(index($features{'area'}," ".$m." ")!=-1){$object_types.=',area';}
     if($object_types ne ''){
      $object_types=~ s/^,//g;
      $keytype{$m}=$object_types;

@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20190110T145424Z", 
+ "data_updated": "20190110T151950Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -309,7 +309,7 @@
   { "key" : "waterway", "value" : "canal", "object_types" : ["way"] },
   { "key" : "waterway", "value" : "ditch", "object_types" : ["way"] },
   { "key" : "waterway", "value" : "drain", "object_types" : ["way"] },
-  { "key" : "waterway", "value" : "river", "object_types" : ["way", "area"] },
+  { "key" : "waterway", "value" : "river", "object_types" : ["way"] },
   { "key" : "waterway", "value" : "riverbank", "object_types" : ["area"] },
   { "key" : "waterway", "value" : "stream", "object_types" : ["way"] },
   { "key" : "waterway", "value" : "wadi", "object_types" : ["way"] },
