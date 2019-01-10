@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20190109T220852Z", 
+ "data_updated": "20190110T072558Z", 
  "project": { 
              "name": "OpenTopoMap",
              "description": "Topographische Karten aus OpenStreetMap",
@@ -183,6 +183,7 @@
           { "key" : "natural", "object_types" : ["node", "way", "area"] },
           { "key" : "natural", "value" : "arete", "object_types" : ["way", "area"] },
           { "key" : "natural", "value" : "bare_rock", "object_types" : ["area"] },
+          { "key" : "natural", "value" : "bay", "object_types" : ["way", "area"] },
           { "key" : "natural", "value" : "beach", "object_types" : ["area"] },
           { "key" : "natural", "value" : "canyon", "object_types" : ["way", "area"] },
           { "key" : "natural", "value" : "cave_entrance", "object_types" : ["node", "area"] },
@@ -205,6 +206,7 @@
           { "key" : "natural", "value" : "scrub", "object_types" : ["area"] },
           { "key" : "natural", "value" : "sinkhole", "object_types" : ["node", "area"] },
           { "key" : "natural", "value" : "spring", "object_types" : ["node", "area"] },
+          { "key" : "natural", "value" : "strait", "object_types" : ["way", "area"] },
           { "key" : "natural", "value" : "tree", "object_types" : ["node", "area"] },
           { "key" : "natural", "value" : "valley", "object_types" : ["way", "area"] },
           { "key" : "natural", "value" : "volcano", "object_types" : ["node"] },

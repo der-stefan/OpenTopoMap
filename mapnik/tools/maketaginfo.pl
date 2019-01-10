@@ -48,7 +48,10 @@ $keytype{'natural=massif'}             = "way,area";
 $keytype{'natural=couloir'}            = "way,area";
 $keytype{'natural=ridge'}              = "way,area"; 
 $keytype{'natural=arete'}              = "way,area"; 
-
+$keytype{'natural=arete'}              = "way,area";
+$keytype{'natural=arete'}              = "way,area";
+$keytype{'natural=bay'}                = "way,area";
+$keytype{'natural=strait'}             = "way,area";
 
 #
 # For some tags we want to give some extra description
