@@ -18,6 +18,7 @@
 
 $proj_name=          "OpenTopoMap";
 $proj_description=   "Topographische Karten aus OpenStreetMap";
+$proj_doc_url=       "https://github.com/der-stefan/OpenTopoMap";
 $proj_project_url=   "https://opentopomap.org";
 $proj_contact_name=  "Stefan Erhardt";
 $proj_contact_email= "stefan\@opentopomap.org";
@@ -319,12 +320,13 @@ if(!($ARGV[0] eq '-t')){
 {
  "data_format": 1, 
  "data_updated": "$datestring", 
- "project": { 
-             "name": "$proj_name",
-             "description": "$proj_description",
-             "project_url": "$proj_project_url",
-             "contact_name": "$proj_contact_name",
-             "contact_email": "$proj_contact_email"
+  "project": { 
+  "name": "$proj_name",
+  "description": "$proj_description",
+  "project_url": "$proj_project_url",
+  "doc_url": "$proj_doc_url",
+  "contact_name": "$proj_contact_name",
+  "contact_email": "$proj_contact_email"
  },
  "tags": [
 END_HEADER
@@ -338,17 +340,17 @@ END_HEADER
    $t=$keytype{$k};
    $t=~s/^/\["/g;$t=~s/$/"\]/g;$t=~s/,/", "/g;
    if(index($p,"=")==-1){
-    if(!$description{$k}) {printf $f ("          { \"key\" : \"%s\", \"object_types\" : %s }",$p,$t);}
-    else                  {printf $f ("          { \"key\" : \"%s\", \"object_types\" : %s, \"description\" : \"%s\" }",$p,$t,$description{$k});}
+    if(!$description{$k}) {printf $f ("  { \"key\" : \"%s\", \"object_types\" : %s }",$p,$t);}
+    else                  {printf $f ("  { \"key\" : \"%s\", \"object_types\" : %s, \"description\" : \"%s\" }",$p,$t,$description{$k});}
    }else{
     ($ke,$va)=split(/=/,$p);
-     if(!$description{$k}) {printf $f ("          { \"key\" : \"%s\", \"value\" : \"%s\", \"object_types\" : %s }",$ke,$va,$t);}
-     else                  {printf $f ("          { \"key\" : \"%s\", \"value\" : \"%s\", \"object_types\" : %s, \"description\" : \"%s\" }",$ke,$va,$t,$description{$k});}
+     if(!$description{$k}) {printf $f ("  { \"key\" : \"%s\", \"value\" : \"%s\", \"object_types\" : %s }",$ke,$va,$t);}
+     else                  {printf $f ("  { \"key\" : \"%s\", \"value\" : \"%s\", \"object_types\" : %s, \"description\" : \"%s\" }",$ke,$va,$t,$description{$k});}
    }
    $i++;
   }
  }
- print $f "\n         ]\n}\n";
+ print $f "\n ]\n}\n";
  print "wrote $i tags to $path$jsonfile\n";
 }
 
