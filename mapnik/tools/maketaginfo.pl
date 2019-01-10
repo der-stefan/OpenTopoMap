@@ -217,7 +217,7 @@ while ($xmlrow = <$f>) {
    $t=~s/\[/ /g;$t=~s/\]//g;
    @g= split(' ',$t);
    foreach $m (@g){
-    if(index($features{$tabletype},$m)==-1){
+    if(index($features{$tabletype}," ".$m." ")==-1){
      $features{$tabletype}.=" ".$m." ";
      if($tabletype eq 'area'){$areanum++;}
      if($tabletype eq 'way'){$pointnum++;}

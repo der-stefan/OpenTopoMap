@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20190110T151950Z", 
+ "data_updated": "20190110T152409Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -100,6 +100,7 @@
   { "key" : "highway", "value" : "motorway_link", "object_types" : ["way"] },
   { "key" : "highway", "value" : "path", "object_types" : ["way", "area"] },
   { "key" : "highway", "value" : "pedestrian", "object_types" : ["way", "area"] },
+  { "key" : "highway", "value" : "primary", "object_types" : ["way"] },
   { "key" : "highway", "value" : "primary_link", "object_types" : ["way"] },
   { "key" : "highway", "value" : "proposed", "object_types" : ["way"] },
   { "key" : "highway", "value" : "raceway", "object_types" : ["way"] },
@@ -134,6 +135,7 @@
   { "key" : "landuse", "value" : "cemetery", "object_types" : ["area"] },
   { "key" : "landuse", "value" : "farmyard", "object_types" : ["area"] },
   { "key" : "landuse", "value" : "forest", "object_types" : ["area"] },
+  { "key" : "landuse", "value" : "grass", "object_types" : ["area"] },
   { "key" : "landuse", "value" : "grassland", "object_types" : ["area"] },
   { "key" : "landuse", "value" : "hop_garden", "object_types" : ["area"] },
   { "key" : "landuse", "value" : "industrial", "object_types" : ["area"] },
