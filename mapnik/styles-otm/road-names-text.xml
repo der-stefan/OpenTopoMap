@@ -19,19 +19,19 @@
 		&maxscale_zoom16;
 		&minscale_zoom16;
 		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="1" halo-fill="rgba(253,181,72,1)" repeat-distance="150" placement="line">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="1" halo-fill="rgba(253,181,72,1)" repeat-distance="150" placement="line">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
 		<Filter>[highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="1" halo-fill="rgba(253,253,79,1)" repeat-distance="150" placement="line">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="1" halo-fill="rgba(253,253,79,1)" repeat-distance="150" placement="line">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom16;
 		<ElseFilter/>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" repeat-distance="100" placement="line">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" repeat-distance="100" placement="line">[name]</TextSymbolizer>
 	</Rule>
 
 	
@@ -40,18 +40,18 @@
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'motorway' or [highway] = 'trunk' or [highway] = 'primary' or [highway] = 'motorway_link' or [highway] = 'trunk_link' or [highway] = 'primary_link'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,181,72,0.8)" repeat-distance="150" character-spacing="1" placement="line">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(253,181,72,0.8)" repeat-distance="150" character-spacing="1" placement="line">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<Filter>[highway] = 'secondary' or [highway] = 'tertiary' or [highway] = 'secondary_link' or [highway] = 'tertiary_link'</Filter>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(253,253,79,0.8)" repeat-distance="150" character-spacing="1" placement="line">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(253,253,79,0.8)" repeat-distance="150" character-spacing="1" placement="line">[name]</TextSymbolizer>
 	</Rule>
 	<Rule>
 		&maxscale_zoom17;
 		&minscale_zoom17;
 		<ElseFilter/>
-		<TextSymbolizer fontset-name="sans-condensed" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" repeat-distance="100" character-spacing="1" placement="line">[name]</TextSymbolizer>
+		<TextSymbolizer fontset-name="sans-condensed" size="11" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" repeat-distance="100" character-spacing="1" placement="line">[name]</TextSymbolizer>
 	</Rule>
 </Style>
