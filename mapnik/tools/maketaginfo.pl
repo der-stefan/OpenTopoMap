@@ -64,9 +64,9 @@ $description{'direction'}                  = "direction of viewpoints and saddle
 $description{'memorial:type=stolperstein'} = "used to exclude this object from rendering";
 
 #
-# some styles we dont't want to parse
+# some styles we dont't want to parse (comma separated list)
 #
-$stylestoignore="test dummy";
+$stylestoignore="test";
 
 # For the other tags we get the type from the type of the database table:
 
@@ -80,7 +80,7 @@ $dbtabletype{'roads'}             ='way';
 $dbtabletype{'borders'}           ='way';
 $dbtabletype{'naturalarealabels'} ='area';
 $dbtabletype{'lakelabels'}        ='area';
-$dbtabletype{'cities'}            ='area';
+$dbtabletype{'cities'}            ='node';
 $dbtabletype{'landuse'}           ='area';
 
 
@@ -167,7 +167,7 @@ while ($xmlrow = <$f>){
 }
 close($f);
 
-@g= split(' ',$stylestoignore);
+@g= split(/[, ;]/,$stylestoignore);
 foreach $m (@g){
  $styletaglist{$m}='';
  $stylevaluelist{$m}='';
@@ -197,7 +197,7 @@ while ($xmlrow = <$f>) {
 #
 # End of a Layer-Block, append found tags to $features{$tabletype}
 #
- if($part[1] eq "/Layer"){
+ if(($part[1] eq "/Layer")&&($inlayer==1)){
   @v = split(' ',$stylelist);
   foreach $k (@v) {
    $t=$styletaglist{$k};
@@ -225,7 +225,6 @@ while ($xmlrow = <$f>) {
     }
    }
   }
-  
   $inlayer=0;
  }
 #
@@ -294,8 +293,6 @@ while ($pgrow = <$f>) {
  }
 }
 close($f);
-
-
 
 ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=gmtime(time);
 $datestring=sprintf("%4d%02d%02dT%02d%02d%02dZ",$year+1900,$mon+1,$mday,$hour,$min,$sec);
