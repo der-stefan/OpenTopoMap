@@ -19,6 +19,7 @@
 $proj_name=          "OpenTopoMap";
 $proj_description=   "Topographische Karten aus OpenStreetMap";
 $proj_doc_url=       "https://github.com/der-stefan/OpenTopoMap";
+$proj_icon_url=      "https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/mapnik/opentopomap.png";
 $proj_project_url=   "https://opentopomap.org";
 $proj_contact_name=  "Stefan Erhardt";
 $proj_contact_email= "stefan\@opentopomap.org";
@@ -334,6 +335,7 @@ if(!($ARGV[0] eq '-t')){
   "description": "$proj_description",
   "project_url": "$proj_project_url",
   "doc_url": "$proj_doc_url",
+  "icon_url": "$proj_icon_url",
   "contact_name": "$proj_contact_name",
   "contact_email": "$proj_contact_email"
  },

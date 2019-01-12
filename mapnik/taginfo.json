@@ -1,11 +1,12 @@
 {
  "data_format": 1, 
- "data_updated": "20190111T094954Z", 
+ "data_updated": "20190112T212455Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
   "project_url": "https://opentopomap.org",
   "doc_url": "https://github.com/der-stefan/OpenTopoMap",
+  "icon_url": "https://raw.githubusercontent.com/der-stefan/OpenTopoMap/master/mapnik/opentopomap.png",
   "contact_name": "Stefan Erhardt",
   "contact_email": "stefan@opentopomap.org"
  },
