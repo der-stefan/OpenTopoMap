@@ -183,7 +183,7 @@
 	<Layer name="landuse">
 		<StyleName>landuse</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,leaf_type,amenity,crop,orchard FROM planet_osm_polygon ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,way_area,landuse,leisure,"natural",wetland,leaf_type,amenity,crop,orchard FROM planet_osm_polygon WHERE (landuse IS NOT NULL) OR (leisure IS NOT NULL) OR ("natural" IS NOT NULL) OR (wetland IS NOT NULL) OR (leaf_type IS NOT NULL) OR (amenity IS NOT NULL) OR (crop IS NOT NULL) OR (orchard IS NOT NULL) ORDER BY (CASE WHEN landuse='forest' THEN 0 ELSE 1 END) asc) AS landuse </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -194,7 +194,7 @@
 	<Layer name="landuse-over-hillshade">
 		<StyleName>landuse-over-hillshade</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,landuse,"natural",leaf_type,amenity,building,power FROM planet_osm_polygon) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,landuse,"natural",leaf_type,amenity,building,power FROM planet_osm_polygon WHERE (landuse IS NOT NULL) OR ("natural" IS NOT NULL) OR (leaf_type IS NOT NULL) OR (amenity IS NOT NULL) OR (building IS NOT NULL) OR (power IS NOT NULL)) AS landuse </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -205,7 +205,7 @@
 	<Layer name="road-areas">
 		<StyleName>road-areas</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,highway FROM planet_osm_polygon) AS roadareas</Parameter>
+			<Parameter name="table">(SELECT way,highway FROM planet_osm_polygon WHERE highway IS NOT NULL) AS roadareas</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -224,7 +224,7 @@
 	<Layer name="waterway-lines">
 		<StyleName>waterway-lines</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"CEMT",intermittent,motorboat,tunnel,waterway FROM planet_osm_line) AS water </Parameter>
+			<Parameter name="table">(SELECT way,"CEMT",intermittent,motorboat,tunnel,waterway FROM planet_osm_line WHERE ("CEMT" IS NOT NULL) OR (intermittent IS NOT NULL) OR (motorboat IS NOT NULL) OR (tunnel IS NOT NULL) OR (waterway IS NOT NULL)) AS water </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -235,7 +235,7 @@
 		<StyleName>waterway-polygons-fill</StyleName>
 		<StyleName>water-areas</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,intermittent,way_area FROM planet_osm_polygon) AS water </Parameter>
+			<Parameter name="table">(SELECT way,"CEMT",motorboat,"natural",landuse,leisure,waterway,intermittent,way_area FROM planet_osm_polygon WHERE (("CEMT" IS NOT NULL) OR (motorboat IS NOT NULL) OR ("natural" IS NOT NULL) OR (landuse IS NOT NULL) OR (leisure IS NOT NULL) OR (waterway IS NOT NULL) OR (intermittent IS NOT NULL))) AS water </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -244,7 +244,7 @@
 	<Layer name="landuse-over-water">
 		<StyleName>landuse-over-water</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",wetland FROM planet_osm_polygon) AS landuse </Parameter>
+			<Parameter name="table">(SELECT way,"natural",wetland FROM planet_osm_polygon WHERE ("natural" IS NOT NULL) OR (wetland IS NOT NULL)) AS landuse </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -254,7 +254,7 @@
 		<StyleName>water-weir</StyleName>
 		<StyleName>waterway-arrows</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,waterway,intermittent FROM planet_osm_line) AS water </Parameter>
+			<Parameter name="table">(SELECT way,waterway,intermittent FROM planet_osm_line WHERE (waterway IS NOT NULL) OR (intermittent IS NOT NULL)) AS water </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -274,7 +274,7 @@
 	<Layer name="cliffs-lines">
 		<StyleName>cliffs</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier,'no' as area FROM planet_osm_line) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier,'no' as area FROM planet_osm_line WHERE ("natural" IS NOT NULL) OR ("man_made" IS NOT NULL) OR (highway IS NOT NULL) OR (barrier IS NOT NULL)) AS cliff </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -282,7 +282,7 @@
 	<Layer name="cliffs-polygons">
 		<StyleName>cliffs</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier,'yes' as area FROM planet_osm_polygon) AS cliff </Parameter>
+			<Parameter name="table">(SELECT way,"natural","man_made",highway,barrier,'yes' as area FROM planet_osm_polygon WHERE ("natural" IS NOT NULL) OR ("man_made" IS NOT NULL) OR (highway IS NOT NULL) OR (barrier IS NOT NULL)) AS cliff </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -300,7 +300,7 @@
 	<Layer name="areas">
 		<StyleName>areas</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,landuse,leisure,way_area FROM planet_osm_polygon) AS area </Parameter>
+			<Parameter name="table">(SELECT way,landuse,leisure,way_area FROM planet_osm_polygon WHERE (landuse IS NOT NULL) OR (leisure IS NOT NULL)) AS area </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -338,7 +338,7 @@
 	<Layer name="barriers-poly">
 		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon) AS barriers </Parameter>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon WHERE (barrier IS NOT NULL) OR (historic IS NOT NULL) OR (fenced IS NOT NULL)) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -346,7 +346,7 @@
 	<Layer name="barriers-line">
 		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Length(way) AS length FROM planet_osm_line) AS barriers </Parameter>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Length(way) AS length FROM planet_osm_line WHERE (barrier IS NOT NULL) OR (historic IS NOT NULL) OR (fenced IS NOT NULL)) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -414,7 +414,7 @@
 	<Layer name="railway-points" clear-label-cache="on">
 		<StyleName>railway-points</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,railway,station,subway FROM planet_osm_point) AS symbols </Parameter>
+			<Parameter name="table">(SELECT way,railway,station,subway FROM planet_osm_point WHERE (railway IS NOT NULL) OR (station IS NOT NULL) OR (subway IS NOT NULL)) AS symbols </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -423,7 +423,7 @@
 	<Layer name="ferry-routes">
 		<StyleName>ferry-routes</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,route FROM planet_osm_line) AS route </Parameter>
+			<Parameter name="table">(SELECT way,route FROM planet_osm_line WHERE route IS NOT NULL) AS route </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -500,7 +500,7 @@
 	<Layer name="powerlines">
 		<StyleName>powerlines</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,power,voltage FROM planet_osm_line) AS powerlines </Parameter>
+			<Parameter name="table">(SELECT way,power,voltage FROM planet_osm_line WHERE (power IS NOT NULL) OR (voltage IS NOT NULL)) AS powerlines </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -536,7 +536,7 @@
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,"natural",leisure,way_area FROM planet_osm_polygon) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,"natural",leisure,way_area FROM planet_osm_polygon WHERE (name IS NOT NULL) OR ("natural" IS NOT NULL) OR (leisure IS NOT NULL)) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -666,7 +666,7 @@
 	<Layer name="text-waterways">
 		<StyleName>text-waterways</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,name,waterway FROM planet_osm_line) AS names</Parameter>
+			<Parameter name="table">(SELECT way,name,waterway FROM planet_osm_line WHERE waterway IS NOT NULL) AS names</Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
