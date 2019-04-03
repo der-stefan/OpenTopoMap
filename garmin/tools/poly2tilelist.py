@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# (c) OpenTopoMap under CC-BY-SA license
+# (c) 2018 OpenTopoMap under CC-BY-SA license
 # author: Martin Schuetz
 # A python script to output which mkgmap splitter tiles intersect a certain polygon
 
