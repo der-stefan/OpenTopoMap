@@ -16,7 +16,7 @@ split-name-index
 housenumbers
 bounds=/home/garminotm/garmin_world/bounds-latest.zip
 precomp-sea=/home/garminotm/garmin_world/sea-latest.zip
-dem=/home/garminotm/garmin_world/hgt/viewfinderpanoramas.zip
+dem=/home/garminotm/garmin_world/dem/viewfinderpanoramas.zip
 dem-dists=9942,9942,19884,39768,53024,106048
 reduce-point-density=4
 reduce-point-density-polygon=4

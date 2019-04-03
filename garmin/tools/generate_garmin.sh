@@ -9,7 +9,7 @@ DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
 SPLITTER_JAR=/home/garminotm/src/splitter-r592/splitter.jar
-MKGMAP_JAR=/home/garminotm/src/mkgmap-r4248/mkgmap.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4284/mkgmap.jar
 POLY2TILELIST_CMD=$GIT_DIR/tools/poly2tilelist.py
 
 # Temp dirs
@@ -74,7 +74,7 @@ do
 
 		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
 		MKGMAP_OUTPUT_DIR=$MKGMAP_OUTPUT_ROOT_DIR/$continent/$countryname
-##		mkdir -p $MKGMAP_OUTPUT_DIR
+		mkdir -p $MKGMAP_OUTPUT_DIR
 		echo "mkgmap output dir: $MKGMAP_OUTPUT_DIR"
 		
 		countrypbfs=`$POLY2TILELIST_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
@@ -88,8 +88,8 @@ do
 		echo "mkmapin: $mkgmapin"
 		echo -ne $mkgmapin > /tmp/mkgmapopts.txt
 
-##		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM $countryname" -c $MKGMAP_OPTS $mkgmapin
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM $countryname" -c $MKGMAP_OPTS $mkgmapin
 
-##		mv *.img $MKGMAP_OUTPUT_DIR/.
+		mv *.img $MKGMAP_OUTPUT_DIR/.
 	done
 done
