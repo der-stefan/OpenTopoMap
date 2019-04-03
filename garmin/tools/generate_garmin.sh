@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# (c) 2018 OpenTopoMap under CC-BY-SA license
+# (c) 2018-2019 OpenTopoMap under CC-BY-SA license
 # authors: Martin Schuetz, Stefan Erhardt
-# An interactive script for generating worldwide Garmin files
+# A script for generating worldwide Garmin files
 
 GIT_DIR=/home/garminotm/OpenTopoMap/garmin
 DATA_DIR=/home/garminotm/garmin_world
@@ -68,10 +68,10 @@ continents="bayern"
 #continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
 #continents="australia-oceania"
 #continents="africa"
-continents="asia"
-continents="north-america"
-continents="antarctica central-america south-america"
-continents="europe"
+#continents="asia"
+#continents="north-america"
+#continents="antarctica central-america south-america"
+#continents="europe"
 
 for continent in $continents
 do
@@ -80,7 +80,7 @@ do
 	#for polyfile in download.geofabrik.de/europe/germany/bayern/*.poly
 	#for polyfile in download.geofabrik.de/europe/germany/bayern/mittelfranken.poly
 	
-        for polyfile in download.geofabrik.de/$continent/*.poly
+        for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
         do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
