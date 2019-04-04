@@ -24,12 +24,10 @@ MKGMAP_LOG=$DATA_DIR/mkgmap.log
 # Option files
 MKGMAP_OPTS=$GIT_DIR/mkgmap_options
 MKGMAP_STYLE_FILE=$GIT_DIR/style/opentopomap
-#MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.txt
 
-#README_FILE=/var/www/otm_garmin/osm/readme.txt
-#OSM_DATA_DIR=/var/www/otm_garmin/osm/data
-#BOUNDS_DATA_DIR=/usr/src/bounds/bounds
-#SEA_DATA_DIR=/usr/src/sea/sea
+BOUNDS_FILE=$DATA_DIR/bounds-latest.zip
+SEA_FILE=$DATA_DIR/sea-latest.zip
+DEM_FILE=$DATA_DIR/dem/viewfinderpanoramas.zip
 #WWW_OUT_ROOT_DIR=/var/www/otm_garmin/www/data
 
 echo "******************************************"
@@ -56,14 +54,13 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-
-
 #continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
 continents="europe"
 
 for continent in $continents
 do
 	echo "Generate continent $continent"
+	#wget http://download.geofabrik.de/$continent-latest.pbf -P $DATA_DIR
 	
 	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
 	do
@@ -88,8 +85,9 @@ do
 		echo "mkmapin: $mkgmapin"
 		echo -ne $mkgmapin > /tmp/mkgmapopts.txt
 
-		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM $countryname" -c $MKGMAP_OPTS $mkgmapin
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin
 
-		mv *.img $MKGMAP_OUTPUT_DIR/.
+		rm $MKGMAP_OUTPUT_DIR/5353*.img $MKGMAP_OUTPUT_DIR/5353*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img
+#		mv *.img $MKGMAP_OUTPUT_DIR/.
 	done
 done
