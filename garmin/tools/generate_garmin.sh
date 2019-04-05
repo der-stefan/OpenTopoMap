@@ -15,7 +15,6 @@ POLY2TILELIST_CMD=$GIT_DIR/tools/poly2tilelist.py
 # Temp dirs
 SPLITTER_OUTPUT_ROOT_DIR=$DATA_DIR/out/splitter_out
 MKGMAP_OUTPUT_ROOT_DIR=$DATA_DIR/out/mkgmap_out
-#MKGMAP_CONTOURS_OUTPUT_ROOT_DIR=$MKGMAP_OUTPUT_ROOT_DIR
 
 # Log files
 SPLITTER_LOG=$DATA_DIR/splitter.log
@@ -30,19 +29,6 @@ SEA_FILE=$DATA_DIR/sea-latest.zip
 DEM_FILE=$DATA_DIR/dem/viewfinderpanoramas.zip
 #WWW_OUT_ROOT_DIR=/var/www/otm_garmin/www/data
 
-echo "******************************************"
-echo "*	   This is the generate_garmin skript  "
-echo "*                                        "
-echo "*  splitter jar: $SPLITTER_JAR           "
-echo "*  mkgmap   jar: $MKGMAP_JAR              "
-echo "*"  
-echo "*  splitter out dir: $SPLITTER_OUTPUT_ROOT_DIR"
-echo "*                                        "
-echo "*  mkgmaps opts: $MKGMAP_OPTS             "
-echo "******************************************"
-
-echo "Press enter to continue"
-# temp removed #read continue
 
 if [ ! -d $SPLITTER_OUTPUT_ROOT_DIR ]
 then
@@ -54,25 +40,25 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
-continents="europe"
+continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
+#continents="europe"
 
 for continent in $continents
 do
-	echo "Generate continent $continent"
-	#wget http://download.geofabrik.de/$continent-latest.pbf -P $DATA_DIR
+	echo "Generate continent $continent..."
+	wget http://download.geofabrik.de/$continent-latest.pbf -P $DATA_DIR
 	
 	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
 	do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
 
-		echo "Generate $countryname with polyfile $polyfile"
+		echo "Generate $countryname with polyfile $polyfile..."
 
 		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
 		MKGMAP_OUTPUT_DIR=$MKGMAP_OUTPUT_ROOT_DIR/$continent/$countryname
 		mkdir -p $MKGMAP_OUTPUT_DIR
-		echo "mkgmap output dir: $MKGMAP_OUTPUT_DIR"
+		#echo "mkgmap output dir: $MKGMAP_OUTPUT_DIR"
 		
 		countrypbfs=`$POLY2TILELIST_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
 
@@ -82,12 +68,12 @@ do
 			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_DIR/$p "
 		done
 
-		echo "mkmapin: $mkgmapin"
-		echo -ne $mkgmapin > /tmp/mkgmapopts.txt
+		#echo "mkmapin: $mkgmapin"
+		#echo -ne $mkgmapin > /tmp/mkgmapopts.txt
 
 		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin
 
 		rm $MKGMAP_OUTPUT_DIR/5353*.img $MKGMAP_OUTPUT_DIR/5353*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img
-#		mv *.img $MKGMAP_OUTPUT_DIR/.
+		mv gmapsupp.img otm-$countryname.img
 	done
 done
