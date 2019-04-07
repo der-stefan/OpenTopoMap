@@ -1,6 +1,6 @@
 family-id: 5353
 product-id: 1
-product-version=1
+product-version: 1
 draw-priority: 20
 family-name="familyname"
 series-name="seriesname"
