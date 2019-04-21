@@ -5,13 +5,13 @@ SPLITTER_OUTPUT_DIR=$DATA_DIR/out/splitter_out
 
 SPLITTER_JAR=/home/garminotm/src/splitter-r592/splitter.jar
 
-#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
+continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
 #continents="australia-oceania"
 #continents="africa"
 #continents="south-america"
 #continents="asia north-america"
 #continents="central-america"
-continents="europe"
+#continents="europe"
 
 for c in $continents
 do

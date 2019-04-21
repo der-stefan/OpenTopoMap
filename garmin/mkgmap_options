@@ -20,7 +20,7 @@ housenumbers
 # dem=viewfinderpanoramas.zip
 dem-dists=9942,9942,19884,39768,53024,106048
 reduce-point-density=4
-reduce-point-density-polygon=4
+reduce-point-density-polygon=8
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
 route
@@ -30,3 +30,4 @@ link-pois-to-ways
 process-destination
 process-exits
 order-by-decreasing-area
+keep-going

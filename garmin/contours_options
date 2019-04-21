@@ -13,4 +13,6 @@ gmapsupp
 latin1
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
+reduce-point-density=4
 transparent
+keep-going

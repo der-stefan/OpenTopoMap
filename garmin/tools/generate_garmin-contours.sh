@@ -42,8 +42,8 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
-continents="europe"
+continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
+#continents="europe"
 
 for continent in $continents
 do
@@ -57,7 +57,7 @@ do
 
 		echo "Generate $countryname with polyfile $polyfile..."
 
-		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent"
+		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
 		MKGMAP_OUTPUT_DIR=$MKGMAP_OUTPUT_ROOT_DIR/$continent/$countryname
 		mkdir -p $MKGMAP_OUTPUT_DIR
 		#echo "mkgmap output dir: $MKGMAP_OUTPUT_DIR"
