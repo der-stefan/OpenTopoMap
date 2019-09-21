@@ -352,7 +352,7 @@ CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETUR
     y1:=(y1-y)/(gridsize);
     tmpway:=ST_GeomFromText(tmplinestring,3857);
     tmppoint:=ST_SetSRID(ST_MakePoint(x,y),3857);
-    IF (ST_Within(tmpway,ST_SetSRID(myway,3857))) THEN 
+    IF (ST_Within(tmpway,ST_SetSRID(myway,3857)) AND ((x1!=0.0) OR (y1!=0.0))) THEN                                                 
      tmppoint:=ST_SetSRID(ST_MakePoint(x-x1,y-y1),3857);
      WHILE (ST_Within(tmppoint,ST_SetSRID(myway,3857))) LOOP
       x:=x-x1;y:=y-y1;
