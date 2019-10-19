@@ -1,55 +1,6 @@
-<Style name="waterpolys_z1">
-	<Rule>
-		&maxscale_zoom0;
-		&minscale_zoom1;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
-<Style name="waterpolys_z2">
-	<Rule>
-		&maxscale_zoom2;
-		&minscale_zoom2;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
-<Style name="waterpolys_z3">
-	<Rule>
-		&maxscale_zoom3;
-		&minscale_zoom3;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
-<Style name="waterpolys_z4">
-	<Rule>
-		&maxscale_zoom4;
-		&minscale_zoom4;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
-<Style name="waterpolys_z5">
-	<Rule>
-		&maxscale_zoom5;
-		&minscale_zoom5;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
-<Style name="waterpolys_z6">
-	<Rule>
-		&maxscale_zoom6;
-		&minscale_zoom6;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
-<Style name="waterpolys_z7">
-	<Rule>
-		&maxscale_zoom7;
-		&minscale_zoom7;
-		<PolygonSymbolizer fill="#97d2e3" />
-	</Rule>
-</Style>
 <Style name="waterpolys_z8">
 	<Rule>
-		&maxscale_zoom8;
+		&maxscale_zoom0;
 		&minscale_zoom8;
 		<PolygonSymbolizer fill="#97d2e3" />
 	</Rule>
@@ -69,62 +20,14 @@
 	</Rule>
 </Style>
 
-<Layer name="waterpolys_z1">
-	<StyleName>waterpolys_z1</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z1</Parameter>
-	</Datasource>
-</Layer>
-<Layer name="waterpolys_z2">
-	<StyleName>waterpolys_z2</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z2</Parameter>
-	</Datasource>
-</Layer>
-<Layer name="waterpolys_z3">
-	<StyleName>waterpolys_z3</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z3</Parameter>
-	</Datasource>
-</Layer>
-<Layer name="waterpolys_z4">
-	<StyleName>waterpolys_z4</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z4</Parameter>
-	</Datasource>
-</Layer>
-<Layer name="waterpolys_z5">
-	<StyleName>waterpolys_z5</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z5</Parameter>
-	</Datasource>
-</Layer>
-<Layer name="waterpolys_z6">
-	<StyleName>waterpolys_z6</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z6</Parameter>
-	</Datasource>
-</Layer>
-<Layer name="waterpolys_z7">
-	<StyleName>waterpolys_z7</StyleName>
-	<Datasource>
-		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z7</Parameter>
-	</Datasource>
-</Layer>
 <Layer name="waterpolys_z8">
 	<StyleName>waterpolys_z8</StyleName>
 	<Datasource>
 		<Parameter name="type">shape</Parameter>
-		<Parameter name="file">data/water-polygons-generalized-3857/water_polygons_z8</Parameter>
+		<Parameter name="file">data/simplified-water-polygons-split-3857/simplified_water_polygons</Parameter>
 	</Datasource>
 </Layer>
+
 <Layer name="waterpolys">
 	<StyleName>waterpolys_z9</StyleName>
 	<StyleName>waterpolys_z11</StyleName>
