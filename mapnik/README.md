@@ -175,11 +175,11 @@ cd ~
 git clone https://github.com/der-stefan/OpenTopoMap.git
 cd OpenTopoMap/mapnik
 ```
-Get the generalized water polygons from http://openstreetmapdata.com/:
+Get the generalized water polygons from https://osmdata.openstreetmap.de:
 ```
 mkdir data && cd data
-wget http://data.openstreetmapdata.com/water-polygons-generalized-3857.zip
-wget http://data.openstreetmapdata.com/water-polygons-split-3857.zip
+wget https://osmdata.openstreetmap.de/download/water-polygons-split-3857.zip
+wget https://osmdata.openstreetmap.de/download/simplified-water-polygons-split-3857.zip
 unzip water-polygons-generalized-3857.zip
 unzip water-polygons-split-3857.zip
 ```
