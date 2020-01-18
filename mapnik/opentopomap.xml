@@ -8,13 +8,9 @@
 <!DOCTYPE Map
 [
 	<!ENTITY basemap-relief SYSTEM "styles-otm/color-hillshade.xml">
-	<!ENTITY landuse-lowzoom SYSTEM "styles-otm/landuse-lowzoom.xml">
 	<!ENTITY landuse SYSTEM "styles-otm/landuse.xml">
 	<!ENTITY landuse-over-hillshade SYSTEM "styles-otm/landuse-over-hillshade.xml">
 	<!ENTITY basemap-sea SYSTEM "styles-otm/basemap-sea.xml">
-	<!ENTITY water-casing-lowzoom SYSTEM "styles-otm/water-casing-lowzoom.xml">
-	<!ENTITY water-fill-lowzoom SYSTEM "styles-otm/water-fill-lowzoom.xml">
-	<!ENTITY waterway-lines-lowzoom SYSTEM "styles-otm/waterway-lines-lowzoom.xml">
 	<!ENTITY waterway-lines SYSTEM "styles-otm/waterway-lines.xml">
 	<!ENTITY waterway-polygons-casing SYSTEM "styles-otm/waterway-polygons-casing.xml">
 	<!ENTITY waterway-polygons-fill SYSTEM "styles-otm/waterway-polygons-fill.xml">
@@ -30,17 +26,13 @@
 	<!ENTITY buildings SYSTEM "styles-otm/buildings.xml">
 	<!ENTITY areas SYSTEM "styles-otm/areas.xml">
 	<!ENTITY contours SYSTEM "styles-otm/contours.xml">
-	<!ENTITY borders-lowzoom SYSTEM "styles-otm/borders-lowzoom.xml">
 	<!ENTITY borders SYSTEM "styles-otm/borders.xml">
 	<!ENTITY barriers SYSTEM "styles-otm/barriers.xml">
-	<!ENTITY railways-lowzoom SYSTEM "styles-otm/railways-lowzoom.xml">
 	<!ENTITY railways-embankment SYSTEM "styles-otm/railways-embankment.xml">
 	<!ENTITY railways SYSTEM "styles-otm/railways.xml">
 	<!ENTITY airports-casing SYSTEM "styles-otm/airports-casing.xml">
 	<!ENTITY airports-fill SYSTEM "styles-otm/airports-fill.xml">
 	<!ENTITY airports-poly SYSTEM "styles-otm/airports-poly.xml">
-	<!ENTITY roads-casing-lowzoom SYSTEM "styles-otm/roads-casing-lowzoom.xml">
-	<!ENTITY roads-fill-lowzoom SYSTEM "styles-otm/roads-fill-lowzoom.xml">
 	<!ENTITY roads-casing SYSTEM "styles-otm/roads-casing.xml">
 	<!ENTITY roads-fill SYSTEM "styles-otm/roads-fill.xml">
 	<!ENTITY trams SYSTEM "styles-otm/trams.xml">
@@ -58,16 +50,12 @@
 	<!ENTITY aerialways SYSTEM "styles-otm/aerialways.xml">
 	<!ENTITY powerlines SYSTEM "styles-otm/powerlines.xml">
 	<!ENTITY powertowers SYSTEM "styles-otm/powertowers.xml">
-	<!ENTITY text-cities-lowzoom SYSTEM "styles-otm/text-cities-lowzoom.xml">
 	<!ENTITY text-cities SYSTEM "styles-otm/text-cities.xml">
 	<!ENTITY text-towns SYSTEM "styles-otm/text-towns.xml">
 	<!ENTITY text-villages SYSTEM "styles-otm/text-villages.xml">
     <!ENTITY symbols-sport SYSTEM "styles-otm/symbols-sport.xml">
 	<!ENTITY symbols-stations SYSTEM "styles-otm/symbols-stations.xml">
-	<!ENTITY text-natural-areas-lowzoom SYSTEM "styles-otm/text-natural-areas-lowzoom.xml">
 	<!ENTITY text-natural-areas-highzoom SYSTEM "styles-otm/text-natural-areas-highzoom.xml">
-    <!ENTITY text-water-lowzoom SYSTEM "styles-otm/text-water-lowzoom.xml">
-	<!ENTITY text-glacier-lowzoom SYSTEM "styles-otm/text-glacier-lowzoom.xml">
 	<!ENTITY text-natural-poly SYSTEM "styles-otm/text-natural-poly.xml">
     <!ENTITY symbols-peaks SYSTEM "styles-otm/symbols-peaks.xml">
     <!ENTITY text-peaks SYSTEM "styles-otm/text-peaks.xml">
@@ -93,12 +81,8 @@
 	<!-- style definitions -->
 	&fontset-settings;
 
-	&landuse-lowzoom;
 	&landuse;
 	&landuse-over-hillshade;
-	&water-casing-lowzoom;
-	&water-fill-lowzoom;
-	&waterway-lines-lowzoom;
 	&waterway-lines;
 	&waterway-polygons-casing;
 	&waterway-polygons-fill;
@@ -114,17 +98,13 @@
 	&buildings;
 	&areas;
 	&contours;
-	&borders-lowzoom;
 	&borders;
 	&barriers;
-	&railways-lowzoom;
 	&railways-embankment;
 	&railways;
 	&airports-casing;
 	&airports-fill;
 	&airports-poly;
-	&roads-casing-lowzoom;
-	&roads-fill-lowzoom;
 	&roads-casing;
 	&roads-fill;
 	&trams;
@@ -142,16 +122,12 @@
 	&aerialways;
 	&powerlines;
 	&powertowers;
-	&text-cities-lowzoom;
 	&text-cities;
 	&text-towns;
 	&text-villages;
     &symbols-sport;
 	&symbols-stations;
-	&text-natural-areas-lowzoom;
 	&text-natural-areas-highzoom;
-    &text-water-lowzoom;
-	&text-glacier-lowzoom;
     &text-natural-poly;
     &symbols-peaks;
     &text-peaks;
@@ -169,15 +145,6 @@
 	<!-- layers -->
 	
 	&basemap-relief;
-	
-	<Layer name="landuse-lowzoom">
-		<StyleName>landuse-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,landuse,"natural" FROM landuse) AS landuse </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 	
 	<Layer name="landuse">
 		<StyleName>landuse</StyleName>
@@ -205,16 +172,6 @@
 		<Datasource>
 			<Parameter name="table">(SELECT way,highway FROM planet_osm_polygon WHERE highway IS NOT NULL) AS roadareas</Parameter>
 			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-	
-	<Layer name="water-lowzoom">
-		<StyleName>water-casing-lowzoom</StyleName>
-		<StyleName>water-fill-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,"natural",water,waterway,way_area,name FROM water) AS water </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
@@ -315,14 +272,6 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="borders-lowzoom">
-		<StyleName>borders-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,boundary,admin_level FROM borders) AS borders</Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 	
 	<Layer name="borders">
 		<StyleName>borders</StyleName>
@@ -350,14 +299,6 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="railways-lowzoom">
-		<StyleName>railways-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,railway,"service",tunnel FROM railways) AS railways</Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 	
 	<Layer name="railways">
 		<StyleName>railways-embankment</StyleName>
@@ -388,15 +329,6 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="roads-lowzoom">
-		<StyleName>roads-casing-lowzoom</StyleName>
-		<StyleName>roads-fill-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,highway FROM roads) AS roads </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 	
 	<Layer name="roads">
 		<StyleName>roads-casing</StyleName>
@@ -512,24 +444,6 @@
 		</Datasource>
 	</Layer>
 
-	<Layer name="text-natural-areas-lowzoom">
-	 <StyleName>text-natural-areas-lowzoom</StyleName>
-	 <Datasource>
-	   <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
-	   <Parameter name="dbname">lowzoom</Parameter>
-	   &postgis-settings;
-	 </Datasource>
-	</Layer>
-
-	
-      <Layer name="text-water-lowzoom">
-		<StyleName>text-water-lowzoom</StyleName>
-		<Datasource>
-            <Parameter name="table">(SELECT way,' '&#124;&#124;name&#124;&#124;' ' AS name,lake_area FROM lakelabels WHERE label='lakeaxis' OR label='bayaxis' OR label='straitaxis') AS lakelabels </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 
 	<Layer name="text-natural-poly">
 		<StyleName>text-natural-poly</StyleName>
@@ -599,23 +513,8 @@
 		</Datasource>
 	</Layer>
 
-    <Layer name="text-glacier-lowzoom">
-		<StyleName>text-glacier-lowzoom</StyleName>
-		<Datasource>
-            <Parameter name="table">(SELECT way,name,lake_area FROM lakelabels WHERE label='glacieraxis') AS lakelabels </Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 
-	<Layer name="text-natural-areas-highzoom">
-	 <StyleName>text-natural-areas-highzoom</StyleName>
-	 <Datasource>
-	   <Parameter name="table">(SELECT way,name,areatype,way_area,nextregionsize,subregionsize FROM naturalarealabels) AS naturallabels </Parameter>
-	   <Parameter name="dbname">lowzoom</Parameter>
-	   &postgis-settings;
-	 </Datasource>
-	</Layer>
+
 
 	<Layer name="symbols-viewpoint">
 		<StyleName>symbols-viewpoint</StyleName>
@@ -670,14 +569,6 @@
 		</Datasource>
 	</Layer>
 	
-	<Layer name="text-cities-lowzoom">
-		<StyleName>text-cities-lowzoom</StyleName>
-		<Datasource>
-			<Parameter name="table">(SELECT way,admin_level,name,capital,place,population FROM cities ORDER BY population DESC) AS cities</Parameter>
-			<Parameter name="dbname">lowzoom</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
 
 	<Layer name="text-cities" clear-label-cache="on">
 		<StyleName>text-cities</StyleName>
