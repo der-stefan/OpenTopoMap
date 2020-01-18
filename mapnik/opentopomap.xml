@@ -10,7 +10,7 @@
 	<!ENTITY basemap-relief SYSTEM "styles-otm/color-hillshade.xml">
 	<!ENTITY landuse SYSTEM "styles-otm/landuse.xml">
 	<!ENTITY landuse-over-hillshade SYSTEM "styles-otm/landuse-over-hillshade.xml">
-	<!ENTITY basemap-sea SYSTEM "styles-otm/basemap-sea.xml">
+	<!ENTITY basemap-sea SYSTEM "styles-otm/sea-areas.xml">
 	<!ENTITY waterway-lines SYSTEM "styles-otm/waterway-lines.xml">
 	<!ENTITY waterway-polygons-casing SYSTEM "styles-otm/waterway-polygons-casing.xml">
 	<!ENTITY waterway-polygons-fill SYSTEM "styles-otm/waterway-polygons-fill.xml">
