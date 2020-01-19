@@ -1,7 +1,7 @@
 <!-- Hillshaded maps, from zoom 1 to 9 merged with colored one, for zoom 10 and more, hillshades only -->
 <Style name="hillshade_d2">
 	<Rule>
-		&maxscale_zoom10;
+		&maxscale_zoom9;
 		&minscale_zoom14;
 		<RasterSymbolizer opacity="0.7" scaling="bilinear" />
 	</Rule>
@@ -65,7 +65,7 @@
 <Style name="relief-500">
 	<Rule>
 		&maxscale_zoom8;
-		&minscale_zoom9;
+		&minscale_zoom8;
 		<RasterSymbolizer scaling="bilinear" />
 	</Rule>
 </Style>
