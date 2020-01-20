@@ -1,8 +1,8 @@
 <Style name="water_polygons">
     <Rule>
         &maxscale_zoom12;
-        <PolygonSymbolizer fill="#514ad8"/>
-        <LineSymbolizer stroke="#514ad8" stroke-width="1"/>
+        <PolygonSymbolizer fill="#97d2e3"/>
+        <LineSymbolizer stroke="#97d2e3" stroke-width="1"/>
     </Rule>
 </Style>
 
@@ -18,8 +18,8 @@
     <Rule>
         &maxscale_zoom1;
         &minscale_zoom13;
-        <PolygonSymbolizer fill="#514ad8"/>
-        <LineSymbolizer stroke="#514ad8" stroke-width="1"/>
+        <PolygonSymbolizer fill="#97d2e3"/>
+        <LineSymbolizer stroke="#97d2e3" stroke-width="1"/>
     </Rule>
 </Style>
 <Layer name="simplified_water_polygons">
