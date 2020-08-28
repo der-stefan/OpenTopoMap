@@ -28,7 +28,7 @@ MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.txt
 BOUNDS_FILE=$DATA_DIR/bounds-latest.zip
 SEA_FILE=$DATA_DIR/sea-latest.zip
 DEM_FILE=$DATA_DIR/dem/viewfinderpanoramas.zip
-#WWW_OUT_ROOT_DIR=/var/www/otm_garmin/www/data
+WWW_OUT_ROOT_DIR=/var/www/otm_garmin/www/data
 
 
 if [ ! -d $SPLITTER_OUTPUT_ROOT_DIR ]
@@ -41,13 +41,13 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
-continents="europe"
+continents="africa antarctica asia australia-oceania central-america north-america south-america"
+#continents="europe"
 
 for continent in $continents
 do
 	echo "Download continent $continent..."
-	#wget http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
+	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
 	
 	echo "Split $continent..."
 	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
@@ -76,6 +76,7 @@ do
 		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
-		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
+		#mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
+		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 	done
 done
