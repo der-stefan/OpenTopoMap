@@ -23,7 +23,7 @@ MKGMAP_LOG=$DATA_DIR/mkgmap.log
 # Option files
 MKGMAP_OPTS=$GIT_DIR/mkgmap_options
 MKGMAP_STYLE_FILE=$GIT_DIR/style/opentopomap
-MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.txt
+MKGMAP_TYP_FILE=$GIT_DIR/style/typ/opentopomap.txt
 
 BOUNDS_FILE=$DATA_DIR/bounds-latest.zip
 SEA_FILE=$DATA_DIR/sea-latest.zip
@@ -41,8 +41,8 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-continents="africa antarctica asia australia-oceania central-america north-america south-america"
-#continents="central-america"
+#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
+continents="europe"
 
 for continent in $continents
 do
