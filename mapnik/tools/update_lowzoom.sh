@@ -1,9 +1,11 @@
 #!/bin/bash
 
 dropdb --if-exists lowzoom
+
 createdb lowzoom
 psql -d lowzoom -c "CREATE EXTENSION postgis;"
 psql -d lowzoom -c "CREATE EXTENSION dblink;"
+psql -d lowzoom -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;'
 psql -d gis -c "CREATE EXTENSION IF NOT EXISTS dblink;"
 
 # water
