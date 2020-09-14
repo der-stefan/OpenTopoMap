@@ -48,6 +48,7 @@ for continent in $continents
 do
 	echo "Download continent $continent..."
 	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
+	continentdate=stat -c=%y $continent-latest.osm.pbf | cut -c2-11
 	
 	echo "Split $continent..."
 	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
@@ -74,7 +75,7 @@ do
 			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_DIR/$p "
 		done
 
-		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
 		#mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
