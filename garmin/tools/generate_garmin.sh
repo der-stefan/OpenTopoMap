@@ -8,8 +8,8 @@ GIT_DIR=/home/garminotm/OpenTopoMap/garmin
 DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
-SPLITTER_JAR=/home/garminotm/src/splitter-r592/splitter.jar
-MKGMAP_JAR=/home/garminotm/src/mkgmap-r4284/mkgmap.jar
+SPLITTER_JAR=/home/garminotm/src/splitter-r597/splitter.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4565/mkgmap.jar
 TILESINPOLY_CMD=$GIT_DIR/tools/tiles_in_poly.py
 
 # Temp dirs
@@ -28,7 +28,7 @@ MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.txt
 BOUNDS_FILE=$DATA_DIR/bounds-latest.zip
 SEA_FILE=$DATA_DIR/sea-latest.zip
 DEM_FILE=$DATA_DIR/dem/viewfinderpanoramas.zip
-#WWW_OUT_ROOT_DIR=/var/www/otm_garmin/www/data
+WWW_OUT_ROOT_DIR=/var/www/garmin
 
 
 if [ ! -d $SPLITTER_OUTPUT_ROOT_DIR ]
@@ -41,15 +41,16 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
-continents="europe"
+continents="africa antarctica asia australia-oceania central-america north-america south-america"
+#continents="central-america"
 
 for continent in $continents
 do
 	echo "Download continent $continent..."
-	#wget http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
+	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
 	
 	echo "Split $continent..."
+	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
 	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
     java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=53530001 > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
 	
@@ -76,6 +77,8 @@ do
 		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
-		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
+		#mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
+		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
+		touch $WWW_OUT_ROOT_DIR/$continent
 	done
 done
