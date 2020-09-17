@@ -15,12 +15,17 @@ The OpenTopoMap Garmin Edition makes uses of several hacks:
 
 
 ## Install standard packages
-sudo apt install htop vim git subversion
+sudo apt install htop vim git subversion python-shapely
 sudo apt install default-jre-headless
 
-## Clode OpenTopoMap git repository
+## Clone OpenTopoMap git repository
 cd ~
 git clone https://github.com/der-stefan/OpenTopoMap.git
+
+## Download mkgmap and splitter
+
+## Download cities15000.txt
+wget http://download.geonames.org/export/dump/cities15000.zip && unzip cities15000.zip
 
 mkdir test && cd test
 

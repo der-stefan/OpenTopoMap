@@ -1,7 +1,7 @@
 family-id: 5354
-product-id=2
-product-version=1
-draw-priority=99
+product-id: 1
+product-version: 1
+draw-priority: 99
 family-name="familyname"
 series-name="seriesname"
 area-name="areaname"
@@ -13,7 +13,6 @@ gmapsupp
 latin1
 min-size-polygon=8
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
+reduce-point-density=4
 transparent
-#index
-#tdbfile
-#nsis
+keep-going

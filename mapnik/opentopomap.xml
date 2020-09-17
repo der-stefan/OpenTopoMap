@@ -338,7 +338,7 @@
 	<Layer name="barriers-poly">
 		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Perimeter(way) AS length FROM planet_osm_polygon WHERE (barrier IS NOT NULL) OR (historic IS NOT NULL) OR (fenced IS NOT NULL)) AS barriers </Parameter>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,"natural",ST_Perimeter(way) AS length FROM planet_osm_polygon WHERE (barrier IS NOT NULL) OR (historic IS NOT NULL) OR (fenced IS NOT NULL) OR ("natural" IS NOT NULL)) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>
@@ -346,7 +346,7 @@
 	<Layer name="barriers-line">
 		<StyleName>barriers</StyleName>
 		<Datasource>
-			<Parameter name="table">(SELECT way,barrier,historic,fenced,ST_Length(way) AS length FROM planet_osm_line WHERE (barrier IS NOT NULL) OR (historic IS NOT NULL) OR (fenced IS NOT NULL)) AS barriers </Parameter>
+			<Parameter name="table">(SELECT way,barrier,historic,fenced,"natural",ST_Length(way) AS length FROM planet_osm_line WHERE (barrier IS NOT NULL) OR (historic IS NOT NULL) OR (fenced IS NOT NULL) OR ("natural" IS NOT NULL)) AS barriers </Parameter>
 			<Parameter name="dbname">gis</Parameter>
 			&postgis-settings;
 		</Datasource>

@@ -28,6 +28,19 @@
 	</Rule>
 	
 	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom14;
+		<Filter>([length] &gt; 300) and ([natural] = 'tree_row')</Filter>
+		<LinePatternSymbolizer file="symbols-otm/tree_row.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom17;
+		<Filter>[natural] = 'tree_row'</Filter>
+		<LinePatternSymbolizer file="symbols-otm/tree_row.png"/>
+	</Rule>
+	
+	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
 		<Filter>[barrier] = 'city_wall' or [historic] = 'citywalls'</Filter>

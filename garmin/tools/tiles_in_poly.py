@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# (c) OpenTopoMap under CC-BY-SA license
+# (c) 2018 OpenTopoMap under CC-BY-SA license
 # author: Martin Schuetz
 # A python script to output which mkgmap splitter tiles intersect a certain polygon
 
@@ -10,7 +10,7 @@ import shapely.geometry
 
 if len(sys.argv) < 3:
 
-	print("Usage: poly2tilelist.py country.poly areas.list")
+	print("Usage: tiles_in_poly.py country.poly areas.list")
 	sys.exit(-1)
 
 def parseAreasList(filename):

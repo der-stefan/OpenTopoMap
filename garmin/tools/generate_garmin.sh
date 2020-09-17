@@ -1,24 +1,20 @@
 #!/bin/bash
 
-# (c) 2018 OpenTopoMap under CC-BY-SA license
+# (c) 2018-2019 OpenTopoMap under CC-BY-SA license
 # authors: Martin Schuetz, Stefan Erhardt
-# An interactive script for generating worldwide Garmin files
+# A script for generating worldwide Garmin files
 
 GIT_DIR=/home/garminotm/OpenTopoMap/garmin
 DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
-SPLITTER_JAR=/home/garminotm/src/splitter-r591/splitter.jar
-MKGMAP_JAR=/home/garminotm/src/mkgmap-r4245/mkgmap.jar
-POLY2TILELIST_CMD=$GIT_DIR/tools/poly2tilelist.py
+SPLITTER_JAR=/home/garminotm/src/splitter-r597/splitter.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4565/mkgmap.jar
+TILESINPOLY_CMD=$GIT_DIR/tools/tiles_in_poly.py
 
 # Temp dirs
 SPLITTER_OUTPUT_ROOT_DIR=$DATA_DIR/out/splitter_out
 MKGMAP_OUTPUT_ROOT_DIR=$DATA_DIR/out/mkgmap_out
-MKGMAP_CONTOURS_OUTPUT_ROOT_DIR=$MKGMAP_OUTPUT_ROOT_DIR
-
-# Data dirs
-OSM_WORLD_FILE=$DATA_DIR/bayern-latest.osm.pbf
 
 # Log files
 SPLITTER_LOG=$DATA_DIR/splitter.log
@@ -27,29 +23,13 @@ MKGMAP_LOG=$DATA_DIR/mkgmap.log
 # Option files
 MKGMAP_OPTS=$GIT_DIR/mkgmap_options
 MKGMAP_STYLE_FILE=$GIT_DIR/style/opentopomap
-MKGMAP_TYP_FILE=$GIT_DIR/style/typ/OpenTopoMap.txt
+MKGMAP_TYP_FILE=$GIT_DIR/style/typ/opentopomap.txt
 
-#README_FILE=/var/www/otm_garmin/osm/readme.txt
-#OSM_DATA_DIR=/var/www/otm_garmin/osm/data
-#BOUNDS_DATA_DIR=/usr/src/bounds/bounds
-#SEA_DATA_DIR=/usr/src/sea/sea
-#WWW_OUT_ROOT_DIR=/var/www/otm_garmin/www/data
+BOUNDS_FILE=$DATA_DIR/bounds-latest.zip
+SEA_FILE=$DATA_DIR/sea-latest.zip
+DEM_FILE=$DATA_DIR/dem/viewfinderpanoramas.zip
+WWW_OUT_ROOT_DIR=/var/www/garmin
 
-echo "******************************************"
-echo "*	   This is the generate_garmin skript  "
-echo "*                                        "
-echo "*  splitter jar: $SPLITTER_JAR           "
-echo "*  mkgmap   jar: $MKMAP_JAR              "
-echo "*"
-echo "*  osm world file: $OSM_WORLD_FILE"
-echo "*"  
-echo "*  splitter out dir: $SPLITTER_OUTPUT_ROOT_DIR"
-echo "*                                        "
-echo "o  mkgmaps opts: $MKGMAP_OPTS             "
-echo "******************************************"
-
-echo "Press enter to continue"
-# temp removed #read continue
 
 if [ ! -d $SPLITTER_OUTPUT_ROOT_DIR ]
 then
@@ -61,61 +41,45 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-#echo "Split World file"
-# temp removed #java -jar $SPLITTER_JAR $OSM_WORLD_FILE --output-dir=$SPLITTER_OUTPUT_ROOT_DIR 2>&1 > $SPLITTER_LOG
-
-continents="bayern"
 #continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
-#continents="australia-oceania"
-#continents="africa"
-continents="asia"
-continents="north-america"
-continents="antarctica central-america south-america"
 continents="europe"
 
 for continent in $continents
 do
-	echo "Generate Continent $continent"
-
-	#for polyfile in download.geofabrik.de/europe/germany/bayern/*.poly
-	#for polyfile in download.geofabrik.de/europe/germany/bayern/mittelfranken.poly
+	echo "Download continent $continent..."
+	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
+	continentdate=stat -c=%y $continent-latest.osm.pbf | cut -c2-11
 	
-        for polyfile in download.geofabrik.de/$continent/*.poly
-        do
+	echo "Split $continent..."
+	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
+	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
+    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=53530001 > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
+	
+	
+	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
+	do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
 
-		echo "Generate $countryname with polyfile $polyfile"
+		echo "Generate $countryname with polyfile $polyfile..."
 
-                SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
-
-		osmpbfs=`$POLY2TILELIST_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
+		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent"
+		MKGMAP_OUTPUT_DIR=$MKGMAP_OUTPUT_ROOT_DIR/$continent/$countryname
+		mkdir -p $MKGMAP_OUTPUT_DIR
+		
+		countrypbfs=`$TILESINPOLY_CMD $polyfile $SPLITTER_OUTPUT_DIR/areas.list`
 
 		mkgmapin=""
-
-		for p in $osmpbfs
+		for p in $countrypbfs
 		do
-#			mkgmapin="${mkgmapin}input-file=$SPLITTER_OUTPUT_ROOT_DIR/$p\n"
 			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_DIR/$p "
 		done
 
-                echo "mkmapin: $mkgmapin"
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 
-		echo -ne $mkgmapin > /tmp/mkgmapopts.txt
-
-#		java -jar $MKGMAP_JAR -c /tmp/mkgmapopts.txt --output-dir=$MKGMAP_OUTPUT_ROOT_DIR -c $MKGMAP_OPTS --style-file=$MKGMAP_STYLE_FILE $MKGMAP_TYP_FILE
-#		java -jar $MKGMAP_JAR $mkgmapin --output-dir=$MKGMAP_OUTPUT_ROOT_DIR -c $MKGMAP_OPTS --style-file=$MKGMAP_STYLE_FILE $MKGMAP_TYP_FILE
-
-                MKGMAP_OUTPUT_DIR=$MKGMAP_OUTPUT_ROOT_DIR/$continent/$countryname
-
-                mkdir -p $MKGMAP_OUTPUT_DIR
-
-                echo "mkgmap output dir: $MKGMAP_OUTPUT_DIR"
-
-                rm *.img
-
-		        java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM $countryname" -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE
-
-                mv *.img $MKGMAP_OUTPUT_DIR/.
+		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
+		#mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
+		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
+		touch $WWW_OUT_ROOT_DIR/$continent
 	done
 done
