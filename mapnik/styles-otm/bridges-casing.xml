@@ -463,7 +463,7 @@
                 &maxscale_zoom14;
                 &minscale_zoom14;
                 <Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
-                <LineSymbolizer stroke="black" stroke-width="5.5" stroke-dasharray="7,6"/>
+                <LineSymbolizer stroke="black" stroke-width="4" stroke-dasharray="7,6"/>
         </Rule>
         
         <Rule>
@@ -612,7 +612,7 @@
                 &maxscale_zoom15;
                 &minscale_zoom15;
                 <Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
-                <LineSymbolizer stroke="black" stroke-width="5.5" stroke-dasharray="7,6"/>
+                <LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="7,6"/>
         </Rule>
         <Rule>
                 &maxscale_zoom15;
