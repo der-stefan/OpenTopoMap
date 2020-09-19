@@ -48,7 +48,7 @@ for continent in $continents
 do
 	echo "Download continent $continent..."
 	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
-	continentdate=stat -c=%y $continent-latest.osm.pbf | cut -c2-11
+	continentdate=`stat -c=%y $DATA_DIR/$continent-latest.osm.pbf | cut -c2-11`
 	
 	echo "Split $continent..."
 	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
