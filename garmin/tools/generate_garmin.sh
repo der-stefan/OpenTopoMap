@@ -1,8 +1,13 @@
 #!/bin/bash
 
-# (c) 2018-2019 OpenTopoMap under CC-BY-SA license
+# (c) 2018-2020 OpenTopoMap under CC-BY-SA license
 # authors: Martin Schuetz, Stefan Erhardt
-# A script for generating worldwide Garmin files
+# A script for generating worldwide Garmin files with OpenTopoMap style
+#
+# Usage ...for all continents:           bash ./generate_garmin.sh
+#       ...for Europe:                   bash ./generate_garmin.sh 5
+#       ...for daily changing continent: bash ./generate_garmin.sh "$(date +%w)"
+#
 
 GIT_DIR=/home/garminotm/OpenTopoMap/garmin
 DATA_DIR=/home/garminotm/garmin_world
@@ -28,7 +33,7 @@ MKGMAP_TYP_FILE=$GIT_DIR/style/typ/opentopomap.txt
 BOUNDS_FILE=$DATA_DIR/bounds-latest.zip
 SEA_FILE=$DATA_DIR/sea-latest.zip
 DEM_FILE=$DATA_DIR/dem/viewfinderpanoramas.zip
-WWW_OUT_ROOT_DIR=/var/www/garmin
+WWW_OUT_ROOT_DIR=/var/www/garmin.opentopomap.org
 
 
 if [ ! -d $SPLITTER_OUTPUT_ROOT_DIR ]
@@ -41,8 +46,14 @@ then
 	mkdir -p $MKGMAP_OUTPUT_ROOT_DIR
 fi
 
-#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
-continents="europe"
+continents=("africa" "asia" "australia-oceania" "central-america" "europe" "north-america" "south-america")
+
+# if script is called with number, select this continent. Else go through all continents by default.
+case "$1" in
+    (*[0-9]*)
+        continent_selection=${continents[$1]}
+        continents=("${continent_selection[@]}")
+esac
 
 for continent in $continents
 do
@@ -78,7 +89,6 @@ do
 		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OTM ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
-		#mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $MKGMAP_OUTPUT_DIR/otm-$countryname.img
 		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch $WWW_OUT_ROOT_DIR/$continent
 	done
