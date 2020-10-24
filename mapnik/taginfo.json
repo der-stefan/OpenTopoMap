@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20190202T190541Z", 
+ "data_updated": "20201024T113848Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -226,6 +226,7 @@
   { "key" : "natural", "value" : "spring", "object_types" : ["node", "area"] },
   { "key" : "natural", "value" : "strait", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "tree", "object_types" : ["node", "area"] },
+  { "key" : "natural", "value" : "tree_row", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "valley", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "volcano", "object_types" : ["node"] },
   { "key" : "natural", "value" : "water", "object_types" : ["area"] },
