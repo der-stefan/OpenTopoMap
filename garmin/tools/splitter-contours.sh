@@ -3,12 +3,12 @@
 DATA_DIR=/home/garminotm/garmin_world
 SPLITTER_OUTPUT_DIR=$DATA_DIR/dem/contours/splitter_out
 
-SPLITTER_JAR=/home/garminotm/src/splitter-r592/splitter.jar
+SPLITTER_JAR=/home/garminotm/src/splitter-r597/splitter.jar
 
-continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
+#continents="africa antarctica asia australia-oceania central-america europe north-america south-america"
 #continents="africa"
 #continents="antarctica"
-#continents="asia"
+continents="asia"
 #continents="australia-oceania"
 #continents="central-america"
 #continents="europe"
