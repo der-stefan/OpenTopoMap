@@ -2,7 +2,7 @@ family-id: 5353
 product-id: 0
 product-version: 1
 draw-priority: 20
-copyright-message=OpenTopoMap, CC-BY-NC-SA 4.0
+copyright-message=OpenStreetMap contributors, OpenTopoMap CC-BY-NC-SA 4.0
 family-name="familyname"
 series-name="seriesname"
 area-name="areaname"
@@ -11,6 +11,7 @@ country-abbr"ca"
 overview-mapname: 53530000
 max-jobs
 gmapsupp
+gmapi
 latin1
 index
 split-name-index
@@ -19,7 +20,7 @@ housenumbers
 # bounds=bounds-latest.zip
 # precomp-sea=sea-latest.zip
 # dem=viewfinderpanoramas.zip
-dem-dists=9942,9942,19884,39768,53024,106048
+dem-dists=9942,9941,19884,39768,53024,53024
 reduce-point-density=4
 reduce-point-density-polygon=4
 min-size-polygon=8

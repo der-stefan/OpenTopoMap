@@ -14,7 +14,7 @@ DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
 SPLITTER_JAR=/home/garminotm/src/splitter-r597/splitter.jar
-MKGMAP_JAR=/home/garminotm/src/mkgmap-r4565/mkgmap.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4588/mkgmap.jar
 TILESINPOLY_CMD=$GIT_DIR/tools/tiles_in_poly.py
 
 # Temp dirs
@@ -57,17 +57,18 @@ esac
 
 for continent in $continents
 do
-	echo "Download continent $continent..."
-	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
+	#echo "Download continent $continent..."
+	#wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
 	continentdate=`stat -c=%y $DATA_DIR/$continent-latest.osm.pbf | cut -c2-11`
 	
-	echo "Split $continent..."
-	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
-	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
-    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=53530001 > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
+	#echo "Split $continent..."
+	#rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
+	#mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
+    #java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=53530001 > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
 	
 	
-	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
+	#for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
+	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/germany.poly
 	do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}

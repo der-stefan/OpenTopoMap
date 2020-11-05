@@ -7,6 +7,6 @@
 # 
 # More levels may make zooming smoother, but it will generate larger map tiles.
 
-levels = 0:24, 1:22, 2:21, 3:20, 4:19, 5:18, 6:16, 7:14
-overview-levels = 8:13, 9:11, 10:9
+levels = 0:24, 1:22, 2:21, 3:20, 4:19, 5:18, 6:16, 7:15
+overview-levels = 8:14, 9:11, 10:9
 

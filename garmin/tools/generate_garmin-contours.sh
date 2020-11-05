@@ -9,7 +9,7 @@ DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
 SPLITTER_JAR=/home/garminotm/src/splitter-r597/splitter.jar
-MKGMAP_JAR=/home/garminotm/src/mkgmap-r4565/mkgmap.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4588/mkgmap.jar
 TILESINPOLY_CMD=$GIT_DIR/tools/tiles_in_poly.py
 
 # Temp dirs
@@ -52,7 +52,8 @@ esac
 
 for continent in $continents
 do
-	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
+	#for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
+	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/china.poly
 	do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
