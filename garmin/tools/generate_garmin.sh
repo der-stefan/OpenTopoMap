@@ -67,8 +67,8 @@ do
     #java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=53530001 > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
 	
 	
-	#for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
-	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/germany.poly
+	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
+	#for polyfile in $DATA_DIR/download.geofabrik.de/$continent/russia-asian-part.poly
 	do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
@@ -86,12 +86,21 @@ do
 		do
 			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_DIR/$p "
 		done
+		
+		# reduce DEM resolution for russia due to 4 GB file size limit
+		if [[ "$countryname" == *"russia-asian-part"* ]]; then
+			REDUCED_DENSITY="--dem-dists=9942,19884,39768,39768,53024,53024"
+		else
+			REDUCED_DENSITY=""
+		fi
 
-		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
 		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch -m --date="$continentdate" $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch $WWW_OUT_ROOT_DIR/$continent
 	done
+	
+	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
 done

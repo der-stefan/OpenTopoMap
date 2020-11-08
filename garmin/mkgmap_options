@@ -20,7 +20,7 @@ housenumbers
 # bounds=bounds-latest.zip
 # precomp-sea=sea-latest.zip
 # dem=viewfinderpanoramas.zip
-dem-dists=9942,9941,19884,39768,53024,53024
+dem-dists=9942,9942,19884,39768,53024,53024
 reduce-point-density=4
 reduce-point-density-polygon=4
 min-size-polygon=8

@@ -52,15 +52,19 @@ esac
 
 for continent in $continents
 do
-	#for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
-	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/china.poly
+
+	echo "Split $continent..."
+	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
+	java -Xmx14000m -jar $SPLITTER_JAR $DATA_DIR/dem/contours/contours-$continent.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --mapid=53350001 --keep-complete=false > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
+	
+	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
 	do
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
 
 		echo "Generate $countryname with polyfile $polyfile..."
 
-		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent-splitter-out"
+		SPLITTER_OUTPUT_DIR="$SPLITTER_OUTPUT_ROOT_DIR/$continent"
 		MKGMAP_OUTPUT_DIR=$MKGMAP_OUTPUT_ROOT_DIR/$continent/$countryname
 		mkdir -p $MKGMAP_OUTPUT_DIR
 		
@@ -72,7 +76,7 @@ do
 			mkgmapin="${mkgmapin}$SPLITTER_OUTPUT_DIR/$p "
 		done
 		
-		# reduce resolution for china for 4 GB file size
+		# reduce resolution for china due to 4 GB file size limit
 		if [[ "$countryname" == *"china"* ]]; then
 			REDUCED_DENSITY="--reduce-point-density=10"
 		else
@@ -85,4 +89,6 @@ do
 		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname-contours.img
 
 	done
+	
+	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
 done
