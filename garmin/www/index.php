@@ -1,4 +1,6 @@
 <?php
+$continents=["africa","asia","australia-oceania","central-america","europe","north-america","south-america"];
+
 function human_filesize($bytes, $decimals = 1) {
   $sz = 'BKMGTP';
   $factor = floor((strlen($bytes) - 1) / 3);
@@ -61,35 +63,46 @@ function poly2geojson($pfad) {
 <div class="table-wrapper">
 <table>
 <?php
-$continents=["africa","asia","australia-oceania","central-america","europe","north-america","south-america"];
 foreach($continents as $continent) {
-	echo "<tr class=\"header\"><td colspan=5><h3>".$continent."</h3></td></tr>";
-	echo "<tr><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>";
+	echo "<tr class='continent' id='row_".str_replace('-','_',$continent)."' onclick='update_layer(\"".$continent."\")'><td colspan=5><h3>".$continent."</h3></td></tr>";
+	echo "<tr class='header ".str_replace('-','_',$continent)."'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>";
 	$files = glob($continent."/*.{poly}", GLOB_BRACE);
 	foreach($files as $file) {
-		//echo "<tr><td>".$file."</td><td>".human_filesize(filesize($file))."</td><td>".date ("Y-m-d H:i:s",filemtime($file))."</td></tr>";
 		$country = basename($file,".poly");
 		$img = $continent."/".$country."/otm-".$country.".img";
 		$contours = $continent."/".$country."/otm-".$country."-contours.img";
-		echo "<tr><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>";
+		echo "<tr class='country ".str_replace('-','_',$continent)."' id='row_".str_replace('-','_',$country)."' onclick='update_layer(\"".$country."\")'><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>";
 	}
 }
 ?>
 </table>
 </div>
-
-<script type="text/javascript">
-//var continents=<?php echo poly2geojson("."); ?>;
-<?php 
-echo "var continents =".poly2geojson('.').";\n";
-foreach($continents as $continent) {
-	echo "var ".str_replace("-","_",$continent)."=".poly2geojson($continent).";\n\n\n";
-}
-?>
-</script>
 <div id="map"></div>
+<div id="extraspace"></div>
 
 <script type="text/javascript">
+	// show map only with enabled javascript on mobile devices.
+	if(window.innerWidth < 768) {
+		document.getElementById("map").style.display = 'block';
+		document.getElementById("extraspace").style.margin = '35vh';
+	}
+	var rows = document.querySelectorAll('.header, .country');
+	for(var i=0; i<rows.length; i++) {
+		rows[i].style.display = 'none';
+	}
+	
+	var active_row = "";
+	location.hash = active_row;
+	
+	// polygon outlines
+	<?php 
+	echo "var continents =".poly2geojson('.').";\n";
+	foreach($continents as $continent) {
+		echo "var ".str_replace("-","_",$continent)."=".poly2geojson($continent).";\n\n\n";
+	}
+	?>
+
+	// load map
 	var map = L.map('map',{zoomControl: false}).setView([50, 11], 7);
 	map.attributionControl.setPrefix();
 	L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -99,26 +112,81 @@ foreach($continents as $continent) {
 		id: 'osm'
 	}).addTo(map);
 	
+	var active_layer = null;
+	
 	function add_layer(name) {
 		boundaries = L.geoJson(name, {
+			style: function(feature) {
+				return {
+					color: '#AAC'
+				};
+			},
 			onEachFeature: function(feature, featureLayer) {
 				featureLayer.bindPopup(feature.properties.name);
+				
+				featureLayer.on('mouseover', function() {
+					if(feature.properties.name != active_layer.feature.properties.name) {
+						this.setStyle({
+							'fillColor': '#88A'
+						});
+					}
+				});
+				featureLayer.on('mouseout', function() {
+					if(feature.properties.name != active_layer.features.properties.name) {
+						this.setStyle({
+							'fillColor': '#AAC'
+						});
+					}
+				});
+				featureLayer.on('click', function() {
+					if(active_layer != null) {
+						active_layer.setStyle({
+							'fillColor': '#BBD'
+						});
+					}
+					
+					active_layer = this;
+					update_layer(active_layer.feature.properties.name);
+					this.setStyle({
+						'fillColor': 'blue'
+					});
+				});
 			}
 		}).addTo(map);
-
-		boundaries.on('click', function(e) {
-			update_layer(e.layer.feature.properties.name)
-		});
-		map.fitBounds(boundaries.getBounds()).zoomIn();
+    
+		map.fitBounds(boundaries.getBounds());
 	}
 	
 	function update_layer(name) {
-		name = name.replace("-","_");
+		//boundaries.getLayers()[0].openPopup();
+		//alert(boundaries.getLayers()[0].enable());
+		name = name.replaceAll("-","_");
 		if(this[name] != null) {
 			map.removeLayer(boundaries);
 			add_layer(this[name]);
-			map.fitBounds(boundaries.getBounds());
+			//map.fitBounds(boundaries.getBounds());
+			
+			var rows = document.querySelectorAll('.header, .country');
+			for(var i=0; i<rows.length; i++) {
+				rows[i].style.display = 'none';
+			}
+			
+			rows = document.querySelectorAll('.'+name);
+			for(var i=0; i<rows.length; i++) {
+				rows[i].style.display = '';
+			}
+			
+		}	
+		// highlight and jump to selected row
+		if(document.getElementById(active_row) != null){
+			document.getElementById(active_row).classList.remove("active_row");
 		}
+		active_row = "row_"+name;
+		if(document.getElementById(active_row) != null){
+			document.getElementById(active_row).classList.add("active_row");
+			location.hash = active_row;
+		}
+		
 	}
 	
 	add_layer(continents);
