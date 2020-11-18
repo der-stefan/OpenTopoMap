@@ -65,15 +65,15 @@ function poly2geojson($pfad) {
 <table>
 <?php
 foreach($continents as $continent) {
-	echo "<tr class='continent' id='".str_replace('-','_',$continent)."' onclick='update_layer(\"".$continent."\")'><td colspan=5><h3>".$continent."</h3></td></tr>";
-	echo "<tr class='header ".str_replace('-','_',$continent)."'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>";
+	echo "<tr class='continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".$continent."\")'><td colspan=5><h3>".$continent."</h3></td></tr>";
+	echo "<tr class='header'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>";
 
 	$files = glob($continent."/*.{poly}", GLOB_BRACE);
 	foreach($files as $file) {
 		$country = basename($file,".poly");
 		$img = $continent."/".$country."/otm-".$country.".img";
 		$contours = $continent."/".$country."/otm-".$country."-contours.img";
-		echo "<tr class='country ".str_replace('-','_',$continent)."' id='".str_replace('-','_',$country)."' onclick='update_layer(\"".$country."\")'><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>";
+		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".$country."\")'><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>";
 	}
 }
 ?>
@@ -83,19 +83,6 @@ foreach($continents as $continent) {
 <div id="extraspace"></div>
 
 <script type="text/javascript">
-	// show map only with enabled javascript on mobile devices.
-	if(window.innerWidth < 768) {
-		document.getElementById("map").style.display = 'block';
-		document.getElementById("extraspace").style.margin = '35vh';
-	}
-	var rows = document.querySelectorAll('.header, .country');
-	for(var i=0; i<rows.length; i++) {
-		rows[i].style.display = 'none';
-	}
-	
-	var active_row = "";
-	location.hash = active_row;
-	
 	// polygon outlines
 	<?php 
 	echo "var obj_continents =".poly2geojson('.').";\n";
@@ -114,7 +101,24 @@ foreach($continents as $continent) {
 		id: 'osm'
 	}).addTo(map);
 	
-	var active_layer;
+	add_layer("obj_continents");
+	
+	// show map only with enabled javascript on mobile devices.
+	if(window.innerWidth < 768) {
+		document.getElementById("map").style.display = 'block';
+		document.getElementById("extraspace").style.margin = '35vh';
+	}
+	var rows = document.querySelectorAll('.header, .country');
+	for(var i=0; i<rows.length; i++) {
+		rows[i].style.display = 'none';
+	}
+		
+	if(location.hash != null) {
+		name = location.hash.split('#')[1];
+		update_layer(document.getElementById(name).getAttribute("continent"));
+	}
+	
+	var active_row, active_layer;
 	
 	function add_layer(name) {
 		boundaries = L.geoJson(this[name], {
@@ -144,8 +148,7 @@ foreach($continents as $continent) {
 						active_layer.setStyle({
 							'fillColor': '#BBD'
 						});
-					}
-					
+					}		
 					//active_layer = this;
 					update_layer(feature.properties.name);
 					this.setStyle({
@@ -161,7 +164,6 @@ foreach($continents as $continent) {
 	function update_layer(name) {
 		//boundaries.getLayers()[0].openPopup();
 		//alert(boundaries.getLayers()[0].enable());
-		
 		name = name.replaceAll("-","_");
 		if(this["obj_"+name] != null) {
 			map.removeLayer(boundaries);
@@ -173,7 +175,8 @@ foreach($continents as $continent) {
 				rows[i].style.display = 'none';
 			}
 			
-			rows = document.querySelectorAll('.'+name);
+			//rows = document.querySelectorAll('.'+name);
+			rows = document.querySelectorAll("[continent='"+name+"']");
 			for(var i=0; i<rows.length; i++) {
 				rows[i].style.display = '';
 			}
@@ -189,8 +192,6 @@ foreach($continents as $continent) {
 			location.hash = active_row;
 		}
 	}
-	
-	add_layer("obj_continents");
 </script>
 </body>
 </html>
