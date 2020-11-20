@@ -65,7 +65,7 @@ function poly2geojson($pfad) {
 <table>
 <?php
 foreach($continents as $continent) {
-	echo "<tr class='continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".$continent."\")'><td colspan=5><h3>".$continent."</h3></td></tr>";
+	echo "<tr class='continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".$continent."\")'><td colspan=5><h3>".$continent."</h3></td></tr>";
 	echo "<tr class='header'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>";
 
 	$files = glob($continent."/*.{poly}", GLOB_BRACE);
@@ -108,18 +108,36 @@ foreach($continents as $continent) {
 		document.getElementById("map").style.display = 'block';
 		document.getElementById("extraspace").style.margin = '35vh';
 	}
-	var rows = document.querySelectorAll('.header, .country');
-	for(var i=0; i<rows.length; i++) {
-		rows[i].style.display = 'none';
-	}
+	
+	collapse_continent();
+
+	var active_continent = null;
 		
-	if(location.hash != null) {
-		name = location.hash.split('#')[1];
+	if((name = location.hash.split('#')[1]) != undefined) {
 		update_layer(document.getElementById(name).getAttribute("continent"));
+		update_layer(name);
+		active_continent = name;
 	}
 	
-	var active_row, active_layer;
+	function collapse_continent() {
+		var rows = document.querySelectorAll('.header, .country');
+		for(var i=0; i<rows.length; i++) {
+			rows[i].style.display = 'none';
+		}
+	}
 	
+	function toggle_continent(name) {
+		if(active_continent == null) {
+			update_layer(name);
+			active_continent = name;
+		} else {
+			collapse_continent();
+			active_continent = null;
+			document.getElementById(active_row).classList.remove("active_row");
+		}
+	}
+	
+	var active_row;
 	function add_layer(name) {
 		boundaries = L.geoJson(this[name], {
 			style: function(feature) {
@@ -130,30 +148,17 @@ foreach($continents as $continent) {
 			onEachFeature: function(feature, featureLayer) {
 				featureLayer.bindPopup(feature.properties.name);
 				featureLayer.on('mouseover', function() {
-					if((active_layer == null) || (feature.properties.name != active_layer.feature.properties.name)) {
-						this.setStyle({
-							'fillColor': '#88A'
-						});
-					}
+					this.setStyle({
+						'fillColor': '#88A'
+					});
 				});
 				featureLayer.on('mouseout', function() {
-					if((active_layer == null) || (feature.properties.name != active_layer.features.properties.name)) {
-						this.setStyle({
-							'fillColor': '#AAC'
-						});
-					}
+					this.setStyle({
+						'fillColor': '#AAC'
+					});
 				});
 				featureLayer.on('click', function(event) {
-					if(active_layer != null) {
-						active_layer.setStyle({
-							'fillColor': '#BBD'
-						});
-					}		
-					//active_layer = this;
 					update_layer(feature.properties.name);
-					this.setStyle({
-						'fillColor': 'blue'
-					});
 				});
 			}
 		}).addTo(map);
@@ -161,21 +166,35 @@ foreach($continents as $continent) {
 		map.fitBounds(boundaries.getBounds());
 	}
 	
+	var boundary;
 	function update_layer(name) {
-		//boundaries.getLayers()[0].openPopup();
-		//alert(boundaries.getLayers()[0].enable());
+		if(boundary != null) {
+			boundary.setStyle({
+				'fillColor': '#AAC',
+				'color': '#AAC'
+			});
+		}
+		boundary = boundaries.getLayers().find(feat => feat.feature.properties.name === name);
+		if(boundary != null) {
+			boundary.openPopup();
+			boundary.setStyle({
+				'fillColor': 'red',
+				'color': 'red'
+			});
+			boundary.bringToFront();
+			map.fitBounds(boundary.getBounds(),{'animate': true});
+		}
+		
 		name = name.replaceAll("-","_");
 		if(this["obj_"+name] != null) {
 			map.removeLayer(boundaries);
 			add_layer("obj_"+name);
-			//map.fitBounds(boundaries.getBounds());
 			
 			var rows = document.querySelectorAll('.header, .country');
 			for(var i=0; i<rows.length; i++) {
 				rows[i].style.display = 'none';
 			}
 			
-			//rows = document.querySelectorAll('.'+name);
 			rows = document.querySelectorAll("[continent='"+name+"']");
 			for(var i=0; i<rows.length; i++) {
 				rows[i].style.display = '';

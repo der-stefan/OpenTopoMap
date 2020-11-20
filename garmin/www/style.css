@@ -72,7 +72,15 @@ tr:nth-child(odd) {background: #FFF;}
 tr:nth-child(even):hover {background: #CCC;}
 tr:nth-child(odd):hover {background: #CCC;}
 
+tr.continent td:before {
+	content: "\25B6";
+	position: absolute;
+}
 
+tr.continent.active_row td:before {
+	content: "\25BC";
+	position: absolute;
+}
 
 tr.continent {
 	background: white;
@@ -81,7 +89,7 @@ tr.continent:hover {
 	cursor: pointer;
 }
 tr.continent h3 {
-	margin-top: 20px;
+	margin-left: 20px;
 	margin-bottom: 5px;
 }
 tr.country:hover {
