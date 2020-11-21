@@ -1,6 +1,5 @@
 <?php
 $continents=["africa","asia","australia-oceania","central-america","europe","north-america","south-america"];
-//$continents=["australia-oceania"];
 
 function human_filesize($bytes, $decimals = 1) {
   $sz = 'BKMGTP';
@@ -65,15 +64,16 @@ function poly2geojson($pfad) {
 <table>
 <?php
 foreach($continents as $continent) {
-	echo "<tr class='continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".$continent."\")'><td colspan=5><h3>".$continent."</h3></td></tr>";
-	echo "<tr class='header'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>";
+	// all continents as active for javascript disabled standard view
+	echo "<tr class='continent active_continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".str_replace('-','_',$continent)."\")'><td colspan=5><h3>".$continent."</h3></td></tr>\n";
+	echo "<tr class='header'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>\n";
 
 	$files = glob($continent."/*.{poly}", GLOB_BRACE);
 	foreach($files as $file) {
 		$country = basename($file,".poly");
 		$img = $continent."/".$country."/otm-".$country.".img";
 		$contours = $continent."/".$country."/otm-".$country."-contours.img";
-		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".$country."\")'><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>";
+		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".str_replace('-','_',$country)."\")'><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>\n";
 	}
 }
 ?>
@@ -109,35 +109,56 @@ foreach($continents as $continent) {
 		document.getElementById("extraspace").style.margin = '35vh';
 	}
 	
+	// collapse all continents for interactive list
 	collapse_continent();
-
-	var active_continent = null;
-		
+	
+	var active_continent, active_row, boundary;;
+	
+	// parse hash of permalinks
 	if((name = location.hash.split('#')[1]) != undefined) {
-		update_layer(document.getElementById(name).getAttribute("continent"));
+		var continent = document.getElementById(name).getAttribute("continent");
+		update_layer(continent);
 		update_layer(name);
-		active_continent = name;
 	}
 	
+	// collapse all continents
 	function collapse_continent() {
+		var continent_rows = document.querySelectorAll('.continent');
+		for(var i=0; i<continent_rows.length; i++) {
+			continent_rows[i].classList.remove("active_continent");
+		}
+		
 		var rows = document.querySelectorAll('.header, .country');
 		for(var i=0; i<rows.length; i++) {
 			rows[i].style.display = 'none';
 		}
+		
 	}
 	
+	// toggle continent
 	function toggle_continent(name) {
 		if(active_continent == null) {
 			update_layer(name);
 			active_continent = name;
+			document.getElementById(name).classList.add("active_continent");
+		} else if(active_continent == name) {
+			collapse_continent();
+			document.getElementById(active_row).classList.remove("active_row");
+			document.getElementById(active_continent).classList.remove("active_continent");
+			active_continent = null;
+			location.hash = "";
+			update_layer("continents");
 		} else {
 			collapse_continent();
-			active_continent = null;
 			document.getElementById(active_row).classList.remove("active_row");
+			document.getElementById(active_continent).classList.remove("active_continent");
+			active_continent = name;
+			update_layer(name);
+			document.getElementById(name).classList.add("active_continent");
 		}
 	}
 	
-	var active_row;
+	// add layer
 	function add_layer(name) {
 		boundaries = L.geoJson(this[name], {
 			style: function(feature) {
@@ -158,7 +179,7 @@ foreach($continents as $continent) {
 					});
 				});
 				featureLayer.on('click', function(event) {
-					update_layer(feature.properties.name);
+					update_layer(feature.properties.name.replaceAll("-","_"));
 				});
 			}
 		}).addTo(map);
@@ -166,7 +187,7 @@ foreach($continents as $continent) {
 		map.fitBounds(boundaries.getBounds());
 	}
 	
-	var boundary;
+	// update layer depending on input: continents or countries
 	function update_layer(name) {
 		if(boundary != null) {
 			boundary.setStyle({
@@ -174,7 +195,7 @@ foreach($continents as $continent) {
 				'color': '#AAC'
 			});
 		}
-		boundary = boundaries.getLayers().find(feat => feat.feature.properties.name === name);
+		boundary = boundaries.getLayers().find(feat => feat.feature.properties.name.replaceAll("-","_") === name);
 		if(boundary != null) {
 			boundary.openPopup();
 			boundary.setStyle({
@@ -185,7 +206,6 @@ foreach($continents as $continent) {
 			map.fitBounds(boundary.getBounds(),{'animate': true});
 		}
 		
-		name = name.replaceAll("-","_");
 		if(this["obj_"+name] != null) {
 			map.removeLayer(boundaries);
 			add_layer("obj_"+name);
@@ -195,11 +215,14 @@ foreach($continents as $continent) {
 				rows[i].style.display = 'none';
 			}
 			
-			rows = document.querySelectorAll("[continent='"+name+"']");
-			for(var i=0; i<rows.length; i++) {
-				rows[i].style.display = '';
+			if(name != "continents") {
+				active_continent = name;
+				document.getElementById(name).classList.add("active_continent");
+				rows = document.querySelectorAll("[continent='"+name+"']");
+				for(var i=0; i<rows.length; i++) {
+					rows[i].style.display = '';
+				}
 			}
-			
 		}	
 		// highlight and jump to selected row
 		if(document.getElementById(active_row) != null){

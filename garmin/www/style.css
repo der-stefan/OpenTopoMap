@@ -77,7 +77,7 @@ tr.continent td:before {
 	position: absolute;
 }
 
-tr.continent.active_row td:before {
+tr.continent.active_continent td:before {
 	content: "\25BC";
 	position: absolute;
 }
