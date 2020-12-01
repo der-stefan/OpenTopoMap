@@ -44,7 +44,6 @@ function poly2geojson($pfad) {
 	return json_encode($geojson);
 }
 ?>
-
 <html>
 	<header>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,15 +56,32 @@ function poly2geojson($pfad) {
 <h2>OpenTopoMap Garmin</h2>
 <div id="text">
 	<div>Worldwide OpenTopoMap for Garmin devices.</div>
-	<div>License: CC-BY-NC-SA 4.0 - NOT FOR RESALE!</div>
-	<div>OpenTopoMap stands in no connection with Garmin Ltd. and may not be made responsible for any hard- and software damage that occurs from its use.</div>
+	<h3>Description</h3>
+	OpenTopoMap Garmin maps provide the topographical map style offline for Garmin devices and programs like Basecamp and QMapShack.
+	<br/>
+	Special features:
+    <ul>
+    <li>Clear topographic map style similar to the OpenTopoMap online map</li>
+    <li>Hillshade and elevation map included</li>
+    <li>Opening hours in the POI information (but breaking address search)</li>
+    <li>Routing capability</li>
+    <li>Contour lines as optional layer</li>
+    </ul>
+
+	<h3>Screenshots</h3>
+	Coming soon.
+	<h3>License</h3>
+	<div>All maps are under CC-BY-NC-SA 4.0 license (naming, non-commercial, free distribution under same conditions - NOT FOR RESALE)</div>
+	<div>OpenTopoMap stands in no connection with Garmin Ltd. and is not responsible for any hard- and software damage that may occur from its use. The user is responsible for compliance with all laws in the countries of use.</div>
+	<h3>Download</h3>
 </div>
 <div class="table-wrapper">
 <table>
 <?php
+      
 foreach($continents as $continent) {
 	// all continents as active for javascript disabled standard view
-	echo "<tr class='continent active_continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".str_replace('-','_',$continent)."\")'><td colspan=5><h3>".$continent."</h3></td></tr>\n";
+	echo "<tr class='continent active_continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".str_replace('-','_',$continent)."\")'><td colspan=5><h3>".ucwords($continent,' -')."</h3></td></tr>\n";
 	echo "<tr class='header'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>\n";
 
 	$files = glob($continent."/*.{poly}", GLOB_BRACE);
@@ -73,7 +89,7 @@ foreach($continents as $continent) {
 		$country = basename($file,".poly");
 		$img = $continent."/".$country."/otm-".$country.".img";
 		$contours = $continent."/".$country."/otm-".$country."-contours.img";
-		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".str_replace('-','_',$country)."\")'><td>".$country."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>\n";
+		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".str_replace('-','_',$country)."\")'><td>". preg_replace_callback('/((Us\-)|(Dach))/', function ($word) {return strtoupper($word[1]);}, ucwords($country,' -') )."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>\n";
 	}
 }
 ?>
@@ -91,6 +107,15 @@ foreach($continents as $continent) {
 	}
 	?>
 
+	// show map only with enabled javascript on mobile devices.
+	if(window.innerWidth < 768) {
+		document.getElementById("map").style.display = 'block';
+		document.getElementById("extraspace").style.margin = '35vh';
+	}
+	
+	// collapse all continents for interactive list
+	collapse_continent();
+	
 	// load map
 	var map = L.map('map',{zoomControl: false}).setView([50, 11], 7);
 	map.attributionControl.setPrefix();
@@ -103,16 +128,7 @@ foreach($continents as $continent) {
 	
 	add_layer("obj_continents");
 	
-	// show map only with enabled javascript on mobile devices.
-	if(window.innerWidth < 768) {
-		document.getElementById("map").style.display = 'block';
-		document.getElementById("extraspace").style.margin = '35vh';
-	}
-	
-	// collapse all continents for interactive list
-	collapse_continent();
-	
-	var active_continent, active_row, boundary;;
+	var active_continent, active_row, boundary;
 	
 	// parse hash of permalinks
 	if((name = location.hash.split('#')[1]) != undefined) {
@@ -131,8 +147,7 @@ foreach($continents as $continent) {
 		var rows = document.querySelectorAll('.header, .country');
 		for(var i=0; i<rows.length; i++) {
 			rows[i].style.display = 'none';
-		}
-		
+		}	
 	}
 	
 	// toggle continent

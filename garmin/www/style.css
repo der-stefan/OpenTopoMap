@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	margin: 0px;
+	margin: 3px;
 	font-family: Verdana, Arial;
 }
 
@@ -30,7 +30,7 @@ body {
 		margin-top: auto;
 		position: fixed;
 		bottom: 0px;
-		background: white;
+		background: #EEE;
 		margin: 0px;
 		padding: 0px;
 		width: 100%;
