@@ -170,7 +170,6 @@
 		<LineSymbolizer stroke="black" stroke-width="3.5" />
 	</Rule>
 
-
 <!-- zoom 14 -->
 	<Rule>
 		&maxscale_zoom14;

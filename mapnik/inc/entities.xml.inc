@@ -45,3 +45,4 @@
 
 <!ENTITY color_roads_1 "#f59729">
 <!ENTITY color_roads_2 "#f7e761">
+<!ENTITY color_roads_c "#aaaaaa">

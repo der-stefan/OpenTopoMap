@@ -170,7 +170,6 @@
 		<LineSymbolizer stroke="#ffeded" stroke-width="2" />
 	</Rule>
 
-
 <!-- zoom 14 -->
 	<Rule>
 		&maxscale_zoom14;
@@ -250,7 +249,27 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="#ffeded" stroke-width="3" stroke-linecap="round"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="3.5" stroke-dasharray="7,6"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="3" stroke-dasharray="5,4"/>
+	</Rule>
 
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom14;
+		<Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="2" stroke-dasharray="4,3"/>
+	</Rule>
 
 <!-- zoom 15 -->
 	<Rule>
@@ -313,7 +332,34 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="#ffeded" stroke-width="4.5" stroke-linecap="round"/>
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="4" stroke-dasharray="7,6"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="3" stroke-dasharray="5,4"/>
+	</Rule>
 
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="3" stroke-dasharray="5,4"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom15;
+		&minscale_zoom15;
+		<Filter>[highway] = 'construction' and ([construction] = 'tertiary_link' or [construction] = 'unclassified' or [construction] = 'residential')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="2" stroke-dasharray="4,3"/>
+	</Rule>
 
 <!-- zoom 16 -->
 	<Rule>
@@ -370,6 +416,35 @@
 		<Filter>[highway] = 'raceway'</Filter>
 		<LineSymbolizer stroke="#ffeded" stroke-width="6" />
 	</Rule>
+	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="6" stroke-dasharray="8,7"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="6" stroke-dasharray="8,7"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="4" stroke-dasharray="6,5"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>[highway] = 'construction' and ([construction] = 'tertiary_link' or [construction] = 'unclassified' or [construction] = 'residential' or [construction] = 'service')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="4" stroke-dasharray="6,5"/>
+	</Rule>
+	
 	
 <!-- zoom 17 -->
 	<Rule>
@@ -475,7 +550,36 @@
 		<LinePatternSymbolizer file="symbols-otm/lanes_5.png" />
 	</Rule>-->
 
-<!-- bobsleigh ans summer toboggan-->
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="6" stroke-dasharray="8,7"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="5" stroke-dasharray="7,6"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="4" stroke-dasharray="6,5"/>
+	</Rule>
+
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>[highway] = 'construction' and ([construction] = 'tertiary_link' or [construction] = 'unclassified' or [construction] = 'residential' or [construction] = 'service')</Filter>
+		<LineSymbolizer stroke="&color_roads_c;" stroke-width="3" stroke-dasharray="5,4"/>
+	</Rule>
+	
+
+<!-- bobsleigh and summer toboggan-->
 
 	<Rule>
 		&maxscale_zoom14;

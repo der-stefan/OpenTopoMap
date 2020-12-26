@@ -459,6 +459,20 @@
 		<MarkersSymbolizer file="symbols-otm/bridge_5px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
 		<MarkersSymbolizer file="symbols-otm/bridge_5px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
 	</Rule>
+        <Rule>
+                &maxscale_zoom14;
+                &minscale_zoom14;
+                <Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+                <LineSymbolizer stroke="black" stroke-width="4" stroke-dasharray="7,6"/>
+        </Rule>
+        
+        <Rule>
+                &maxscale_zoom14;
+                &minscale_zoom14;
+                <Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="3.5" stroke-dasharray="5,4"/>
+        </Rule>
+	
 
 
 
@@ -594,6 +608,26 @@
 		<MarkersSymbolizer file="symbols-otm/bridge_1px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
 		<MarkersSymbolizer file="symbols-otm/bridge_1px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
 	</Rule>
+       <Rule>
+                &maxscale_zoom15;
+                &minscale_zoom15;
+                <Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+                <LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="7,6"/>
+        </Rule>
+        <Rule>
+                &maxscale_zoom15;
+                &minscale_zoom15;
+                <Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="3.5" stroke-dasharray="5,4"/>
+        </Rule>
+
+        <Rule>
+                &maxscale_zoom15;
+                &minscale_zoom15;
+                <Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="3.5" stroke-dasharray="5,4"/>
+        </Rule>
+	
 
 
 <!-- zoom 16 -->
@@ -636,6 +670,31 @@
 		<MarkersSymbolizer file="symbols-otm/bridge_5px_first.png" placement="vertex-first" allow-overlap="true" ignore-placement="true" />
 		<MarkersSymbolizer file="symbols-otm/bridge_5px_last.png" placement="vertex-last" allow-overlap="true" ignore-placement="true" />
 	</Rule>
+        <Rule>
+                &maxscale_zoom16;
+                &minscale_zoom16;
+                <Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+                <LineSymbolizer stroke="black" stroke-width="6.5" stroke-dasharray="8,7"/>
+        </Rule>
+        <Rule>
+                &maxscale_zoom16;
+                &minscale_zoom16;
+                <Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="6.5" stroke-dasharray="8,7"/>
+        </Rule>
+        <Rule>
+                &maxscale_zoom16;
+                &minscale_zoom16;
+                <Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="6,5"/>
+        </Rule>
+        <Rule>
+                &maxscale_zoom16;
+                &minscale_zoom16;
+                <Filter>[highway] = 'construction' and ([construction] = 'tertiary_link' or [construction] = 'unclassified' or [construction] = 'residential' or [construction] = 'service')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="6,5"/>
+        </Rule>
+	
 	
 
 <!-- zoom 17 -->
@@ -729,6 +788,34 @@
 		<Filter>[highway] = 'steps'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="3" stroke-dasharray="1.1,2"/>
 	</Rule>
+       <Rule>
+                &maxscale_zoom17;
+                &minscale_zoom17;
+                <Filter>[highway] = 'construction' and [construction] = 'motorway'</Filter>
+                <LineSymbolizer stroke="black" stroke-width="6.5" stroke-dasharray="8,7"/>
+        </Rule>
+
+        <Rule>
+                &maxscale_zoom17;
+                &minscale_zoom17;
+                <Filter>[highway] = 'construction' and ([construction] = 'motorway_link' or [construction] = 'trunk' or [construction] = 'trunk_link'  or [construction] = 'primary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="5.5" stroke-dasharray="7,6"/>
+        </Rule>
+
+        <Rule>
+                &maxscale_zoom17;
+                &minscale_zoom17;
+                <Filter>[highway] = 'construction' and ([construction] = 'primary_link' or [construction] = 'secondary' or [construction] = 'secondary_link'  or [construction] = 'tertiary')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="4.5" stroke-dasharray="6,5"/>
+        </Rule>
+
+        <Rule>
+                &maxscale_zoom17;
+                &minscale_zoom17;
+                <Filter>[highway] = 'construction' and ([construction] = 'tertiary_link' or [construction] = 'unclassified' or [construction] = 'residential' or [construction] = 'service')</Filter>
+                <LineSymbolizer stroke="black" stroke-width="3.5" stroke-dasharray="5,4"/>
+        </Rule>
+	
 
 <!-- bobsleight and summer toboggan -->
 
