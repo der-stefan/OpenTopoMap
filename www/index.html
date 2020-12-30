@@ -2,16 +2,29 @@
   <head> 
 	  <title>OpenTopoMap - Topographische Karten aus OpenStreetMap</title>
 	  <meta name="description" content="direkt zur Karte...">
-	  <link rel="stylesheet" href="leaflet/leaflet.css" />
 	  <!--[if lte IE 8]><link rel="stylesheet" href="leaflet/leaflet.ie.css" /><![endif]-->
 	<link rel="stylesheet" href="leaflet/L.Control.Locate.css" />
 	<link rel="stylesheet" href="leaflet/leaflet-search.css" />
 	<!--<link rel="stylesheet" href="leaflet/font-awesome.min.css" />-->
-	<script src="leaflet/leaflet.js"></script>
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+		integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+		crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+		integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+		crossorigin=""></script>
+		
 	<script src="leaflet/L.Control.Locate.js"></script>
 	<script src="leaflet/leaflet-search.js"></script>
 	<!--<script src="leaflet/leaflet.filelayer.js"></script>
 	<script src="leaflet/togeojson.js"></script>-->
+	
+	<!-- Mapbox GL -->
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+
+	<script src="https://rawgit.com/mapbox/mapbox-gl-leaflet/master/leaflet-mapbox-gl.js"></script>
+	
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no" />
   </head>
   <body style="margin:0px;" onhashchange="set_view()" onbeforeunload="delete_permahash()" >
@@ -158,6 +171,12 @@
 
 	var topoAttribution = 'Kartendaten: <a href="https://openstreetmap.org">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: <a href="https://opentopomap.org">OpenTopoMap</a>, &copy; <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>',
 		topo = new L.TileLayer(topoUrl, {minZoom: 5, maxZoom: 15,  attribution: topoAttribution});
+	
+	var gl = L.mapboxGL({
+		    style: 'https://maps.tilehosting.com/c/c440edc9-9f0a-4e40-8f7c-4073dafbe5d3/styles/opentopomap/style.json?key=ErAN2Z6WaV5UkvDpj3CZ',
+		    accessToken: 'no-token'
+		});
+		
 	var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 		osmAttribution = 'Kartendaten &copy; 2012 OpenStreetMap'
 		osm = new L.TileLayer(osmUrl, {maxZoom: 18, attribution: osmAttribution});
@@ -182,6 +201,7 @@
 
 		var baseMaps = {
 			"OpenTopoMap": topo,
+			"OpenTopoMap GL": gl,
 			"OpenStreetMap": osm
 		}
 		var overlayMaps = {
