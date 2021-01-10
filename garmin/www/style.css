@@ -7,6 +7,37 @@ body {
 	font-family: Verdana, Arial;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: blue;
+}
+
+.highlight {
+	text-decoration: underline;
+}
+
+.screenshot {
+	padding: 2px;
+/*	width: 100px;
+	height: 100px;
+	object-fit: none;*/
+}
+
+#links {
+	/*display: inline-block;*/
+	position: fixed;
+	top: 6px;
+	right: 10px;
+	z-index: 999;
+}
+
 @media only screen and (max-width: 768px) {
 	div.table-wrapper {
 		width: 100%;

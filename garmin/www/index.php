@@ -43,37 +43,52 @@ function poly2geojson($pfad) {
 	
 	return json_encode($geojson);
 }
+
+
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$acceptLang = ['en', 'de']; 
+$lang = in_array($lang, $acceptLang) ? $lang : 'en';
+$lang_file = file_get_contents($lang . ".json");
+$str = json_decode($lang_file, true);
+
 ?>
+
 <html>
 	<header>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>OpenTopoMap Garmin</title>
+		<title><?php echo $str["title"]; ?></title>
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="leaflet/leaflet.css">
 		<script type="text/javascript" src="leaflet/leaflet.js"></script>
 	</header>
 	<body>
-<h2>OpenTopoMap Garmin</h2>
+		
+<div id="links">
+	<a href="https://opentopomap.org"><?php echo $str["webmap"]; ?></a>
+	|
+	<span class="highlight"><?php echo $str["garminmaps"]; ?></span>
+	|
+	<a href="https://opentopomap.org/about"><?php echo $str["about"]; ?></a>
+	|
+	<a href="https://opentopomap.org/credits"><?php echo $str["credits"]; ?></a>
+</div>
+<h2><?php echo $str["title"]; ?></h2>
 <div id="text">
-	<div>Worldwide OpenTopoMap for Garmin devices.</div>
-	<h3>Description</h3>
-	OpenTopoMap Garmin maps provide the topographical map style offline for Garmin devices and programs like Basecamp and QMapShack.
+	<div><?php echo $str["subtitle"]; ?></div>
+	<h3><?php echo $str["description_caption"]; ?></h3>
+	<?php echo $str["description"]; ?>
 	<br/>
-	Special features:
-    <ul>
-    <li>Clear topographic map style similar to the OpenTopoMap online map</li>
-    <li>Hillshade and elevation map included</li>
-    <li>Opening hours in the POI information (but breaking address search)</li>
-    <li>Routing capability</li>
-    <li>Contour lines as optional layer</li>
-    </ul>
+	<?php echo $str["features"]; ?>
 
-	<h3>Screenshots</h3>
-	Coming soon.
-	<h3>License</h3>
-	<div>All maps are under CC-BY-NC-SA 4.0 license (naming, non-commercial, free distribution under same conditions - NOT FOR RESALE)</div>
-	<div>OpenTopoMap stands in no connection with Garmin Ltd. and is not responsible for any hard- and software damage that may occur from its use. The user is responsible for compliance with all laws in the countries of use.</div>
-	<h3>Download</h3>
+	<h3><?php echo $str["screenshots_caption"]; ?></h3>
+	<?php
+	$files = glob("screenshots/*.{png}", GLOB_BRACE);
+	foreach($files as $file) {
+		echo "<img class='screenshot' src='".$file."' title='".basename($file)."'>";
+	}?>
+	<h3><?php echo $str["license_caption"]; ?></h3>
+	<div><?php echo $str["license"]; ?></div>
+	<h3><?php echo $str["download_caption"]; ?></h3>
 </div>
 <div class="table-wrapper">
 <table>
