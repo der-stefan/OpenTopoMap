@@ -1,0 +1,40 @@
+html, body {
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, Arial;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: blue;
+}
+
+#page {
+	margin: auto;
+	background-color: white;
+
+	padding: 20px 26px;
+	padding-bottom: 10px;
+}
+
+#links {
+	display: inline-block;
+	width: 100%;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.highlight {
+	text-decoration: underline;
+}
+
+.mapkey td:nth-child(odd) {
+	text-align: right;
+}

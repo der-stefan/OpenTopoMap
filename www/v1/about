@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+       "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	  <meta name="description" content="Eine freie, topographische Karte aus Daten der OpenStreetMap.">
+	  <meta name="keywords" content="open, topo, map, maps, openstreetmap, osm, srtm, topographic, topographisch, Karte, open data, Höhenlinien, Höhendaten, contour lines, SRTM, kostenlos">
+	<title>OpenTopoMap</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link href="style.css" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+	<div id="page">
+		<div id="links">
+			<a href="http://opentopomap.org">Online-Karte</a>
+			|
+			<a href="http://garmin.opentopomap.org">Garmin</a>
+			|
+			<span class="highlight">Infos</span>
+			|
+			<a href="http://opentopomap.org/credits">Impressum</a>
+		</div>
+	  <div style="float:right; text-align:right; margin:0 0 10px 10px;"><a href="https://uni-erlangen.de"><img src="img/Universitaet-Erlangen-Nuernberg.png" alt="Logo der Uni Erlangen" style="margin-bottom: 10px;"></a><br/><span style="font-size:0.7em; color:#00386b;">unterstützt durch die<br/>Friedrich-Alexander-Universität<br/>Erlangen-Nürnberg</span></div>
+	  
+	  <a href="https://opentopomap.org"><img src="img/OpenTopoMap_rechts.png" height="100px;" alt="OpenTopoMap"></a></br>
+<span style="font-size: 1.5em;">Topographische Karten aus OpenStreetMap</span>
+<p>OpenTopoMap ist eine freie, topografische Karte, die aus den Daten der <a href="https://openstreetmap.org">OpenStreetMap</a> und <a href="https://de.wikipedia.org/wiki/SRTM-Daten">SRTM-Höhendaten</a> generiert wird. Der Kartenstil orientiert sich an den amtlichen Karten und setzt auf gute Lesbarkeit durch hohen Kontrast und ausgewogene Signaturen.<br/><br/>
+
+<p>
+<ul>
+	<li><a href="#legende">Legende</a></li>
+	<li><a href="#verwendung">Verwendung</a></li>
+	<li><a href="#details">Details</a></li>
+	<li><a href="#faq">Häufig gestellte Fragen</li>
+	<li><a href="#datenstand">Datenstand</a></li>
+	<li><a href="#mitwirkende">Mitwirkende</a></li>
+</ul>
+	</p>
+
+<span style="font-size:0.8em;">
+<div class="mapkey">
+	<h1><a name="legende">Legende</a></h1>
+<p style="font-size:1.0em; font-variant:small-caps;">Flächen</p>
+<table cellpadding="2px" width="600px;" style="font-size: 0.7em;">
+<tr><td><img src="img/legende/laubwald.png"></td><td>Laubwald</td><td><img src="img/legende/nadelwald.png"></td><td>Nadelwald</td><td><img src="img/legende/mischwald.png"></td><td>Mischwald</td></tr>
+<tr><td><img src="img/legende/sumpf.png"></td><td>Sumpf</td><td><img src="img/legende/moor.png"></td><td>Moor</td><td><img src="img/legende/roehricht.png"></td><td>Röhricht</td></tr>
+<tr><td><img src="img/legende/watt.png"></td><td>Watt</td><td><img src="img/legende/sand.png"></td><td>Strand, Sand</td><td><img src="img/legende/geroell.png"></td><td>Geröll</td></tr>
+<tr><td><img src="img/legende/gehoelz.png"></td><td>Gehölz</td><td><img src="img/legende/wiese.png"></td><td>Wiese</td></tr>
+<tr><td><img src="img/legende/wein.png"></td><td>Weinanbau</td><td><img src="img/legende/friedhof.png"></td><td>Friedhof</td><td><img src="img/legende/schrebergarten.png"></td><td>Schrebergärten</td></tr>
+<tr><td><img src="img/legende/sperrgebiet.png"></td><td>Sperrgebiet</td><td><img src="img/legende/bergbau.png"></td><td>Bergbau, Steinbruch</td><td></td><td></td></tr></table>
+
+<p style="font-size:1.0em; font-variant:small-caps;">Linien</p>
+<table cellpadding="2px" width="450px;" style="font-size: 0.7em;">
+<tr><td><img src="img/legende/stromleitung.png"></td><td>Stromleitung</td><td><img src="img/legende/seilbahn.png"></td><td>Seilbahn</td></tr>
+<tr><td><img src="img/legende/boeschung.png"></td><td>Böschung</td><td><img src="img/legende/deich.png"></td><td>Deich</td></tr>
+<tr><td><img src="img/legende/zaun.png"></td><td>Zaun</td><td><img src="img/legende/hecke.png"></td><td>Hecke</td></tr>
+</table>
+
+<p style="font-size:1.0em; font-variant:small-caps;">Straßen und Wege</p>
+<table style="font-size: 0.7em;" width="550px;" cellpadding="2px">
+ <tbody>
+  <tr><td><img src="img/legende/autobahn.png"></td><td>Autobahn, Bundesstraße</td>
+  <td><img src="img/legende/landstrasse.png"></td><td>Landstraße</td>
+ </tr><tr>
+  <tr><td><img src="img/legende/normalestrasse.png"></td><td>Kreisstraße, Ortsstraße</td>
+  <td><img src="img/legende/strassenimbau"></td><td>Straße im Bau</td>
+
+ </tr><tr>
+  <td><img src="img/legende/service.png"></td><td>Erschließungsweg</td>
+  <td><img src="img/legende/track_grade1.png"></td><td>geteerter, gepflasterter Feldweg</td>
+ </tr><tr>
+  <td><img src="img/legende/track_grade2.png"></td><td>Kiesweg, Feldweg, Radweg</td>
+  <td><img src="img/legende/track_grade34.png"></td><td>Feldweg, teils weiche Oberfläche</td>
+ </tr><tr>
+  <td><img src="img/legende/track_grade5.png"></td><td>unbefestiger Feldweg</td>
+  <td><img src="img/legende/bobsleigh.png"></td><td>Bobbahn</td>
+ </tr><tr>
+  <td><img src="img/legende/toboggan.png"></td><td>Sommerrodelbahn</td>
+  <td><img src="img/legende/fussweg_t12.png"></td><td>Fußweg</td>
+ </tr><tr>
+  <td><img src="img/legende/fussweg_t34.png"></td><td>schwieriger Weg (SAC-Skala T3 T4)</td>
+  <td><img src="img/legende/fussweg_t56.png"></td><td>sehr schwieriger Weg (SAC-Skala T5 T6), Klettersteig</td><td></td><td></td>
+ </tr>
+</tbody></table>
+
+<p style="font-size:1.0em; font-variant:small-caps;">Symbole</p>
+<table cellpadding="2px" width="600px;" style="font-size: 0.7em;">
+<tr><td><img src="img/legende/kirche.png"></td><td>Kirche</td><td><img src="img/legende/kapelle.png"></td><td>Kapelle</td></tr>
+<tr><td><img src="img/legende/burg.png"></td><td>Burg, Festung</td><td><img src="img/legende/burgruine.png"></td><td>Burgruine, Ruine</td></tr>
+<tr><td><img src="img/legende/schloss.png"></td><td>Schloss</td><td><img src="img/legende/schlossruine.png"></td><td>Schlossruine</td></tr>
+<tr><td><img src="img/legende/sportplatz.png"></td><td>Sportplatz</td><td><img src="img/legende/stadion.png"></td><td>Stadion</td></tr>
+<tr><td><img src="img/legende/turm.png"></td><td>Turm</td><td><img src="img/legende/aussichtsturm.png"></td><td>Aussichtsturm</td><td><img src="img/legende/wasserturm.png"></td><td>Wasserturm</td></tr>
+<tr><td><img src="img/legende/sendeturm.png"></td><td>Fernmeldeturm, Sendeturm</td><td><img src="img/legende/mobilfunkmast.png"></td><td>Mobilfunkmast</td><td><img src="img/legende/leuchtturm"></td><td>Leuchtturm</td></tr>
+<tr><td><img src="img/legende/aussichtspunkt.png"></td><td>Aussichtspunkt</td><td><img src="img/legende/badestelle.png"></td><td>Schwimmbad, Badestelle</td><td><img src="img/legende/camping.png"></td><td>Campingplatz</td></tr>
+<tr><td><img src="img/legende/bergwerk.png"></td><td>Bergwerk</td><td><img src="img/legende/bergwerk_stillgelegt.png"></td><td>Bergwerk (stillgelegt)</td><td><img src="img/legende/muehle.png"></td><td>Mühle</td></tr>
+<tr><td><img src="img/legende/unterstand.png"></td><td>Unterstand</td><td><img src="img/legende/huette.png"></td><td>Hütte</td><td><img src="img/legende/huette_bewirtschaftet.png"></td><td>Hütte (bewirtschaftet)</td></tr>
+<tr><td><img src="img/legende/denkmal.png"></td><td>Denkmal, Monument</td><td><img src="img/legende/wegkreuz.png"></td><td>Wegkreuz</td><td><img src="img/legende/huegelgrab.png"></td><td>Hügelgrab</td></tr>
+<tr><td><img src="img/legende/gipfel.png"></td><td>Gipfel</td><td><img src="img/legende/gipfelkreuz.png"></td><td>Gipfelkreuz</td><td><img src="img/legende/quelle.png"></td><td>Quelle</td></tr>
+<tr><td><img src="img/legende/hoehle.png"></td><td>Höhleneingang</td><td><img src="img/legende/kreuz.png"></td><td>Kreuz</td><td><img src="img/legende/sattel.png"></td><td>Sattel</td></tr>
+<tr><td><img src="img/legende/laubbaum.png"> <img src="img/legende/nadelbaum.png"></td><td>hervorragender Baum</td><td><img src="img/legende/doline.png"></td><td>Doline</td></tr>
+<tr><td><img src="img/legende/kraftwerk.png"></td><td>Kraftwerk</td><td><img src="img/legende/photovoltaikanlage.png"></td><td>Photovoltaikanlage</td><td><img src="img/legende/windkraftanlage.png"></td><td>Windkraftanlage</td></tr>
+
+<tr><td><img src="img/legende/schornstein.png"></td><td>Schornstein</td></tr>
+</table>
+</div>
+
+<h1><a name="verwendung">Verwendung</a></h1>
+OpenTopoMap steht unter der Lizenz <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>. Das bedeutet, dass die Karte kostenlos und frei verwendet werden darf, solange stets Namensnennung erfolgt und die Weitergabe unter gleichen Bedingungen möglich ist.
+<p>
+Die Kacheln können unter folgendem Pfad abgerufen werden:<br/>
+<code><abbr title="also z.B. https://a.tile.opentopomap.org/14/8695/5583.png">https://{a|b|c}.tile.opentopomap.org/{z}/{x}/{y}.png</abbr></code>
+</p>
+<p>
+Als Lizenztext sollte Folgendes deutlich sichtbar sein:<br/>
+<code>Kartendaten: © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, SRTM | Kartendarstellung: © <a href="http://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)</code>
+</p>
+Der Kartenstil steht unter der gleichen Lizenz und ist über <a href="https://github.com/der-stefan/OpenTopoMap">Github</a> abrufbar.
+
+
+<h1><a name="details">Details</a></h1>
+<p>OpenStreetMap ist eine freie, weltweite Geodatenbank. Zwar stellt die Hauptseite openstreetmap.org auch eine Karte zur Verfügung, OpenStreetMap an sich ist jedoch eine Geodatenbank, die - im Gegensatz zu z.B. Google Maps - von Jedermann weiterverarbeitet werden kann. So existieren Spezialkarten z.B. für Radfahrer, Wassersportler, Rollstuhlfahrer, den ÖPNV oder eben auch diese Karte im klassischen Stil topographischer Karten. All diese Karten greifen auf die OpenStreetMap-Datenbank als Datengrundlage zurück und stellen diese nur entsprechend anders dar.</p>
+
+<p>Die deutschen Landesvermessungsämter erstellen unterschiedliches Kartenmaterial: Bei Wanderern beliebt sind die TK50 und TK25, da diese ein übersichtliches Kartenbild mit hohem Kontrast besitzen und über Höhenlinien und Schummerung die Topographie abbilden. Von ausgebildeten Kartographen erstellt, erreichen sie eine Qualität, die automatisiert (noch) nicht erreichbar ist.</p>
+
+Für gute topographische Karten kommen besonders folgende Generalisierungmechanismen zum Einsatz:
+<ul>
+<li><b>Verdrängung:</b> Nah zusammenliegende Linien-Objekte (z.B. Straßen) können sich überlappen und dadurch verschwinden. Mittels Verdrängung können diese lokal verschoben werden, sodass beide Objekte nebeneinander liegen. Dadurch entsteht natürlich ein kleiner geographischer Fehler.</li>
+<li><b>Intelligentes Setzen von Beschriftungen:</b> Ortsnamen sollten nicht blind über die Stadt gesetzt werden, sondern über Objekten geringerer Entropie. <i>siehe Bild unten</i></li>
+<li><b>gesperrte Beschriftungen von Flächen:</b> Die Beschriftung von z.B. Seen sollte in einer Hauptmittelachse in Kurven niedriger Ordnung geschehen; die Lettern von Regionsnamen (z.B. Bundesländer) sollten zusätzlich in passenden "Löchern" platziert werden.</li>
+</ul>
+
+<br/>Genannte Probleme sind in den einschlägigen Werkzeugen (PostGIS, Mapnik) derzeitig nicht gelöst und bedürfen einer Bearbeitung. Etwaige Implementierungen ließen sich als Plugin für Mapnik realisieren.<br/>
+Seit Juni 2012 stehen am Lehrstuhl für graphische Datenverarbeitung folgende beiden Themen als Bachlor-/Masterarbeiten offen:
+<ul>
+<li><a href="http://lgdv.cs.fau.de/theses/Thesis/Thesis.tech.IMMD.IMMD9.automa_48/">Automatische Platzierung von Kartenbeschriftungen</a> (vergeben 03/2013) </li>
+<li><a href="http://lgdv.cs.fau.de/theses/Thesis/Thesis.tech.IMMD.IMMD9.evalua/">Evaluation und Implementierung eines Algorithmus zur automatischen Verdrängung bei der Darstellung von Daten der OpenStreetMap</a></li>
+</ul>
+
+
+<!--<br/><br/><i>Beispiel einer (händischen) Platzierung von Ortsnamen:</i><br/>
+<img src="img/beschriftung.png">-->
+
+<h1><a name="faq">Häufig gestellte Fragen</a></h1>
+<ul>
+	<del><li>Könnt ihr mir eine Garmin-Karte eines Gebiets erstellen, das derzeit nicht abgedeckt wird?
+			<p>Leider können wir aktuell nur die Karten anbieten, die online sind. Sonderaufträge können wir nicht bearbeiten. Irgendwann würden wir aber gerne das System umstellen - nur hatte bisher niemand Zeit dafür.</p></li></del>
+<li>Auf dem Garmin habe ich Höhenlinien, in Basecamp fehlen diese aber. Warum?
+<p>Die Höhenlinien sind eine eigene Karte, um sie auf dem Garmin zu- und abschaltbar zu machen. Basecamp kann leider nur eine Karte gleichzeitig anzeigen. In QMapShack funktioniert aber alles wie gewollt.</p></li>
+<li>Ich würde gerne die OpenTopoMap als Datengrundlage für einen Wanderführer verwenden. Ist dies möglich, gibt es eine Vektor-Karte und müssen wir Lizenzgebühren zahlen?
+<p>Die Lizenz CC-BY-SA der Online-Karte erlaubt deren kommerzielle Nutzung. Es muss jedoch ein eindeutiger Lizenzvermerk ("BY" = Quelle) vorhanden sein und die abgedruckte Karte muss unter den selben Bedingungen weitergegeben werden dürfen ("SA" = Share Alike). Lizenzgebühren werden nicht fällig. Wir würden uns jedoch sehr darüber freuen, ein Freiexemplar des fertigen Produkts zu bekommen.</p></li>
+<li>Ich würde gerne die OpenTopoMap als Karte in mein Webprojekt oder meiner Applikation ("App") einbinden. Was muss ich beachten?
+<p>Dies ist jederzeit gerne möglich, sofern unser Server z.B. durch Massendownloads nicht zu stark beansprucht wird. Außerdem kann keinerlei Ausfallsicherheit garantiert werden. Wir würden uns generell über eine kurze Information über die Verwendung freuen.</p></li>
+<li>Wie kann ich die Garmin-Karte in Basecamp oder Mapsource einbinden?
+	<p><del>Wir bieten eine Exe-Installationsdatei zum Download an, die automatisch funktionieren sollte. Allerdings können wir für diese Programme keinen weiteren Support geben, da wir privat kein Windows besitzen. Unter Linux (z.B. Ubuntu) ersetzt QMapShack problemlos Basecamp.</del></p></li>
+<li>Gibt es eine Möglichkeit, die Karte auszudrucken?
+<p>Die Einzelkacheln können mit <a href="files/montage.sh">diesem Linux-Skript</a> via ImageMagick zu einem großen Bild zusammengesetzt werden. Eine höhere Auflösung als die Webkarte oder eine Vektorkarte ist nicht verfügbar.</p></li>
+<li>Ich möchte gerne die OpenTopoMap unterstützen. Wie ist das möglich?
+<p>OpenTopoMap ist nicht als Verein oder ähnlichem organisiert und kann deshalb keine Spenden annehmen. Die beste Mithilfe ist es, Fehler und Verbesserungsvorschläge zu <a href="https://github.com/der-stefan/OpenTopoMap/issues">melden</a> oder - noch besser - sich bei der Entwicklung zu beteiligen.</p></li>
+<li>Ich habe einen Fehler in der Karte gefunden! Könnt ihr diesen korrigieren?
+<p>Die OpenTopoMap verwendet als Datengrundlage die OpenStreetMap, das "Wikipedia für Karten". Auf <a href="https://www.openstreetmap.org">www.openstreetmap.org</a> kann man Fehler ohne Registrierung melden oder nach einer kurzen Registrierung selbst editieren. Und nach dem nächsten Update ist Ihre Korrektur auch in der OpenTopoMap. Probieren Sie's aus: Es macht süchtig!</p></li>
+<li>Ich habe euch vor Wochen eine E-Mail geschrieben, aber bis heute keine Antwort erhalten!!
+<p>Wir bekommen täglich unzählige E-Mails. Weil OpenTopoMap ein reines Freizeitprojekt ist und wir alle berufstätig sind, können wir leider nicht jede E-Mail beantworten - es würde jeden Monat über einen Arbeitstag dauern, um alle E-Mails zu beantworten. Die OSM-Community ist aber groß und kann evtl. schneller helfen. Probieren Sie es z.B. im <a href="https://forum.openstreetmap.org/viewforum.php?id=14">deutschen OSM-Forum</a>.
+</ul>
+
+<h1><a name="datenstand">Datenstand</a></h1>
+<!-- the next line is changed by the import process! -->
+<!-- IMPORTDATE --><p>Stand der Datenbank: 30.12.2020. Teile der Karte k&ouml;nnen auch maximal 4 Wochen &auml;lter sein.</p>
+
+
+<h1><a name="mitwirkende">Mitwirkende</a></h1>
+<ul>
+<li>Stefan Erhardt, DL1NFS (derstefan): Projektgründer, Hauptentwickler</li>
+<li>Philipp Hochreuther (mogstar): Projektgründer, Serverakquise</li>
+<li>Martin Schütz: Automatisiertes Erstellen der Garmin-Karten</li>
+<li>Max Berger (maxbe): Entwickler</li>
+<li>Martin, DK3ML: QTH-Locator</li>
+</ul>
+</span>
+	</div>
+</body></html>
