@@ -1,0 +1,33 @@
+<presets xmlns="http://josm.openstreetmap.de/tagging-preset-1.0">
+  <item type="node,closedway" icon="http://opentopomap.org/img/legende/sendeturm.png"
+	name="communication"
+	de.name="Sendeanlagen">
+
+	<link href="http://wiki.openstreetmap.org/wiki/Tag:man_made%3Dcommunications_tower"/>
+
+    <label text="Inserting a kind of communication tower"
+		de.text="Unterscheidung von Sendeanlagen" />
+	<space />
+    <text key="name" text="Name" />
+    <combo key="man_made" text="Type" values="mast,tower,communications_tower,antenna" 
+		display_values="mast,tower,communications tower,transmitter (steel mast)"
+		de.display_values="Handymast,kleiner Funkturm,Fernmeldeturm, Sender (Stahlrohrmast)"/>
+	<space />
+	<label text="Transmitting:"
+		de.text="Art der Aussendungen:" />
+
+    <check key="communication:television"
+		text="television" default="off"
+		de.text="Fernsehen" />
+	<check key="communication:radio"
+		text="radio" default="off"
+		de.text="Radio" />
+	<check key="communication:mobile_phone"
+		text="mobile phone" default="off"
+		de.text="Mobilfunk/Handy" />
+	<check key="communication:bos"
+		text="BOS" default="off"
+		de.text="BOS-Funk" />
+
+  </item>
+</presets>
