@@ -47,6 +47,8 @@ then
 fi
 
 continents=("africa" "asia" "australia-oceania" "central-america" "europe" "north-america" "south-america")
+declare -A id
+id=([africa]=0 [asia]=1 [australia-oceania]=2 [central-america]=3 [europe]=4 [north-america]=5 [south-america]=6)
 
 # if script is called with number, select this continent. Else go through all continents by default.
 case "$1" in
@@ -57,6 +59,9 @@ esac
 
 for continent in $continents
 do
+	FAMILY_ID=$(( 53000+${id[$continent]}*100 ))
+	MAPID=$(( $FAMILY_ID*1000+1 ))
+	
 	echo "Download continent $continent..."
 	wget -N http://download.geofabrik.de/$continent-latest.osm.pbf -P $DATA_DIR
 	continentdate=`stat -c=%y $DATA_DIR/$continent-latest.osm.pbf | cut -c2-11`
@@ -64,11 +69,12 @@ do
 	echo "Split $continent..."
 	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
 	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
-    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf  --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=53530001 > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
-	
+    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=16 --geonames-file=$DATA_DIR/cities15000.txt --mapid=$MAPID > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
 	
 	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
 	do
+		FAMILY_ID=$((FAMILY_ID+1))
+
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
 
@@ -92,10 +98,19 @@ do
 		else
 			REDUCED_DENSITY=""
 		fi
+		
+		# Basecamp maps for Europe
+		if [[ "$continent" == *"europe"* ]]; then
+			GMAPI="--gmapi"
+		else
+			GMAPI=""
+		fi
 
-		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
-
-		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --region-name="OpenTopoMap_${countryname^}" --area-name="OpenTopoMap_${countryname^}" --overview-mapname="OpenTopoMap_${countryname^}" --family-name="OpenTopoMap_${countryname^}" --family-id=$FAMILY_ID --series-name="OpenTopoMap_${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $GMAPI $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
+		cd $MKGMAP_OUTPUT_DIR
+		zip -r $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.zip OpenTopoMap_${countryname^}.gmap
+		rm -rf $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.gmap
+		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.tdb
 		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch -m --date="$continentdate" $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch $WWW_OUT_ROOT_DIR/$continent
