@@ -69,7 +69,7 @@ do
 	echo "Split $continent..."
 	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
 	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
-    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=16 --geonames-file=$DATA_DIR/cities15000.txt --mapid=$MAPID > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
+    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=$MAPID > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
 	
 	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
 	do
@@ -110,7 +110,7 @@ do
 		cd $MKGMAP_OUTPUT_DIR
 		zip -r $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.zip OpenTopoMap_${countryname^}.gmap
 		rm -rf $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.gmap
-		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.tdb
+		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}_mdr.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.mdx $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.tdb
 		mv $MKGMAP_OUTPUT_DIR/gmapsupp.img $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch -m --date="$continentdate" $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.img
 		touch $WWW_OUT_ROOT_DIR/$continent
