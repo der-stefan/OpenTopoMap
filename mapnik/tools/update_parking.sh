@@ -4,9 +4,6 @@
 
 
 DBname='gis'
-toolpath='mapnik/tools'
-
-cd ~/OpenTopoMap/
 
 
 ###### Prepare #########
@@ -61,8 +58,9 @@ psql -d $DBname  -c "UPDATE planet_osm_polygon AS t1 set hiking='_otm_yes' \
             (access IS NULL OR access IN ('yes','public')) AND \
             (hiking IS NULL OR (hiking!='no' AND hiking!='yes' AND hiking!='_otm_yes')) AND  \
              NOT EXISTS(SELECT osm_id FROM planet_osm_polygon AS t2 \
-              WHERE (landuse IN ('industrial','commercial','residential','military','cemetery') OR \
-                     amenity IN ('hospital','school','university') OR
+              WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments') OR \
+                     amenity IN ('hospital','school','university') OR \
+                     leisure IN ('sports_centre','pitch') OR \
                      aeroway IN ('aerodrome')) AND \
               ST_INTERSECTS(t2.way,ST_EXPAND(t1.way,50)));" 
               
@@ -74,8 +72,9 @@ psql -d $DBname  -c "UPDATE planet_osm_point AS t1 set hiking='_otm_yes' \
             (hiking IS NULL OR (hiking!='no' AND hiking!='yes' AND hiking!='_otm_yes')) AND  \
             (access IS NULL OR access IN ('yes','public')) AND \
              NOT EXISTS(SELECT osm_id FROM planet_osm_polygon AS t2 \
-              WHERE (landuse IN ('industrial','commercial','residential','military','cemetery') OR \
-                     amenity IN ('hospital','school','university','parking') OR
+              WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments') OR \
+                     amenity IN ('hospital','school','university','parking') OR \
+                     leisure IN ('sports_centre','pitch') OR \
                      aeroway IN ('aerodrome')) AND \
               ST_INTERSECTS(t2.way,ST_EXPAND(t1.way,50)));" 
 
@@ -106,4 +105,3 @@ done
 
 echo -n "update_parking: finish "
 date 
-
