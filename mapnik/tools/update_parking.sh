@@ -85,7 +85,7 @@ psql -d $DBname  -c "UPDATE planet_osm_point AS t1 set hiking='_otm_yes' \
 #
 
 
-for dist in 200 500 1000 ; do
+for dist in 1000 500 200 ; do
  echo -n "update_parking: isolation planet_osm_point $dist "
  date 
  psql -d $DBname  -c "UPDATE planet_osm_point AS t1 SET otm_isolation='$dist' \
@@ -99,7 +99,7 @@ for dist in 200 500 1000 ; do
  psql -d $DBname  -c "UPDATE planet_osm_polygon AS t1 SET otm_isolation='$dist' \
                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND otm_isolation IS NULL AND  \
                       NOT EXISTS (SELECT osm_id FROM planet_osm_polygon AS t2 \
-                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND t2.osm_id>t1.osm_id AND \
+                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND t2.way_area>t1.way_area AND \
                        ST_INTERSECTS(t2.way,ST_EXPAND(t1.way,$dist)));"
 
 done                       
