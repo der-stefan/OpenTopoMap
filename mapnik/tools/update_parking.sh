@@ -91,15 +91,15 @@ for dist in 1000 500 200 ; do
                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND otm_isolation IS NULL AND  \
                       NOT EXISTS (SELECT osm_id FROM planet_osm_point AS t2 \
                        WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND t2.osm_id>t1.osm_id AND \
-                       ST_INTERSECTS(t2.way,ST_EXPAND(t1.way,$dist)));"
+                       ST_DWITHIN(t2.way,t1.way,$dist));"
 
  echo -n "update_parking: isolation planet_osm_polygon $dist "
  date 
  psql -d $DBname  -c "UPDATE planet_osm_polygon AS t1 SET otm_isolation='$dist' \
                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND otm_isolation IS NULL AND  \
                       NOT EXISTS (SELECT osm_id FROM planet_osm_polygon AS t2 \
-                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND t2.way_area>t1.way_area AND \
-                       ST_INTERSECTS(t2.way,ST_EXPAND(t1.way,$dist)));"
+                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND \
+                       ST_DWITHIN(t2.way,t1.way,$dist) AND t2.way_area>t1.way_area);"
 
 done                       
 
