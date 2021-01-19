@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20210119T062408Z", 
+ "data_updated": "20210119T062623Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -94,7 +94,7 @@
   { "key" : "denotation", "object_types" : ["node", "area"] },
   { "key" : "denotation", "value" : "landmark", "object_types" : ["node", "area"] },
   { "key" : "denotation", "value" : "natural_monument", "object_types" : ["node", "area"] },
-  { "key" : "direction", "object_types" : ["node"], "description" : "used for parking areas" },
+  { "key" : "direction", "object_types" : ["node"], "description" : "direction of viewpoints and saddles" },
   { "key" : "disused", "object_types" : ["node", "area"] },
   { "key" : "disused", "value" : "yes", "object_types" : ["node", "area"] },
   { "key" : "ele", "object_types" : ["node", "way"] },
@@ -133,7 +133,7 @@
   { "key" : "highway", "value" : "trunk_link", "object_types" : ["way"] },
   { "key" : "highway", "value" : "unclassified", "object_types" : ["way"] },
   { "key" : "highway", "value" : "via_ferrata", "object_types" : ["way"] },
-  { "key" : "hiking", "object_types" : ["node", "area"] },
+  { "key" : "hiking", "object_types" : ["node", "area"], "description" : "used for parking areas" },
   { "key" : "hiking", "value" : "_otm_yes", "object_types" : ["node", "area"] },
   { "key" : "hiking", "value" : "yes", "object_types" : ["node", "area"] },
   { "key" : "historic", "object_types" : ["node", "way", "area"] },
