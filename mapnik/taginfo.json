@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20210118T154327Z", 
+ "data_updated": "20210119T062408Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -94,7 +94,7 @@
   { "key" : "denotation", "object_types" : ["node", "area"] },
   { "key" : "denotation", "value" : "landmark", "object_types" : ["node", "area"] },
   { "key" : "denotation", "value" : "natural_monument", "object_types" : ["node", "area"] },
-  { "key" : "direction", "object_types" : ["node"], "description" : "direction of viewpoints and saddles" },
+  { "key" : "direction", "object_types" : ["node"], "description" : "used for parking areas" },
   { "key" : "disused", "object_types" : ["node", "area"] },
   { "key" : "disused", "value" : "yes", "object_types" : ["node", "area"] },
   { "key" : "ele", "object_types" : ["node", "way"] },
