@@ -111,6 +111,9 @@ if [ $i = 0 ]; then
     psql gis -c "UPDATE planet_osm_point SET direction=NULL     WHERE (railway IN ('station','halt'));"    >/dev/null 2>/dev/null
     psql gis < pitchicon.sql > /dev/null 2>/dev/null
     d=`date +"%Y-%m-%d %H:%M:%S"`
+    echo "$d update_parking.sh; see logs in parking.log and parking.err"
+    ./update_parking.sh >$LOGDIR/parking.log 2>$LOGDIR/parking.err
+    d=`date +"%Y-%m-%d %H:%M:%S"`
     echo "$d grants to tirex" 
     psql -d gis -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;' > /dev/null 2>/dev/null
     psql -d lowzoom -c 'GRANT SELECT ON ALL TABLES IN SCHEMA public TO tirex;' > /dev/null 2>/dev/null

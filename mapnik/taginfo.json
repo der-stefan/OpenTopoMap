@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20201024T113848Z", 
+ "data_updated": "20210119T062623Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -34,6 +34,7 @@
   { "key" : "amenity", "object_types" : ["node", "area"] },
   { "key" : "amenity", "value" : "grave_yard", "object_types" : ["area"] },
   { "key" : "amenity", "value" : "hospital", "object_types" : ["node", "area"] },
+  { "key" : "amenity", "value" : "parking", "object_types" : ["node", "area"] },
   { "key" : "amenity", "value" : "pharmacy", "object_types" : ["node", "area"] },
   { "key" : "amenity", "value" : "place_of_worship", "object_types" : ["node", "area"] },
   { "key" : "amenity", "value" : "school", "object_types" : ["area"] },
@@ -132,6 +133,9 @@
   { "key" : "highway", "value" : "trunk_link", "object_types" : ["way"] },
   { "key" : "highway", "value" : "unclassified", "object_types" : ["way"] },
   { "key" : "highway", "value" : "via_ferrata", "object_types" : ["way"] },
+  { "key" : "hiking", "object_types" : ["node", "area"], "description" : "used for parking areas" },
+  { "key" : "hiking", "value" : "_otm_yes", "object_types" : ["node", "area"] },
+  { "key" : "hiking", "value" : "yes", "object_types" : ["node", "area"] },
   { "key" : "historic", "object_types" : ["node", "way", "area"] },
   { "key" : "historic", "value" : "archaeological_site", "object_types" : ["node", "area"] },
   { "key" : "historic", "value" : "castle", "object_types" : ["node", "area"] },
