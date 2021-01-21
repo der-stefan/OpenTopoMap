@@ -199,6 +199,17 @@
 			&postgis-settings;
 		</Datasource>
 	</Layer>
+        
+	<Layer name="contours">
+		<StyleName>contours</StyleName>
+		<Datasource>
+			<!-- If you imported the contour lines as suggested in the HOWTO_DEM, use following:
+            <Parameter name="table">(SELECT way,ele FROM planet_osm_line) AS contours </Parameter>-->
+            <Parameter name="table">(SELECT way,ele FROM contours) AS contours </Parameter>
+			<Parameter name="dbname">contours</Parameter>
+			&postgis-settings;
+		</Datasource>
+	</Layer>
 	
 	&basemap-sea;
 	
@@ -302,17 +313,6 @@
 		<Datasource>
 			<Parameter name="table">(SELECT way,landuse,leisure,way_area FROM planet_osm_polygon WHERE (landuse IS NOT NULL) OR (leisure IS NOT NULL)) AS area </Parameter>
 			<Parameter name="dbname">gis</Parameter>
-			&postgis-settings;
-		</Datasource>
-	</Layer>
-
-	<Layer name="contours">
-		<StyleName>contours</StyleName>
-		<Datasource>
-			<!-- If you imported the contour lines as suggested in the HOWTO_DEM, use following:
-            <Parameter name="table">(SELECT way,ele FROM planet_osm_line) AS contours </Parameter>-->
-            <Parameter name="table">(SELECT way,ele FROM contours) AS contours </Parameter>
-			<Parameter name="dbname">contours</Parameter>
 			&postgis-settings;
 		</Datasource>
 	</Layer>
