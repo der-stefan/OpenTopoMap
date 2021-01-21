@@ -1,10 +1,14 @@
 #!/bin/bash
 #
+# update_parking.sh: Try to find parking places useful for hiking. These places may
+# be mapped with hiking=yes, but most are not. Such places are not located in "urban" areas
+# (not near landuse=industrial, residential...) and are marked as hiking=_otm_yes in our
+# database.
 #
 
 
 DBname='gis'
-
+cd /home/otmuser/OpenTopoMap/mapnik/tools/
 
 ###### Prepare #########
 #
@@ -48,7 +52,7 @@ fi
 ########## Update ###########
 #
 # Mark amenity=parking with hiking=_otm_yes if these parking places are not in urban areas
-# already marked places are not touched
+# already as hiking=yes marked places are not touched
 
 echo -n "update_parking: update planet_osm_polygon "
 date
@@ -56,7 +60,7 @@ date
 psql -d $DBname  -c "UPDATE planet_osm_polygon AS t1 set hiking='_otm_yes' \
             WHERE amenity='parking' AND  \
             (access IS NULL OR access IN ('yes','public')) AND \
-            (hiking IS NULL OR (hiking!='no' AND hiking!='yes' AND hiking!='_otm_yes')) AND  \
+            (hiking IS NULL OR (hiking!='no' AND hiking!='yes')) AND  \
              NOT EXISTS(SELECT osm_id FROM planet_osm_polygon AS t2 \
               WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments') OR \
                      amenity IN ('hospital','school','university') OR \
@@ -69,7 +73,7 @@ date
 
 psql -d $DBname  -c "UPDATE planet_osm_point AS t1 set hiking='_otm_yes' \
             WHERE amenity='parking' AND  \
-            (hiking IS NULL OR (hiking!='no' AND hiking!='yes' AND hiking!='_otm_yes')) AND  \
+            (hiking IS NULL OR (hiking!='no' AND hiking!='yes')) AND  \
             (access IS NULL OR access IN ('yes','public')) AND \
              NOT EXISTS(SELECT osm_id FROM planet_osm_polygon AS t2 \
               WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments') OR \
@@ -77,31 +81,48 @@ psql -d $DBname  -c "UPDATE planet_osm_point AS t1 set hiking='_otm_yes' \
                      leisure IN ('sports_centre','pitch') OR \
                      aeroway IN ('aerodrome')) AND \
               ST_INTERSECTS(t2.way,ST_EXPAND(t1.way,50)));" 
+              
+# Export these parking places to a csv and calculate their isolation in an external script
+#              
+              
+echo -n "update_parking: exporting polygon "
+date              
 
+rm -f /tmp/parking_polygon.csv /tmp/parking_point.csv
+
+psql -A -t -F ";" $DBname  -c "SELECT osm_id,ST_X(ST_CENTROID(way)),ST_Y(ST_CENTROID(way)),way_area::INTEGER \
+      FROM planet_osm_polygon WHERE amenity='parking' AND (hiking='yes' or hiking='_otm_yes');" > /tmp/parking_polygon.csv
+      
+echo -n "update_parking: exporting point "
+date
+            
+psql -A -t -F ";" $DBname  -c "SELECT osm_id,ST_X(way),ST_Y(way),osm_id \
+      FROM planet_osm_point WHERE amenity='parking' AND (hiking='yes' or hiking='_otm_yes');" > /tmp/parking_point.csv
+
+rm -f tmp/parking_point.sql tmp/parking_polygon.sql
+
+# Import the calculated isolations
 #
-# set otm_isolation=200/500/1000 for each node where is no other node in 200/500/1000"m" distance with higher id
-# so only one of a cluster of many nodes gets this otm_isolation
+
+echo -n "update_parking: isolations of points "
+date
+./parkingisolation.pl planet_osm_point   /tmp/parking_point.csv   5000 > /tmp/parking_point.sql
+echo -n "update_parking: isolations of polygons "
+date
+./parkingisolation.pl planet_osm_polygon /tmp/parking_polygon.csv 5000 > /tmp/parking_polygon.sql
+echo -n "update_parking: updating DB "
+date
+psql $DBname < /tmp/parking_point.sql   >/dev/null 2>>/dev/null
+psql $DBname < /tmp/parking_polygon.sql >/dev/null 2>>/dev/null
+
+# cleaning
 #
 
+rm -f /tmp/parking_point.sql /tmp/parking_polygon.sql
+rm -f /tmp/hiking_polygon.csv /tmp/hiking_point.csv
 
-for dist in 1000 500 200 ; do
- echo -n "update_parking: isolation planet_osm_point $dist "
- date 
- psql -d $DBname  -c "UPDATE planet_osm_point AS t1 SET otm_isolation='$dist' \
-                      WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND otm_isolation IS NULL AND  \
-                      NOT EXISTS (SELECT osm_id FROM planet_osm_point AS t2 \
-                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND t2.osm_id>t1.osm_id AND \
-                       ST_DWITHIN(t2.way,t1.way,$dist));"
-
- echo -n "update_parking: isolation planet_osm_polygon $dist "
- date 
- psql -d $DBname  -c "UPDATE planet_osm_polygon AS t1 SET otm_isolation='$dist' \
-                      WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND otm_isolation IS NULL AND  \
-                      NOT EXISTS (SELECT osm_id FROM planet_osm_polygon AS t2 \
-                       WHERE amenity='parking' AND (hiking='yes' OR hiking='_otm_yes') AND \
-                       ST_DWITHIN(t2.way,t1.way,$dist) AND t2.way_area>t1.way_area);"
-
-done                       
+# finish
+#
 
 echo -n "update_parking: finish "
 date 
