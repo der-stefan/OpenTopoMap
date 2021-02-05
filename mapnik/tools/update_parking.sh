@@ -62,7 +62,7 @@ psql -d $DBname  -c "UPDATE planet_osm_polygon AS t1 set hiking='_otm_yes' \
             (access IS NULL OR access IN ('yes','public')) AND \
             (hiking IS NULL OR (hiking!='no' AND hiking!='yes')) AND  \
              NOT EXISTS(SELECT osm_id FROM planet_osm_polygon AS t2 \
-              WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments') OR \
+              WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments','farmyard') OR \
                      amenity IN ('hospital','school','university') OR \
                      leisure IN ('sports_centre','pitch') OR \
                      aeroway IN ('aerodrome')) AND \
@@ -76,7 +76,7 @@ psql -d $DBname  -c "UPDATE planet_osm_point AS t1 set hiking='_otm_yes' \
             (hiking IS NULL OR (hiking!='no' AND hiking!='yes')) AND  \
             (access IS NULL OR access IN ('yes','public')) AND \
              NOT EXISTS(SELECT osm_id FROM planet_osm_polygon AS t2 \
-              WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments') OR \
+              WHERE (landuse IN ('industrial','commercial','retail','residential','military','cemetery','allotments','farmyard') OR \
                      amenity IN ('hospital','school','university','parking') OR \
                      leisure IN ('sports_centre','pitch') OR \
                      aeroway IN ('aerodrome')) AND \
