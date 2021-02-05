@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20210119T062623Z", 
+ "data_updated": "20210205T070136Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -217,6 +217,7 @@
   { "key" : "natural", "value" : "glacier", "object_types" : ["area"] },
   { "key" : "natural", "value" : "gorge", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "grassland", "object_types" : ["area"] },
+  { "key" : "natural", "value" : "gully", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "massif", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "mountain_range", "object_types" : ["way", "area"] },
   { "key" : "natural", "value" : "notch", "object_types" : ["node"] },
