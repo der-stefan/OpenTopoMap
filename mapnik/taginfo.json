@@ -1,6 +1,6 @@
 {
  "data_format": 1, 
- "data_updated": "20210205T070136Z", 
+ "data_updated": "20210209T180127Z", 
   "project": { 
   "name": "OpenTopoMap",
   "description": "Topographische Karten aus OpenStreetMap",
@@ -89,7 +89,9 @@
   { "key" : "denomination", "value" : "catholic", "object_types" : ["node", "area"] },
   { "key" : "denomination", "value" : "greek_catholic", "object_types" : ["node", "area"] },
   { "key" : "denomination", "value" : "lutheran", "object_types" : ["node", "area"] },
+  { "key" : "denomination", "value" : "old_catholic", "object_types" : ["node", "area"] },
   { "key" : "denomination", "value" : "protestant", "object_types" : ["node", "area"] },
+  { "key" : "denomination", "value" : "reformed", "object_types" : ["node", "area"] },
   { "key" : "denomination", "value" : "roman_catholic", "object_types" : ["node", "area"] },
   { "key" : "denotation", "object_types" : ["node", "area"] },
   { "key" : "denotation", "value" : "landmark", "object_types" : ["node", "area"] },
