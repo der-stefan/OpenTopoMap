@@ -16,13 +16,13 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel') or ([historic] = 'wayside_shrine') or ([historic] = 'wayside_cross'))</Filter>
+		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'old_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant' or [denomination] = 'reformed') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel') or ([historic] = 'wayside_shrine') or ([historic] = 'wayside_cross'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/church_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
-		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel')or ([historic] = 'wayside_shrine') or ([historic] = 'wayside_cross'))</Filter>
+		<Filter>[amenity] = 'place_of_worship' and [religion] = 'christian' and ([denomination] = NULL or [denomination] = 'catholic' or [denomination] = 'roman_catholic' or [denomination] = 'old_catholic' or [denomination] = 'greek_catholic' or [denomination] = 'lutheran' or [denomination] = 'protestant' or [denomination] = 'reformed') and not (([building] = 'chapel') or ([building] = 'wayside_chapel') or ([historic] = 'wayside_chapel')or ([historic] = 'wayside_shrine') or ([historic] = 'wayside_cross'))</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/church.png" transform="translate(0 -3)"/>
 		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
