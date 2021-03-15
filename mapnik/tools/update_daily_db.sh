@@ -137,7 +137,7 @@ if [ $i = 0 ]; then
     fi
     mv simplified-water-polygons-split-3857.zip simplified-water-polygons-split-3857.zip.old
     wget https://osmdata.openstreetmap.de/download/simplified-water-polygons-split-3857.zip > /dev/null 2>/dev/null
-    if ( find ./ -name "simplified-water-polygons-split-3857.zip" -size +100M | grep simplified-water-polygons-split-3857 >/dev/null ) ; then 
+    if ( find ./ -name "simplified-water-polygons-split-3857.zip" -size +10M | grep simplified-water-polygons-split-3857 >/dev/null ) ; then 
      unzip -u -o simplified-water-polygons-split-3857.zip
      d=`date +"%Y-%m-%d %H:%M:%S"`
      echo "$d got and unzipped simplified coastlines"
