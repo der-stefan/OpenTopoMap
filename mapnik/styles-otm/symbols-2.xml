@@ -276,7 +276,30 @@
 		<PointSymbolizer file="symbols-otm/campsite.png"/>
 		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="black" margin="1" halo-radius="2" halo-fill="rgba(255,255,255,0.8)" placement="point" dy="8" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
-
+	<Rule>
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>(([amenity] = 'parking') and (([hiking] = 'yes') or ([hiking] = '_otm_yes')) and ([otm_isolation] &gt; 2000)) </Filter>
+		<PointSymbolizer file="symbols-otm/parking7x7.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+		<Filter>(([amenity] = 'parking') and (([hiking] = 'yes') or ([hiking] = '_otm_yes')) and ([otm_isolation] &gt; 1000)) </Filter>
+		<PointSymbolizer file="symbols-otm/parking7x7.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom16;
+		<Filter>(([amenity] = 'parking') and (([hiking] = 'yes') or ([hiking] = '_otm_yes')) and ([otm_isolation] &gt; 300)) </Filter>
+		<PointSymbolizer file="symbols-otm/parking7x7.png"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom17;
+		&minscale_zoom17;
+		<Filter>(([amenity] = 'parking') and (([hiking] = 'yes') or ([hiking] = '_otm_yes'))) </Filter>
+		<PointSymbolizer file="symbols-otm/parking7x7.png"/>
+	</Rule>
 
 <!-- POIs from zoom 16 -->
 	<Rule>

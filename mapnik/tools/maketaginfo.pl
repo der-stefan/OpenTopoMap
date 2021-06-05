@@ -49,6 +49,7 @@ $keytype{'natural=canyon'}             = "way,area";
 $keytype{'natural=mountain_range'}     = "way,area";
 $keytype{'natural=massif'}             = "way,area";
 $keytype{'natural=couloir'}            = "way,area";
+$keytype{'natural=gully'}              = "way,area";
 $keytype{'natural=ridge'}              = "way,area"; 
 $keytype{'natural=arete'}              = "way,area"; 
 $keytype{'natural=arete'}              = "way,area";
@@ -63,6 +64,7 @@ $keytype{'natural=strait'}             = "way,area";
 %description=();
 $description{'direction'}                  = "direction of viewpoints and saddles";
 $description{'memorial:type=stolperstein'} = "used to exclude this object from rendering";
+$description{'hiking'}                     = "used for parking areas";
 
 #
 # some styles we dont't want to parse (comma separated list)
