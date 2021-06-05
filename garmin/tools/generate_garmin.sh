@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# (c) 2018-2020 OpenTopoMap under CC-BY-SA license
-# authors: Martin Schuetz, Stefan Erhardt
+# (c) 2018-2021 OpenTopoMap under CC-BY-SA license
+# authors: Stefan Erhardt, Martin Schuetz
 # A script for generating worldwide Garmin files with OpenTopoMap style
 #
 # Usage ...for all continents:           bash ./generate_garmin.sh
-#       ...for Europe:                   bash ./generate_garmin.sh 5
+#       ...for Europe:                   bash ./generate_garmin.sh 4
 #       ...for daily changing continent: bash ./generate_garmin.sh "$(date +%w)"
 #
 
@@ -13,8 +13,8 @@ GIT_DIR=/home/garminotm/OpenTopoMap/garmin
 DATA_DIR=/home/garminotm/garmin_world
 
 # Programs
-SPLITTER_JAR=/home/garminotm/src/splitter-r597/splitter.jar
-MKGMAP_JAR=/home/garminotm/src/mkgmap-r4588/mkgmap.jar
+SPLITTER_JAR=/home/garminotm/src/splitter-r602/splitter.jar
+MKGMAP_JAR=/home/garminotm/src/mkgmap-r4745/mkgmap.jar
 TILESINPOLY_CMD=$GIT_DIR/tools/tiles_in_poly.py
 
 # Temp dirs
@@ -106,8 +106,9 @@ do
 			GMAPI=""
 		fi
 
-		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --region-name="OpenTopoMap_${countryname^}" --area-name="OpenTopoMap_${countryname^}" --overview-mapname="OpenTopoMap_${countryname^}" --family-name="OpenTopoMap_${countryname^}" --family-id=$FAMILY_ID --series-name="OpenTopoMap_${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $GMAPI $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --area-name="OpenTopoMap ${countryname^} ${continentdate}" --overview-mapname="OpenTopoMap_${countryname^}" --family-name="OpenTopoMap ${countryname^} ${continentdate}" --family-id=$FAMILY_ID --series-name="OpenTopoMap ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $GMAPI $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
 		cd $MKGMAP_OUTPUT_DIR
+		mv OpenTopoMap\ ${countryname^}\ ${continentdate}.gmap OpenTopoMap_${countryname^}.gmap
 		zip -r $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.zip OpenTopoMap_${countryname^}.gmap
 		rm -rf $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.gmap
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}_mdr.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.mdx $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.tdb
