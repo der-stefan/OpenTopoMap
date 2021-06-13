@@ -79,7 +79,13 @@ $str = json_decode($lang_file, true);
 	<?php echo $str["description"]; ?>
 	<br/>
 	<?php echo $str["features"]; ?>
-
+	
+	<h3><?php echo $str["installation_caption"]; ?></h3>
+	<h4>Garmin</h4>
+	<?php echo $str["installation_garmin"]; ?>
+	<h4>Basecamp</h4>
+	<?php echo $str["installation_basecamp"]; ?>
+	
 	<h3><?php echo $str["screenshots_caption"]; ?></h3>
 	<?php
 	$files = glob("screenshots/*.{png}", GLOB_BRACE);
@@ -96,15 +102,18 @@ $str = json_decode($lang_file, true);
       
 foreach($continents as $continent) {
 	// all continents as active for javascript disabled standard view
-	echo "<tr class='continent active_continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".str_replace('-','_',$continent)."\")'><td colspan=5><h3>".ucwords($continent,' -')."</h3></td></tr>\n";
-	echo "<tr class='header'><th>Country</th><th>Data status</th><th>Map file</th><th>Contours file</th><th>Generated at</th></tr>\n";
+	echo "<tr class='continent active_continent' id='".str_replace('-','_',$continent)."' continent='".str_replace('-','_',$continent)."' onclick='toggle_continent(\"".str_replace('-','_',$continent)."\")'><td colspan=6><h3>".ucwords($continent,' -')."</h3></td></tr>\n";
+	echo "<tr class='header'><th>Country</th><th>Garmin file</th><th>Garmin Contours file</th><Basecamp file</th><th>Generated at</th></tr>\n";
 
 	$files = glob($continent."/*.{poly}", GLOB_BRACE);
 	foreach($files as $file) {
 		$country = basename($file,".poly");
-		$img = $continent."/".$country."/otm-".$country.".img";
-		$contours = $continent."/".$country."/otm-".$country."-contours.img";
-		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".str_replace('-','_',$country)."\")'><td>". preg_replace_callback('/((Us\-)|(Dach))/', function ($word) {return strtoupper($word[1]);}, ucwords($country,' -') )."</td><td>".date("Y-m-d",filemtime($img))."</td><td><a href=\"".$img."\">map</a> (".human_filesize(filesize($img)).")</td><td><a href=\"".$contours."\">contours</a> (".human_filesize(filesize($contours)).")</td><td>".date("Y-m-d H:i:s",filectime($img))."</td></tr>\n";
+		$gmap_file = $continent."/".$country."/otm-".$country.".zip";
+		$gmap_size = human_filesize(filesize($gmap_file));
+		$gmap_link = ($gmap_size > 0)?("<a href=\"".$gmap_file."\">Basecamp</a> (".$gmap_size.")"):("");
+		$img_file = $continent."/".$country."/otm-".$country.".img";
+		$contours_file = $continent."/".$country."/otm-".$country."-contours.img";
+		echo "<tr class='country' id='".str_replace('-','_',$country)."' continent='".str_replace('-','_',$continent)."' onclick='update_layer(\"".str_replace('-','_',$country)."\")'><td>". preg_replace_callback('/((Us\-)|(Dach))/', function ($word) {return strtoupper($word[1]);}, ucwords($country,' -') )."</td><td><a href=\"".$img_file."\">Garmin</a> (".human_filesize(filesize($img_file)).")</td><td><a href=\"".$contours_file."\">Garmin contours</a> (".human_filesize(filesize($contours_file)).")</td><td>".$gmap_link."</td><td>".date("Y-m-d H:i:s",filectime($img_file))."</td></tr>\n";
 	}
 }
 ?>
