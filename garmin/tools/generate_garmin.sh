@@ -69,7 +69,7 @@ do
 	echo "Split $continent..."
 	rm -rf $SPLITTER_OUTPUT_ROOT_DIR/$continent
 	mkdir -p $SPLITTER_OUTPUT_ROOT_DIR/$continent
-    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=$MAPID > $SPLITTER_OUTPUT_ROOT_DIR/$continent/splitter.log
+    java -Xmx10000m -jar $SPLITTER_JAR $DATA_DIR/$continent-latest.osm.pbf --output-dir=$SPLITTER_OUTPUT_ROOT_DIR/$continent --max-threads=32 --geonames-file=$DATA_DIR/cities15000.txt --mapid=$MAPID &> $SPLITTER_OUTPUT_ROOT_DIR/splitter-$continent.log
 	
 	for polyfile in $DATA_DIR/download.geofabrik.de/$continent/*.poly
 	do
@@ -77,6 +77,7 @@ do
 
 		countryname=${polyfile%.*}
 		countryname=${countryname##*/}
+		countryname_short=${countryname:0:25}
 
 		echo "Generate $countryname with polyfile $polyfile..."
 
@@ -106,9 +107,10 @@ do
 			GMAPI=""
 		fi
 
-		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname^} ${continentdate}" --area-name="OpenTopoMap ${countryname^} ${continentdate}" --overview-mapname="OpenTopoMap_${countryname^}" --family-name="OpenTopoMap ${countryname^} ${continentdate}" --family-id=$FAMILY_ID --series-name="OpenTopoMap ${countryname^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $GMAPI $mkgmapin $MKGMAP_TYP_FILE > $MKGMAP_OUTPUT_DIR/mkgmap.log
+		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname_short^} ${continentdate}" --area-name="OpenTopoMap ${countryname_short^} ${continentdate}" --overview-mapname="OpenTopoMap_${countryname_short^}" --family-name="OpenTopoMap ${countryname_short^} ${continentdate}" --family-id=$FAMILY_ID --series-name="OpenTopoMap ${countryname_short^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $GMAPI $mkgmapin $MKGMAP_TYP_FILE &> $MKGMAP_OUTPUT_DIR/mkgmap.log
 		cd $MKGMAP_OUTPUT_DIR
 		mv OpenTopoMap\ ${countryname^}\ ${continentdate}.gmap OpenTopoMap_${countryname^}.gmap
+		rm $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.zip
 		zip -r $WWW_OUT_ROOT_DIR/$continent/$countryname/otm-$countryname.zip OpenTopoMap_${countryname^}.gmap
 		rm -rf $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.gmap
 		rm $MKGMAP_OUTPUT_DIR/53*.img $MKGMAP_OUTPUT_DIR/53*.tdb $MKGMAP_OUTPUT_DIR/ovm*.img $MKGMAP_OUTPUT_DIR/*.typ $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}_mdr.img $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.mdx $MKGMAP_OUTPUT_DIR/OpenTopoMap_${countryname^}.tdb
