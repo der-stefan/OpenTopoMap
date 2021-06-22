@@ -1,0 +1,58 @@
+{
+  "sitehead": {
+    "title": "OTM",
+    "description": "OpenTopoMap"
+  },
+  "c": {
+    "map_data": "Données cartographique",
+    "map_imagery": "Imagerie cartographique",
+    "contributors": "Contributeurs",
+    "hikeroutes": "Sentiers",
+    "bikeroutes": "Pistes cyclables"
+  },
+  "info": {
+    "about": "Légende & Info",
+    "about_url": "https://opentopomap.org/about",
+    "impress": "Impressum & Conditions",
+    "impress_short": "Impressum",
+    "impress_url": "https://opentopomap.org/credits",
+    "credits": "Crédit des auteurs",
+    "credits_short": "Crédit",
+    "credits_url": "https://opentopomap.org/credits",
+    "garmin": "Cartes Garmin",
+    "garmin_url": "https://garmin.opentopomap.org/"
+  },
+  "zoom": {
+    "zoom_in_title": "Agrandir",
+    "zoom_out_title": "Dézoomer"
+  },
+  "layers_base": [
+    "OpenTopoMap",
+    "OpenStreetMap"
+  ],
+  "layers_overlay": [
+    "Sentiers Lonvia",
+    "Pistes cyclables Lonvia",
+    "Quadrillage QTH"
+  ],
+  "marker": {
+    "title": "Placer le marqueur"
+  },
+  "search": {
+    "title": "Rechercher un emplacement",
+    "label": "Entrez le nom de l'emplacement ..."
+  },
+  "locate": {
+    "title": "Afficher sa propre géolocalisation",
+    "message_locating": "Détection de géolocalisation",
+    "errors": [
+      "D'accord",
+      "Détection de géolocalisation bloquée par les paramètres du navigateur",
+      "Échec de la détection de la géolocalisation "
+    ]
+  },
+  "tracks": {
+    "title": "Afficher la piste à partir d'un fichier GPX, KML ou GeoJSON ",
+    "errmsg": "Malheureusement, la piste ne peut pas être affichée.\nPeut-être que le fichier sélectionné ne contient pas un format GPX, KML ou GeoJSON valide.\n\n"
+  }
+}

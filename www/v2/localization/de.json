@@ -1,0 +1,58 @@
+{
+  "sitehead": {
+    "title": "OpenTopoMap - Topographische Karten aus OpenStreetMap",
+    "description": "... direkt zur Karte"
+  },
+  "c": {
+    "map_data": "Kartendaten",
+    "map_imagery": "Kartendarstellung",
+    "contributors": "Mitwirkende",
+    "hikeroutes": "Wanderrouten",
+    "bikeroutes": "Radrouten"
+  },
+  "info": {
+    "about": "Legende & Info",
+    "about_url": "https://opentopomap.org/about",
+    "impress": "Impressum & Nutzung",
+    "impress_short": "Impressum",
+    "impress_url": "https://opentopomap.org/credits",
+    "credits": "Autoren",
+    "credits_short": "Credits",
+    "credits_url": "https://opentopomap.org/credits",
+    "garmin": "Garmin-Karten",
+    "garmin_url": "https://garmin.opentopomap.org/"
+  },
+  "zoom": {
+    "zoom_in_title": "Einzoomen",
+    "zoom_out_title": "Auszoomen"
+  },
+  "layers_base": [
+    "OpenTopoMap",
+    "OpenStreetMap"
+  ],
+  "layers_overlay": [
+    "Lonvia Wanderrouten",
+    "Lonvia Radrouten",
+    "QTH-Gitternetz"
+  ],
+  "marker": {
+    "title": "Markierung setzen"
+  },
+  "search": {
+    "title": "Ort suchen",
+    "label": "Ortsbezeichnung eingeben ..."
+  },
+  "locate": {
+    "title": "Eigenen Standort anzeigen",
+    "message_locating": "Standort wird ermittelt",
+    "errors": [
+      "Ok",
+      "Standortermittlung durch Browsereinstellungen gesperrt",
+      "Bei der Standortermittlung ist ein Fehler aufgetreten"
+    ]
+  },
+  "tracks": {
+    "title": "Route aus GPX-, KML- oder GeoJSON-Datei anzeigen",
+    "errmsg": "Route kann leider nicht angezeigt werden.\nMöglicherweise enthält die gewählte Datei kein gültiges\nGPX-, KML- oder GeoJSON-Format.\n\n"
+  }
+}

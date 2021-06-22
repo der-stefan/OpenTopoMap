@@ -1,0 +1,348 @@
+/*///////////////////////////////////////////////////////
+//
+// OTM Web Frontend - index.scss
+//
+// All individual CSS styles compiled with SASS 
+//
+// V 2.00 - 01.01.2021 - Thomas Worbs
+//          Created
+//
+///////////////////////////////////////////////////////*/
+
+@use 'sass:math';
+
+@-ms-viewport {
+  width: device-width;
+}
+
+html { 
+  height: 100%;
+}
+
+body { 
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* color definition for controls */
+/*********************************/
+$control-background-color: #FFFFFF;
+$control-hover-color: #F0F0F0;
+$control-separator-color: #E0E0E0;
+$control-text-color-dim: #666666;
+$control-text-color: #333333;
+
+/* common button classes for special styling */
+/*********************************************/
+.otm-button {
+  cursor: pointer;
+}
+.otm-button-toggled {
+  background-color: #606060 !important;
+  &:hover {
+    background-color: #474747 !important;    
+  }
+}
+
+/* specific button classes for different icons */
+/***********************************************/
+.otm-button-search {
+  background-image: url('../src-images/icon-search.svg');
+  background-size: 20px auto;
+}
+.otm-button-search-w {
+  background-image: url('../src-images/icon-search-w.svg');
+  background-size: 20px auto;
+}
+.otm-button-target {
+  background-image: url('../src-images/icon-target.svg');
+  background-size: 22px auto;
+}
+.otm-button-target-w {
+  background-image: url('../src-images/icon-target-w.svg');
+  background-size: 22px auto;
+}
+.otm-button-waypoints {
+  background-image: url('../src-images/icon-waypoints.svg');
+  background-size: 24px auto;
+}
+.otm-button-marker {
+  background-image: url('../src-images/icon-marker.svg');
+  background-size: 14px auto;
+}
+.otm-button-marker-w {
+  background-image: url('../src-images/icon-marker-w.svg');
+  background-size: 14px auto;
+}
+
+/* Search control (override) styles */
+/************************************/
+.leaflet-control-geosearch {
+  color: $control-text-color-dim;
+  width: 864px;
+  max-width: 70%;
+  padding-right: 12px;
+}
+
+/* Location Marker & Circle */
+/****************************/
+$marker-location-size: 12px;
+$marker-location-color: rgba(255,20,20,0.85);
+$marker-location-color-dim: rgba(255,20,20,0.5);
+$marker-location-color-off: rgba(255,20,20,0);
+$marker-location-color-flash: rgba(255,200,200,1);
+
+.otm-marker-location {
+  cursor: inherit;
+  width: $marker-location-size !important;
+  height: $marker-location-size !important;
+  margin-top: math.div(-$marker-location-size, 2) !important;
+  margin-left: math.div(-$marker-location-size, 2) !important;
+  border-radius: math.div($marker-location-size, 2);
+  background-color: $marker-location-color;
+	box-shadow: 0 0 0 0 $marker-location-color;
+	animation: otm-marker-location-keyframes 1s infinite;
+}
+@keyframes otm-marker-location-keyframes {
+	0% {
+		box-shadow: 0 0 0 0 $marker-location-color-dim;
+    background-color: $marker-location-color-flash;
+	}
+  10% {
+    background-color: $marker-location-color;    
+  }
+  20% {
+    background-color: $marker-location-color-flash;    
+  }
+  30% {
+    background-color: $marker-location-color;    
+  }
+	70% {
+		box-shadow: 0 0 0 $marker-location-size $marker-location-color-off;
+	}
+	100% {
+		box-shadow: 0 0 0 0 $marker-location-color-off;
+	}
+}
+.otm-marker-circle {
+  fill: #FF1414;
+  fill-opacity: 0.15;
+  stroke-width: 0.5;
+  stroke: #FF1414;
+  stroke-opacity: 0.9;
+}
+
+/* location message */
+/********************/
+.otm-message-location {
+  font-size: 14px;
+  width: auto !important;
+  padding: 0 14px;
+  pointer-events: none;
+  cursor: inherit;
+}
+.otm-message-container {
+  pointer-events: none;
+  cursor: inherit;  
+}
+.otm-message-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 -2px 14px;
+  background-color: #FF1414;
+  border-radius: 100%;  
+  animation: otm-message-spinner-animation 1s infinite ease-in-out;
+}
+@keyframes otm-message-spinner-animation {
+  0% { 
+    transform: scale(0);
+  } 
+  100% {
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+/* info dropdown */
+/*****************/
+$infodropdown-width: 164px;
+$infodropdown-padding-h: 10px;
+$infodropdown-button-size: 44px;
+
+.otm-info-dropdown {
+  position: relative;
+  background-color: $control-background-color;
+}
+.otm-info-logobutton {
+  width: $infodropdown-button-size;
+  height: $infodropdown-button-size;
+  background-image: url('../src-images/logo-otm-square.png');
+  background-size: 36px auto;
+  background-position: 5px 4px;
+  background-repeat: no-repeat;
+}
+.otm-info-logobutton-visible {
+  display: block;
+}
+.otm-info-logobutton-hidden {
+  display: none;
+}
+.otm-info-droparea {
+  width: $infodropdown-width;
+  color: $control-text-color;
+}
+.otm-info-droparea-visible {
+  display: flex;
+  flex-direction: column;
+}
+.otm-info-droparea-hidden {
+  display: none;
+}
+.otm-info-item {
+  padding: 0px $infodropdown-padding-h;
+  display: block;
+  width: $infodropdown-width - 2 * $infodropdown-padding-h !important;
+  text-align: left !important;
+  overflow: hidden;
+  outline: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid $control-separator-color !important;
+  cursor: pointer !important;
+  &:hover {
+    background-color: $control-hover-color;
+    color: $control-text-color-dim !important;
+  }
+}
+.otm-info-header {
+  padding: 0px $infodropdown-padding-h;
+  display: block;
+  width: $infodropdown-width - 2 * $infodropdown-padding-h !important;
+  text-align: left !important;
+  overflow: hidden;
+  outline: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid $control-separator-color;
+  height: 36px;
+  background-color: #FFF;
+  background-image: url('../src-images/logo-otm-full.png');
+  background-size: 136px auto;
+  background-position: ($infodropdown-padding-h - 1px) 8px;
+  background-repeat: no-repeat;
+}
+
+/* language picker */
+/*******************/
+.otm-lang-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.otm-lang-picker-button {
+  position: relative;
+  display: flex;
+  width: 44px;
+  line-height: 3;
+  overflow: hidden;
+  background-color: $control-background-color;
+  &:hover {
+    background-color: $control-hover-color;
+  }
+  &::after {
+    content: '\25BC';
+    position: absolute;
+    top: -7px;
+    right: 0;
+    padding: 0 4px 4px 4px;
+    color: #F0F0F0;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+  }
+  &:hover::after {
+    color: #707070;
+  }
+}
+.otm-lang-picker-dropdown {
+  background-color: $control-background-color;
+  width: 44px;
+  border-radius: 0 0 2px 2px;
+  display: none;
+}
+.otm-lang-picker-dropdown.dropped {
+  display: flex;
+  flex-direction: column;
+}
+.otm-lang-picker-item {
+  border-top: 1px solid $control-separator-color;
+  display: flex;
+  line-height: 0;
+  justify-content: center;
+  &:hover {
+    background-color: $control-hover-color;
+  }
+}
+.otm-lang-picker img {
+  width: 18px;
+  height: 12px;
+  margin: 6px;
+  box-shadow: 0px 0px 4px 2px $control-separator-color;
+}
+
+/* elevation control */
+/*********************/
+.otm-theme.elevation-control.elevation .area {
+  fill: rgba(255, 16, 16, 0.85);
+  stroke: rgba(128, 128, 128, 0.85);
+  stroke-width: 1;
+}
+
+.otm-theme.height-focus.circle-lower {
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.otm-theme.elevation-polyline {
+  stroke: #FF1010;
+  stroke-opacity: 1;
+  stroke-width: 1;
+}
+
+.otm-theme.elevation-polyline-segments {
+  stroke: #FF1010;
+  stroke-width: 1;
+  stroke-dasharray: 4;
+}
+
+.elevation-control.elevation {
+  margin-left: 52px;
+  margin-right: 14px;
+}
+.elevation-control.elevation .background {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.elevation-control.elevation.elevation-expanded .elevation-toggle-icon.close-button {
+  box-shadow: none;
+}
+.elevation-control.elevation .elevation-toggle-icon {
+  background-color: #fff !important;
+  background: url('../src-images/icon-elevation.svg') no-repeat center center;
+  background-size: 24px auto;
+  border-radius: 2px;
+  width: 30px;
+  height: 30px;
+}
