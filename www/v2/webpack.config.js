@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
   const isEnvProduction = argv.mode === 'production';
   
   // our environment
-  EnvTestThomasWorbs = true;
+  EnvTestThomasWorbs = false;
   EnvBrowserPath = isEnvDevelopment ? 'http://localhost:9000/' : 
     (EnvTestThomasWorbs ? 'https://www.mountainpanoramas.com/____otm-test/' : 'https://opentopomap.org/');
   EnvDomain = EnvTestThomasWorbs ? 'www.mountainpanoramas.com' : 'opentopomap.org';

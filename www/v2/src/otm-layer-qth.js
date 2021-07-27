@@ -8,6 +8,8 @@
 //
 // V 2.00 - 11.01.2021 - Thomas Worbs
 //          Created
+//          08.07.2021 - Thomas Worbs
+//          Extended to 8 letter maidenhead coding
 //
 ////////////////////////////////////////////////////////
 
@@ -35,11 +37,13 @@ function otm_init_qth_factory() {
         longitude: 
         [{ start: 1, end: 4, interval: 20 },
           { start: 5, end: 9, interval: 2 },
-          { start: 10, end: 20, interval: 2 / 24 }],
+          { start: 10, end: 13, interval: 2 / 24 },
+          { start: 14, end: 20, interval: 2 / 240 }],
         latitude: 
         [{ start: 1, end: 4, interval: 10 },
             { start: 5, end: 9, interval: 1 },
-            { start: 10, end: 20, interval: 1 / 24 }]
+            { start: 10, end: 13, interval: 1 / 24 },
+            { start: 14, end: 20, interval: 1 / 240 }]
           }
         },
         
@@ -208,7 +212,11 @@ function otm_init_qth_factory() {
         // =====================================
         _latToString: function (lat) {
           
-          lat = Math.round(lat * 100) / 100;
+          if (this._currLatInterval > 0.04) {
+            lat = Math.round(lat * 100) / 100;
+          } else {
+            lat = Math.round(lat * 1000) / 1000;
+          }
           if (lat < 0) {
             return (lat * -1) + ' S';
           } else if (lat > 0) {
@@ -227,7 +235,11 @@ function otm_init_qth_factory() {
           while (lng < -180) {
             lng += 360;
           }
-          lng = Math.round(lng * 100) / 100;
+          if (this._currLatInterval > 0.04) {
+            lng = Math.round(lng * 100) / 100;
+          } else {
+            lng = Math.round(lng * 1000) / 1000;
+          }
           if (lng > 0 && lng < 180) {
             return lng + ' E';
           } else if (lng < 0 && lng > -180) {
@@ -312,8 +324,10 @@ function otm_init_qth_factory() {
               maidenPrecision = 2;
             } else if (latInterval >= 0.9) {
               maidenPrecision = 4;
-            } else {
+            } else if (latInterval >= 0.04) {
               maidenPrecision = 6;
+            } else {
+              maidenPrecision = 8;
             }
             
             // pixel size of map canvas
@@ -371,11 +385,11 @@ function otm_init_qth_factory() {
             // render lng with graticule labels and qth labels
             if (lngInterval > 0) {
               for (var i = lngInterval; i <= _lon_r; i += lngInterval) {
-                if (i >= _lon_l) {
+                if (i >= _lon_l - lngInterval) {
                   _render_lng(this, i);
                 }
               }
-              for (var i = 0; i >= _lon_l; i -= lngInterval) {
+              for (var i = 0; i >= _lon_l - lngInterval; i -= lngInterval) {
                 if (i <= _lon_r) {
                   _render_lng(this, i);
                 }
@@ -487,7 +501,7 @@ function otm_init_qth_factory() {
               // draw the qth labels
               if (latInterval > 0) {
                 for (var j = latInterval; j <= _lat_t; j += latInterval) {
-                  if (j >= _lat_b) {
+                  if (j >= _lat_b - latInterval) {
                     _render_qth_string(self, j, lng_tick);
                   }
                 }
