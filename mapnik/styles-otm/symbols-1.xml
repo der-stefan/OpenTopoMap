@@ -2,13 +2,13 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom15;
-		<Filter>[historic] = 'castle'</Filter>
+		<Filter>([historic] = 'castle') and ([ruins] != 'yes')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle_z13.png" transform="translate(0 -3)"/>
 	</Rule>
 	<Rule>
 		&maxscale_zoom16;
 		&minscale_zoom17;
-		<Filter>[historic] = 'castle'</Filter>
+		<Filter>([historic] = 'castle') and ([ruins] != 'yes')</Filter>
 		<MarkersSymbolizer placement="point" file="symbols-otm/castle.png" transform="translate(0 -3)"/>
 		<TextSymbolizer fontset-name="sans-oblique" size="10" fill="black" halo-radius="2" halo-fill="rgba(255,255,255,0.9)" placement="point" dy="6" wrap-width="100" wrap-before="true">[name]</TextSymbolizer>
 	</Rule>
