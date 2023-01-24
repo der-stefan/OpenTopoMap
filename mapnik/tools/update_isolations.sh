@@ -63,6 +63,15 @@ if [ "$column" != " otm_isolation" ] ; then
  exit 1
 fi
 
+column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
+         WHERE attrelid = ( SELECT oid FROM pg_class WHERE relname = 'planet_osm_polygon' ) \
+         AND attname = 'otm_isolation';"`
+
+if [ "$column" != " otm_isolation" ] ; then
+ echo "Sorry, no column otm_isolation in planet_osm_polygon"
+ exit 1
+fi
+
 
 ########## Update ###########
 #
