@@ -54,11 +54,6 @@ fi
 # Check once again. If the column doesn't exist -> EXIT
 #
 
-
-#
-# Check once again. If the column doesn't exist -> EXIT
-#
-
 column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
          WHERE attrelid = ( SELECT oid FROM pg_class WHERE relname = 'planet_osm_point' ) \
          AND attname = 'otm_isolation';"`
