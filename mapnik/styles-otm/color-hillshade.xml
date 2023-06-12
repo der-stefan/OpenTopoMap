@@ -1,29 +1,14 @@
 <!-- Hillshaded maps, from zoom 1 to 9 merged with colored one, for zoom 10 and more, hillshades only -->
-<Style name="hillshade_d2">
+
+<Style name="hillshade">
 	<Rule>
 		&maxscale_zoom9;
-		&minscale_zoom14;
-		<RasterSymbolizer opacity="0.7" scaling="bilinear" />
-	</Rule>
-</Style>
-<Layer name="hillshade_d2">
-	<StyleName>hillshade_d2</StyleName>
-	<Datasource>
-		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">mapnik-data/hillshade/hillshade_d2.tif</Parameter>
-		<Parameter name="format">tiff</Parameter>
-	</Datasource>
-</Layer>
-
-<Style name="hillshade_full">
-	<Rule>
-		&maxscale_zoom15;
 		&minscale_zoom17;
-		<RasterSymbolizer opacity="0.7" scaling="bilinear" />
+		<RasterSymbolizer opacity="0.8" scaling="bilinear" />
 	</Rule>
 </Style>
-<Layer name="hillshade_full">
-	<StyleName>hillshade_full</StyleName>
+<Layer name="hillshade">
+	<StyleName>hillshade</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
 		<Parameter name="file">mapnik-data/hillshade/hillshade.tif</Parameter>
@@ -32,49 +17,18 @@
 </Layer>
 
 <!-- Relief maps, colored by altitude (at zomm 10 and more, not shown anymore -->
-<Style name="relief-4000">
+<Style name="relief">
 	<Rule>
 		&maxscale_zoom1;
-		&minscale_zoom4;
-		<RasterSymbolizer scaling="bilinear" />
-	</Rule>
-</Style>
-<Layer name="relief-4000">
-	<StyleName>relief-4000</StyleName>
-	<Datasource>
-		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">mapnik-data/colored-hillshade/colored_hillshade-zoom-1-4.tif</Parameter>
-		<Parameter name="format">tiff</Parameter>
-	</Datasource>
-</Layer>
-<Style name="relief-1000">
-	<Rule>
-		&maxscale_zoom5;
-		&minscale_zoom7;
-		<RasterSymbolizer scaling="bilinear" />
-	</Rule>
-</Style>
-<Layer name="relief-1000">
-	<StyleName>relief-1000</StyleName>
-	<Datasource>
-		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">mapnik-data/colored-hillshade/colored_hillshade-zoom-5-7.tif</Parameter>
-		<Parameter name="format">tiff</Parameter>
-	</Datasource>
-</Layer>
-<Style name="relief-500">
-	<Rule>
-		&maxscale_zoom8;
 		&minscale_zoom8;
 		<RasterSymbolizer scaling="bilinear" />
 	</Rule>
 </Style>
-<Layer name="relief-500">
-	<StyleName>relief-500</StyleName>
+<Layer name="relief">
+	<StyleName>relief</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<Parameter name="file">mapnik-data/colored-hillshade/colored_hillshade-zoom-8-9.tif</Parameter>
+		<Parameter name="file">mapnik-data/colored-hillshade/colored_hillshade.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
 </Layer>
-
