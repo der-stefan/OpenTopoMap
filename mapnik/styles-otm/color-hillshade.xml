@@ -4,7 +4,7 @@
 	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom17;
-		<RasterSymbolizer opacity="0.8" scaling="bilinear" />
+		<RasterSymbolizer opacity="0.8" comp-op="grain-merge" scaling="bilinear" />
 	</Rule>
 </Style>
 <Layer name="hillshade">

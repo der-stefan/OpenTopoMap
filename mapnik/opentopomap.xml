@@ -6,12 +6,13 @@
 -->
 <!DOCTYPE Map
 [
-    <!ENTITY basemap-relief SYSTEM "styles-otm/color-hillshade.xml">
     <!ENTITY basemap-sea SYSTEM "styles-otm/sea-areas.xml">
 	<!ENTITY landuse-lowzoom SYSTEM "styles-otm/landuse-lowzoom.xml">
 	<!ENTITY landuse SYSTEM "styles-otm/landuse.xml">
 	<!ENTITY landuse-over-hillshade SYSTEM "styles-otm/landuse-over-hillshade.xml">
-    <!--	<!ENTITY hillshade SYSTEM "styles-otm/hillshade.xml"> -->
+	
+    	<!-- Replacing by mine with one pyramidal tiff to handle all zooms was :<!ENTITY hillshade SYSTEM "styles-otm/hillshade.xml"> becomes : -->
+    	<!ENTITY basemap-relief SYSTEM "styles-otm/color-hillshade.xml">
 	<!ENTITY basemap-sea SYSTEM "styles-otm/basemap-sea.xml">
 	<!ENTITY water-casing-lowzoom SYSTEM "styles-otm/water-casing-lowzoom.xml">
 	<!ENTITY water-fill-lowzoom SYSTEM "styles-otm/water-fill-lowzoom.xml">
@@ -168,7 +169,6 @@
 
 	<!-- layers -->
 	
-	&basemap-relief;
 	
 	<Layer name="landuse-lowzoom">
 		<StyleName>landuse-lowzoom</StyleName>
@@ -190,7 +190,7 @@
 		</Datasource>
 	</Layer>
 	
-	&hillshade;
+        &basemap-relief;
 	
 	<Layer name="landuse-over-hillshade">
 		<StyleName>landuse-over-hillshade</StyleName>
