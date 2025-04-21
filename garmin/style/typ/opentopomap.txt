@@ -1,0 +1,2808 @@
+[_id]
+	FID=53000
+	ProductCode=1
+	CodePage=1252
+[end]
+
+[_comments]
+[End]
+
+[_drawOrder]
+Type=0x4b,0
+			;background
+Type=0x10,1
+			;built-up area
+Type=0x38,2
+			;conifer forest
+Type=0x39,2
+			;broad-leaved forest
+Type=0x50,2
+			;mixed forest
+Type=0x55,3
+			;sand/beach
+Type=0x17,3
+			;meadow
+Type=0x19,3
+			;sports field
+Type=0x4e,3
+			;wine
+Type=0x4f,3
+			;scrubs
+Type=0x32,4
+			;sea
+Type=0x3c,4
+			;water
+Type=0x3d,4
+			;water
+Type=0x46,4
+			;river
+Type=0x47,4
+			;river
+Type=0x13,5
+			;building
+Type=0x1a,5
+			;cemetery
+Type=0x04,6
+			;exclusion zone
+[end]
+
+
+; large labels
+;[_point]
+;Type=0x0200
+;ExtendedLabels=Y
+;FontStyle=LargeFont
+;DayXpm="1 1 2 1"
+;" 	c None"
+;"! c #000000"
+;" "
+;[end]
+
+; normal labels
+;[_point]
+;Type=0x0300
+;ExtendedLabels=Y
+;FontStyle=NormalFont
+;DayXpm="8 8 6 1"
+;" 	c None"
+;".	c #000000"
+;"+	c #007700"
+;"@	c #00A400"
+;"#	c #00D200"
+;"$	c #FFFFFF"
+;"   $$   "
+;"  $..$  "
+;" $.#@.$ "
+;"$.##@+.$"
+;"$.@@@+.$"
+;" $.++.$ "
+;"  $..$  "
+;"   $$   "
+;[end]
+
+; small labels
+;[_point]
+;Type=0x0400
+;ExtendedLabels=Y
+;FontStyle=SmallFont
+;DayXpm="6 6 5 1"
+;" 	c None"
+;".	c #000000"
+;"+	c #00A400"
+;"@	c #00D200"
+;"#	c #FFFFFF"
+;"  ##  "
+;" #..# "
+;"#.@@.#"
+;"#.@+.#"
+;" #..# "
+;"  ##  "
+;[end]
+
+
+[_point]
+Type=0x2a00
+String=0x02,Restaurant
+String=0x04,restaurant
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a01
+String=0x02,Restaurant (amerikanisch)
+String=0x04,restaurant (american)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a02
+String=0x02,Restaurant (asiatisch)
+String=0x04,restaurant (asian)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a03
+String=0x02,Restaurant (Grill)
+String=0x04,restaurant (barbecue)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a04
+String=0x02,Restaurant (chinesisch)
+String=0x04,restaurant (chinese)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a05
+String=0x02,Restaurant (indisch)
+String=0x04,restaurant (indian)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a06
+String=0x02,Restaurant (international)
+String=0x04,restaurant (international)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a07
+String=0x02,Fast food
+String=0x04,fast food
+DayXpm="16 15 10 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #001BDB"
+"#	c #EBB500"
+"$	c #142DDD"
+"%	c #263DE0"
+"&	c #485BE5"
+"*	c #C73700"
+"=	c #8894EE"
+"             .+."
+"             .+."
+"            . +."
+"        .....+. "
+"       .@@@@@@@."
+"       .@@@@@@@."
+"  .... .@@@@@@@."
+" .####..$@@@@@$."
+".######.%@@@@@%."
+" ...... &@@@@@&."
+".******.=@@@@@=."
+" ...... .@@@@@. "
+".######..@@@@@. "
+" .####. .@@@@@. "
+"  ....   .....  "
+[end]
+
+[_point]
+Type=0x2a08
+String=0x02,Restaurant (italienisch)
+String=0x04,restaurant (italian)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a09
+String=0x02,Restaurant (mexikanisch)
+String=0x04,restaurant (mexican)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a0a
+String=0x02,Pizzeria
+String=0x04,restaurant (pizza)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a0b
+String=0x02,Restaurant (Fisch)
+String=0x04,restaurant (sea food)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a0c
+String=0x02,Steakhaus
+String=0x04,restaurant (steaks)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a0d
+String=0x02,Bäckerei
+String=0x04,bakery
+DayXpm="14 11 17 1"
+" 	c None"
+".	c #B0590F"
+"+	c #B15F06"
+"@	c #B26014"
+"#	c #B5691B"
+"$	c #B86C1E"
+"%	c #B86F29"
+"&	c #C17A36"
+"*	c #C8833D"
+"=	c #CD8E4E"
+"-	c #D09459"
+";	c #D7A270"
+">	c #DEB387"
+",	c #E9C7A7"
+"'	c #EDD5BE"
+")	c #F4E9DC"
+"!	c #FFFFFF"
+"   !!!  !!!   "
+"  !=%#!!%$=!  "
+" !+@&;@@=-@+! "
+"!*@&!!..'!,.%!"
+"!@.>!>+@&!!.+!"
+"!@+@#.='.@#++!"
+"!*@+&)!!!>@+%!"
+" !++@&>>-.++! "
+"  !++@@+@++!  "
+"   !!%@@%!!   "
+"     !!!!     "
+[end]
+
+[_point]
+Type=0x2a0e
+String=0x02,Café
+String=0x04,cafe
+DayXpm="11 10 3 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #a04000"
+"  .......  "
+" .+++++++. "
+" .++++++.+."
+" .++++++.+."
+" .+++++++. "
+" .++++++.  "
+" ..++++..  "
+".+......+. "
+" .++++++.  "
+"  ......   "
+[end]
+
+[_point]
+Type=0x2a0f
+String=0x02,Restaurant (französisch)
+String=0x04,restaurant (french)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a10
+String=0x02,Restaurant (deutsch)
+String=0x04,restaurant (german)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a11
+String=0x02,Restaurant (britisch)
+String=0x04,restaurant (british)
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a12
+String=0x02,Restaurant (Spezialitäten)
+String=0x04,restaurant
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2a13
+String=0x02,Restaurant
+String=0x04,restaurant
+DayXpm="8 13 17 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #D9A45F"
+"@	c #D5B285"
+"#	c #D3B995"
+"$	c #AC4D00"
+"%	c #D6D7D5"
+"&	c #DC9C48"
+"*	c #D7AB73"
+"=	c #A04000"
+"-	c #CDC9BF"
+";	c #DF9029"
+">	c #D67F0E"
+",	c #C26000"
+"'	c #CBCCC8"
+")	c #CC6A00"
+"!	c #CEC5B6"
+" ... .. "
+".+@+.#$%"
+".&*&.+=-"
+".&&;.+=-"
+".>==.+=-"
+".%$@.+=-"
+" .,'.+=-"
+" .,-.*=-"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+" .,' .)!"
+"  .   . "
+[end]
+
+[_point]
+Type=0x2b02
+String=0x02,Hütte/Hostel
+String=0x04,hut/hostel
+DayXpm="9 9 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #1F1F1F"
+"#	c #3F3F3F"
+"    .    "
+"   .+.   "
+"  .+.+.  "
+" .+...+. "
+".@#...#@."
+" .+...+. "
+" .+...+. "
+" .+++++. "
+" ....... "
+[end]
+
+
+[_point]
+Type=0x2b05
+String=0x02,Campingplatz
+String=0x04,camping
+DayXpm="16 16 11 1"
+" 	c None"
+".	c #025301"
+"+	c #244C14"
+"@	c #146C0C"
+"#	c #3C6639"
+"$	c #038A03"
+"%	c #368328"
+"&	c #00A200"
+"*	c #568441"
+"=	c #00C000"
+"-	c #FEFFFC"
+"          -     "
+"         -*-    "
+"      -- -*-    "
+"     -##-*%*-   "
+"     -@@*%&@-   "
+"     -#$&&=$*-  "
+"    -#+@====@-  "
+"    -+++&===&%- "
+"   -#$@@.&===@- "
+"   -@$@&.$===&%-"
+"   -#$@$@$====$*"
+"  -#$&@$$.&==&@-"
+" -%@$=@$=.$=&@- "
+"-*@&=&@$&$@$@-  "
+"-#.@.@+.@@+.-   "
+" -----------    "
+[end]
+
+
+[_point]
+Type=0x2b06
+String=0x02,Schutzhütte
+String=0x04,shelter
+DayXpm="9 8 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #1F1F1F"
+"#	c #3F3F3F"
+"    .    "
+"   .+.   "
+"  .+.+.  "
+" .+...+. "
+".@#...#@."
+" .+...+. "
+" .+...+. "
+"  .   .  "
+[end]
+
+[_point]
+Type=0x2b07
+String=0x02,Hütte
+String=0x04,hut
+DayXpm="9 9 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #1F1F1F"
+"#	c #3F3F3F"
+"    .    "
+"   .+.   "
+"  .+.+.  "
+" .+...+. "
+".@#...#@."
+" .+...+. "
+" .+...+. "
+" .+++++. "
+" ....... "
+[end]
+
+
+[_point]
+Type=0x2c02
+String=0x02,Denkmal
+String=0x04,memorial
+DayXpm="9 10 36 1"
+" 	c None"
+".	c #EAEAEA"
+"+	c #FFFFFF"
+"@	c #848484"
+"#	c #616161"
+"$	c #2B2B2B"
+"%	c #DCDCDC"
+"&	c #A3A3A3"
+"*	c #ACACAC"
+"=	c #7C7C7C"
+"-	c #F3F3F3"
+";	c #969696"
+">	c #B6B6B6"
+",	c #282828"
+"'	c #424242"
+")	c #E8E8E8"
+"!	c #101010"
+"~	c #747474"
+"{	c #565656"
+"]	c #E7E7E7"
+"^	c #8D8D8D"
+"/	c #B7B7B7"
+"(	c #2E2E2E"
+"_	c #1E1E1E"
+":	c #111111"
+"<	c #E3E3E3"
+"[	c #606060"
+"}	c #000000"
+"|	c #636363"
+"1	c #434343"
+"2	c #DADADA"
+"3	c #CDCDCD"
+"4	c #CBCBCB"
+"5	c #C7C7C7"
+"6	c #CACACA"
+"7	c #CFCFCF"
+"    .    "
+"  +@#$+  "
+"  %&+*=+ "
+"  -;+>,+ "
+"   ')!+  "
+"  +~){+  "
+"  ]^+/(+ "
+" +_+++:. "
+"<[}|1|}}2"
+"-3455567-"
+[end]
+
+
+[_point]
+Type=0x2c0b
+String=0x02,Kirche
+String=0x04,church
+DayXpm="9 20 4 1"
+" 	c none"
+"#	c #000000"
+"+	c #707C7C"
+".	c #FFFFFF"
+"         "
+"    .    "
+"   .#.   "
+"  ..#..  "
+" .#####. "
+"  ..#..  "
+"   .#.   "
+"  .#+#.  "
+" .#...#. "
+".#.....#."
+".#.....#."
+".#.....#."
+" .#...#. "
+"  .###.  "
+"   ...   "
+"         "
+"         "
+"         "
+"         "
+"         "
+[end]
+
+[_point]
+Type=0x2c0d
+String=0x02,Schloss
+String=0x04,castle
+DayXpm="8 16 5 1"
+" 	c none"
+"#	c #000000"
+"+	c #6B6D6C"
+"@	c #9FA6A5"
+".	c #FFFFFF"
+"  ...   "
+"  .#+@. "
+"  .###+."
+"  .#+@. "
+"  .#.   "
+"  .#.   "
+"...#... "
+".#####. "
+".#####. "
+".#####. "
+".#####. "
+"....... "
+"        "
+"        "
+"        "
+"        "
+[end]
+
+[_point]
+Type=0x2d02
+String=0x02,Kneipe
+String=0x04,pub
+DayXpm="13 13 11 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #4D4D4D"
+"@	c #000000"
+"#	c #AFAFAF"
+"$	c #616161"
+"%	c #FDC641"
+"&	c #C3C3C3"
+"*	c #4C3C14"
+"=	c #503F15"
+"-	c #AEAEAE"
+"     ..      "
+"   ..++.     "
+"  .++..+.    "
+" .+.....+..  "
+".+..+..+@@@. "
+".+++.++.@#$@."
+" .@%%%%%@.&@."
+" .@%*%*%@.&@."
+" .@%*%*%@#$@."
+" .@%*%*%@@@. "
+" .@*%%%*@..  "
+"  .@@=@@.    "
+"   .---.     "
+[end]
+
+[_point]
+Type=0x2d09
+String=0x02,Badestelle
+String=0x04,swimming
+DayXpm="11 6 5 1"
+" 	c none"
+".	c #FFFFFF"
+"+	c #727272"
+"@	c #8D8D8D"
+"#	c #000000"
+" ..     .. "
+".+@.   .@+."
+" .#.....#. "
+" .@#####@. "
+"  .#####.  "
+"   .....   "
+[end]
+
+[_point]
+Type=0x2e02
+String=0x02,Supermarkt
+String=0x04,supermarket
+DayXpm="16 16 18 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #F8F048"
+"#	c #F8F848"
+"$	c #F8F040"
+"%	c #F8E830"
+"&	c #F8E028"
+"*	c #F8E020"
+"=	c #F8D820"
+"-	c #F8D818"
+";	c #F8F850"
+">	c #F8F038"
+",	c #F8E838"
+"'	c #F8D810"
+")	c #F8D010"
+"!	c #F8E018"
+"~	c #F8D008"
+"  ............  "
+" .++++++++++++. "
+".+@#$$%%&*==--+."
+".+#;#$>%&**++-+."
+".+##@$,%&*=+--+."
+".+$+++++++++-'+."
+".+>+,+%+&+-+--+."
+".+%+%+&+*+=+-'+."
+".+&+&+*+*+-+-)+."
+".+&&++++++++')+."
+".+***=*=---+)'+."
+".+=++++++++++)+."
+".+!++-----)++~+."
+".+------')'))~+."
+" .++++++++++++. "
+"  ............  "
+[end]
+
+[_point]
+Type=0x2e05
+String=0x02,Apotheke
+String=0x04,pharmacy
+DayXpm="11 12 38 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #EB6874"
+"@	c #EF848E"
+"#	c #E95462"
+"$	c #DF0B1F"
+"%	c #DF091D"
+"&	c #E42F40"
+"*	c #EC6A77"
+"=	c #E01427"
+"-	c #EB6470"
+";	c #E63B4B"
+">	c #E53647"
+",	c #EA5B68"
+"'	c #EA5E6B"
+")	c #F8CCD1"
+"!	c #F7C7CC"
+"~	c #E84D5C"
+"{	c #E1192C"
+"]	c #E01225"
+"^	c #F9D4D8"
+"/	c #EB626F"
+"(	c #E00D21"
+"_	c #E74A58"
+":	c #E53748"
+"<	c #E53344"
+"[	c #E8505F"
+"}	c #E32436"
+"|	c #E11A2D"
+"1	c #E32839"
+"2	c #E21E30"
+"3	c #F1969E"
+"4	c #F29DA5"
+"5	c #E00F22"
+"6	c #DF0C20"
+"7	c #F8CBCF"
+"8	c #F08C96"
+"9	c #EF818B"
+"     ..    "
+"   ..+@.   "
+"  .#$%%&.  "
+"  .%%*=%-. "
+"  .;>.,%-. "
+" .')!~{%-. "
+" .]^/(%%-. "
+" ._:<[}%/. "
+" .|12.,%(3."
+".=%%;.4567."
+" .89. ..3. "
+"  ..    .  "
+[end]
+
+[_point]
+Type=0x2e06
+String=0x02,Kiosk
+String=0x04,convenience
+String=0x04,
+DayXpm="16 16 18 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #F8F048"
+"#	c #F8F848"
+"$	c #F8F040"
+"%	c #F8E830"
+"&	c #F8E028"
+"*	c #F8E020"
+"=	c #F8D820"
+"-	c #F8D818"
+";	c #F8F850"
+">	c #F8F038"
+",	c #F8E838"
+"'	c #F8D810"
+")	c #F8D010"
+"!	c #F8E018"
+"~	c #F8D008"
+"  ............  "
+" .++++++++++++. "
+".+@#$$%%&*==--+."
+".+#;#$>%&**++-+."
+".+##@$,%&*=+--+."
+".+$+++++++++-'+."
+".+>+,+%+&+-+--+."
+".+%+%+&+*+=+-'+."
+".+&+&+*+*+-+-)+."
+".+&&++++++++')+."
+".+***=*=---+)'+."
+".+=++++++++++)+."
+".+!++-----)++~+."
+".+------')'))~+."
+" .++++++++++++. "
+"  ............  "
+[end]
+
+
+[_point]
+Type=0x2f06
+String=0x02,Bank
+String=0x04,bank
+DayXpm="9 11 17 1"
+" 	c None"
+".	c #000000"
+"+	c #0F110D"
+"@	c #181917"
+"#	c #222421"
+"$	c #30312F"
+"%	c #656764"
+"&	c #979996"
+"*	c #A0A29F"
+"=	c #A8AAA7"
+"-	c #B1B3AF"
+";	c #B9BBB8"
+">	c #BABCB9"
+",	c #D8DAD6"
+"'	c #EEF0ED"
+")	c #F8FAF7"
+"!	c #FFFFFF"
+"   !!!!! "
+"  !=#.@&!"
+" !=@;),%!"
+" )$-!!!! "
+"!@....#) "
+" '+'!!!  "
+"!@...#)  "
+" )$-!!!! "
+" !=@>),%!"
+"  !*#.@& "
+"   !!!!  "
+[end]
+
+[_point]
+Type=0x2f0b
+String=0x02,Parkplatz
+String=0x04,parking
+DayXpm="11 11 8 1"
+" 	c none"
+"#	c #1600FF"
+"+	c #1824F7"
+"'	c #464DFF"
+",	c #BABAFF"
+"o	c #BEC5F5"
+"^	c #EEF3F6"
+".	c #FEFFFC"
+" ......... "
+".#########."
+".##....,+#."
+".##..#'.o#."
+".##..##.^#."
+".##..#'.o#."
+".##....,+#."
+".##..#####."
+".##..#####."
+".#########."
+" ......... "
+[end]
+
+[_point]
+Type=0x2f0c
+String=0x02,Toilette
+String=0x04,restroom
+DayXpm="16 16 32 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #4060F0"
+"#	c #4060F8"
+"$	c #4058F0"
+"%	c #3858F0"
+"&	c #3048E8"
+"*	c #3040E0"
+"=	c #2038D8"
+"-	c #2838D0"
+";	c #2030D0"
+">	c #1828D0"
+",	c #1820C8"
+"'	c #4860F8"
+")	c #4868F8"
+"!	c #F8F8F8"
+"~	c #3850E8"
+"{	c #2838D8"
+"]	c #2028C8"
+"^	c #1828C8"
+"/	c #3848E8"
+"(	c #2840D8"
+"_	c #2830D0"
+":	c #3048E0"
+"<	c #1020C0"
+"[	c #2030D8"
+"}	c #2028D0"
+"|	c #1018C0"
+"1	c #1020C8"
+"2	c #1820C0"
+"3	c #0810B8"
+"  ............  "
+" .++++++++++++. "
+".+@#$%&*=-;;>,+."
+".+')!!~*{;!!]^+."
+".+#'!!/({=!!>,+."
+".+$$%~&*=_;;^,+."
+".+!!!!!!{!!!!^+."
+".+!:!!{!!;!!,!+."
+".+!{!!{!;;!!^<+."
+".+!{!![!;!!!!,+."
+".+;;!!;;!!!!!!+."
+".+;}!!}^^,!!<|+."
+".+}^!!^^,<!!||+."
+".+^^,^,,12|||3+."
+" .++++++++++++. "
+"  ............  "
+[end]
+
+[_point]
+Type=0x2f12
+String=0x02,Telefon
+String=0x04,phone
+DayXpm="7 11 15 1",
+" 	c none"
+".	c #000000"
+"+	c #010101"
+"@	c #020202"
+"#	c #060606"
+"$	c #0B0B0B"
+"%	c #353535"
+"&	c #3C3C3C"
+"*	c #606060"
+"=	c #727272"
+"-	c #A7A7A7"
+";	c #A9A9A9"
+">	c #B3B3B3"
+",	c #CDCDCD"
+"'	c #FFFFFF"
+" '''   "
+"'=@%'  "
+"';.+&' "
+"'>@*@-'"
+" ','#;'"
+"   '$-'"
+" ','#;'"
+"'>@*@-'"
+"';.+&' "
+"'=+%'  "
+" '''   "
+[end]
+
+
+[_point]
+Type=0x2f15
+String=0x02,Recycling
+String=0x04,recycling
+DayXpm="12 12 36 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #2ABF2A"
+"@	c #49C849"
+"#	c #00B200"
+"$	c #04B304"
+"%	c #9AE19A"
+"&	c #25BD25"
+"*	c #37C337"
+"=	c #4DC94D"
+"-	c #12B712"
+";	c #26BD26"
+">	c #B2E8B2"
+",	c #30C030"
+"'	c #99E099"
+")	c #57CC57"
+"!	c #73D573"
+"~	c #67D167"
+"{	c #56CC56"
+"]	c #13B813"
+"^	c #5ACD5A"
+"/	c #B1E7B1"
+"(	c #15B815"
+"_	c #7DD87D"
+":	c #11B711"
+"<	c #E7F7E7"
+"[	c #F0FAF0"
+"}	c #46C746"
+"|	c #65D065"
+"1	c #4CC94C"
+"2	c #0AB50A"
+"3	c #CDF0CD"
+"4	c #05B405"
+"5	c #8ADB8A"
+"6	c #7FD87F"
+"7	c #A8E5A8"
+"    .....   "
+"   .+@#$%.  "
+"  .&#*=#-.  "
+"  .;#.>#,.  "
+" .'.. ...). "
+".!#,.  .~#{."
+".]#^.  ./#(."
+"._:....<[}{."
+" .|##1.##2. "
+" .34#15##6. "
+"  .....75.  "
+"       ..   "
+[end]
+
+
+[_point]
+Type=0x2f17
+String=0x02,Bushaltestelle
+String=0x04,bus stop
+DayXpm="9 9 11 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #E0F3E4"
+"@	c #ACDFB7"
+"#	c #18A736"
+"$	c #09A125"
+"%	c #25AB27"
+"&	c #AADB30"
+"*	c #FBF836"
+"=	c #45B629"
+"-	c #049F24"
+"  ..+..  "
+" .@#$#@. "
+".@%&*&=@."
+".#*-*-*#."
+"+$*---*$+"
+".#*-*-*#."
+".@=&*&=@."
+" .@#$#@. "
+"  ..+..  "
+[end]
+
+[_point]
+Type=0x4c00
+String=0x02,Information
+String=0x04,information
+DayXpm="8 12 5 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #4842D7"
+"@	c #8C88E5"
+"#	c #615BDC"
+"   ..   "
+"  .++.  "
+"  .++.  "
+"  ...   "
+" .@#+.  "
+".++++.  "
+" ..++.  "
+"  .++.  "
+"  .++.  "
+" .@++@. "
+".++++++."
+" ...... "
+[end]
+
+[_point]
+Type=0x3002
+String=0x02,Arzt/Krankenhaus
+String=0x04,doctor/hospital
+DayXpm="10 10 3 1"
+"  c none"
+"1 c #f0ffff"
+"2 c #df091d"
+"   1111   "
+"   1221   "
+"   1221   "
+"1111221111"
+"1222222221"
+"1222222221"
+"1111221111"
+"   1221   "
+"   1221   "
+"   1111   "
+[end]
+
+
+[_point]
+Type=0x6411
+String=0x02,Turm
+String=0x04,tower
+DayXpm="9 18 14 1"
+"  c none"
+"1 c #f0f8f8"
+"2 c #f7f7f7"
+"3 c #101818"
+"4 c #111111"
+"5 c #e0efef"
+"6 c #141414"
+"7 c #f0f0f0"
+"8 c #1c1c1c"
+"9 c #707c7c"
+": c #202020"
+"; c #f0fbfb"
+"< c #ffffff"
+"= c #101919"
+"         "
+"    1    "
+"   232   "
+"   242   "
+"   242   "
+"   242   "
+"   565   "
+"  78987  "
+" 7:7;7:7 "
+"235<<<532"
+"242<<<242"
+"235<<<532"
+" 7:525:7 "
+"  7=4=7  "
+"   222   "
+"         "
+"         "
+"         "
+[end]
+
+[_point]
+Type=0x6412
+String=0x02,Wasserturm
+String=0x04,water tower
+DayXpm="9 18 15 1"
+"  c none"
+"1 c #f0f8f8"
+"2 c #f7f7f7"
+"3 c #101818"
+"4 c #111111"
+"5 c #e0efef"
+"6 c #141414"
+"7 c #f0f0f0"
+"8 c #1c1c1c"
+"9 c #707c7c"
+": c #202020"
+"; c #f0fbfb"
+"< c #ffffff"
+"= c #3006f0"
+"> c #191919"
+"         "
+"    1    "
+"   232   "
+"   242   "
+"   242   "
+"   242   "
+"   565   "
+"  78987  "
+" 7:7;7:7 "
+"235<<<532"
+"24=====42"
+"23=====32"
+" 7:===:7 "
+"  7>4>7  "
+"   222   "
+"         "
+"         "
+"         "
+[end]
+
+
+[_point]
+Type=0x6413
+String=2,Windkraftanlage
+String=0x04,wind turbine
+DayXpm="15 26 44 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #E5E5E5"
+"@	c #FAFAFA"
+"#	c #0D0D0D"
+"$	c #F8F8F8"
+"%	c #FBFBFB"
+"&	c #090909"
+"*	c #C0C0C0"
+"=	c #FCFCFC"
+"-	c #989898"
+";	c #F7F7F7"
+">	c #EBEBEB"
+",	c #0B0B0B"
+"'	c #131313"
+")	c #FDFDFD"
+"!	c #292929"
+"~	c #2E2E2E"
+"{	c #666666"
+"]	c #3F3F3F"
+"^	c #030303"
+"/	c #000000"
+"(	c #686868"
+"_	c #9C9C9C"
+":	c #E1E1E1"
+"<	c #A8A8A8"
+"[	c #020202"
+"}	c #282828"
+"|	c #C8C8C8"
+"1	c #878787"
+"2	c #575757"
+"3	c #383838"
+"4	c #2F2F2F"
+"5	c #2A2A2A"
+"6	c #E6E6E6"
+"7	c #060606"
+"8	c #181818"
+"9	c #7D7D7D"
+"0	c #7C7C7C"
+"a	c #040404"
+"b	c #262626"
+"c	c #313131"
+"d	c #232323"
+"e	c #222222"
+"   ..          "
+"   .+.         "
+"   @#$         "
+"   %&*=        "
+"    -&%        "
+"    ;&>.       "
+"    @,';.      "
+"    )-!~%...   "
+"    .{%]^/(_:. "
+"    <[}}|12345."
+"   6/789...... "
+"  ./^.}0.      "
+" ./a..b0       "
+".c7. .b0       "
+" ..  .b0       "
+"     .b0       "
+"     .d0       "
+"     .e0       "
+"    .///0      "
+"    .....      "
+"               "
+"               "
+"               "
+"               "
+"               "
+"               "
+[end]
+
+
+[_point]
+Type=0x6414
+String=0x02,Trinkwasser
+String=0x04,drinking water
+DayXpm="13 14 16 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #D0D0A0"
+"#	c #E8E8A8"
+"$	c #F8F8B0"
+"%	c #D8D8A0"
+"&	c #C8C898"
+"*	c #B0B090"
+"=	c #A0A088"
+"-	c #888880"
+";	c #C8C8A0"
+">	c #E0E0A8"
+",	c #00F8F8"
+"'	c #0080F8"
+")	c #0000F8"
+"   ....      "
+"  .++++.     "
+"  ..++...... "
+" .++++++++++."
+".+@#$$%&*=-+."
+".+;%>>++++++."
+".++++++..... "
+" ..+...      "
+"  .+.        "
+" .+,+.       "
+".+'')+.      "
+".+)))+.      "
+" .+++.       "
+"  ...        "
+[end]
+
+[_point]
+Type=0x6415
+String=0x02,Mühle
+String=0x04,mill
+DayXpm="11 11 25 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #B7B7B7"
+"@	c #171717"
+"#	c #AFAFAF"
+"$	c #000000"
+"%	c #ADADAD"
+"&	c #A6A6A6"
+"*	c #BABABA"
+"=	c #2E2E2E"
+"-	c #1C1C1C"
+";	c #343434"
+">	c #151515"
+",	c #CACACA"
+"'	c #E9E9E9"
+")	c #8C8C8C"
+"!	c #202020"
+"~	c #313131"
+"{	c #EBEBEB"
+"]	c #161616"
+"^	c #282828"
+"/	c #7F7F7F"
+"(	c #A8A8A8"
+"_	c #FEFEFE"
+":	c #B5B5B5"
+"    ...    "
+"    +@+    "
+" ...#$#... "
+".%&*=-=*&%."
+".;$>,.,>$;."
+".')!...!)'."
+"  .~,.,~.  "
+"  {]]^]]{  "
+" ./$('($/. "
+"  _:. .:_  "
+"   .   .   "
+[end]
+
+[_point]
+Type=0x6416
+String=0x02,Laubbaum
+String=0x04,broadleaf tree
+DayXpm="9 12 13 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #A2A2A2"
+"@	c #000000"
+"#	c #959595"
+"$	c #B4B4B4"
+"%	c #666666"
+"&	c #BDBDBD"
+"*	c #949494"
+"=	c #DADADA"
+"-	c #EBEBEB"
+";	c #696969"
+">	c #585858"
+"   .+.   "
+"  .@#@$  "
+" .@...@. "
+".%..&*=@."
+".@..-;-@."
+".@...>.@."
+".@..&=@%."
+" .@..@@. "
+"  .@@@.  "
+"  ..@..  "
+"  .@@@.  "
+"  .....  "
+[end]
+
+
+[_point]
+Type=0x6417
+String=0x02,Nadelbaum
+String=0x04,pinale
+DayXpm="7 12 6 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #8D8D8D"
+"#	c #A2A2A2"
+"$	c #686868"
+"   .   "
+"  .+.  "
+" .@+@. "
+".+++++."
+" .+++. "
+"@+++++@"
+"..+++.."
+"#+++++#"
+"$..+..$"
+" ..+.. "
+" .+++. "
+" ..... "
+[end]
+
+
+[_point]
+Type=0x660f
+String=0x02,Pfosten/Barriere
+String=0x04,barrier
+DayXpm="7 7 3 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"   .   "
+"  .+.  "
+" .+++. "
+".++.++."
+" .+++. "
+"  .+.  "
+"   .   "
+[end]
+
+
+[_point]
+Type=0x6619
+String=0x02,Höhle
+String=0x04,cave
+DayXpm="8 8 24 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #F1F1F1"
+"@	c #969696"
+"#	c #949494"
+"$	c #F0F0F0"
+"%	c #000000"
+"&	c #4E4E4E"
+"*	c #161616"
+"=	c #EEEEEE"
+"-	c #989898"
+";	c #585858"
+">	c #D7D7D7"
+",	c #787878"
+"'	c #4D4D4D"
+")	c #D4D4D4"
+"!	c #575757"
+"~	c #4B4B4B"
+"{	c #A2A2A2"
+"]	c #CECECE"
+"^	c #040404"
+"/	c #EBEBEB"
+"(	c #A4A4A4"
+"_	c #6E6E6E"
+"   ..   "
+"  +@#$  "
+" .%%&*= "
+" .%-.;> "
+" .%,.') "
+"..%!.~{."
+"]^;/.(_]"
+"...  .. "
+[end]
+
+
+[_point]
+Type=0x6700
+String=0x02,Funkturm/Funkmast
+String=0x04,communications tower
+DayXpm="11 20 16 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #9A9A9A"
+"#	c #F8F8F8"
+"$	c #F7F7F7"
+"%	c #181818"
+"&	c #111111"
+"*	c #EFEFEF"
+"=	c #141414"
+"-	c #F0F0F0"
+";	c #1C1C1C"
+">	c #7C7C7C"
+",	c #202020"
+"'	c #FBFBFB"
+")	c #191919"
+"  .     .  "
+" .+.   .+. "
+".+.@.#.@.+."
+".+.+$%$+.+."
+".+.@$&$@.+."
+" .+.$&$.+. "
+"  . $&$ .  "
+"    *=*    "
+"   -;>;-   "
+"  -,-'-,-  "
+" $%*...*%$ "
+" $&$...$&$ "
+" $%*...*%$ "
+"  -,*$*,-  "
+"   -)&)-   "
+"    $$$    "
+"           "
+"           "
+"           "
+"           "
+[end]
+
+
+[_point]
+Type=0x6701
+String=0x02,Aussichtsturm
+String=0x04,observation tower
+DayXpm="19 20 34 1"
+" 	c None"
+".	c #F8F8F8"
+"+	c #F7F7F7"
+"@	c #181818"
+"#	c #111111"
+"$	c #EFEFEF"
+"%	c #141414"
+"&	c #F0F0F0"
+"*	c #1C1C1C"
+"=	c #7C7C7C"
+"-	c #202020"
+";	c #FBFBFB"
+">	c #FFFFFF"
+",	c #ACACAC"
+"'	c #C4C4C4"
+")	c #000000"
+"!	c #242424"
+"~	c #323232"
+"{	c #F1F1F1"
+"]	c #CECECE"
+"^	c #212121"
+"/	c #191919"
+"(	c #898989"
+"_	c #2C2C2C"
+":	c #747474"
+"<	c #313131"
+"[	c #9F9F9F"
+"}	c #1B1B1B"
+"|	c #909090"
+"1	c #858585"
+"2	c #5E5E5E"
+"3	c #4F4F4F"
+"4	c #D3D3D3"
+"5	c #BFBFBF"
+"                   "
+"         .         "
+"        +@+        "
+"        +#+        "
+"        +#+        "
+"        +#+        "
+"        $%$        "
+"       &*=*&       "
+"      &-&;&-&      "
+">,'>>+@$>>>$@+>>',>"
+">))))+#+>>>+#+))))>"
+">,'>>+!$>>>$@+>>',>"
+"     >+~$+$-{      "
+"    >]>+^#/{>>     "
+"   >(_> +++ >:.    "
+"  {<)>  >)> >[}|   "
+"  >12   >)>  >3)4  "
+"   >    ')'   [5>  "
+"        ,),        "
+"        >>>        "
+[end]
+
+[_point]
+Type=0x6702
+String=0x02,Funkmast
+String=0x04,communication mast
+DayXpm="11 12 8 1"
+" 	c None"
+".	c #FFFFFF"
+"+	c #000000"
+"@	c #9A9A9A"
+"#	c #F8F8F8"
+"$	c #F7F7F7"
+"%	c #181818"
+"&	c #111111"
+"  .     .  "
+" .+.   .+. "
+".+.@.#.@.+."
+".+.+$%$+.+."
+".+.@$&$@.+."
+" .+.$&$.+. "
+"  . $&$ .  "
+"    .+.    "
+"    .+.    "
+"   ..+..   "
+"   .+++.   "
+"   .....   "
+[end]
+
+
+
+
+
+[_line]
+Type=0x01
+String=0x02,Autobahn
+String=0x04,motorway
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=2
+Xpm="0 0 2 0"
+"a c #fdb548"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x02
+String=0x02,Schnellstraße
+String=0x04,trunk
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=3
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdb548"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x03
+String=0x02,Bundesstraße
+String=0x04,primary street
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdb548"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x04
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdfd4f"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x05
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #ffffff"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x06
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #ffffff"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x07
+String=2,Weg
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=2
+Xpm="0 0 1 0"
+"a c #000000"
+[end]
+
+[_line]
+Type=0x08
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdfd4f"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x09
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdb548"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x0a
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=1
+Xpm="0 0 1 0"
+"a c #000000"
+[end]
+
+[_line]
+Type=0x0b
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #fdfd4f"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x0c
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #ffffff"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x0d
+String=0x02,Fußgängerzone
+String=0x04,pedestrian zone
+ExtendedLabels=Y
+FontStyle=SmallFont
+LineWidth=1
+BorderWidth=1
+Xpm="0 0 2 0"
+"a c #a0a0a0"
+"b c #000000"
+[end]
+
+[_line]
+Type=0x13
+String=0x02,Treppe/Stufen
+String=0x04,steps
+ExtendedLabels=Y
+FontStyle=SmallFont
+Xpm="32 2 2 1"
+" c None"
+"# c #000000"
+"#  #  #  #  #  #  #  #  #  #  # "
+"#  #  #  #  #  #  #  #  #  #  # "
+[end]
+
+[_line]
+Type=0x14
+String=0x02,Gleis
+String=0x04,rail
+ExtendedLabels=Y
+FontStyle=SmallFont
+Xpm="32 3 2 1"
+". c #ffffff"
+"# c #000000"
+"################################"
+"########........########........"
+"################################"
+[end]
+
+[_line]
+Type=0x16
+String=0x02,Fußweg
+String=0x04,footway
+ExtendedLabels=Y
+FontStyle=SmallFont
+Xpm="32 1 2 1"
+"  c none"
+"# c #000000"
+"####    ####    ####    ####    "
+[end]
+
+[_line]
+Type=0x18
+String=0x02,Bach
+String=0x04,stream
+LineWidth=1
+Xpm="0 0 1 0"
+"0 c #1d4dff"
+[end]
+
+[_line]
+Type=0x1b
+String=0x02,Fähre
+String=0x04,ferry
+Xpm="32 1 2 1"
+"  c none"
+"# c #0000ff"
+"########        ########        "
+[end]
+
+[_line]
+Type=0x1c
+String=0x02,Grenze
+String=0x04,border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 1 2 1"
+"  c none"
+"# c #ff80ff"
+"##############        ##        "
+[end]
+
+[_line]
+Type=0x1d
+String=0x02,Grenze
+String=0x04,border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 1 2 1"
+"  c none"
+"# c #ff80ff"
+"##############        ##        "
+[end]
+
+[_line]
+Type=0x1e
+String=0x02,Grenze
+String=0x04,border
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 2 2 1"
+"  c none"
+"# c #ff80ff"
+"##############        ##        "
+"##############        ##        "
+[end]
+
+[_line]
+Type=0x1f
+String=0x02,Fluss
+String=0x04,river
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=Day
+DaycustomColor=#1d4dff
+LineWidth=3
+Xpm="0 0 1 0"
+"0 c #1d4dff"
+[end]
+
+[_line]
+Type=0x27
+String=0x02,Landebahn
+String=0x04,runway
+LineWidth=2
+Xpm="0 0 1 0"
+"0 c #a0a0a0"
+[end]
+
+[_line]
+Type=0x29
+String=0x02,Stromleitung
+String=0x04,power line
+UseOrientation=Y
+Xpm="32 5 2 1"
+"  c none"
+"# c #000000"
+"                #               "
+"                 #              "
+"################################"
+"                 #              "
+"                #               "
+[end]
+
+[_line]
+Type=0x2c
+String=0x02,Bahntunnel
+String=0x04,railway tunnel
+Xpm="32 3 2 1"
+"  c none"
+"# c #000000"
+"################################"
+"#      #        #      #        "
+"################################"
+[end]
+
+[_line]
+Type=0x2d
+String=0x02,Gleis
+String=0x04,rail
+LineWidth=2
+Xpm="0 0 1 0"
+"0 c #000000"
+[end]
+
+[_line]
+Type=0x2e
+String=0x02,Bahntunnel
+String=0x04,railway tunnel
+Xpm="32 2 2 1"
+"  c none"
+"# c #000000"
+"####    ####    ####    ####    "
+"####    ####    ####    ####    "
+[end]
+
+[_line]
+Type=0x31
+String=0x02,Hang
+String=0x04,cliff
+UseOrientation=Y
+Xpm="32 3 2 1"
+"  c none"
+"# c #000000"
+"  ###     ###     ###     ###   "
+"  ###     ###     ###     ###   "
+"################################"
+[end]
+
+[_line]
+Type=0x33
+String=0x02,Zaun
+String=0x04,fence
+Xpm="32 5 2 1"
+"  c none"
+"# c #000000"
+"       #                #       "
+"       #                #       "
+"################################"
+"       #                #       "
+"       #                #       "
+[end]
+
+[_line]
+Type=0x11002
+String=0x02,Waldrand
+String=0x04,edge of the forest
+Xpm="32 1 2 1"
+"  c none"
+"# c #4eb539"
+"# # # # # # # # # # # # # # # # "
+[end]
+
+
+
+
+
+
+[_polygon]
+Type=0x04
+String=0x02,Sperrgebiet
+String=0x04,exclusion zone
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 32 2 1"
+"  c none"
+"0 c #ff4040"
+"       0       0       0       0"
+"      0       0       0       0 "
+"     0       0       0       0  "
+"    0       0       0       0   "
+"   0       0       0       0    "
+"  0       0       0       0     "
+" 0       0       0       0      "
+"0       0       0       0       "
+"       0       0       0       0"
+"      0       0       0       0 "
+"     0       0       0       0  "
+"    0       0       0       0   "
+"   0       0       0       0    "
+"  0       0       0       0     "
+" 0       0       0       0      "
+"0       0       0       0       "
+"       0       0       0       0"
+"      0       0       0       0 "
+"     0       0       0       0  "
+"    0       0       0       0   "
+"   0       0       0       0    "
+"  0       0       0       0     "
+" 0       0       0       0      "
+"0       0       0       0       "
+"       0       0       0       0"
+"      0       0       0       0 "
+"     0       0       0       0  "
+"    0       0       0       0   "
+"   0       0       0       0    "
+"  0       0       0       0     "
+" 0       0       0       0      "
+"0       0       0       0       "
+[end]
+
+[_polygon]
+Type=0x10
+String=0x02,Bebauung
+String=0x02,built-up area
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="0 0 1 0"
+"a c #ebebeb"
+[end]
+
+[_polygon]
+Type=0x13
+String=0x02,Gebäude
+String=0x04,building
+Xpm="0 0 1 0"
+"a c #404040"
+[end]
+
+[_polygon]
+Type=0x17
+String=0x02,Wiese
+String=0x04,meadow
+Xpm="32 32 2 1"
+"  c none"
+"0 c #00c000"
+"                                "
+"                                "
+"                                "
+"                                "
+"          0  0            0  0  "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"  0  0            0  0          "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"          0  0            0  0  "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"  0  0            0  0          "
+"                                "
+"                                "
+"                                "
+[end]
+
+[_polygon]
+Type=0x19
+String=0x02,Sportplatz
+String=0x04,sports field
+Xpm="0 0 1 0"
+"a c #beffba"
+[end]
+
+[_polygon]
+Type=0x1a
+String=0x02,Friedhof
+String=0x04,cemetery
+Xpm="32 32 2 1"
+"  c none"
+"0 c #000000"
+"                                "
+"                                "
+"           0               0    "
+"          000             000   "
+"           0               0    "
+"           0               0    "
+"                                "
+"                                "
+"                                "
+"                                "
+"   0               0            "
+"  000             000           "
+"   0               0            "
+"   0               0            "
+"                                "
+"                                "
+"                                "
+"                                "
+"           0               0    "
+"          000             000   "
+"           0               0    "
+"           0               0    "
+"                                "
+"                                "
+"                                "
+"                                "
+"   0               0            "
+"  000             000           "
+"   0               0            "
+"   0               0            "
+"                                "
+"                                "
+[end]
+
+[_polygon]
+Type=0x38
+String=0x02,Nadelwald
+String=0x04,conifer forest
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 32 2 1"
+"0 c #77cc77"
+"1 c #c7fc65"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111110111111"
+"11111111111111111111111110111111"
+"11111111111111111111111101011111"
+"11111111111111111111111101011111"
+"11111111111111111111111101011111"
+"11111111111111111111111011001111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111101111111111111111111111"
+"11111111101111111111111111111111"
+"11111111010111111111111111111111"
+"11111111010111111111111111111111"
+"11111111010111111111111111111111"
+"11111110110011111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+[end]
+
+[_polygon]
+Type=0x39
+String=0x02,Laubwald
+String=0x04,broad-leaved forest
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 32 2 1"
+"0 c #77cc77"
+"1 c #c7fc65"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111100111111"
+"11111111111111111111111011011111"
+"11111111111111111111111011011111"
+"11111111111111111111111100001111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111110011111111111111111111111"
+"11111101101111111111111111111111"
+"11111101101111111111111111111111"
+"11111110000111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+[end]
+
+[_polygon]
+Type=0x32
+String=0x02,Meer
+String=0x04,sea
+Xpm="0 0 1 0"
+"a c #72ceff"
+[end]
+
+
+[_polygon]
+Type=0x3c
+String1=0x04,water
+String3=0x02,Gewässer
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=Day
+DaycustomColor:#1d4dff
+Xpm="0 0 1 0"
+"1 c #72ceff"
+[end]
+
+
+[_polygon]
+Type=0x3d
+String1=0x04,water
+String3=0x02,Gewässer
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="0 0 1 0"
+"1 c #72ceff"
+[end]
+
+
+[_polygon]
+Type=0x46
+String=0x02,Fluss
+String=0x04,river
+ExtendedLabels=Y
+FontStyle=SmallFont
+CustomColor=Day
+DaycustomColor:#1d4dff
+Xpm="0 0 1 0"
+"a c #72ceff"
+[end]
+
+[_polygon]
+Type=0x47
+String=0x02,Fluss
+String=0x04,river
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="0 0 1 0"
+"a c #72ceff"
+[end]
+
+[_polygon]
+Type=0x4b
+Xpm="0 0 1 0"
+"a c #ffffff"
+[end]
+
+[_polygon]
+Type=0x4e
+String=0x02,Wein
+String=0x04,wine
+Xpm="32 32 2 1"
+"  c none"
+"0 c #00c000"
+"                                "
+"                                "
+"           0               0    "
+"           0               0    "
+"           0               0    "
+"           0               0    "
+"                                "
+"                                "
+"                                "
+"                                "
+"   0               0            "
+"   0               0            "
+"   0               0            "
+"   0               0            "
+"                                "
+"                                "
+"                                "
+"                                "
+"           0               0    "
+"           0               0    "
+"           0               0    "
+"           0               0    "
+"                                "
+"                                "
+"                                "
+"                                "
+"   0               0            "
+"   0               0            "
+"   0               0            "
+"   0               0            "
+"                                "
+"                                "
+[end]
+
+[_polygon]
+Type=0x4f
+String=0x02,Busch
+String=0x04,scrubs
+Xpm="32 32 2 1"
+"  c none"
+"0 c #00c000"
+"                                "
+"                                "
+"                                "
+"                                "
+"                         00     "
+"                        0  0    "
+"                        0  0    "
+"                        00 00   "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"         00                     "
+"        0  0                    "
+"        0  0                    "
+"        00 00                   "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+[end]
+
+[_polygon]
+Type=0x50
+String=0x02,Mischwald
+String=0x04,mixed forest
+ExtendedLabels=Y
+FontStyle=NoLabel (invisible)
+Xpm="32 32 2 1"
+"0 c #77cc77"
+"1 c #c7fc65"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111001111111"
+"11111111111111111111110110111111"
+"11111111111111111111110110111111"
+"11111111111111111111111000011111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111011111111111111111111111"
+"11111111011111111111111111111111"
+"11111110101111111111111111111111"
+"11111110101111111111111111111111"
+"11111110101111111111111111111111"
+"11111101100111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+"11111111111111111111111111111111"
+[end]
+
+[_polygon]
+Type=0x55
+String=0x02,Sand/Strand
+String=0x04,sand/beach
+Xpm="32 32 2 1"
+"  c #ffffd5"
+"0 c #f5f500"
+"                                "
+"                                "
+"                                "
+"                                "
+"          0  0            0  0  "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"  0  0            0  0          "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"          0  0            0  0  "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"                                "
+"  0  0            0  0          "
+"                                "
+"                                "
+"                                "
+[end]
+
+

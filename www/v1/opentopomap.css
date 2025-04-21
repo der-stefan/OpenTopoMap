@@ -1,0 +1,79 @@
+#sslprompt {
+	position:absolute;
+	margin:2px 70px 0 40px;
+	left:5%;
+	z-index:100;
+	border: 1px solid #b3a634;
+	border-radius:3px;
+	background-color:#ffface;
+	padding:0px 2px 0px 2px;
+	font-size:12;
+	font:12px/1.5 Helvetica,Arial,Helvetica,sans-serif;
+}
+
+#sslprompt a {
+        color: #00689f;
+}
+
+#ssllink {
+	background: url(img/ssl.png) no-repeat left top;
+	padding-left: 15px;
+}
+
+#sslalways {
+	position:absolute;
+	margin:2px 70px 0 40px;
+	left:5%;
+	z-index:100;
+	border: 1px solid #b3a634;
+	border-radius:3px;
+	background-color:#ffface;
+	padding:2px;
+	font-size:12;
+}
+
+#checkbox_sslalways {
+	margin:0px;
+	vertical-align:bottom;
+}
+
+#menu {
+	position:absolute;
+	margin:2px 70px 0 40px;
+	right:0%;
+	z-index:99;
+	border: 0px solid black;
+	border-radius:3px;
+	background-color:rgba(255,255,255,0.8);
+	padding:1px 4px;
+	font-size:12;
+	font:12px/1.5 Helvetica,Arial,Helvetica,sans-serif;
+}
+
+#menu a {
+	color: #0078a8;
+}
+
+
+.language_element {
+	background-repeat: no-repeat;
+	background-position: center left;
+	text-indent: 15px;
+}
+
+.language_selected {
+	background-repeat: no-repeat;
+	background-position: center left;
+	padding-left: 15px;
+	margin-left: 5px;
+	-moz-appearance: button;
+}
+
+.locator_label {
+	width: 50px !important;
+	margin-left: -25px !important;
+	margin-top: -9px !important;
+	color: #0000ff;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	text-align: center;
+}

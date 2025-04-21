@@ -1,0 +1,18 @@
+{
+	"title": "OpenTopoMap Garmin-Karten",
+	"subtitle": "Topographische OpenStreetMap-Karten für Garmin-Geräte.",
+	"description_caption": "Beschreibung",
+	"description": "Die OpenTopoMap Garmin-Karten stellen den topographischen Kartenstil für Garmin-Geräte und Programme wie Basecamp und QMapShack zur Verfügung.",
+	"features": "Eigenschaften:<ul><li>Klarer topographischer Kartenstil ähnlich wie die Online-Karte der OpenTopoMap</li><li>Schummerung und Höhendaten integriert</li><li>Öffnungszeiten im POI-Feld (zerstört jedoch die Adresssuche)</li><li>Routingfähig</li><li>Optionale Höhenlinien</li></ul>",
+	"installation_caption": "Installation",
+	"installation_garmin": "Kopieren Sie die IMG-Datei in das Verzeichnis /Garmin/ Ihrer microSD-Karte. Die Installation im Gerätespeicher wird nicht empfohlen.",
+	"installation_basecamp": "Entpacken Sie die ZIP-Datei in das Verzeichnis C:/ProgramData/Garmin/Maps/ und starten Sie Basecamp. Es wird keine Installation benötigt.",
+	"screenshots_caption": "Bildschirmfotos",
+	"license_caption": "Lizenz",
+	"license" : "Alle Karten stehen unter der Lizenz CC-BY-NC-SA 4.0 (Namensnennung, nichtkommerziell, freie Weitergabe unter gleicher Lizenz - NICHT FÜR DEN VERKAUF)<br/>OpenTopoMap steht in keinerlei Verbindung mit Garmin Ltd. und haftet nicht für Hard- und Softwareschäden. Der Nutzer ist verantwortlich für die Einhaltung aller Gesetze in den Ländern der Verwendung.",
+	"download_caption": "Downloads",
+	"webmap": "Webkarte",
+	"garminmaps": "Garmin-Karten",
+	"about": "Infos",
+	"credits": "Impressum"
+}

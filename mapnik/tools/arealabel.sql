@@ -240,6 +240,7 @@ CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETUR
 -- Horizontal labels are done now
 --
    IF ( retway IS NULL ) THEN
+
 --
 -- mark points at a "slope" in all 4 directions
 --
@@ -340,7 +341,6 @@ CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETUR
 --
 -- test, if a straight line from middle to this point is possible
 --
-
     tmplinestring:='LINESTRING(';
     gridpoint=grid[startindex];
     tmplinestring:=tmplinestring || gridpoint.x || ' ' || gridpoint.y || ',';
@@ -352,7 +352,7 @@ CREATE OR REPLACE FUNCTION arealabel(myosm_id IN BIGINT,myway IN GEOMETRY) RETUR
     y1:=(y1-y)/(gridsize);
     tmpway:=ST_GeomFromText(tmplinestring,3857);
     tmppoint:=ST_SetSRID(ST_MakePoint(x,y),3857);
-    IF (ST_Within(tmpway,ST_SetSRID(myway,3857)) AND ((x1!=0.0) OR (y1!=0.0))) THEN                                                 
+    IF (ST_Within(tmpway,ST_SetSRID(myway,3857)) AND ((x1!=0.0) OR (y1!=0.0))) THEN 
      tmppoint:=ST_SetSRID(ST_MakePoint(x-x1,y-y1),3857);
      WHILE (ST_Within(tmppoint,ST_SetSRID(myway,3857))) LOOP
       x:=x-x1;y:=y-y1;
@@ -997,8 +997,8 @@ DECLARE
 --
   SELECT osm_id,name,way_area FROM planet_osm_polygon WHERE
    ST_contains(way,shrinkway) AND
-   ("region:type" IN ('natural_area','mountain_area') OR
-    "natural" IN ('massif', 'mountain_range', 'valley','couloir','ridge','arete','gorge','canyon')) AND
+   ("region:type" IN ('natural_area','mountain_area','mountain_range','basin') OR
+    "natural" IN ('massif', 'mountain_range','basin','valley','couloir','ridge','arete','gorge','gully','canyon')) AND
    name IS NOT NULL AND way_area> myway_area AND osm_id != myosm_id
   ORDER BY way_area ASC LIMIT 1 INTO polyresult;
   next_size:=polyresult.way_area;
@@ -1012,8 +1012,8 @@ DECLARE
 --
    SELECT osm_id,name,way_area FROM planet_osm_polygon WHERE
     ST_contains(expandway,way) AND
-    ("region:type" IN ('natural_area','mountain_area') OR
-     "natural" IN ('massif', 'mountain_range', 'valley','couloir','ridge','arete','gorge','canyon')) AND
+    ("region:type" IN ('natural_area','mountain_area','mountain_range','basin') OR
+     "natural" IN ('massif', 'mountain_range','basin','valley','couloir','ridge','arete','gorge','gully','canyon')) AND
     name IS NOT NULL AND way_area<myway_area AND osm_id != myosm_id
    ORDER BY way_area DESC LIMIT 1 INTO polyresult;
    sub_size:=polyresult.way_area;
@@ -1023,7 +1023,7 @@ DECLARE
 --
    SELECT osm_id,name,ST_Length(way)*ST_Length(way)/10 as way_area FROM planet_osm_line AS li WHERE
     ST_contains(expandway,way) AND
-    "natural" IN ('massif', 'mountain_range', 'valley','couloir','ridge','arete','gorge','canyon') AND
+    "natural" IN ('massif', 'mountain_range','basin','valley','couloir','ridge','arete','gorge','gully','canyon') AND
     name IS NOT NULL AND
     NOT EXISTS (SELECT osm_id FROM planet_osm_polygon AS po WHERE po.osm_id=li.osm_id )
    ORDER BY way_area DESC LIMIT 1 INTO lineresult;

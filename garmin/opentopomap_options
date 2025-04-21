@@ -1,0 +1,45 @@
+# family-id: 53000
+product-id: 1
+product-version: 100
+draw-priority: 20
+copyright-message=OpenStreetMap contributors, OpenTopoMap CC-BY-NC-SA 4.0
+# family-name="familyname"
+# series-name="seriesname"
+# area-name="areaname"
+# country-name="countryname"
+# country-abbr"ca"
+# overview-mapname: 53530000
+max-jobs
+gmapsupp
+hide-gmapsupp-on-pc
+# gmapi
+latin1
+lower-case
+index
+split-name-index
+remove-ovm-work-files
+preserve-element-order
+split-name-index
+housenumbers
+drive-on=detect,right
+#The following files are defined in the main script
+# bounds=bounds-latest.zip
+# precomp-sea=sea-latest.zip
+# dem=viewfinderpanoramas.zip
+dem-dists=9942,9942,19884,39768,53024,53024
+show-profiles=1
+reduce-point-density=4
+reduce-point-density-polygon=4
+min-size-polygon=8
+polygon-size-limits=24:12, 18:10, 16:8, 14:4, 13:2, 11:0
+route
+make-opposite-cycleways
+add-pois-to-areas
+add-pois-to-lines
+check-roundabouts
+check-roundabout-flares
+link-pois-to-ways
+process-destination
+process-exits
+order-by-decreasing-area
+keep-going

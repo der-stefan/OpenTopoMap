@@ -1,7 +1,33 @@
 <Style name="powertowers">
 	<Rule>
-		&maxscale_zoom15;
-		&minscale_zoom17;
+		&maxscale_zoom13;
+		&minscale_zoom13;
+		<Filter>[power] = 'tower'</Filter>
 		<PointSymbolizer file="symbols-otm/powertower.png" allow-overlap="true" ignore-placement="true"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+		<Filter>[power] = 'tower'</Filter>
+		<PointSymbolizer file="symbols-otm/powertower_z14.png" allow-overlap="true" ignore-placement="true"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[power] = 'tower'</Filter>
+		<PointSymbolizer file="symbols-otm/powertower_z16.png" allow-overlap="true" ignore-placement="true"/>
+	</Rule>
+	
+	<Rule>
+		&maxscale_zoom14;
+		&minscale_zoom15;
+		<Filter>[power] = 'pole'</Filter>
+		<PointSymbolizer file="symbols-otm/powertower.png" allow-overlap="true" ignore-placement="true"/>
+	</Rule>
+	<Rule>
+		&maxscale_zoom16;
+		&minscale_zoom17;
+		<Filter>[power] = 'pole'</Filter>
+		<PointSymbolizer file="symbols-otm/powertower_z14.png" allow-overlap="true" ignore-placement="true"/>
 	</Rule>
 </Style>

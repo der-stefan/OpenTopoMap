@@ -1,0 +1,58 @@
+{
+  "sitehead": {
+    "title": "OTM",
+    "description": "OpenTopoMap"
+  },
+  "c": {
+    "map_data": "Dati della carta",
+    "map_imagery": "Imagini della carta",
+    "contributors": "Contributori",
+    "hikeroutes": "Percorsi escursionistici",
+    "bikeroutes": "Percorsi ciclabili"
+  },
+  "info": {
+    "about": "Legenda & Informazioni",
+    "about_url": "https://opentopomap.org/about",
+    "impress": "Informazioni legali",
+    "impress_short": "Informazione legale",
+    "impress_url": "https://opentopomap.org/credits",
+    "credits": "Crediti",
+    "credits_short": "Crediti",
+    "credits_url": "https://opentopomap.org/credits",
+    "garmin": "Mappe Garmin",
+    "garmin_url": "https://garmin.opentopomap.org/"
+  },
+  "zoom": {
+    "zoom_in_title": "Ingrandire",
+    "zoom_out_title": "Rimpicciolisci"
+  },
+  "layers_base": [
+    "OpenTopoMap",
+    "OpenStreetMap"
+  ],
+  "layers_overlay": [
+    "Percorsi escursionistici Lonvia",
+    "Percorsi ciclabili Lonvia",
+    "Reticolo QTH"
+  ],
+  "marker": {
+    "title": "Posiziona segnapunto"
+  },
+  "search": {
+    "title": "Trova località",
+    "label": "Inserisci il nome della località ..."
+  },
+  "locate": {
+    "title": "Mostra la propria posizione",
+    "message_locating": "Rilevamento della posizione",
+    "errors": [
+      "Ok",
+      "Il rilevamento della posizione è stato impedito dalle impostazioni del browser",
+      "Errore nel rilevamento della posizione"
+    ]
+  },
+  "tracks": {
+    "title": "Importa traccia da file GPX, KML o GeoJSON",
+    "errmsg": "Sfortunatamente la traccia non può essere visualizzata.\nProbabilmente il file selezionato non è nel formato GPX, KML o GeoJSON corretto.\n\n"
+  }
+}

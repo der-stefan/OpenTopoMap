@@ -1,0 +1,58 @@
+{
+  "sitehead": {
+    "title": "OTM",
+    "description": "OpenTopoMap"
+  },
+  "c": {
+    "map_data": "datos del mapa",
+    "map_imagery": "imágenes de mapas ",
+    "contributors": "contribuidores",
+    "hikeroutes": "rutas de senderismo",
+    "bikeroutes": "rutas ciclistas"
+  },
+  "info": {
+    "about": "Leyenda e información",
+    "about_url": "https://opentopomap.org/about",
+    "impress": "Impreso e términos",
+    "impress_short": "Impreso",
+    "impress_url": "https://opentopomap.org/credits",
+    "credits": "Créditos",
+    "credits_short": "Créditos",
+    "credits_url": "https://opentopomap.org/credits",
+    "garmin": "Mapas Garmin",
+    "garmin_url": "https://garmin.opentopomap.org/"
+  },
+  "zoom": {
+    "zoom_in_title": "Ampliar",
+    "zoom_out_title": "Reducir"
+  },
+  "layers_base": [
+    "OpenTopoMap",
+    "OpenStreetMap"
+  ],
+  "layers_overlay": [
+    "Rutas de senderismo Lonvia",
+    "Rutas ciclistas Lonvia",
+    "Retícula QTH"
+  ],
+  "marker": {
+    "title": "Establecer marcador"
+  },
+  "search": {
+    "title": "Ubicación de búsqueda",
+    "label": "Ingrese el nombre de la ubicación ..."
+  },
+  "locate": {
+    "title": "Mostrar geolocalización",
+    "message_locating": "Geolocalización detectada",
+    "errors": [
+      "Ok",
+      "Detección de geolocalización bloqueada por configuración de explorador",
+      "Detección de geolocalización fallida"
+    ]
+  },
+  "tracks": {
+    "title": "Mostrar la pista de un archivo GPX, KML o GeoJSON",
+    "errmsg": "Lamentablemente la pista no se pudo mostrar.\nTal vez el archivo seleccionado no contiene un formato de GPX , KML o GeoJson válido.\n\n"
+  }
+}

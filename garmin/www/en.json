@@ -1,0 +1,18 @@
+{
+	"title": "OpenTopoMap Garmin Maps",
+	"subtitle": "Topographic OpenStreetMap maps for Garmin devices.",
+	"description_caption": "Description",
+	"description": "OpenTopoMap Garmin maps provide the topographical map style offline for Garmin devices and programs like Basecamp and QMapShack.",
+	"features": "Special features:<ul><li>Clear topographic map style similar to the OpenTopoMap online map</li><li>Hillshade and elevation map included</li><li>Opening hours in the POI information (but breaking address search)</li><li>Routing capability</li><li>Contour lines as optional layer</li></ul>",
+	"installation_caption": "Installation",
+	"installation_garmin": "Copy the *.img into the folder /Garmin/ of your microSD card. Installation in the onboard memory is not recommended.",
+	"installation_basecamp": "Unzip the *.zip into the folder C:/ProgramData/Garmin/Maps/ and start Basecamp. No further installation required.",
+	"screenshots_caption": "Screenshots",
+	"license_caption": "License",
+	"license" : "All maps are licensed under CC-BY-NC-SA 4.0 (naming, non-commercial, distribution under same conditions - NOT FOR RESALE)<br/>OpenTopoMap stands in no connection with Garmin Ltd. and is not responsible for any damage that occur on hard- and software. The user is responsible for compliance with all laws in the country of use.",
+	"download_caption": "Downloads",
+	"webmap": "Web Map",
+	"garminmaps": "Garmin Maps",
+	"about": "About",
+	"credits": "Credits"
+}

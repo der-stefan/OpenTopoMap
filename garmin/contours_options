@@ -2,6 +2,7 @@ family-id: 5354
 product-id: 1
 product-version: 1
 draw-priority: 99
+copyright-message=viewfinderpanoramas.org, OpenTopoMap CC-BY-NC-SA 4.0
 family-name="familyname"
 series-name="seriesname"
 area-name="areaname"

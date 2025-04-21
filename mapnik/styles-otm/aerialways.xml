@@ -16,7 +16,7 @@
 	<Rule>
 		&maxscale_zoom13;
 		&minscale_zoom17;
-		<Filter>[aerialway] != 'cable_car' and [aerialway] != 'gondola' and [aerialway] != 'goods'</Filter>
+		<Filter>[aerialway] != 'cable_car' and [aerialway] != 'gondola' and [aerialway] != 'goods' and [aerialway] != 'proposed' and [aerialway] != 'construction' and [aerialway] != 'abandoned'</Filter>
 		<LineSymbolizer stroke="black" stroke-width="0.5"/>
 		<LinePatternSymbolizer file="symbols-otm/aerialway.png"/>
 	</Rule>
