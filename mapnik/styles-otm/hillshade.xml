@@ -2,7 +2,7 @@
 	<Rule>
 		&maxscale_zoom1;
 		&minscale_zoom4;
-		<RasterSymbolizer comp-op="grain-merge" opacity="0.9" scaling="bilinear" />
+		<RasterSymbolizer comp-op="grain-merge" scaling="bilinear" />
 	</Rule>
 </Style>
 <Layer name="hillshade-5000">
@@ -18,7 +18,7 @@
 	<Rule>
 		&maxscale_zoom5;
 		&minscale_zoom7;
-		<RasterSymbolizer comp-op="grain-merge" opacity="0.9" scaling="bilinear" />
+		<RasterSymbolizer comp-op="grain-merge" scaling="bilinear" />
 	</Rule>
 </Style>
 <Layer name="hillshade-1000">
@@ -34,7 +34,7 @@
 	<Rule>
 		&maxscale_zoom8;
 		&minscale_zoom8;
-		<RasterSymbolizer comp-op="grain-merge" opacity="0.9" scaling="bilinear" />
+		<RasterSymbolizer comp-op="grain-merge" scaling="bilinear" />
 	</Rule>
 </Style>
 <Layer name="hillshade-500">
@@ -50,14 +50,13 @@
 	<Rule>
 		&maxscale_zoom9;
 		&minscale_zoom17;
-		<RasterSymbolizer comp-op="grain-merge" opacity="0.83" scaling="bilinear" />
+		<RasterSymbolizer comp-op="grain-merge" scaling="bilinear" />
 	</Rule>
 </Style>
 <Layer name="hillshade-90">
 	<StyleName>hillshade-90</StyleName>
 	<Datasource>
 		<Parameter name="type">gdal</Parameter>
-		<!--Parameter name="file">dem/hillshade-90.tif</Parameter-->
 		<Parameter name="file">dem/hillshade-30m-jpeg.tif</Parameter>
 		<Parameter name="format">tiff</Parameter>
 	</Datasource>
