@@ -6,7 +6,7 @@
 # psql -d gis -c "CREATE TABLE water AS SELECT ST_SimplifyPreserveTopology(way,150) AS way,name,\"natural\",waterway,way_area FROM planet_osm_polygon WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake' OR landuse IN ('basin','reservoir')) AND way_area > 50000;" 
 # Even more, but I'm unsure about its performances : Only add a simplified_way column to planet_osm_polygon and populate it with :
 # UPDATE planet_osm_polygon SET simplified_way=ST_SimplifyPreserveTopology(way,150) WHERE (\"natural\" = 'water' OR waterway = 'riverbank' OR water='lake' OR landuse IN ('basin','reservoir')) AND way_area > 50000;
-# FIXME sly 2023-07-15 all of this as to be tried first !
+# FIXME sly 2023-07-15 all of this has to be tried first !
 
 db=gis
 
