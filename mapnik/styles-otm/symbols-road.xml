@@ -1,12 +1,12 @@
 <Style name="symbols-road">
 	<Rule>
-		&maxscale_zoom16;
+		&maxscale_zoom14;
 		&minscale_zoom17;
  		<Filter>([amenity] = 'parking') and ([fee] = 'yes') and not ([access] = 'private' or [access] = 'restricted' or [access] = 'permissive' or [access] = 'customers' or [access] = 'no')</Filter>
 		<PointSymbolizer file="symbols-otm/parking_fee.png"/>
 	</Rule>
 	<Rule>
-		&maxscale_zoom16;
+		&maxscale_zoom14;
 		&minscale_zoom17;
  		<Filter>([amenity] = 'parking') and ([fee] != 'yes') and not ([access] = 'private' or [access] = 'restricted' or [access] = 'permissive' or [access] = 'customers' or [access] = 'no')</Filter>
 		<PointSymbolizer file="symbols-otm/parking.png"/>
@@ -18,7 +18,7 @@
 		<PointSymbolizer file="symbols-otm/parking.png"/>
 	</Rule>-->
 	<Rule>
-		&maxscale_zoom16;
+		&maxscale_zoom14;
 		&minscale_zoom17;
 		<Filter>[highway] = 'bus_stop'</Filter>
 		<PointSymbolizer file="symbols-otm/bus_stop.png"/>
