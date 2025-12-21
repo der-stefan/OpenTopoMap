@@ -1,0 +1,11 @@
+Tilemaker:
+##########
+
+tilemaker --config tilemaker-config-otm.json --process process-otm.lua --input data/europe-latest.osm.pbf --output data/europe-latest.mbtiles --store tilemaker.store.d --shard-stores
+
+
+
+DEM as COG:
+###########
+
+gdalwarp input.tif output.tif -of COG -co BLOCKSIZE=256 -co TILING_SCHEME=GoogleMapsCompatible -co COMPRESS=DEFLATE -co RESAMPLING=BILINEAR -co OVERVIEW_RESAMPLING=NEAREST -co OVERVIEWS=IGNORE_EXISTING -co ADD_ALPHA=NO -dstnodata NaN
