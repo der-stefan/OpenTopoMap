@@ -1,0 +1,235 @@
+{
+    "layers": {
+        "place_labels": {
+            "minzoom": 3,
+            "maxzoom": 14,
+            "z_order_ascending": false
+        },
+        "boundaries": {
+            "minzoom": 0,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2,
+            "combine_below": 15
+        },
+        "boundary_labels": {
+            "minzoom": 2,
+            "maxzoom": 14,
+            "source": "data/admin-points-4326/admin_points.shp",
+            "source_columns": true
+        },
+        "addresses": {
+            "minzoom": 14,
+            "maxzoom": 14
+        },
+        "water_lines": {
+            "minzoom": 4,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2,
+            "combine_below": 15
+        },
+        "water_lines_labels": {
+            "minzoom": 4,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0002,
+            "simplify_ratio": 2,
+            "combine_below": 15
+        },
+        "dam_lines": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2,
+            "combine_below": 15
+        },
+        "dam_polygons": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2
+        },
+        "pier_lines": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0002,
+            "simplify_ratio": 2
+        },
+        "pier_polygons": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0002,
+            "simplify_ratio": 2
+        },
+        "bridges": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2
+        },
+        "street_polygons": {
+            "minzoom": 11,
+            "maxzoom": 14,
+            "combine_below": 15,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2
+        },
+        "streets_polygons_labels": {
+            "minzoom": 14,
+            "maxzoom": 14
+        },
+        "ferries": {
+            "minzoom": 8,
+            "maxzoom": 14
+        },
+        "streets": {
+            "minzoom": 13,
+            "maxzoom": 14,
+            "combine_below": 14
+        },
+        "streets_med": {
+            "minzoom": 10,
+            "maxzoom": 12,
+            "write_to": "streets",
+            "simplify_below": 13,
+            "simplify_level": 0.0001,
+            "combine_below": 13
+        },
+        "streets_low": {
+            "minzoom": 5,
+            "maxzoom": 9,
+            "write_to": "streets",
+            "simplify_below": 10,
+            "simplify_level": 0.0001,
+            "combine_below": 10
+        },
+        "street_labels": {
+            "minzoom": 10,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "combine_below": 15
+        },
+        "street_labels_points": {
+            "minzoom": 12,
+            "maxzoom": 14
+        },
+        "aerialways": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0003
+        },
+        "power-lines": {
+            "minzoom": 10,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0003
+        },
+        "power-points": {
+            "minzoom": 10,
+            "maxzoom": 14
+        },
+        "public_transport": {
+            "minzoom": 11,
+            "maxzoom": 14
+        },
+        "buildings": {
+            "minzoom": 12,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2
+        },
+        "water_polygons": {
+            "minzoom": 4,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2
+        },
+        "ocean": {
+            "minzoom": 8,
+            "maxzoom": 14,
+            "source": "data/water-polygons-split-4326/water_polygons.shp",
+            "source_columns": true,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2
+        },
+        "ocean-low": {
+            "minzoom": 0,
+            "maxzoom": 7,
+            "source": "data/simplified-water-polygons-split-4326/simplified_water_polygons.shp",
+            "source_columns": true,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 2,
+            "write_to": "ocean"
+        },
+        "water_polygons_labels": {
+            "minzoom": 14,
+            "maxzoom": 14,
+            "z_order_ascending": false
+        },
+        "land": {
+            "minzoom": 13,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 3
+        },
+        "land_low": {
+            "minzoom": 8,
+            "maxzoom": 12,
+            "filter_below": 12,
+            "filter_area": 1,
+            "simplify_below": 13,
+            "simplify_level": 0.00025,
+            "simplify_ratio": 3,
+            "write_to": "land"
+        },
+        "sites": {
+            "minzoom": 14,
+            "maxzoom": 14
+        },
+        "pois": {
+            "minzoom": 14,
+            "maxzoom": 14
+        }
+    },
+    "settings": {
+        "minzoom": 0,
+        "maxzoom": 14,
+        "basezoom": 14,
+        "include_ids": false,
+        "combine_below": 14,
+        "high_resolution": true,
+        "name": "OpenTopoMap",
+        "version": "1.0",
+        "description": "OpenTopoMap vector, based on shortbread",
+        "compress": "gzip",
+        "filemetadata": {
+            "tilejson": "2.0.0",
+            "scheme": "xyz",
+            "type": "baselayer",
+            "format": "pbf",
+            "tiles": [
+                "https://opentopomap.org/otm/{z}/{x}/{y}.pbf"
+            ]
+        },
+        "metadata": {
+          "author": "OpenStreetMap contributors, OpenTopoMap",
+          "license": "Open Database License 1.0"
+        }
+    }
+}
