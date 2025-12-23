@@ -76,7 +76,7 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo apt install autoconf apache2-dev
 	
 	cd ~/src
-	git clone git://github.com/openstreetmap/mod_tile.git
+	git clone https://github.com/openstreetmap/mod_tile.git
 	cd mod_tile
 	echo '/etc/renderd.conf' > debian/renderd.conffiles
 	debuild -i -b -us -uc
@@ -120,7 +120,7 @@ This guide is quite complete, but you should always think about before blindly c
 	sudo apt install cmake libbz2-dev libgeos-dev libgeos++-dev libproj-dev lua5.3 liblua5.3-dev
 
 	cd ~/src
-	git clone git://github.com/openstreetmap/osm2pgsql.git
+	git clone https://github.com/openstreetmap/osm2pgsql.git
 	cd osm2pgsql
 	mkdir build && cd build
 	cmake ..
