@@ -39,7 +39,7 @@ if stat --printf='' bounds/bounds_*.bnd 2> /dev/null; then
 else
     echo "downloading bounds"
     rm -f bounds.zip  # just in case
-    wget "http://osm2.pleiades.uni-wuppertal.de/bounds/latest/bounds.zip"
+    wget "https://www.thkukuk.de/osm/data/bounds-latest.zip"
     unzip "bounds.zip" -d bounds
 fi
 
@@ -50,7 +50,7 @@ if stat --printf='' sea/sea_*.pbf 2> /dev/null; then
 else
     echo "downloading sea"
     rm -f sea.zip  # just in case
-    wget "http://osm2.pleiades.uni-wuppertal.de/sea/latest/sea.zip"
+    wget "https://www.thkukuk.de/osm/data/sea-latest.zip"
     unzip "sea.zip" -d sea
 fi
 
