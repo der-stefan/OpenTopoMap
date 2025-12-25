@@ -935,7 +935,7 @@ var otm_style = [
         //'text-field': ["format",["get","name"],{},"\n",["get", "population"],{"font-scale": 0.5}],
         'symbol-sort-key': ["get","population"],
         'text-allow-overlap': true,
-        'text-size': ["interpolate",["linear"],["zoom"],6,11, 8,16, 10,22],
+        'text-size': ["interpolate",["linear"],["zoom"],6,10, 7,12, 8,16, 10,22],
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
           'Roboto Regular'
@@ -956,7 +956,7 @@ var otm_style = [
 	"type": "symbol",
 	'layout': {
 		'text-field': "{name}",
-        'text-size': ["interpolate",["linear"],["zoom"],6,12, 8,17, 10,22],
+        'text-size': ["interpolate",["linear"],["zoom"],6,10, 8,17, 10,22],
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
           'Roboto Regular'
@@ -977,7 +977,7 @@ var otm_style = [
 	"type": "symbol",
 	'layout': {
 		'text-field': "{name}",
-        'text-size': ["interpolate",["linear"],["zoom"],6,15, 8,17, 10,22],
+        'text-size': ["interpolate",["linear"],["zoom"],6,12, 8,17, 10,22],
         'text-transform': 'uppercase',
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
@@ -993,16 +993,17 @@ var otm_style = [
 	"id": "boundary-labels",
 	"source": "opentopomap-vector",
 	"source-layer": "boundary_labels",
+	"min_zoom": 6,
 	"max_zoom": 7,
 	"filter": [
-		"all",["==", "admin_level", 4]
+		"all",["==", "admin_level", 2]
 	],
 	"type": "symbol",
 	'layout': {
         'text-field': '{name}',
         'symbol-sort-key': ["get","population"],
-        'text-size': ["interpolate",["linear"],["zoom"],5,11, 6,13, 7,15],
-        'text-letter-spacing': ["interpolate",["linear"],["zoom"],5,0.2, 6,0.5, 7,2],
+        'text-size': ["interpolate",["linear"],["zoom"],5,14, 6,13, 7,15],
+        'text-letter-spacing': ["interpolate",["linear"],["zoom"],5,0.5, 6,0.5, 7,2],
         'text-font': [
           'Roboto Regular'
         ]
