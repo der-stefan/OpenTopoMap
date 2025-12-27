@@ -203,7 +203,7 @@
             "maxzoom": 14
         },
         "pois": {
-            "minzoom": 14,
+            "minzoom": 12,
             "maxzoom": 14
         }
     },

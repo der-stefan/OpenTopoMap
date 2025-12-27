@@ -61,8 +61,8 @@ poi_shop_values = Set { "supermarket", "bakery", "kiosk", "mall", "department_st
 	"toys", "newsagent", "greengrocer", "beauty", "video", "car", "bicycle", "doityourself",
 	"hardware", "furniture", "computer", "garden_centre", "hairdresser", "travel_agency", "laundry",
 	"dry_cleaning" }
-poi_man_made_values = Set { "surveillance", "tower", "windmill", "lighthouse", "wastewater_plant",
-	"water_well", "watermill", "water_works" }
+poi_man_made_values = Set { "surveillance", "tower", "cross", "windmill", "lighthouse", "wastewater_plant",
+	"water_well", "watermill", "water_tower", "water_works" }
 poi_historic_values = Set { "monument", "memorial", "castle", "ruins", "archaeological_site",
 	"wayside_cross", "wayside_shrine", "battlefield", "fort" }
 poi_emergency_values = Set { "phone", "fire_hydrant", "defibrillator" }
@@ -438,8 +438,8 @@ function process_water_lines()
 	-- skip if area > 0 (it's no line then)
 	mz = inf_zoom
 	if kind == "river" or kind == "canal" then
-		mz = math.max(9, zmin_for_length(0.25))
-		mz_label = math.max(13, zmin_for_length(0.25))
+		mz = math.max(7, zmin_for_length(0.25))
+		mz_label = math.max(12, zmin_for_length(0.25))
 	--elseif kind == "canal" then
 	--	mz = 10
 	--	mz_label = 13
@@ -564,7 +564,7 @@ function process_sites()
 	local mz = inf_zoom
 	if amenity == "university" or amenity == "hospital" or amenity == "prison" or amenity == "parking" or amenity == "bicycle_parking" or amenity == "school" or amenity == "college" then
 		kind = amenity
-		mz = 14
+		mz = 10
 	elseif leisure == "sports_center" then
 		kind = leisure
 		mz = 14
@@ -759,7 +759,13 @@ function process_streets()
 	local oneway = Find("oneway")
 	local onewayBool = not rail and isOneway(oneway)
 	local reverseOnewayBool = not rail and isReverseOneway(oneway)
-	if mz <= 13 then
+	if mz <= 9 then
+		Layer("streets_low", false)
+		MinZoom(mz)
+		Attribute("kind", kind)
+		AttributeBoolean("rail", rail)
+		setZOrder(rail, false)
+	elseif mz <= 13 then
 		Layer("streets_med", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
@@ -775,8 +781,7 @@ function process_streets()
 			Attribute("service", service)
 		end
 		setZOrder(rail, false)
-	end
-	if mz < inf_zoom then
+	elseif mz < inf_zoom then
 		Layer("streets", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
@@ -795,13 +800,6 @@ function process_streets()
 		if service ~= "" then
 			Attribute("service", service)
 		end
-		setZOrder(rail, false)
-	end
-	if mz <= 9 then
-		Layer("streets_low", false)
-		MinZoom(mz)
-		Attribute("kind", kind)
-		AttributeBoolean("rail", rail)
 		setZOrder(rail, false)
 	end
 end
@@ -958,10 +956,17 @@ end
 
 function process_buildings()
 	local building = Find("building")
-	if building ~= "no" then
+	local mz = inf_zoom
+	if building == "garage" then
+		mz = 14
+	elseif building ~= "no" then
+		mz = 12
+	end
+	
+	if mz < inf_zoom then
 		Layer("buildings", true)
-		MinZoom(12)
-		AttributeNumeric("dummy", 1)
+		MinZoom(mz)
+		Attribute("kind", building)
 	end
 end
 
@@ -1038,11 +1043,11 @@ function process_pois(polygon)
 	else
 		Layer("pois", false)
 	end
-	MinZoom(14)
+	MinZoom(12)
 	Attribute("amenity", nilToEmptyStr(amenity))
 	Attribute("shop", nilToEmptyStr(shop))
 	Attribute("tourism", nilToEmptyStr(tourism))
-	Attribute("man_made", nilToEmptyStr(historic))
+	Attribute("man_made", nilToEmptyStr(man_made))
 	Attribute("historic", nilToEmptyStr(historic))
 	Attribute("leisure", nilToEmptyStr(leisure))
 	Attribute("emergency", nilToEmptyStr(emergency))
