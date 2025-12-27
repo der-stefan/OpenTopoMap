@@ -50,23 +50,26 @@ poi_amenity_values = Set { "police", "fire_station", "post_box", "post_office", 
 	"car_rental", "car_wash", "car_sharing", "bicycle_rental", "vending_machine", "bank", "atm",
 	"toilets", "bench", "drinking_water", "fountain", "hunting_stand", "waste_basket", "place_of_worship" }
 catering_values = Set { "restaurant", "fast_food", "pub", "bar", "cafe" }
-poi_leisure_values = Set { "playground", "dog_park", "sports_centre", "pitch", "swimming_pool", "water_park",
+poi_leisure_values = Set { "playground", "dog_park", "sports_centre", "pitch", "water_park",
 	"golf_course", "stadium", "ice_rink" }
-sport_values = Set { "pitch", "sports_centre" }
+--sport_values = Set { "pitch", "sports_centre", "swimming" }
+poi_sport_values = Set { "swimming" }
 poi_tourism_values = Set { "hotel", "motel", "artwork", "bed_and_breakfast", "guest_house", "hostel", "chalet",
-	"camp_site", "alpine_hut", "caravan_site", "information", "picnic_site", "viewpoint", "zoo", "theme_park" }
+	"camp_site", "alpine_hut", "wilderness_hut", "caravan_site", "information", "picnic_site", "viewpoint", "zoo", "theme_park" }
 poi_shop_values = Set { "supermarket", "bakery", "kiosk", "mall", "department_store", "general",
 	"convenience", "clothes", "florist", "chemist", "books", "butcher", "shoes", "alcohol",
 	"beverages", "optician", "jewelry", "gift", "sports", "stationery", "outdoor", "mobile_phone",
 	"toys", "newsagent", "greengrocer", "beauty", "video", "car", "bicycle", "doityourself",
 	"hardware", "furniture", "computer", "garden_centre", "hairdresser", "travel_agency", "laundry",
 	"dry_cleaning" }
-poi_man_made_values = Set { "surveillance", "tower", "cross", "windmill", "lighthouse", "wastewater_plant",
+poi_man_made_values = Set { "surveillance", "communications_tower", "tower", "mast", "chimney", "cross", "mindshaft", "adit", "windmill", "lighthouse", "wastewater_plant",
 	"water_well", "watermill", "water_tower", "water_works" }
+poi_natural_values = Set { "spring", "cave_entrance", "tree", "sinkhole" }
 poi_historic_values = Set { "monument", "memorial", "castle", "ruins", "archaeological_site",
 	"wayside_cross", "wayside_shrine", "battlefield", "fort" }
 poi_emergency_values = Set { "phone", "fire_hydrant", "defibrillator" }
 poi_highway_values = Set { "emergency_access_point" }
+poi_railway_values = Set { "station" }
 poi_office_values = Set { "diplomatic" }
 
 inf_zoom = 99
@@ -1035,17 +1038,36 @@ function process_pois(polygon)
 	local man_made = valueAcceptedOrNil(poi_man_made_values, Find("man_made"))
 	local historic = valueAcceptedOrNil(poi_historic_values, Find("historic"))
 	local leisure = valueAcceptedOrNil(poi_leisure_values, Find("leisure"))
+	local sport = valueAcceptedOrNil(poi_sport_values, Find("sport"))
+	local natural = valueAcceptedOrNil(poi_natural_values, Find("natural"))
 	local emergency = valueAcceptedOrNil(poi_emergency_values, Find("emergency"))
 	local highway = valueAcceptedOrNil(poi_highway_values, Find("highway"))
+	local railway = valueAcceptedOrNil(poi_railway_values, Find("railway"))
 	local office = valueAcceptedOrNil(poi_highway_values, Find("office"))
-	if amenity == nil and shop == nil and tourism == nil and historic == nil and leisure == nil and emergency == nil and highway == nil and office == nil then
+	
+	local access = Find("access")
+	local denotation = Find("denotation")
+	local name = Find("name")
+	
+	if amenity == nil and shop == nil and tourism == nil and man_made == nil and historic == nil and leisure == nil and sport == nil and natural == nil and emergency == nil and highway == nil and railway == nil and office == nil then
 		return false
 	end
+	
+	if sport == "swimming" and access == private then
+		return false
+	end
+	if natural == "tree" and (name == nil or denotation ~= "landmark" or denotation ~= "natural_monument") then
+		return false
+	end	
+	
+	-- the following needs to be updated to be more precise
+		
 	if polygon then
 		LayerAsCentroid("pois")
 	else
 		Layer("pois", false)
 	end
+	
 	MinZoom(12)
 	Attribute("amenity", nilToEmptyStr(amenity))
 	Attribute("shop", nilToEmptyStr(shop))
@@ -1053,23 +1075,35 @@ function process_pois(polygon)
 	Attribute("man_made", nilToEmptyStr(man_made))
 	Attribute("historic", nilToEmptyStr(historic))
 	Attribute("leisure", nilToEmptyStr(leisure))
+	Attribute("sport", nilToEmptyStr(sport))
+	Attribute("natural", nilToEmptyStr(natural))
 	Attribute("emergency", nilToEmptyStr(emergency))
 	Attribute("highway", nilToEmptyStr(highway))
+	Attribute("railway", nilToEmptyStr(railway))
 	Attribute("office", nilToEmptyStr(office))
 	if catering_values[amenity] then
 		addAttributeOrEmptyStr("cuisine")
 	end
-	if sport_values[leisure] then
-		addAttributeOrEmptyStr("sport")
-	end
+	--if sport_values[leisure] then
+	--	addAttributeOrEmptyStr("sport")
+	--end
 	if amenity == "vending_machine" then
 		addAttributeOrEmptyStr("vending")
 	end
 	if tourism == "information" then
 		addAttributeOrEmptyStr("information")
 	end
-	if man_made == "tower" then
+	if man_made == "communications_tower" or man_made == "tower" or man_made == "mast" then
 		addAttributeOrEmptyStr("tower:type")
+	end
+	if historic == "castle" then
+		addAttributeOrEmptyStr("ruins")
+	end
+	if natural == "tree" then
+		addAttributeOrEmptyStr("leaf_type")
+	end
+	if railway == "station" then
+		addAttributeOrEmptyStr("station")
 	end
 	if amenity == "recycling" then
 		addAttributeBoolean("recycling:glass_bottles")

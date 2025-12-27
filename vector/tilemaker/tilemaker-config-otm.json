@@ -11,7 +11,7 @@
             "simplify_below": 14,
             "simplify_level": 0.0001,
             "simplify_ratio": 2,
-            "combine_below": 15
+            "combine_lines_below": 15
         },
         "boundary_labels": {
             "minzoom": 2,
@@ -29,7 +29,7 @@
             "simplify_below": 14,
             "simplify_level": 0.0001,
             "simplify_ratio": 2,
-            "combine_below": 15
+            "combine_lines_below": 15
         },
         "water_lines_labels": {
             "minzoom": 4,
@@ -37,7 +37,7 @@
             "simplify_below": 14,
             "simplify_level": 0.0002,
             "simplify_ratio": 2,
-            "combine_below": 15
+            "combine_lines_below": 15
         },
         "dam_lines": {
             "minzoom": 12,
@@ -45,7 +45,7 @@
             "simplify_below": 14,
             "simplify_level": 0.0001,
             "simplify_ratio": 2,
-            "combine_below": 15
+            "combine_lines_below": 15
         },
         "dam_polygons": {
             "minzoom": 12,
@@ -102,7 +102,7 @@
             "write_to": "streets",
             "simplify_below": 13,
             "simplify_level": 0.0001,
-            "combine_below": 13
+            "combine_lines_below": 13
         },
         "streets_low": {
             "minzoom": 5,
@@ -110,14 +110,14 @@
             "write_to": "streets",
             "simplify_below": 10,
             "simplify_level": 0.0001,
-            "combine_below": 10
+            "combine_lines_below": 10
         },
         "street_labels": {
             "minzoom": 10,
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0001,
-            "combine_below": 15
+            "combine_lines_below": 15
         },
         "street_labels_points": {
             "minzoom": 12,

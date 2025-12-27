@@ -76,7 +76,7 @@ var otm_style = [
 		["==", "kind", "forest"]
 	],
 	"type": "fill",
-	"paint": {"fill-color": "#bde599","fill-outline-color": "#91c067"}
+	"paint": {"fill-color": "#cce599","fill-outline-color": "#91c067"}
 },
 {
 	"id": "forest-fill",
@@ -508,7 +508,7 @@ var otm_style = [
 	"layout": {"line-cap": "round"},
 	"paint": {
 		"line-color": "white",
-		"line-width": ["interpolate",["linear"],["zoom"],12.99,1.1, 13,1.1, 15,4, 19,12]
+		"line-width": ["interpolate",["linear"],["zoom"],12.9,1.1, 13,1.1, 15,4, 19,12]
 	}
 },
 {
@@ -689,7 +689,7 @@ var otm_style = [
 	"paint": {
 		"line-color": "black",
 		"line-width": 0.5,
-		//"line-pattern": "oneway",
+		//"line-pattern": "powerline",
 	}
 },
 {
@@ -707,7 +707,7 @@ var otm_style = [
 	}
 },
 
-// Labels
+// Symbols & labels
 // ============
 {
 	"id": "housenumbers",
@@ -727,41 +727,118 @@ var otm_style = [
 		"text-halo-width": 1.5
 	}
 },
-/*{
-	"id": "pois-all",
-	"source": "opentopomap-vector",
-	"source-layer": "pois",
-	"minzoom": 13,
-	"type": "symbol",
-	"layout": {
-        "icon-image": "powerline",
-        "icon-keep-upright": true,
-        "icon-allow-overlap": true,
-        "symbol-placement": "point"
-	}
-},*/
 {
-	"id": "pois-church",
+	"id": "poi-church",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
-	"minzoom": 13,
 	"type": "symbol",
 	"filter": ["==", ["get","amenity"], "place_of_worship"],
 	"layout": {
-        "icon-image": "church",
+        "icon-image": "church_z13",
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
 	}
 },
 {
-	"id": "pois-text",
+	"id": "poi-castle",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","historic"], "castle"],
+	"layout": {
+        "icon-image": "castle_z13",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-swimming",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","leisure"], "swimming_pool"],
+	"layout": {
+        "icon-image": "swimming",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-lighthouse",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","man_made"], "lighthouse"],
+	"layout": {
+        "icon-image": "lighthouse",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-water_tower",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","man_made"], "water_tower"],
+	"layout": {
+        "icon-image": "water_tower_z13",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-watermill",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","man_made"], "watermill"],
+	"layout": {
+        "icon-image": "watermill",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-cross",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","man_made"], "cross"],
+	"layout": {
+        "icon-image": "cross",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-wayside_cross",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","historic"], "wayside_cross"],
+	"layout": {
+        "icon-image": "wayside_cross",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-text",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
 	"minzoom": 16,
 	"type": "symbol",
 	'layout': {
-        'text-field': '{amenity}',
+        'text-field': '{amenity}{shop}{tourism}{man_made}{historic}{leisure}{emergency}{highway}{office}',
         'text-size': ["interpolate",["linear"],["zoom"],16,9, 18,12],
         'text-font': [
           'Roboto Regular'
@@ -769,8 +846,6 @@ var otm_style = [
         "text-allow-overlap": true,
 	}
 },
-
-
 {
 	"id": "waterlinelabels",
 	"source": "opentopomap-vector",
@@ -786,9 +861,9 @@ var otm_style = [
         ]
 	},
 	"paint": {
-		"text-color": "blue"
-		/*"text-halo-color": "blue",
-		"text-halo-width": 1.5*/
+		"text-color": "blue",
+		"text-halo-color": "#a3dde8",
+		"text-halo-width": 1.0
 	}
 },
 {
@@ -807,8 +882,8 @@ var otm_style = [
 	},
 	"paint": {
 		"text-color": "blue"
-		/*"text-halo-color": "blue",
-		"text-halo-width": 1.5*/
+		//"text-halo-color": "red",
+		//"text-halo-width": 1.5
 	}
 },
 {
@@ -826,7 +901,13 @@ var otm_style = [
         ]
 	},
 	"paint": {
-		"text-halo-color": "white",
+		"text-halo-color": [
+			'case',
+			['in', ['get', 'kind'], ['literal', ['motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary']]], '#fb9e2a',
+			['in', ['get', 'kind'], ['literal', ['secondary', 'tertiary']]], '#fdfd4f',
+			//['==', ['get', 'kind'], 'secondary'], '#fdfd4f',
+			'white'
+		],
 		"text-halo-width": 1.5
 	}
 },
@@ -904,7 +985,7 @@ var otm_style = [
         'text-field': '{name}',
         'symbol-sort-key': ["get","population"],
         "text-size":["interpolate",["linear"],["zoom"],
-			7,["case",[">",["get","population"],20000],12,10],
+			7,["case",[">",["get","population"],20000],10,9],
 			8,["case",[">",["get","population"],10000],11.7,9.5],
 			9,["case",[">",["get","population"],20000],13.5,11.5],
 			10,["case",[">",["get","population"],20000],15,12.5],
@@ -934,7 +1015,7 @@ var otm_style = [
 		'text-field': "{name}",
         //'text-field': ["format",["get","name"],{},"\n",["get", "population"],{"font-scale": 0.5}],
         'symbol-sort-key': ["get","population"],
-        'text-allow-overlap': true,
+        //'text-allow-overlap': true,
         'text-size': ["interpolate",["linear"],["zoom"],6,10, 7,12, 8,16, 10,22],
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
