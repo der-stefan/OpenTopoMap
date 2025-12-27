@@ -759,13 +759,8 @@ function process_streets()
 	local oneway = Find("oneway")
 	local onewayBool = not rail and isOneway(oneway)
 	local reverseOnewayBool = not rail and isReverseOneway(oneway)
-	if mz <= 9 then
-		Layer("streets_low", false)
-		MinZoom(mz)
-		Attribute("kind", kind)
-		AttributeBoolean("rail", rail)
-		setZOrder(rail, false)
-	elseif mz <= 13 then
+
+	if mz <= 13 then
 		Layer("streets_med", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
@@ -781,7 +776,8 @@ function process_streets()
 			Attribute("service", service)
 		end
 		setZOrder(rail, false)
-	elseif mz < inf_zoom then
+	end
+	if mz < inf_zoom then
 		Layer("streets", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
@@ -800,6 +796,13 @@ function process_streets()
 		if service ~= "" then
 			Attribute("service", service)
 		end
+		setZOrder(rail, false)
+	end
+	if mz <= 9 then
+		Layer("streets_low", false)
+		MinZoom(mz)
+		Attribute("kind", kind)
+		AttributeBoolean("rail", rail)
 		setZOrder(rail, false)
 	end
 end

@@ -1,8 +1,19 @@
 Tilemaker:
 ##########
 
-tilemaker --config tilemaker-config-otm.json --process process-otm.lua --input data/europe-latest.osm.pbf --output data/europe-latest.mbtiles --store tilemaker.store.d --shard-stores
+sudo apt install git gdal-bin
+git clone https://github.com/shortbread-tiles/shortbread-tilemaker
+cd shortbread-tilemaker/
+./get-shapefiles.sh
 
+mkdir data
+cd data
+wget https://download.geofabrik.de/europe-latest.osm.pbf
+osmium renumber -v europe-latest.osm.pbf -o europe-latest-renumbered.osm.pbf
+# This probably fails if you have not enough RAM. Use tilemaker without the --compact argument.
+
+cd..
+tilemaker --config tilemaker-config-otm.json --process process-otm.lua --input data/europe-latest.osm.pbf --output data/europe-latest.mbtiles --store tilemaker.store.d --shard-stores
 
 
 DEM as COG:
