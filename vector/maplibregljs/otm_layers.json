@@ -1,8 +1,8 @@
-var otm_style = [
+const otm_layers = [
 {
-	id: 'background',
-	type: 'background',
-	paint: {'background-color': '#eeeeee'}
+	"id": "background",
+	"type": "background",
+	"paint": {"background-color": "#eeeeee"}
 },
 {
 	id: 'color-relief',
@@ -102,9 +102,8 @@ var otm_style = [
 	source: "contour-source",
 	"source-layer": "contours",
 	paint: {
-		"line-color": "#c47b5d",
-		// level = highest index in thresholds array the elevation is a multiple of
-		"line-width": ["match", ["get", "level"], 1, 0.8, 0.3],
+		"line-color": "rgba(196,87,0,0.7)",
+		"line-width": ["match", ["get", "level"], 1, 0.6, 0.2],
 	},
 },
 {
@@ -115,16 +114,14 @@ var otm_style = [
 	//filter: [">", ["get", "level"], 0],
 	"filter": [
 		"case",
-		// Condition 1: When zoom is <= 14
-		["<=", ["zoom"], 14], 
-		[">", ["get", "level"], 0], // Check if type >= 1
-
-		// Default/Else: When zoom is > 14
+		["<=", ["zoom"], 13], 
+		[">", ["get", "level"], 0],
 		true // "type don't care" (return true to show all features)
 	],
 	'layout': {
 		"symbol-placement": "line",
-		"symbol-spacing": 100,
+		"symbol-spacing": 200,
+		"text-max-angle": 120,
 		"text-keep-upright": false,
         'text-field': '{ele}',
         "text-size": [
@@ -140,8 +137,8 @@ var otm_style = [
         'text-font': ['Roboto Regular']
 	},
 	"paint": {
-		"text-color": "#c47b5d",
-		"text-halo-color": "rgba(255, 255, 255, 0.8)",
+		"text-color": "#bc7e55",
+		"text-halo-color": "rgba(255, 255, 255, 0.5)",
 		"text-halo-width": 1.5
 	}
 },
@@ -209,6 +206,17 @@ var otm_style = [
 		]
 	}	
 },
+/*{
+	// still missing in
+	"id": "cliff",
+	"source": "opentopomap-vector",
+	"source-layer": "natural-lines",
+	"type": "line",
+	"paint": {
+		"line-color": "black",
+		"line-width": 0.5,
+	}
+},*/
 {
 	"id": "buildings",
 	"source": "opentopomap-vector",
@@ -732,9 +740,19 @@ var otm_style = [
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
 	"type": "symbol",
-	"filter": ["==", ["get","amenity"], "place_of_worship"],
+	"filter": ["all",
+		["==", ["get","amenity"], "place_of_worship"],
+		["==", ["get","religion"], "christian"],
+		["any",
+			["!",["has","denomination"]],
+			["in", ["get","denomination"], ["literal",["catholic", "roman_catholic", "old_catholic", "greek_catholic", "lutheran", "protestant", "reformed"]]]
+		],
+		["!",["in", ["get","building"], ["literal",["wayside_chapel", "chapel"]]]],
+		["!",["in", ["get","historic"], ["literal",["wayside_chapel", "chapel", "wayside_shrine", "wayside_cross"]]]]
+	],
 	"layout": {
         "icon-image": "church_z13",
+        "icon-offset": [0,-3],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -748,6 +766,7 @@ var otm_style = [
 	"filter": ["==", ["get","historic"], "castle"],
 	"layout": {
         "icon-image": "castle_z13",
+        "icon-offset": [0,-3],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -774,6 +793,23 @@ var otm_style = [
 	"filter": ["==", ["get","man_made"], "lighthouse"],
 	"layout": {
         "icon-image": "lighthouse",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-communications_mast",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["all",
+		["==", ["get","man_made"], "mast"],
+		["==", ["get","tower:type"], "communication"],
+	],
+	"layout": {
+        "icon-image": "communications_mast",
+        "icon-offset": [0,-5],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -823,6 +859,7 @@ var otm_style = [
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
 	"type": "symbol",
+	"minzoom": 13,
 	"filter": ["==", ["get","historic"], "wayside_cross"],
 	"layout": {
         "icon-image": "wayside_cross",
@@ -873,7 +910,6 @@ var otm_style = [
 	//"minzoom": 14,
 	"type": "symbol",
 	'layout': {
-		//"symbol-placement": "line-center",
         'text-field': '{name}',
         'text-size': ["interpolate",["linear"],["zoom"],13,10, 18,12],
         'text-font': [
@@ -882,8 +918,6 @@ var otm_style = [
 	},
 	"paint": {
 		"text-color": "blue"
-		//"text-halo-color": "red",
-		//"text-halo-width": 1.5
 	}
 },
 {

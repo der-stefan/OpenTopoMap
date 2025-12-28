@@ -1117,6 +1117,8 @@ function process_pois(polygon)
 	if amenity == "place_of_worship" then
 		addAttributeOrEmptyStr("religion")
 		addAttributeOrEmptyStr("denomination")
+		addAttributeOrEmptyStr("building")
+		addAttributeOrEmptyStr("historic")
 	end
 	setNameAttributes()
 	setAddressAttributes()
