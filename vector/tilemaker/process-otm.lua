@@ -1,9 +1,12 @@
+-- Copyright (c) 2025, OpenTopoMap
+-- Licensed under CC-BY-SA
+
 -- SPDX-License-Identifier: FTWPL
 -- Data processing for Geofabrik Vector Tiles schema
 -- Copyright (c) 2021, Geofabrik GmBH
 -- Licensed under FTWPL
 --
--- Modification by OpenTopoMap
+
 
 -- Enter/exit Tilemaker
 function init_function()
@@ -11,7 +14,7 @@ end
 function exit_function()
 end
 
-node_keys = { "place", "highway", "railway", "aeroway", "amenity", "aerialway", "shop", "leisure", "tourism", "man_made", "historic", "emergency", "office", "addr:housenumber", "addr:housename", "power" }
+node_keys = { "place", "highway", "railway", "aeroway", "amenity", "aerialway", "shop", "leisure", "sport", "tourism", "man_made", "historic", "emergency", "office", "addr:housenumber", "addr:housename", "power" }
 
 -- Management of accepted key-value pairs for the "pois" layer.
 -- We write only whitelisted tags to the shape file.
@@ -90,8 +93,13 @@ function setNameAttributes()
 	local name_de = Find("name:de")
 	local name_en = Find("name:en")
 	Attribute("name", fillWithFallback(name, name_en, name_de))
-	Attribute("name_de", fillWithFallback(name_de, name, name_en))
-	Attribute("name_en", fillWithFallback(name_en, name, name_de))
+	addAttributeOrEmptyStr("name:de")
+	addAttributeOrEmptyStr("name:en")
+	addAttributeOrEmptyStr("name:fr")
+	addAttributeOrEmptyStr("name:it")
+	addAttributeOrEmptyStr("name:es")
+	--Attribute("name_de", fillWithFallback(name_de, name, name_en))
+	--Attribute("name_en", fillWithFallback(name_en, name, name_de))
 end
 
 -- Return true if way is oneway
@@ -464,17 +472,35 @@ function process_water_lines()
 		Layer("water_lines", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
-		AttributeBoolean("tunnel", tunnel)
-		AttributeBoolean("bridge", bridge)
-		AttributeBoolean("intermittent", intermittent)
+		--AttributeBoolean("tunnel", tunnel)
+		--AttributeBoolean("bridge", bridge)
+		--AttributeBoolean("intermittent", intermittent)
+		if tunnel == true then
+			AttributeBoolean("tunnel", true)
+		end
+		if bridge == true then
+			AttributeBoolean("bridge", true)
+		end
+		if intermittent == true then
+			AttributeBoolean("intermittent", true)
+		end
 		ZOrder(layer)
 		if Holds("name") then
 			Layer("water_lines_labels", false)
 			MinZoom(mz_label)
 			Attribute("kind", kind)
-			AttributeBoolean("tunnel", tunnel)
-			AttributeBoolean("bridge", bridge)
-			AttributeBoolean("intermittent", intermittent)
+			--AttributeBoolean("tunnel", tunnel)
+			--AttributeBoolean("bridge", bridge)
+			--AttributeBoolean("intermittent", intermittent)
+			if tunnel == true then
+				AttributeBoolean("tunnel", true)
+			end
+			if bridge == true then
+				AttributeBoolean("bridge", true)
+			end
+			if intermittent == true then
+				AttributeBoolean("intermittent", true)
+			end
 			setNameAttributes()
 			ZOrder(layer)
 		end
@@ -767,45 +793,83 @@ function process_streets()
 		Layer("streets_med", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
-		AttributeBoolean("link", link)
-		Attribute("surface", surface)
-		AttributeBoolean("tunnel", tunnelBool)
-		AttributeBoolean("bridge", bridgeBool)
-		if tracktype ~= "" then
-			Attribute("tracktype", tracktype)
+		--AttributeBoolean("link", link)
+		--Attribute("surface", surface)
+		--AttributeBoolean("tunnel", tunnelBool)
+		--AttributeBoolean("bridge", bridgeBool)		
+		--if tracktype ~= "" then
+		--	Attribute("tracktype", tracktype)
+		--end
+		--AttributeBoolean("rail", rail)
+		--if service ~= "" then
+		--	Attribute("service", service)
+		--end
+		addAttributeOrEmptyStr("link")
+		addAttributeOrEmptyStr("surface")
+		addAttributeOrEmptyStr("tracktype")
+		addAttributeOrEmptyStr("service")
+		if rail == true then
+			AttributeBoolean("rail", true)
 		end
-		AttributeBoolean("rail", rail)
-		if service ~= "" then
-			Attribute("service", service)
+		if tunnelBool == true then
+			AttributeBoolean("tunnel", true)
 		end
+		if bridgeBool == true then
+			AttributeBoolean("bridge", true)
+		end
+
 		setZOrder(rail, false)
 	end
 	if mz < inf_zoom then
 		Layer("streets", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
-		AttributeBoolean("link", link)
-		Attribute("surface", surface)
-		Attribute("bicycle", bicycle)
-		Attribute("horse", horse)
-		AttributeBoolean("tunnel", tunnelBool)
-		AttributeBoolean("bridge", bridgeBool)
-		AttributeBoolean("oneway", onewayBool)
-		AttributeBoolean("oneway_reverse", reverseOnewayBool)
-		if tracktype ~= "" then
-			Attribute("tracktype", tracktype)
+		--AttributeBoolean("link", link)
+		--Attribute("surface", surface)
+		--Attribute("bicycle", bicycle)
+		--Attribute("horse", horse)
+		--AttributeBoolean("tunnel", tunnelBool)
+		--AttributeBoolean("bridge", bridgeBool)
+		--AttributeBoolean("oneway", onewayBool)
+		--AttributeBoolean("oneway_reverse", reverseOnewayBool)
+		--if tracktype ~= "" then
+		--	Attribute("tracktype", tracktype)
+		--end
+		--AttributeBoolean("rail", rail)
+		--if service ~= "" then
+		--	Attribute("service", service)
+		--end
+		
+		addAttributeOrEmptyStr("link")
+		addAttributeOrEmptyStr("surface")
+		addAttributeOrEmptyStr("tracktype")
+		addAttributeOrEmptyStr("service")
+		if rail == true then
+			AttributeBoolean("rail", true)
 		end
-		AttributeBoolean("rail", rail)
-		if service ~= "" then
-			Attribute("service", service)
+		if tunnelBool == true then
+			AttributeBoolean("tunnel", true)
 		end
+		if bridgeBool == true then
+			AttributeBoolean("bridge", true)
+		end
+		if onewayBool == true then
+			AttributeBoolean("oneway", true)
+		end
+		if reverseOnewayBool == true then
+			AttributeBoolean("oneway_reverse", true)
+		end
+
 		setZOrder(rail, false)
 	end
 	if mz <= 9 then
 		Layer("streets_low", false)
 		MinZoom(mz)
 		Attribute("kind", kind)
-		AttributeBoolean("rail", rail)
+		--AttributeBoolean("rail", rail)
+		if rail == true then
+			AttributeBoolean("rail", true)
+		end
 		setZOrder(rail, false)
 	end
 end
@@ -948,9 +1012,9 @@ function process_powertowers()
 	local mz = inf_zoom
 	
 	if power == "tower" then
-		mz = 11
-	elseif power == "pole" then
 		mz = 12
+	elseif power == "pole" then
+		mz = 13
 	end
 	
 	if mz < inf_zoom then
@@ -1016,12 +1080,24 @@ function process_bridges()
 	end
 end
 
-function process_dam(polygon)
+function process_natural(polygon)
+	--local mz = inf_zoom
+	
+	--local waterway_values = Set { "dam" }
+	--local natural_values = Set { "cliff", "crevasse" }
+	--local man_made_values = Set { "embankment", "dyke", "breakwater", "pier", "groyne" }
+	--local barrier_values = Set { "ditch" }
+	
+	--local waterway = valueAcceptedOrNil(waterway_values, Find("waterway"))
+	--local natural = valueAcceptedOrNil(natural_values, Find("natural"))
+	--local man_made = valueAcceptedOrNil(man_made_values, Find("man_made"))
+	--local barrier = valueAcceptedOrNil(barrier_values, Find("barrier"))
+	
 	if Find("waterway") == "dam" then
 		if polygon then
-			Layer("dam_polygons", true)
+			Layer("natural_polygons", true)
 		else
-			Layer("dam_lines", false)
+			Layer("natural_lines", false)
 		end
 		MinZoom(12)
 		Attribute("kind", "dam")
@@ -1144,14 +1220,14 @@ function way_function()
 	local is_area_default_linear = area_yes_multi_boundary
 
 	-- Layers water_polygons, water_polygons_labels, dam_polygons
-	if is_area and (Holds("waterway") or Holds("natural") or Holds("landuse")) then
+	if is_area and (Holds("waterway") or Holds("natural") or Holds("landuse") or Holds("barrier") or Holds("man_made")) then
 		process_water_polygons(area)
-		process_dam(true)
+		process_natural(true)
 	end
 	-- Layers water_lines, water_lines_labels, dam_lines
-	if not is_area and Holds("waterway") then
+	if not is_area and (Holds("waterway") or Holds("natural") or Holds("landuse") or Holds("barrier") or Holds("man_made")) then
 		process_water_lines()
-		process_dam(false)
+		process_natural(false)
 	end
 
 	-- Layer pier_lines, pier_polygons

@@ -9,7 +9,7 @@ const otm_layers = [
 	type: 'color-relief',
 	source: 'dem',
 	minzoom: 0,
-	maxzoom: 7.9,
+	maxzoom: 7.99,
 	paint: {
 		'color-relief-color': [
 			'interpolate',
@@ -714,6 +714,17 @@ const otm_layers = [
 		"icon-ignore-placement": true,
 	}
 },
+/*{
+	"id": "power-tower",
+	"source": "opentopomap-vector",
+	"source-layer": "power-points",
+	"type": "symbol",
+	"layout": {
+		"symbol-placement": "point",
+        "icon-image": "powertower_z16",  //image does not work!??
+        "icon-allow-overlap": true
+	}
+},*/
 
 // Symbols & labels
 // ============
@@ -765,7 +776,7 @@ const otm_layers = [
 	"type": "symbol",
 	"filter": ["==", ["get","historic"], "castle"],
 	"layout": {
-        "icon-image": "castle_z13",
+        "icon-image": ["match",["get","ruins"],"yes","castle_ruins_z13","castle_z13"],
         "icon-offset": [0,-3],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
@@ -996,7 +1007,7 @@ const otm_layers = [
         ]
 	},
 	"paint": {
-		"text-halo-color": "white",
+		"text-halo-color": "rgba(255,255,255,0.8)",
 		"text-halo-width": 1.5
 	}
 },
@@ -1033,7 +1044,7 @@ const otm_layers = [
         ]
 	},
 	"paint": {
-		"text-halo-color": "white",
+		"text-halo-color": "rgba(255,255,255,0.8)",
 		"text-halo-width": 1.5
 	}
 },
@@ -1048,16 +1059,17 @@ const otm_layers = [
 	'layout': {
 		'text-field': "{name}",
         //'text-field': ["format",["get","name"],{},"\n",["get", "population"],{"font-scale": 0.5}],
-        'symbol-sort-key': ["get","population"],
+        'symbol-sort-key': ["-", ["to-number", ["get", "population"]]],
         //'text-allow-overlap': true,
         'text-size': ["interpolate",["linear"],["zoom"],6,10, 7,12, 8,16, 10,22],
+        "text-max-width": 7,
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
           'Roboto Regular'
         ]
 	},
 	"paint": {
-		"text-halo-color": "white",
+		"text-halo-color": "rgba(255,255,255,0.8)",
 		"text-halo-width": 2
 	}
 },
@@ -1072,13 +1084,14 @@ const otm_layers = [
 	'layout': {
 		'text-field': "{name}",
         'text-size': ["interpolate",["linear"],["zoom"],6,10, 8,17, 10,22],
+        "text-max-width": 7,
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
           'Roboto Regular'
         ]
 	},
 	"paint": {
-		"text-halo-color": "white",
+		"text-halo-color": "rgba(255,255,255,0.8)",
 		"text-halo-width": 2
 	}
 },
@@ -1094,13 +1107,14 @@ const otm_layers = [
 		'text-field': "{name}",
         'text-size': ["interpolate",["linear"],["zoom"],6,12, 8,17, 10,22],
         'text-transform': 'uppercase',
+        "text-max-width": 7,
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
         'text-font': [
           'Roboto Regular'
         ]
 	},
 	"paint": {
-		"text-halo-color": "white",
+		"text-halo-color": "rgba(255,255,255,0.8)",
 		"text-halo-width": 2
 	}
 },

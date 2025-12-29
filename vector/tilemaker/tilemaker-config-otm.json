@@ -39,7 +39,7 @@
             "simplify_ratio": 2,
             "combine_lines_below": 15
         },
-        "dam_lines": {
+        "natural_lines": {
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
@@ -47,7 +47,7 @@
             "simplify_ratio": 2,
             "combine_lines_below": 15
         },
-        "dam_polygons": {
+        "natural_polygons": {
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
@@ -73,7 +73,8 @@
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0001,
-            "simplify_ratio": 2
+            "simplify_ratio": 2,
+            "combine_lines_below": 15
         },
         "street_polygons": {
             "minzoom": 11,
@@ -94,7 +95,7 @@
         "streets": {
             "minzoom": 13,
             "maxzoom": 14,
-            "combine_below": 14
+            "combine_lines_below": 14
         },
         "streets_med": {
             "minzoom": 10,
@@ -127,13 +128,15 @@
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0003
+            "simplify_level": 0.0003,
+            "combine_lines_below": 14
         },
         "power-lines": {
             "minzoom": 10,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0003
+            "simplify_level": 0.0003,
+            "combine_lines_below": 14
         },
         "power-points": {
             "minzoom": 10,
