@@ -102,7 +102,7 @@
             "maxzoom": 12,
             "write_to": "streets",
             "simplify_below": 13,
-            "simplify_level": 0.0001,
+            "simplify_level": 0.00015,
             "combine_lines_below": 13
         },
         "streets_low": {
@@ -110,7 +110,7 @@
             "maxzoom": 9,
             "write_to": "streets",
             "simplify_below": 10,
-            "simplify_level": 0.0001,
+            "simplify_level": 0.0005,
             "combine_lines_below": 10
         },
         "street_labels": {

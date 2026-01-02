@@ -51,7 +51,7 @@ poi_amenity_values = Set { "police", "fire_station", "post_box", "post_office", 
 	"pharmacy", "hospital", "clinic", "doctors", "dentist", "veterinary", "theatre", "nightclub", "cinema",
 	"restaurant", "fast_food", "cafe", "pub", "bar", "foot_court", "biergarten", "shelter",
 	"car_rental", "car_wash", "car_sharing", "bicycle_rental", "vending_machine", "bank", "atm",
-	"toilets", "bench", "drinking_water", "fountain", "hunting_stand", "waste_basket", "place_of_worship" }
+	"toilets", "bench", "drinking_water", "fountain", "hunting_stand", "waste_basket", "place_of_worship", "parking" }
 catering_values = Set { "restaurant", "fast_food", "pub", "bar", "cafe" }
 poi_leisure_values = Set { "playground", "dog_park", "sports_centre", "pitch", "water_park",
 	"golf_course", "stadium", "ice_rink" }
@@ -74,6 +74,7 @@ poi_emergency_values = Set { "phone", "fire_hydrant", "defibrillator" }
 poi_highway_values = Set { "emergency_access_point" }
 poi_railway_values = Set { "station" }
 poi_office_values = Set { "diplomatic" }
+poi_power_values = Set { "generator" }
 
 inf_zoom = 99
 
@@ -220,7 +221,7 @@ function process_place_layer()
 			population = "5000"
 		end
 	elseif place == "village" then
-		mz = 10
+		mz = 9
 		if population == "" then
 			population = "100"
 		end
@@ -804,7 +805,9 @@ function process_streets()
 		--if service ~= "" then
 		--	Attribute("service", service)
 		--end
-		addAttributeOrEmptyStr("link")
+		if link == true then
+			AttributeBoolean("link", true)
+		end
 		addAttributeOrEmptyStr("surface")
 		addAttributeOrEmptyStr("tracktype")
 		addAttributeOrEmptyStr("service")
@@ -840,7 +843,9 @@ function process_streets()
 		--	Attribute("service", service)
 		--end
 		
-		addAttributeOrEmptyStr("link")
+		if link == true then
+			AttributeBoolean("link", true)
+		end
 		addAttributeOrEmptyStr("surface")
 		addAttributeOrEmptyStr("tracktype")
 		addAttributeOrEmptyStr("service")
@@ -1120,12 +1125,14 @@ function process_pois(polygon)
 	local highway = valueAcceptedOrNil(poi_highway_values, Find("highway"))
 	local railway = valueAcceptedOrNil(poi_railway_values, Find("railway"))
 	local office = valueAcceptedOrNil(poi_highway_values, Find("office"))
+	local power = valueAcceptedOrNil(poi_power_values, Find("power"))
 	
 	local access = Find("access")
 	local denotation = Find("denotation")
 	local name = Find("name")
+	local generator_method = Find("generator:method")
 	
-	if amenity == nil and shop == nil and tourism == nil and man_made == nil and historic == nil and leisure == nil and sport == nil and natural == nil and emergency == nil and highway == nil and railway == nil and office == nil then
+	if amenity == nil and shop == nil and tourism == nil and man_made == nil and historic == nil and leisure == nil and sport == nil and natural == nil and emergency == nil and highway == nil and railway == nil and office == nil and power == nil then
 		return false
 	end
 	
@@ -1144,7 +1151,7 @@ function process_pois(polygon)
 		Layer("pois", false)
 	end
 	
-	MinZoom(12)
+	--MinZoom(12)
 	Attribute("amenity", nilToEmptyStr(amenity))
 	Attribute("shop", nilToEmptyStr(shop))
 	Attribute("tourism", nilToEmptyStr(tourism))
@@ -1196,6 +1203,34 @@ function process_pois(polygon)
 		addAttributeOrEmptyStr("building")
 		addAttributeOrEmptyStr("historic")
 	end
+	if power == "generator" then
+		addAttributeOrEmptyStr("generator:method")
+	end
+	if amenity == "parking" then
+		addAttributeOrEmptyStr("access")
+		addAttributeOrEmptyStr("parking")
+		addAttributeOrEmptyStr("fee")
+		addAttributeBoolean("hiking")
+	end
+	
+	local mz = 14
+	if man_made == "communications_tower" then
+		mz = 10
+	elseif man_made == "tower" then
+		mz = 11
+	elseif man_made == "mast" or man_made == "watertower" then
+		mz = 12
+	elseif power == "generator" and generator_method == "wind_turbine" then
+		mz = 11
+	elseif amenity == "place_of_worship" or historic == "castle" then
+		mz = 12
+	elseif amenity == "parking" then
+		mz = 14
+	elseif man_made == "watermill" then
+		mz = 13
+	end
+	MinZoom(mz)
+	
 	setNameAttributes()
 	setAddressAttributes()
 	return true
