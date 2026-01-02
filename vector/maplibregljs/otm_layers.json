@@ -78,7 +78,7 @@ const otm_layers = [
 	"type": "fill",
 	"paint": {"fill-color": "#cce599","fill-outline-color": "#91c067"}
 },
-{
+/*{
 	"id": "forest-fill",
 	"source": "opentopomap-vector",
 	"source-layer": "land",
@@ -88,13 +88,13 @@ const otm_layers = [
 	],
 	"type": "fill",
 	"paint": {"fill-color": "#cdef82","fill-opacity": 0.3}
-},
+},*/
 {
 	'id': 'hills',
 	'type': 'hillshade',
 	'source': 'dem',
 	'layout': { 'visibility': 'visible' },
-	'paint': { 'hillshade-shadow-color': '#473B24', 'hillshade-method': 'igor'}
+	'paint': { 'hillshade-shadow-color': '#2d3100', 'hillshade-method': 'igor'}
 },
 {
 	id: "contour-lines",
@@ -675,7 +675,7 @@ const otm_layers = [
 		"line-width": ["interpolate",["linear"],["zoom"],6,1.4, 8,2.5, 9,2.9, 11,3.5, 15,5.0, 19,17]
 	}
 },
-// All other streets
+// All other streets (for debugging)
 /*{
 	"id": "otherstreets",
 	"source": "opentopomap-vector",
@@ -684,10 +684,10 @@ const otm_layers = [
 		"all",
 		["!in", "kind", 'motorway','trunk','primary','secondary','tertiary','unclassified','residential','rail']
 	],
-	"minzoom": 15,
+	//"minzoom": 15,
 	"type": "line",
 	"layout": {"line-cap": "round"},
-	"paint": {"line-color": "red","line-width": 1}
+	"paint": {"line-color": "red","line-width": 0.5}
 },*/
 {
 	"id": "power-line",
@@ -827,6 +827,20 @@ const otm_layers = [
 	}
 },
 {
+	"id": "poi-wind_turbine",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","generator:method"], "wind_turbine"],
+	"layout": {
+        "icon-image": "wind_turbine",
+        "icon-offset": [2,-10],
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
 	"id": "poi-water_tower",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -870,7 +884,7 @@ const otm_layers = [
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
 	"type": "symbol",
-	"minzoom": 13,
+	//"minzoom": 13,
 	"filter": ["==", ["get","historic"], "wayside_cross"],
 	"layout": {
         "icon-image": "wayside_cross",
@@ -879,7 +893,22 @@ const otm_layers = [
         "symbol-placement": "point"
 	}
 },
+
 {
+	"id": "poi-all",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	//"minzoom": 13,
+	"layout": {
+        "icon-image": "wayside_cross",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+
+/*{
 	"id": "poi-text",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -893,7 +922,7 @@ const otm_layers = [
         ],
         "text-allow-overlap": true,
 	}
-},
+},*/
 {
 	"id": "waterlinelabels",
 	"source": "opentopomap-vector",
@@ -986,6 +1015,7 @@ const otm_layers = [
 			"all",
 			["==", ["get","kind"], "village"],
 			["any",
+				['all',['>=', ['zoom'], 9],['>=', ['get', 'population'], 1000]],
 				['all',['>=', ['zoom'], 10],['>=', ['get', 'population'], 1000]],
 				['all',['>=', ['zoom'], 11],['>=', ['get', 'population'], 100]],
 				['all',['>=', ['zoom'], 12],['any',['>=', ['get', 'population'], 0],['!',['has', 'population']]]]
@@ -995,7 +1025,8 @@ const otm_layers = [
 	'layout': {
         'text-field': '{name}',
         "text-size":["interpolate",["linear"],["zoom"],
-			10,["case",[">=",["get","population"],5000],11.5,10.5],
+			9,["case",[">=",["get","population"],5000],10,9],
+			10,["case",[">=",["get","population"],5000],11,10],
 			11,["case",[">=",["get","population"],2000],12,10.5],
 			12,["case",[">=",["get","population"],2000],13,12],
 			13,["case",[">=",["get","population"],5000],15,15]
@@ -1019,8 +1050,9 @@ const otm_layers = [
 			"all",
 			["==", ["get","kind"], "town"],
 			["any",
-				["all",[">=", ["zoom"], 7],[">=", ["get", "population"], 20000]],
+				["all",[">=", ["zoom"], 7],[">=", ["get", "population"], 10000]],
 				["all",[">=", ["zoom"], 8],[">=", ["get", "population"], 5000]],
+				["all",[">=", ["zoom"], 9],[">=", ["get", "population"], 1000]],
 				["all",[">=", ["zoom"], 10],[">=", ["get", "population"], 1000]],
 				['all',['>=', ['zoom'], 11],['any',['>=', ['get', 'population'], 0],['!',['has', 'population']]]]
 			]
@@ -1032,9 +1064,9 @@ const otm_layers = [
         "text-size":["interpolate",["linear"],["zoom"],
 			7,["case",[">",["get","population"],20000],10,9],
 			8,["case",[">",["get","population"],10000],11.7,9.5],
-			9,["case",[">",["get","population"],20000],13.5,11.5],
-			10,["case",[">",["get","population"],20000],15,12.5],
-			11,["case",[">",["get","population"],20000],16,13.5],
+			9,["case",[">",["get","population"],20000],13.5,11],
+			10,["case",[">",["get","population"],15000],15,12],
+			11,["case",[">",["get","population"],10000],16,13.5],
 			13,["case",[">",["get","population"],500],20,17]
 		],
 		"text-max-width": 7,
@@ -1130,9 +1162,9 @@ const otm_layers = [
 	"type": "symbol",
 	'layout': {
         'text-field': '{name}',
-        'symbol-sort-key': ["get","population"],
-        'text-size': ["interpolate",["linear"],["zoom"],5,14, 6,13, 7,15],
-        'text-letter-spacing': ["interpolate",["linear"],["zoom"],5,0.5, 6,0.5, 7,2],
+        'symbol-sort-key': ["-", ["get","way_area"]],
+        'text-size': ["interpolate",["linear"],["zoom"],3,10, 5,14, 6,13, 7,15],
+        'text-letter-spacing': ["interpolate",["linear"],["zoom"],3,0, 5,0.5, 6,0.5, 7,2],
         'text-font': [
           'Roboto Regular'
         ]
