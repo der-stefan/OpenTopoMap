@@ -1136,7 +1136,7 @@ function process_pois(polygon)
 		return false
 	end
 	
-	if sport == "swimming" and access == private then
+	if sport == "swimming" and access == "private" then
 		return false
 	end
 	if natural == "tree" and (name == nil or denotation ~= "landmark" or denotation ~= "natural_monument") then
@@ -1213,23 +1213,23 @@ function process_pois(polygon)
 		addAttributeBoolean("hiking")
 	end
 	
-	local mz = 14
+	local mz = 14 --default zoom level
 	if man_made == "communications_tower" then
-		mz = 10
-	elseif man_made == "tower" then
 		mz = 11
-	elseif man_made == "mast" or man_made == "watertower" then
-		mz = 12
 	elseif power == "generator" and generator_method == "wind_turbine" then
 		mz = 11
+	elseif man_made == "tower" or man_made == "watertower" then
+		mz = 12
 	elseif amenity == "place_of_worship" or historic == "castle" then
 		mz = 12
-	elseif amenity == "parking" then
-		mz = 14
-	elseif man_made == "watermill" then
-		mz = 13
 	elseif sport == "swimming" then
 		mz = 12
+	elseif man_made == "mast" then
+		mz = 13
+	elseif man_made == "watermill" then
+		mz = 13
+	elseif amenity == "parking" then
+		mz = 14
 	end
 	MinZoom(mz)
 	
