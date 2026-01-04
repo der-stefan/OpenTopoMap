@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OpenTopoMap</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
+	<link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
+    <script src="maplibre-grid.js"></script>
+    
+	<script src='https://unpkg.com/@maplibre/maplibre-gl-inspect@latest/dist/maplibre-gl-inspect.js'></script>
+	<link href='https://unpkg.com/@maplibre/maplibre-gl-inspect@latest/dist/maplibre-gl-inspect.css' rel='stylesheet' />
+
+	<script src="https://unpkg.com/maplibre-contour@0.1.0/dist/index.min.js"></script>
+	
+	<script src="https://unpkg.com/@geomatico/maplibre-cog-protocol@0.5.0/dist/index.js"></script>
+	<script src="https://unpkg.com/maplibre-contour@0.1.0/dist/index.min.js"></script>
+	
+	<link href="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-export@4.1.0/dist/maplibre-gl-export.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-export@4.1.0/dist/maplibre-gl-export.umd.js"></script>
+	
+    <style>
+        body { margin: 0; padding: 0; }
+        html, body, #map { height: 100%; }
+    </style>
+</head>
+<style>
+    #map {
+        background: #000;
+    }
+</style>
+<body>
+<div id="map"></div>
+
+<script src="otm_layers.json"></script>
+<script>
+	maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
+	var demSource = new mlcontour.DemSource({
+		url: "https://tiles.mapterhorn.com/{z}/{x}/{y}.webp",
+		encoding: "terrarium", // "mapbox" or "terrarium" default="terrarium"
+		maxzoom: 15,
+		worker: true, // offload isoline computation to a web worker to reduce jank
+		cacheSize: 100, // number of most-recent tiles to cache
+		timeoutMs: 10_000, // timeout on fetch requests
+	});
+	demSource.setupMaplibre(maplibregl);
+
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: {
+            'version': 8,
+            'projection': {
+                'type': ['interpolate',['linear'],['zoom'],5,'vertical-perspective',7,'mercator']
+            },
+            'sources': {
+				'opentopomap-vector': {
+					'type': 'vector',
+					'tiles': [
+						'https://backup.opentopomap.org/otm/{z}/{x}/{y}.pbf'
+					],
+					'maxzoom': 14,
+					'attribution': 'Map style: © OpenTopoMap, Map data © OpenStreetMap contributors'
+				},
+				'dem': {
+					type: "raster-dem",
+					encoding: "terrarium",
+					tiles: [demSource.sharedDemProtocolUrl],
+					maxzoom: 15,
+					tileSize: 512,
+					'attribution': 'DEM: © mapterhorn.com'
+				},
+				/*'dem': {
+					'type': 'raster-dem',
+					'url': 'cog://https://backup.opentopomap.org/vector/dem-srtm-cog.tif#dem',
+					'tileSize': 256,
+					'attribution': 'DEM: © Copernicus 🇪🇺'
+				},*/
+				'contour-source': {
+					type: "vector",
+					tiles: [
+						demSource.contourProtocolUrl({
+							multiplier: 1,
+							thresholds: { // zoom: [minor, major]
+								10: [50, 1000],
+								11: [20, 500],
+								12: [10, 100],
+								13: [10, 100],
+								14: [10, 100],
+								15: [10, 50],
+							},
+							contourLayer: "contours",
+							elevationKey: "ele",
+							levelKey: "level",
+							extent: 4096,
+							buffer: 1,
+						}),
+					],
+					maxzoom: 15,
+
+				},
+                'opentopomap-tiles': {
+                    'type': 'raster',
+                    'tiles': [
+                        'https://tile.opentopomap.org/{z}/{x}/{y}.png'
+                    ],
+                    'tileSize': 256,
+                    'attribution':
+                        'Map tiles by <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>. Data &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors'
+                },
+                'openstreetmap-tiles': {
+                    'type': 'raster',
+                    'tiles': [
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    ],
+                    'tileSize': 256,
+                    'attribution':
+                        'Map tiles by <a target="_blank" href="https://opentopomap.org">OpenStreetMap</a>. Data &copy; <a href="https://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a> contributors'
+                }
+            },
+            'glyphs': "https://fonts.undpgeohub.org/fonts/{fontstack}/{range}.pbf",
+            'sprite': "https://backup.opentopomap.org/vector/otm_sprite",
+            'layers': otm_layers,
+            'sky': {
+                "sky-color": "#199EF3",
+				"sky-horizon-blend": 0.5,
+				"horizon-color": "#ffffff",
+				"horizon-fog-blend": 0,
+				"fog-color": "#0000ff",
+				"fog-ground-blend": 0,
+				"atmosphere-blend": ["interpolate",["linear"],["zoom"],0,1, 10,1,	12,0]
+            },
+            'light': {
+                'anchor': 'viewport',
+                'position': [3, 0, 30],
+                'color': '#AAAAAA'
+            }
+        },
+        center: [17.3, 47.6],
+        zoom: 5,
+        hash: true
+    });
+	
+    const grid = new MaplibreGrid.Grid({
+		  gridWidth: 10,
+		  gridHeight: 10,
+		  units: 'degrees',
+		  paint: {
+			'line-opacity': 0.2
+		  }
+	});
+	map.addControl(grid);
+    
+    //map.scrollZoom.setWheelZoomRate(1);
+
+    map.addControl(new maplibregl.FullscreenControl());
+    map.addControl(
+        new maplibregl.NavigationControl({
+            visualizePitch: true,
+            showZoom: true,
+            showCompass: true
+        })
+    );
+    
+    // Add geolocate control
+	const geolocate = new maplibregl.GeolocateControl({
+		positionOptions: {
+			enableHighAccuracy: true
+		},
+		trackUserLocation: true
+	});
+	map.addControl(geolocate);
+	geolocate.trigger();
+	
+    map.addControl(
+        new maplibregl.TerrainControl({
+            source: 'dem',
+            exaggeration: 2
+        })
+    );
+    
+    map.addControl(new MaplibreInspect({
+		showInspectButton: true,
+		showMapPopup: true
+	}));
+	
+	map.addControl(new MaplibreExportControl.MaplibreExportControl({
+		PageSize: MaplibreExportControl.Size.A4,
+		PageOrientation: MaplibreExportControl.PageOrientation.Landscape,
+		Format: MaplibreExportControl.Format.PDF,
+		DPI: MaplibreExportControl.DPI[300],
+		Crosshair: true,
+		PrintableArea: true,
+		Local: 'en'
+	}), 'top-right');
+
+	//map.showTileBoundaries = true;
+	
+</script>
+</body>
+</html>

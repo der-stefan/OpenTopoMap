@@ -90,7 +90,7 @@ const otm_layers = [
 	"paint": {"fill-color": "#cdef82","fill-opacity": 0.3}
 },*/
 {
-	'id': 'hills',
+	'id': 'hillshade',
 	'type': 'hillshade',
 	'source': 'dem',
 	'layout': { 'visibility': 'visible' },
@@ -147,7 +147,16 @@ const otm_layers = [
 	"source": "opentopomap-vector",
 	"source-layer": "water_lines",
 	"type": "line",
-	"paint": {"line-color": "blue", "line-width": 0.3}	
+	"paint": {
+		"line-color": "blue",
+		"line-width": [
+			"interpolate",
+			["linear"],
+			["zoom"],
+			6, ["match", ["get", "kind"], "river", 0.7, "stream", 0.4, 0.3],
+			12, ["match", ["get", "kind"], "river", 2.0, "stream", 0.6, 0.5],
+		],
+	}	
 },          
 {
 	"id": "water-poly",
@@ -729,21 +738,54 @@ const otm_layers = [
 // Symbols & labels
 // ============
 {
-	"id": "housenumbers",
+	"id": "poi-wind_turbine",
 	"source": "opentopomap-vector",
-	"source-layer": "addresses",
-	"minzoom": 16,
+	"source-layer": "pois",
 	"type": "symbol",
-	'layout': {
-        'text-field': '{housenumber}',
-        'text-size': ["interpolate",["linear"],["zoom"],16,9, 18,12],
-        'text-font': [
-          'Roboto Regular'
-        ],
-	},
-	"paint": {
-		"text-halo-color": "gray",
-		"text-halo-width": 1.5
+	"filter": ["==", ["get","generator:method"], "wind_turbine"],
+	"layout": {
+        "icon-image": "wind_turbine",
+        "icon-offset": [3,-10],
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-communications_tower",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["any",
+		["==", ["get","man_made"], "communications_tower"],
+		["all",
+			["==", ["get","man_made"], "tower"],
+			["==", ["get","tower:type"], "communication"]
+		],
+	],
+	"layout": {
+        "icon-image": "communications_tower_z13",
+        "icon-offset": [0,-5],
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-communications_mast",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["all",
+		["==", ["get","man_made"], "mast"],
+		["==", ["get","tower:type"], "communication"],
+	],
+	"layout": {
+        "icon-image": "communications_mast",
+        "icon-offset": [0,-5],
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
 	}
 },
 {
@@ -784,19 +826,6 @@ const otm_layers = [
 	}
 },
 {
-	"id": "poi-swimming",
-	"source": "opentopomap-vector",
-	"source-layer": "pois",
-	"type": "symbol",
-	"filter": ["==", ["get","leisure"], "swimming_pool"],
-	"layout": {
-        "icon-image": "swimming",
-        "icon-keep-upright": true,
-        "icon-allow-overlap": true,
-        "symbol-placement": "point"
-	}
-},
-{
 	"id": "poi-lighthouse",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -804,37 +833,6 @@ const otm_layers = [
 	"filter": ["==", ["get","man_made"], "lighthouse"],
 	"layout": {
         "icon-image": "lighthouse",
-        "icon-keep-upright": true,
-        "icon-allow-overlap": true,
-        "symbol-placement": "point"
-	}
-},
-{
-	"id": "poi-communications_mast",
-	"source": "opentopomap-vector",
-	"source-layer": "pois",
-	"type": "symbol",
-	"filter": ["all",
-		["==", ["get","man_made"], "mast"],
-		["==", ["get","tower:type"], "communication"],
-	],
-	"layout": {
-        "icon-image": "communications_mast",
-        "icon-offset": [0,-5],
-        "icon-keep-upright": true,
-        "icon-allow-overlap": true,
-        "symbol-placement": "point"
-	}
-},
-{
-	"id": "poi-wind_turbine",
-	"source": "opentopomap-vector",
-	"source-layer": "pois",
-	"type": "symbol",
-	"filter": ["==", ["get","generator:method"], "wind_turbine"],
-	"layout": {
-        "icon-image": "wind_turbine",
-        "icon-offset": [2,-10],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -867,6 +865,22 @@ const otm_layers = [
 	}
 },
 {
+	"id": "poi-swimming",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["any",
+		["==", ["get","leisure"], "swimming_pool"],
+		["==", ["get","sport"], "swimming"],
+	],
+	"layout": {
+        "icon-image": "swimming",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
 	"id": "poi-cross",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -884,7 +898,6 @@ const otm_layers = [
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
 	"type": "symbol",
-	//"minzoom": 13,
 	"filter": ["==", ["get","historic"], "wayside_cross"],
 	"layout": {
         "icon-image": "wayside_cross",
@@ -893,8 +906,26 @@ const otm_layers = [
         "symbol-placement": "point"
 	}
 },
-
 {
+	"id": "housenumbers",
+	"source": "opentopomap-vector",
+	"source-layer": "addresses",
+	"minzoom": 16,
+	"type": "symbol",
+	'layout': {
+        'text-field': '{housenumber}',
+        'text-size': ["interpolate",["linear"],["zoom"],16,9, 18,12],
+        'text-font': [
+          'Roboto Regular'
+        ],
+	},
+	"paint": {
+		"text-halo-color": "gray",
+		"text-halo-width": 1.5
+	}
+},
+
+/*{
 	"id": "poi-all",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -906,7 +937,7 @@ const otm_layers = [
         "icon-allow-overlap": true,
         "symbol-placement": "point"
 	}
-},
+},*/
 
 /*{
 	"id": "poi-text",
@@ -939,7 +970,7 @@ const otm_layers = [
 	},
 	"paint": {
 		"text-color": "blue",
-		"text-halo-color": "#a3dde8",
+		"text-halo-color": ["match",["get","kind"],"river","#a3dde8","white"],
 		"text-halo-width": 1.0
 	}
 },

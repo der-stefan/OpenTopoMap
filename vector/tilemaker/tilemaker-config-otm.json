@@ -110,14 +110,14 @@
             "maxzoom": 9,
             "write_to": "streets",
             "simplify_below": 10,
-            "simplify_level": 0.0005,
+            "simplify_level": 0.0007,
             "combine_lines_below": 10
         },
         "street_labels": {
             "minzoom": 10,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0001,
+            "simplify_level": 0.00015,
             "combine_lines_below": 15
         },
         "street_labels_points": {
@@ -206,7 +206,7 @@
             "maxzoom": 14
         },
         "pois": {
-            "minzoom": 12,
+            "minzoom": 11,
             "maxzoom": 14
         }
     },

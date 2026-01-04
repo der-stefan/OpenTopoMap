@@ -1228,6 +1228,8 @@ function process_pois(polygon)
 		mz = 14
 	elseif man_made == "watermill" then
 		mz = 13
+	elseif sport == "swimming" then
+		mz = 12
 	end
 	MinZoom(mz)
 	
