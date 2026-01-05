@@ -167,12 +167,7 @@ const otm_layers = [
 	"source": "opentopomap-vector",
 	"source-layer": "buildings",
 	"type": "fill",
-	/*"filter": [
-		"all",
-		["!=", "kind", "garage"]
-	],*/
 	"paint": {
-		//"fill-color": ["interpolate",["exponential",0.5],["zoom"],12,"gray",13,"#333333",16,"gray"],
 		"fill-color": [
 			"interpolate",
 			["linear"],
@@ -190,17 +185,6 @@ const otm_layers = [
 		"fill-outline-color": ["interpolate",["exponential",0.5],["zoom"],12,"gray",13,"black"],
 	}
 },
-/*{
-	"id": "buildings-outline",
-	"source": "opentopomap-vector",
-	"source-layer": "buildings",
-	"type": "line",
-	"minzoom": 14.5,
-	"paint": {
-		"line-color": "black",
-		"line-width": 0.5,
-	}
-},*/
 // Rails
 {
 	"id": "railway",
@@ -523,6 +507,38 @@ const otm_layers = [
 		}
 },
 {
+	"id": "trunk-link-fill",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "kind", "trunk"],
+		["==", "link", true]
+	],
+	"type": "line",
+	"layout": {"line-cap": "round"},
+	"paint": {
+		"line-color": ["step",["zoom"],"#fdfd4f",10,"#fdfd4f",11,"#fb9e2a"],
+		"line-width": ["interpolate",["linear"],["zoom"],9,2, 12,1.8, 13,1.8, 15,5.0, 19,17]
+	}
+},
+{
+	"id": "motorway-link-fill",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "kind", "motorway"],
+		["==", "link", true]
+	],
+	"type": "line",
+	"layout": {"line-cap": "round"},
+	"paint": {
+		"line-color": "#fb9e2a",
+		"line-width": ["interpolate",["linear"],["zoom"],9,2, 12,1.8, 13,1.8, 15,5.0, 19,17]
+	}
+},
+{
 	"id": "tertiary-fill",
 	"source": "opentopomap-vector",
 	"source-layer": "streets",
@@ -569,22 +585,6 @@ const otm_layers = [
 	
 },
 {
-	"id": "trunk-link-fill",
-	"source": "opentopomap-vector",
-	"source-layer": "streets",
-	"filter": [
-		"all",
-		["==", "kind", "trunk"],
-		["==", "link", true]
-	],
-	"type": "line",
-	"layout": {"line-cap": "round"},
-	"paint": {
-		"line-color": "#fb9e2a",
-		"line-width": ["interpolate",["linear"],["zoom"],9,2, 12,1.8, 13,1.8, 15,5.0, 19,17]
-	}
-},
-{
 	"id": "trunk-fill",
 	"source": "opentopomap-vector",
 	"source-layer": "streets",
@@ -598,22 +598,6 @@ const otm_layers = [
 	"paint": {
 		"line-color": ["step",["zoom"],"#fdfd4f",10,"#fdfd4f",11,"#fb9e2a"],
 		"line-width": ["interpolate",["linear"],["zoom"],6,1.1, 8,2.3, 9,2.5, 11,3.0, 15,5.0, 19,17]
-	}
-},
-{
-	"id": "motorway-link-fill",
-	"source": "opentopomap-vector",
-	"source-layer": "streets",
-	"filter": [
-		"all",
-		["==", "kind", "motorway"],
-		["==", "link", true]
-	],
-	"type": "line",
-	"layout": {"line-cap": "round"},
-	"paint": {
-		"line-color": "#fb9e2a",
-		"line-width": ["interpolate",["linear"],["zoom"],9,2, 12,1.8, 13,1.8, 15,5.0, 19,17]
 	}
 },
 {
@@ -632,15 +616,11 @@ const otm_layers = [
 		"line-width": ["interpolate",["linear"],["zoom"],6,1.4, 8,2.5, 9,2.9, 11,3.5, 15,5.0, 19,17]
 	}
 },
-// All other streets (for debugging)
+// All streets (for debugging)
 /*{
 	"id": "otherstreets",
 	"source": "opentopomap-vector",
 	"source-layer": "streets",
-	"filter": [
-		"all",
-		["!in", "kind", "motorway","trunk","primary","secondary","tertiary","unclassified","residential","rail"]
-	],
 	//"minzoom": 15,
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -684,6 +664,21 @@ const otm_layers = [
 
 // Symbols & labels
 // ============
+
+/*{ // for DEBUGGING
+	"id": "poi-all",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	//"minzoom": 13,
+	"layout": {
+        "icon-image": "wayside_cross",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},*/
+
 {
 	"id": "poi-wind_turbine",
 	"source": "opentopomap-vector",
@@ -712,6 +707,23 @@ const otm_layers = [
 	],
 	"layout": {
         "icon-image": "communications_tower_z13",
+        "icon-offset": [0,-5],
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-observation_tower",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["all",
+		["==", ["get","man_made"], "tower"],
+		["==", ["get","tower:type"], "observation"]
+	],
+	"layout": {
+        "icon-image": "observation_tower_z13",
         "icon-offset": [0,-5],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
@@ -773,6 +785,20 @@ const otm_layers = [
 	}
 },
 {
+	"id": "poi-ruins",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","historic"], "ruins"],
+	"layout": {
+        "icon-image": "castle_ruins_z13",
+        "icon-offset": [0,-3],
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
 	"id": "poi-lighthouse",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -799,6 +825,19 @@ const otm_layers = [
 	}
 },
 {
+	"id": "poi-chimney",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","man_made"], "chimney"],
+	"layout": {
+        "icon-image": "chimney_z13",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
 	"id": "poi-watermill",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
@@ -806,6 +845,85 @@ const otm_layers = [
 	"filter": ["==", ["get","man_made"], "watermill"],
 	"layout": {
         "icon-image": "watermill",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-peak",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","natural"], "peak"],
+	"layout": {
+        //"icon-image": ["match",["get","peak:summit_cross"],"yes","summit_cross","peak"],
+        "icon-image": "peak",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-viewpoint",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","tourism"], "viewpoint"],
+	"layout": {
+        "icon-image": "viewpoint",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-cave_entrance",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","natural"], "cave_entrance"],
+	"layout": {
+        "icon-image": "cave",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-campsite",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","tourism"], "camp_site"],
+	"layout": {
+        "icon-image": "campsite_z13",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-hut_alpine",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","tourism"], "alpine_hut"],
+	"layout": {
+        "icon-image": "hut_alpine",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-hut_wilderness",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","tourism"], "wilderness_hut"],
+	"layout": {
+        "icon-image": "hut_wilderness",
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -822,6 +940,19 @@ const otm_layers = [
 	],
 	"layout": {
         "icon-image": "swimming",
+        "icon-keep-upright": true,
+        "icon-allow-overlap": true,
+        "symbol-placement": "point"
+	}
+},
+{
+	"id": "poi-golf_course",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"filter": ["==", ["get","leisure"], "golf_course"],
+	"layout": {
+        "icon-image": "golf",
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -871,21 +1002,6 @@ const otm_layers = [
 		"text-halo-width": 1.5
 	}
 },
-
-/*{
-	"id": "poi-all",
-	"source": "opentopomap-vector",
-	"source-layer": "pois",
-	"type": "symbol",
-	//"minzoom": 13,
-	"layout": {
-        "icon-image": "wayside_cross",
-        "icon-keep-upright": true,
-        "icon-allow-overlap": true,
-        "symbol-placement": "point"
-	}
-},*/
-
 {
 	"id": "poi-text",
 	"source": "opentopomap-vector",

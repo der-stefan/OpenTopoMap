@@ -67,7 +67,7 @@ poi_shop_values = Set { "supermarket", "bakery", "kiosk", "mall", "department_st
 	"dry_cleaning" }
 poi_man_made_values = Set { "surveillance", "communications_tower", "tower", "mast", "chimney", "cross", "mindshaft", "adit", "windmill", "lighthouse", "wastewater_plant",
 	"water_well", "watermill", "water_tower", "water_works" }
-poi_natural_values = Set { "spring", "cave_entrance", "tree", "sinkhole" }
+poi_natural_values = Set { "spring", "cave_entrance", "tree", "sinkhole", "peak", "volcano" }
 poi_historic_values = Set { "monument", "memorial", "castle", "ruins", "archaeological_site",
 	"wayside_cross", "wayside_shrine", "battlefield", "fort" }
 poi_emergency_values = Set { "phone", "fire_hydrant", "defibrillator" }
@@ -1151,7 +1151,6 @@ function process_pois(polygon)
 		Layer("pois", false)
 	end
 	
-	--MinZoom(12)
 	Attribute("amenity", nilToEmptyStr(amenity))
 	Attribute("shop", nilToEmptyStr(shop))
 	Attribute("tourism", nilToEmptyStr(tourism))
@@ -1212,6 +1211,9 @@ function process_pois(polygon)
 		addAttributeOrEmptyStr("fee")
 		addAttributeBoolean("hiking")
 	end
+	if natural == "peak" or natural == "volcano" then
+		addAttributeBoolean("summit:cross")
+	end
 	
 	local mz = 14 --default zoom level
 	if man_made == "communications_tower" then
@@ -1222,13 +1224,15 @@ function process_pois(polygon)
 		mz = 12
 	elseif amenity == "place_of_worship" or historic == "castle" then
 		mz = 12
-	elseif sport == "swimming" then
+	elseif sport == "swimming" or natural == "viewpoint" or natural == "cave_entrance" or tourism == "camp_site" or tourism == "alpine_hut" or tourism == "wilderness_hut" or tourism == "caravan_site" or leisure == "golf_course" then
 		mz = 12
 	elseif man_made == "mast" then
 		mz = 13
 	elseif man_made == "watermill" then
 		mz = 13
-	elseif amenity == "parking" then
+	elseif natural == "peak" or natural == "volcano" then -- todo: update with Dominanz once available
+		mz = 12
+	elseif amenity == "parking" then -- todo: update with Wanderparkplaetze once available
 		mz = 14
 	end
 	MinZoom(mz)
