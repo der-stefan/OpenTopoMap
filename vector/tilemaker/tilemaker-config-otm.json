@@ -43,25 +43,11 @@
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0001,
+            "simplify_level": 0.0002,
             "simplify_ratio": 2,
             "combine_lines_below": 15
         },
         "natural_polygons": {
-            "minzoom": 12,
-            "maxzoom": 14,
-            "simplify_below": 14,
-            "simplify_level": 0.0001,
-            "simplify_ratio": 2
-        },
-        "pier_lines": {
-            "minzoom": 12,
-            "maxzoom": 14,
-            "simplify_below": 14,
-            "simplify_level": 0.0002,
-            "simplify_ratio": 2
-        },
-        "pier_polygons": {
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
@@ -110,7 +96,8 @@
             "maxzoom": 9,
             "write_to": "streets",
             "simplify_below": 10,
-            "simplify_level": 0.001,
+            "simplify_level": 0.0007,
+            "simplify_ratio": 3,
             "combine_lines_below": 10
         },
         "street_labels": {
@@ -131,16 +118,12 @@
             "simplify_level": 0.0003,
             "combine_lines_below": 14
         },
-        "power-lines": {
+        "power_lines": {
             "minzoom": 10,
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0003,
             "combine_lines_below": 14
-        },
-        "power-points": {
-            "minzoom": 10,
-            "maxzoom": 14
         },
         "public_transport": {
             "minzoom": 11,

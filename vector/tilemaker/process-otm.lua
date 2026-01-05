@@ -74,7 +74,7 @@ poi_emergency_values = Set { "phone", "fire_hydrant", "defibrillator" }
 poi_highway_values = Set { "emergency_access_point" }
 poi_railway_values = Set { "station" }
 poi_office_values = Set { "diplomatic" }
-poi_power_values = Set { "generator" }
+poi_power_values = Set { "generator", "tower", "pole" }
 
 inf_zoom = 99
 
@@ -517,23 +517,23 @@ function get_pier_featuretype()
 	return nil
 end
 
-function process_pier_lines()
-	local kind = get_pier_featuretype()
-	if kind ~= nil then
-		Layer("pier_lines", false)
-		MinZoom(12)
-		Attribute("kind", kind)
-	end
-end
+--function process_pier_lines()
+--	local kind = get_pier_featuretype()
+--	if kind ~= nil then
+--		Layer("pier_lines", false)
+--		MinZoom(12)
+--		Attribute("kind", kind)
+--	end
+--end
 
-function process_pier_polygons()
-	local kind = get_pier_featuretype()
-	if kind ~= nil then
-		Layer("pier_polygons", true)
-		MinZoom(12)
-		Attribute("kind", kind)
-	end
-end
+--function process_pier_polygons()
+--	local kind = get_pier_featuretype()
+--	if kind ~= nil then
+--		Layer("pier_polygons", true)
+--		MinZoom(12)
+--		Attribute("kind", kind)
+--	end
+--end
 
 function process_land()
 	local landuse = Find("landuse")
@@ -679,6 +679,13 @@ function toBridgeBool(bridge)
 	return false
 end
 
+function toEmbankmentBool(embankment)
+	if bridge == "yes" then
+		return true
+	end
+	return false
+end
+
 function toIntermittentBool(intermittent)
 	if intermittent == "yes" then
 		return true
@@ -701,6 +708,7 @@ function process_streets()
 	local covered = Find("covered")
 	local service = Find("service")
 	local bridgeBool = toBridgeBool(Find("bridge"))
+	local embankmentBool = toEmbankmentBool(Find("embankment"))
 	local name = Find("name")
 	local rail = false
 	if name == "" then
@@ -858,6 +866,9 @@ function process_streets()
 		if bridgeBool == true then
 			AttributeBoolean("bridge", true)
 		end
+		if embankmentBool == true then
+			AttributeBoolean("embankment", true)
+		end
 		if onewayBool == true then
 			AttributeBoolean("oneway", true)
 		end
@@ -1006,7 +1017,7 @@ function process_powerlines()
 	end
 	
 	if mz < inf_zoom then
-		Layer("power-lines", false)
+		Layer("power_lines", false)
 		MinZoom(mz)
 		Attribute("kind", power)
 	end
@@ -1023,7 +1034,7 @@ function process_powertowers()
 	end
 	
 	if mz < inf_zoom then
-		Layer("power-points", false)
+		Layer("power_points", false)
 		MinZoom(mz)
 		Attribute("kind", power)
 	end
@@ -1085,28 +1096,44 @@ function process_bridges()
 	end
 end
 
-function process_natural(polygon)
-	--local mz = inf_zoom
+function process_natural(poly_or_line)
+	local waterway_values = Set { "dam" }
+	local natural_values = Set { "cliff", "crevasse" }
+	local man_made_values = Set { "embankment", "dyke", "breakwater", "pier", "groyne" }
+	local barrier_values = Set { "ditch" }
 	
-	--local waterway_values = Set { "dam" }
-	--local natural_values = Set { "cliff", "crevasse" }
-	--local man_made_values = Set { "embankment", "dyke", "breakwater", "pier", "groyne" }
-	--local barrier_values = Set { "ditch" }
+	local waterway = valueAcceptedOrNil(waterway_values, Find("waterway"))
+	local natural = valueAcceptedOrNil(natural_values, Find("natural"))
+	local man_made = valueAcceptedOrNil(man_made_values, Find("man_made"))
+	local barrier = valueAcceptedOrNil(barrier_values, Find("barrier"))
 	
-	--local waterway = valueAcceptedOrNil(waterway_values, Find("waterway"))
-	--local natural = valueAcceptedOrNil(natural_values, Find("natural"))
-	--local man_made = valueAcceptedOrNil(man_made_values, Find("man_made"))
-	--local barrier = valueAcceptedOrNil(barrier_values, Find("barrier"))
-	
-	if Find("waterway") == "dam" then
-		if polygon then
-			Layer("natural_polygons", true)
-		else
-			Layer("natural_lines", false)
-		end
-		MinZoom(12)
-		Attribute("kind", "dam")
+	if waterway == nil and natural == nil and man_made == nil and barrier == nil then
+		return false
 	end
+	
+	if poly_or_line then
+		Layer("natural_polygons", true)
+	else
+		Layer("natural_lines", false)
+	end
+	
+	mz = 12
+	Attribute("waterway", nilToEmptyStr(waterway))
+	Attribute("natural", nilToEmptyStr(natural))
+	Attribute("man_made", nilToEmptyStr(man_made))
+	Attribute("barrier", nilToEmptyStr(barrier))
+	
+	MinZoom(mz)
+	
+	--if Find("waterway") == "dam" then
+	--	if polygon then
+	--		Layer("natural_polygons", true)
+	--	else
+	--		Layer("natural_lines", false)
+	--	end
+	--	MinZoom(12)
+	--	Attribute("kind", "dam")
+	--end
 end
 
 -- Create "pois" layer
@@ -1163,6 +1190,8 @@ function process_pois(polygon)
 	Attribute("highway", nilToEmptyStr(highway))
 	Attribute("railway", nilToEmptyStr(railway))
 	Attribute("office", nilToEmptyStr(office))
+	Attribute("power", nilToEmptyStr(power))
+	
 	if catering_values[amenity] then
 		addAttributeOrEmptyStr("cuisine")
 	end
@@ -1272,12 +1301,12 @@ function way_function()
 	end
 
 	-- Layer pier_lines, pier_polygons
-	local man_made = Find("man_made")
-	if not is_area and man_made ~= "" then
-		process_pier_lines()
-	elseif is_area and man_made ~= "" then
-		process_pier_polygons()
-	end
+	--local man_made = Find("man_made")
+	--if not is_area and man_made ~= "" then
+	--	process_pier_lines()
+	--elseif is_area and man_made ~= "" then
+	--	process_pier_polygons()
+	--end
 
 	-- Layer bridges
 	if is_area and man_made == "bridge" then

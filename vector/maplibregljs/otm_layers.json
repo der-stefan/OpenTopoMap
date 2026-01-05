@@ -138,6 +138,48 @@ const otm_layers = [
 	"type": "fill",
 	"paint": {"fill-color": "#a3dde8","fill-outline-color": "blue"}
 },
+// Labels
+{
+	"id": "water-line-labels",
+	"source": "opentopomap-vector",
+	"source-layer": "water_lines_labels",
+	"type": "symbol",
+	"layout": {
+		"symbol-placement": "line-center",
+        "text-field": "{name}",
+        //"text-size": ["interpolate",["linear"],["zoom"],13,10, 18,12],
+        
+        "text-size": [
+			"interpolate", ["linear"], ["zoom"],
+			13, ["match", ["get", "kind"], "canal",10, "river",10, "stream",9, 9],
+			18, ["match", ["get", "kind"], "canal",12, "river",12, "stream",11, 11],
+		],        
+        "text-font": [
+          "Roboto Regular"
+        ]
+	},
+	"paint": {
+		"text-color": "blue",
+		"text-halo-color": "white", //["match",["get","kind"],"river","#a3dde8","white"],
+		"text-halo-width": 1.0
+	}
+},
+{
+	"id": "water-polygon-labels",
+	"source": "opentopomap-vector",
+	"source-layer": "water_polygon_labels",
+	"type": "symbol",
+	"layout": {
+        "text-field": "{name}",
+        "text-size": ["interpolate",["linear"],["zoom"],13,10, 18,12],
+        "text-font": [
+          "Roboto Regular"
+        ]
+	},
+	"paint": {
+		"text-color": "blue"
+	}
+},
 {
 	"id": "boundary",
 	"source": "opentopomap-vector",
@@ -151,17 +193,17 @@ const otm_layers = [
 		]
 	}	
 },
-/*{
+{
 	// still missing in
 	"id": "cliff",
 	"source": "opentopomap-vector",
 	"source-layer": "natural-lines",
 	"type": "line",
 	"paint": {
-		"line-color": "black",
+		"line-color": "red",
 		"line-width": 0.5,
 	}
-},*/
+},
 {
 	"id": "buildings",
 	"source": "opentopomap-vector",
@@ -209,7 +251,8 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["==", "kind", "motorway"],
-		["!=", "link", true]
+		["!=", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -225,7 +268,8 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["in", "kind", "motorway", "trunk"],
-		["==", "link", true]
+		["==", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -241,7 +285,8 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["==", "kind", "trunk"],
-		["!=", "link", true]
+		["!=", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -256,7 +301,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "primary"]
+		["==", "kind", "primary"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -271,7 +317,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "secondary"]
+		["==", "kind", "secondary"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -286,7 +333,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "tertiary"]
+		["==", "kind", "tertiary"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -301,7 +349,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "unclassified"]
+		["==", "kind", "unclassified"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -316,7 +365,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["in", "kind", "residential", "living_street", "pedestrian"]
+		["in", "kind", "residential", "living_street", "pedestrian"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "butt"},
@@ -331,7 +381,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "service"]
+		["==", "kind", "service"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "butt"},
@@ -348,8 +399,8 @@ const otm_layers = [
 		"all",
 		["==", "kind", "track"],
 		["==", "tracktype", "grade1"],
+		["!=", "bridge", true]
 	],
-	//"minzoom": 12,
 	"type": "line",
 	"layout": {"line-cap": "round"},
 	"paint": {
@@ -367,6 +418,7 @@ const otm_layers = [
 		["any",
 			["!has", "tracktype"],
 			["==", "tracktype", "grade2"],
+			["!=", "bridge", true]
 		]
 	],
 	"minzoom": 12,
@@ -385,6 +437,7 @@ const otm_layers = [
 		"all",
 		["==", "kind", "track"],
 		["in", "tracktype", "grade3","grade4"],
+		["!=", "bridge", true]
 	],
 	"minzoom": 13,
 	"type": "line",
@@ -402,6 +455,7 @@ const otm_layers = [
 		"all",
 		["==", "kind", "track"],
 		["in", "tracktype", "grade5"],
+		["!=", "bridge", true]
 	],
 	"minzoom": 13,
 	"type": "line",
@@ -418,7 +472,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["in", "kind", "path","footway"]
+		["in", "kind", "path","footway"],
+		["!=", "bridge", true]
 	],
 	"minzoom": 13,
 	"type": "line",
@@ -453,6 +508,7 @@ const otm_layers = [
 		"all",
 		["==", "kind", "track"],
 		["==", "tracktype", "grade1"],
+		["!=", "bridge", true]
 	],
 	"minzoom": 13,
 	"type": "line",
@@ -468,7 +524,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "service"]
+		["==", "kind", "service"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"paint": {
@@ -482,12 +539,14 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["in", "kind", "residential", "living_street", "pedestrian"]
+		["in", "kind", "residential", "living_street", "pedestrian"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
 	"paint": {
-		"line-color": ["case",["==", ["get", "kind"],"living_street"],"#CCCCCC",["==", ["get", "kind"],"pedestrian"],"#CCCCCC","white"],
+		//"line-color": ["case",["==", ["get", "kind"],"living_street"],"#CCCCCC",["==", ["get", "kind"],"pedestrian"],"#CCCCCC","white"],
+		"line-color": ["match", ["get", "kind"], "living_street","#CCCCCC", "pedestrian","#CCCCCC", "white"],
 		"line-width": ["interpolate",["linear"],["zoom"],11,0, 11.9,0, 12,1.3, 13,1.5, 15,4, 19,17]
 	}
 },
@@ -497,7 +556,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "unclassified"]
+		["==", "kind", "unclassified"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -513,7 +573,8 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["==", "kind", "trunk"],
-		["==", "link", true]
+		["==", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -529,7 +590,8 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["==", "kind", "motorway"],
-		["==", "link", true]
+		["==", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -544,7 +606,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "tertiary"]
+		["==", "kind", "tertiary"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -559,7 +622,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "secondary"]
+		["==", "kind", "secondary"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -574,7 +638,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "kind", "primary"]
+		["==", "kind", "primary"],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -591,7 +656,8 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["==", "kind", "trunk"],
-		["!=", "link", true]
+		["!=", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -607,13 +673,87 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["==", "kind", "motorway"],
-		["!=", "link", true]
+		["!=", "link", true],
+		["!=", "bridge", true]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
 	"paint": {
 		"line-color": ["step",["zoom"],"#fdb548",6,"#fdb548",8,"#fb9e2a"],
 		"line-width": ["interpolate",["linear"],["zoom"],6,1.4, 8,2.5, 9,2.9, 11,3.5, 15,5.0, 19,17]
+	}
+},
+// Bridges
+//########
+{
+	"id": "bridge-casing",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "bridge", true]
+	],
+	"type": "line",
+	"paint": {
+		"line-color": "black",
+		//motorway:				["interpolate",["linear"],["zoom"],5,1.4, 7,3.1, 8,3.8, 9,4.7, 11,5.3, 15,6.5, 19,20]
+		//motorway-trunk-link:	["interpolate",["linear"],["zoom"],9,3, 12,2.9, 13,3.5, 15,6.5, 19,20]
+		//trunk:				["interpolate",["linear"],["zoom"],6,2.3, 7,2.9, 8,3.8, 9,4.4, 11,4.7, 15,6.5, 19,20]
+		//primary:				["interpolate",["linear"],["zoom"],6,1.7, 7,2.3, 8,3.0, 9,3.5, 12,3.9, 15,6.5, 19,20]
+		//secondary:			["interpolate",["linear"],["zoom"],8,1.9, 9,1.9, 11,3.0, 12,3.5, 13,4.5, 15,6.5, 19,20]
+		//tertiary:				["interpolate",["linear"],["zoom"],9,1.9, 11,2.5, 12,3.3, 13,3.5, 15,5.5, 19,20]
+		//unclassified:			["interpolate",["linear"],["zoom"],11,0.5, 12,2.7, 13,3.5, 15,6.2, 19,20]
+		//residential:			["interpolate",["linear"],["zoom"],11,0.5, 11.9,0.5, 12,2.2, 13,2.8, 15,5.5, 19,20]
+		//service:				["interpolate",["linear"],["zoom"],12,1.5, 13,2.3, 15,4.0, 19,13]
+		//track-grade1:			["interpolate",["linear"],["zoom"],11,0.5, 12,1, 12.99,1, 13,2.6, 15,5.5, 19,13]
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			10, ["match", ["get", "kind"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, "unclassified",1.3, "residential",1.3, "service",1.3, 1.3],
+			12, ["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 2.5],
+			14, ["match", ["get", "kind"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, 2.5],
+			15, ["match", ["get", "kind"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, 3.5],
+			19, ["match", ["get", "kind"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 6],
+		]
+	}
+},
+{
+	"id": "bridge-fill",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "bridge", true]
+	],
+	"type": "line",
+	"layout": {"line-cap": "round"},
+	"paint": {
+		//motorway:		["step",["zoom"],"#fdb548",6,"#fdb548",8,"#fb9e2a"],
+		//				["interpolate",["linear"],["zoom"],6,1.4, 8,2.5, 9,2.9, 11,3.5, 15,5.0, 19,17]
+		//trunk:		["step",["zoom"],"#fdfd4f",10,"#fdfd4f",11,"#fb9e2a"],
+		//				["interpolate",["linear"],["zoom"],6,1.1, 8,2.3, 9,2.5, 11,3.0, 15,5.0, 19,17]
+		//primary:		["step",["zoom"],"white",7,"white",8,"#fdfd4f",10,"#fdfd4f",11,"#fb9e2a"],
+		//				["interpolate",["linear"],["zoom"],6,1.2, 7,1.5, 8,1.9, 9,2.1, 11,2.4, 12,2.6, 15,5.0, 19,17]
+		//secondary:	["step",["zoom"],"white",8,"white",9,"#fdfd4f"],
+		//				["interpolate",["linear"],["zoom"],9,1.5, 11,1.8, 12,2.0, 13,2.9, 15,4.5, 19,17]
+		//tertiary:		["step",["zoom"],"white",12,"white",13,"#fdfd4f"],
+		//				["interpolate",["linear"],["zoom"],9,1.5, 11,1.5, 12,2.0, 13,1.8, 15,4.2, 19,17]
+		//unclassified:	"white",
+		//				["interpolate",["linear"],["zoom"],11,0, 12,1.7, 13,2.0, 15,4.5, 19,17]
+		//residential:	["case",["==", ["get", "kind"],"living_street"],"#CCCCCC",["==", ["get", "kind"],"pedestrian"],"#CCCCCC","white"],
+		//				["interpolate",["linear"],["zoom"],11,0, 11.9,0, 12,1.3, 13,1.5, 15,4, 19,17]
+		"line-color": [
+			"step",["zoom"],"white",
+			10, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fdfd4f", "primary","#fdfd4f", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			11, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			13, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","#fdfd4f", "rail","black", "white"],
+		],
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			9, ["match", ["get", "kind"], "motorway",2.9, "trunk",2.5, "primary",2.1, "secondary",1.5, "tertiary",1.5, "unclassified",1, "residential",1, "service",1, 1],
+			13, ["match", ["get", "kind"], "motorway",4.2, "trunk",4.0, "primary",3.0, "secondary",2.9, "tertiary",1.8, "unclassified",2.0, "residential",1.5, "service",1.5, 1.5],
+			15, ["match", ["get", "kind"], "motorway",5.0, "trunk",5.0, "primary",5.0, "secondary",4.5, "tertiary",4.2, "unclassified",4.5, "residential",4.0, "service",4.0, 1.5],
+			19, ["match", ["get", "kind"], "motorway",17, "trunk",17, "primary",17, "secondary",17, "tertiary",17, "unclassified",17, "residential",17, "service",17, 5],
+		]
 	}
 },
 // All streets (for debugging)
@@ -857,8 +997,8 @@ const otm_layers = [
 	"type": "symbol",
 	"filter": ["==", ["get","natural"], "peak"],
 	"layout": {
-        //"icon-image": ["match",["get","peak:summit_cross"],"yes","summit_cross","peak"],
-        "icon-image": "peak",
+        "icon-image": ["match",["get","peak:summit_cross"],"yes","summit_cross","peak"],
+        //"icon-image": "peak",
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
@@ -1015,43 +1155,6 @@ const otm_layers = [
           "Roboto Regular"
         ],
         "text-allow-overlap": true,
-	}
-},
-{
-	"id": "waterlinelabels",
-	"source": "opentopomap-vector",
-	"source-layer": "water_lines_labels",
-	//"minzoom": 14,
-	"type": "symbol",
-	"layout": {
-		"symbol-placement": "line-center",
-        "text-field": "{name}",
-        "text-size": ["interpolate",["linear"],["zoom"],13,10, 18,12],
-        "text-font": [
-          "Roboto Regular"
-        ]
-	},
-	"paint": {
-		"text-color": "blue",
-		"text-halo-color": ["match",["get","kind"],"river","#a3dde8","white"],
-		"text-halo-width": 1.0
-	}
-},
-{
-	"id": "waterpolygonlabels",
-	"source": "opentopomap-vector",
-	"source-layer": "water_polygon_labels",
-	//"minzoom": 14,
-	"type": "symbol",
-	"layout": {
-        "text-field": "{name}",
-        "text-size": ["interpolate",["linear"],["zoom"],13,10, 18,12],
-        "text-font": [
-          "Roboto Regular"
-        ]
-	},
-	"paint": {
-		"text-color": "blue"
 	}
 },
 {
