@@ -75,6 +75,13 @@ const otm_layers = [
 	"type": "fill",
 	"paint": {"fill-color": "#cce599","fill-outline-color": "#91c067"}
 },
+/*{
+	"id": "landuses",
+	"source": "opentopomap-vector",
+	"source-layer": "land",
+	"type": "fill",
+	"paint": {"fill-pattern": ["get","kind"]}
+},*/
 {
 	"id": "hillshade",
 	"type": "hillshade",
@@ -194,14 +201,25 @@ const otm_layers = [
 	}	
 },
 {
-	// still missing in
-	"id": "cliff",
+	"id": "cliff1",
 	"source": "opentopomap-vector",
-	"source-layer": "natural-lines",
+	"source-layer": "natural_lines",
 	"type": "line",
 	"paint": {
-		"line-color": "red",
+		"line-color": "black",
 		"line-width": 0.5,
+	}
+},
+{
+	"id": "cliff2",
+	"source": "opentopomap-vector",
+	"source-layer": "natural_lines",
+	"type": "line",
+	"paint": {
+		"line-color": "black",
+		"line-width": ["interpolate",["linear"],["zoom"],12,1, 17,3],
+		"line-offset": ["interpolate",["linear"],["zoom"],12,0.5, 17,1.5],
+		"line-dasharray": [1,1],
 	}
 },
 {
@@ -769,7 +787,7 @@ const otm_layers = [
 {
 	"id": "power-line",
 	"source": "opentopomap-vector",
-	"source-layer": "power-lines",
+	"source-layer": "power_lines",
 	"type": "line",
 	"paint": {
 		"line-color": "black",
@@ -779,7 +797,7 @@ const otm_layers = [
 {
 	"id": "power-line2",
 	"source": "opentopomap-vector",
-	"source-layer": "power-lines",
+	"source-layer": "power_lines",
 	"type": "symbol",
 	"layout": {
 		"symbol-placement": "line",
@@ -793,7 +811,7 @@ const otm_layers = [
 /*{
 	"id": "power-tower",
 	"source": "opentopomap-vector",
-	"source-layer": "power-points",
+	"source-layer": "power_points",
 	"type": "symbol",
 	"layout": {
 		"symbol-placement": "point",
@@ -997,8 +1015,8 @@ const otm_layers = [
 	"type": "symbol",
 	"filter": ["==", ["get","natural"], "peak"],
 	"layout": {
-        "icon-image": ["match",["get","peak:summit_cross"],"yes","summit_cross","peak"],
-        //"icon-image": "peak",
+        //"icon-image": ["match",["get","peak:summit_cross"],"yes","summit_cross","peak"],
+        "icon-image": "peak_z8",
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
         "symbol-placement": "point"
