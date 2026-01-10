@@ -125,6 +125,10 @@
             "simplify_level": 0.0003,
             "combine_lines_below": 14
         },
+        "power_points": {
+            "minzoom": 10,
+            "maxzoom": 14
+        },
         "public_transport": {
             "minzoom": 11,
             "maxzoom": 14

@@ -261,6 +261,30 @@ const otm_layers = [
 },
 // Streets
 //################
+// embankment
+{
+	"id": "embankment",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "embankment", true]
+	],
+	"type": "line",
+	"paint": {
+		"line-color": "black",
+		"line-dasharray": [0.2,0.25],
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			10, ["+",["match", ["get", "kind"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, "unclassified",1.3, "residential",1.3, "service",1.3, 1.3], 2],
+			12, ["+",["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 2.5], 2],
+			14, ["+",["match", ["get", "kind"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, 2.5], 2],
+			15, ["+",["match", ["get", "kind"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, 3.5], 2],
+			19, ["+",["match", ["get", "kind"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 6], 2],
+		]
+	}
+},
+
 // Road casing
 {
 	"id": "motorway-casing",
@@ -701,6 +725,7 @@ const otm_layers = [
 		"line-width": ["interpolate",["linear"],["zoom"],6,1.4, 8,2.5, 9,2.9, 11,3.5, 15,5.0, 19,17]
 	}
 },
+
 // Bridges
 //########
 {
@@ -778,7 +803,7 @@ const otm_layers = [
 /*{
 	"id": "otherstreets",
 	"source": "opentopomap-vector",
-	"source-layer": "streets",
+	"source-layer": "street_labels",
 	//"minzoom": 15,
 	"type": "line",
 	"layout": {"line-cap": "round"},
@@ -1182,7 +1207,7 @@ const otm_layers = [
 	"minzoom": 14,
 	"type": "symbol",
 	"layout": {
-		"symbol-placement": "line-center",
+		"symbol-placement": "line",
         "text-field": "{name}",
         "text-size": ["interpolate",["linear"],["zoom"],14,9, 18,12],
         "text-font": [
@@ -1200,6 +1225,37 @@ const otm_layers = [
 		"text-halo-width": 1.5
 	}
 },
+
+{
+	"id": "ref-labels",
+	"source": "opentopomap-vector",
+	"source-layer": "street_labels",
+	//"minzoom": 15,
+	"type": "symbol",
+	//"layout": {"line-cap": "round"},
+	//"paint": {"line-color": "red","line-width": 0.5,"line-offset": 7}
+	"layout": {
+		"symbol-placement": "line",
+        "text-field": "{ref}",
+        "text-offset": ['step',['zoom'],['literal',[0,0]], 14,['literal',[0,0.9]]],
+        "text-size": ["interpolate",["linear"],["zoom"],14,9, 18,12],
+        "text-font": [
+          "Roboto Regular"
+        ]
+	},
+	"paint": {
+		//"text-halo-color": "white",
+		"text-halo-width": 1.5,
+		"text-halo-color": [
+			"step",["zoom"],"white",
+			10, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fdfd4f", "primary","#fdfd4f", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			11, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			13, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","#fdfd4f", "rail","black", "white"],
+			14, "white",
+		],
+	}
+},
+
 {
 	"id": "suburb",
 	"source": "opentopomap-vector",

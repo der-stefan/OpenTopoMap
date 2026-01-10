@@ -680,7 +680,7 @@ function toBridgeBool(bridge)
 end
 
 function toEmbankmentBool(embankment)
-	if bridge == "yes" then
+	if embankment == "yes" then
 		return true
 	end
 	return false
@@ -951,8 +951,8 @@ function process_street_labels()
 		Attribute("kind", highway)
 		AttributeBoolean("tunnel", toTunnelBool())
 		Attribute("ref", refs)
-		AttributeNumeric("ref_rows", rows)
-		AttributeNumeric("ref_cols", cols)
+		--AttributeNumeric("ref_rows", rows)
+		--AttributeNumeric("ref_cols", cols)
 		setNameAttributes()
 		setZOrder(false, true)
 	end
