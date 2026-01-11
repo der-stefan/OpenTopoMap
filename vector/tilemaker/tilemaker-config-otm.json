@@ -28,22 +28,22 @@
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0001,
-            "simplify_ratio": 2,
+            "simplify_ratio": 2.5,
             "combine_lines_below": 15
         },
         "water_lines_labels": {
             "minzoom": 4,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0002,
-            "simplify_ratio": 2,
+            "simplify_level": 0.00015,
+            "simplify_ratio": 2.5,
             "combine_lines_below": 15
         },
         "natural_lines": {
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0002,
+            "simplify_level": 0.00015,
             "simplify_ratio": 2,
             "combine_lines_below": 15
         },
@@ -51,7 +51,7 @@
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.0002,
+            "simplify_level": 0.00015,
             "simplify_ratio": 2
         },
         "bridges": {

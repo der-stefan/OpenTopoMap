@@ -721,47 +721,41 @@ function process_streets()
 		--elseif highway == "trunk" or highway == "trunk_link" then
 		--	mz = 6
 		--	kind = "trunk"
+		kind = highway
 		if highway == "motorway" then
 			mz = min_zoom_layer
-			kind = "motorway"
 		elseif highway == "motorway_link" then
 			mz = math.max(8, zmin_for_length(0.25))
-			--mz = 8
-			kind = "motorway"
 		elseif highway == "trunk" then
 			mz = 6
-			--mz = 7
-			kind = "trunk"
 		elseif highway == "trunk_link" then
-			--mz = 8
 			mz = math.max(8, zmin_for_length(0.25))
-			kind = "trunk"
 		elseif highway == "primary" then
 			mz = 6
-			--mz = 7
-			kind = "primary"
 		elseif highway == "primary_link" then
-			--mz = 8
 			mz = math.max(8, zmin_for_length(0.25))
-			kind = "primary"
-		elseif highway == "secondary" or highway == "secondary_link" then
+		elseif highway == "secondary" then
 			mz = 8
-			kind = "secondary"
-		elseif highway == "tertiary" or highway == "tertiary_link" then
+		elseif highway == "secondary_link" then
+			mz = 8
+		elseif highway == "tertiary" then
 			mz = 9
-			kind = "tertiary"
+		elseif highway == "tertiary_link" then
+			mz = 9
 		elseif highway == "unclassified" or highway == "residential" or highway == "bus_guideway" or highway == "busway" then
 			mz = 11
-			kind = highway
-		elseif highway == "living_street" or highway == "pedestrian" or highway == "track" then
+		elseif highway == "living_street" or highway == "pedestrian" then
 			mz = 11
-			kind = highway
+		elseif highway == "track" and (tracktype == "grade1" or tracktype == "") then
+			mz = 11
+		elseif highway == "track" and (tracktype == "grade2") then
+			mz = 12
+		elseif highway == "track" and (tracktype ~= "" or tracktype ~= "grade1" or tracktype ~= "grade2") then
+			mz = 13
 		elseif highway == "service" then
 			mz = 12
-			kind = highway
 		elseif highway == "footway" or highway == "steps" or highway == "path" or highway == "cycleway" then
 			mz = 13
-			kind = highway
 		end
 	elseif (railway == "rail" or railway == "narrow_gauge") and service == "" then
 		kind = railway
@@ -789,7 +783,7 @@ function process_streets()
 			surface = ""
 		end
 	end
-	local link = (highway == "motorway_link" or highway == "trunk_link" or highway == "primary_link" or highway == "secondary_link" or highway == "tertiary_link")
+	--local link = (highway == "motorway_link" or highway == "trunk_link" or highway == "primary_link" or highway == "secondary_link" or highway == "tertiary_link")
 	local layer = tonumber(Find("layer"))
 	if layer == nil then
 		layer = 0
@@ -813,9 +807,9 @@ function process_streets()
 		--if service ~= "" then
 		--	Attribute("service", service)
 		--end
-		if link == true then
-			AttributeBoolean("link", true)
-		end
+		--if link == true then
+		--	AttributeBoolean("link", true)
+		--end
 		addAttributeOrEmptyStr("surface")
 		addAttributeOrEmptyStr("tracktype")
 		addAttributeOrEmptyStr("service")
@@ -851,9 +845,9 @@ function process_streets()
 		--	Attribute("service", service)
 		--end
 		
-		if link == true then
-			AttributeBoolean("link", true)
-		end
+		--if link == true then
+		--	AttributeBoolean("link", true)
+		--end
 		addAttributeOrEmptyStr("surface")
 		addAttributeOrEmptyStr("tracktype")
 		addAttributeOrEmptyStr("service")
@@ -907,24 +901,24 @@ function process_street_labels()
 		kind = highway
 	elseif highway == "motorway_link" then
 		mz = 13
-		kind = "motorway"
-		link = true
+		kind = "motorway_link"
+		--link = true
 	elseif highway == "trunk_link" then
 		mz = 13
-		kind = "trunk"
-		link = true
+		kind = "trunk_link"
+		--link = true
 	elseif highway == "primary_link" then
 		mz = 13
-		kind = "primary"
-		link = true
+		kind = "primary_link"
+		--link = true
 	elseif highway == "secondary_link" then
 		mz = 13
-		kind = "secondary"
-		link = true
+		kind = "secondary_link"
+		--link = true
 	elseif highway == "tertiary_link" then
 		mz = 14
-		kind = "tertiary"
-		link = true
+		kind = "tertiary_link"
+		--link = true
 	elseif highway == "unclassified" or highway == "residential" or highway == "busway" or highway == "bus_guideway" or highway == "living_street" or highway == "pedestrian" or highway == "track" or highway == "service" or highway == "footway" or highway == "steps" or highway == "path" or highway == "cycleway" then
 		mz = 14
 		kind = highway
