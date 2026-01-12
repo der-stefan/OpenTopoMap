@@ -137,14 +137,14 @@ const otm_layers = [
 			12, ["match", ["get", "kind"], "river", 2.0, "stream", 0.6, 0.5],
 		],
 	}	
-},          
-{
+},        
+/*{
 	"id": "water-poly",
 	"source": "opentopomap-vector",
 	"source-layer": "water_polygons",
 	"type": "fill",
 	"paint": {"fill-color": "#a3dde8","fill-outline-color": "blue"}
-},
+},*/
 // Labels
 {
 	"id": "water-line-labels",
@@ -256,7 +256,8 @@ const otm_layers = [
 	"type": "line",
 	"paint": {
 		"line-color": "black",
-		"line-width": ["interpolate",["linear"],["zoom"],8,1, 11,1.3, 13,1.6, 17,5]
+		"line-width": ["interpolate",["linear"],["zoom"],8,1, 11,1.3, 13,1.6, 17,5],
+		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
 	}
 },
 // Streets
@@ -313,6 +314,7 @@ const otm_layers = [
 			15, ["match", ["get", "kind"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5],
 			19, ["match", ["get", "kind"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",4.5, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5],
 		],
+		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
 		//"line-dasharray": [1,1],
 	}
 },
@@ -360,7 +362,8 @@ const otm_layers = [
 			14, ["match", ["get", "kind"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, "secondary",3.7, "tertiary",3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
 			15, ["match", ["get", "kind"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, "secondary",4.5, "tertiary",4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
 			19, ["match", ["get", "kind"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  "secondary",17,  "tertiary",17,  "unclassified",17,  "residential",17,  "service",17 , 0],
-		]
+		],
+		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
 	}
 },
 // Bridges
@@ -378,19 +381,19 @@ const otm_layers = [
 		"line-color": "black",
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			5, ["+",1,["match", ["get", "kind"], "motorway",1.4, 1.4]],
-			6, ["+",1,["match", ["get", "kind"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6]],
-			7, ["+",1,["match", ["get", "kind"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0]],
-			8, ["+",1,["match", ["get", "kind"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5]],
-			9, ["+",1,["match", ["get", "kind"], "motorway",4.7, "trunk",4.4, "primary",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
-			10, ["+",1,["match", ["get", "kind"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, 1.5]],
-			11, ["+",1,["match", ["get", "kind"], "motorway",5.3, "trunk",4.7, "primary",3.6, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
-			12, ["+",1,["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
-			13, ["+",1,["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
-			14, ["+",1,["match", ["get", "kind"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, 0.5]],
-			15, ["+",1,["match", ["get", "kind"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, 0.5]],
-			19, ["+",1,["match", ["get", "kind"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5]],
-		]
+			 5, ["+",1,["match", ["get", "kind"], "motorway",1.4, 1.4]],
+			 6, ["+",1,["match", ["get", "kind"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6]],
+			 7, ["+",1,["match", ["get", "kind"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0]],
+			 8, ["+",1,["match", ["get", "kind"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5]],
+			 9, ["+",1,["match", ["get", "kind"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
+			10, ["+",1,["match", ["get", "kind"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, "secondary",2.6, "tertiary",2.4, 1.5]],
+			11, ["+",1,["match", ["get", "kind"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
+			12, ["+",1,["match", ["get", "kind"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			13, ["+",1,["match", ["get", "kind"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			14, ["+",1,["match", ["get", "kind"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, "secondary",5.5, "tertiary",4.5, "unclassified",4.9, "residential",4.1, "service",3.5, 0.5]],
+			15, ["+",1,["match", ["get", "kind"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5]],
+			19, ["+",1,["match", ["get", "kind"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",4.5, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5]],
+		],
 	}
 },
 {
@@ -406,17 +409,22 @@ const otm_layers = [
 	"paint": {
 		"line-color": [
 			"step",["zoom"],"white",
-			10, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fdfd4f", "primary","#fdfd4f", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
-			11, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
-			13, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","#fdfd4f", "rail","black", "white"],
+			 6, ["match", ["get", "kind"], "motorway","#fdb548", "motorway_link","#fdb548", "trunk","#fdfd4f", "trunk_link","#fdfd4f", "primary","white", "primary_link","white", "secondary","white", "tertiary","white", "rail","black", "white"],
+			10, ["match", ["get", "kind"], "motorway","#fb9e2a", "motorway_link","#fb9e2a", "trunk","#fdfd4f", "trunk_link","#fdfd4f", "primary","#fdfd4f", "primary_link","#fdfd4f", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			11, ["match", ["get", "kind"], "motorway","#fb9e2a", "motorway_link","#fb9e2a", "trunk","#fb9e2a", "trunk_link","#fb9e2a", "primary","#fb9e2a", "primary_link","#fb9e2a", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			13, ["match", ["get", "kind"], "motorway","#fb9e2a", "motorway_link","#fb9e2a", "trunk","#fb9e2a", "trunk_link","#fb9e2a", "primary","#fb9e2a", "primary_link","#fb9e2a", "secondary","#fdfd4f", "tertiary","#fdfd4f", "rail","black", "white"],
 		],
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			9, ["match", ["get", "kind"], "motorway",2.9, "trunk",2.5, "primary",2.1, "secondary",1.5, "tertiary",1.5, "unclassified",1, "residential",1, "service",1, 1],
-			13, ["match", ["get", "kind"], "motorway",4.2, "trunk",4.0, "primary",3.0, "secondary",2.9, "tertiary",1.8, "unclassified",2.0, "residential",1.5, "service",1.5, 1.5],
-			15, ["match", ["get", "kind"], "motorway",5.0, "trunk",5.0, "primary",5.0, "secondary",4.5, "tertiary",4.2, "unclassified",4.5, "residential",4.0, "service",4.0, 1.5],
-			19, ["match", ["get", "kind"], "motorway",17, "trunk",17, "primary",17, "secondary",17, "tertiary",17, "unclassified",17, "residential",17, "service",17, 5],
-		]
+			 6, ["match", ["get", "kind"], "motorway",1.4, "motorway_link",1.4, "trunk",1.1, "trunk_link",1.1, "primary",1.2, "primary_link",1.2, "secondary",1.5, "tertiary",1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			 9, ["match", ["get", "kind"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, "secondary",1.5, "tertiary",1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			11, ["match", ["get", "kind"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, "secondary",2.2, "tertiary",1.6, "unclassified",0, "residential",0, "service",1.0, 0],
+			11.05, ["match", ["get", "kind"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, "secondary",2.2, "tertiary",1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			13, ["match", ["get", "kind"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, "secondary",2.9, "tertiary",1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
+			14, ["match", ["get", "kind"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, "secondary",3.7, "tertiary",3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
+			15, ["match", ["get", "kind"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, "secondary",4.5, "tertiary",4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
+			19, ["match", ["get", "kind"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  "secondary",17,  "tertiary",17,  "unclassified",17,  "residential",17,  "service",17 , 0],
+		],
 	}
 },
 // All streets (for debugging)
