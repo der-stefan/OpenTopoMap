@@ -28,22 +28,20 @@
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0001,
-            "simplify_ratio": 2.5,
             "combine_lines_below": 15
         },
         "water_lines_labels": {
             "minzoom": 4,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.00015,
-            "simplify_ratio": 2.5,
+            "simplify_level": 0.0001,
             "combine_lines_below": 15
         },
         "natural_lines": {
             "minzoom": 12,
             "maxzoom": 14,
             "simplify_below": 14,
-            "simplify_level": 0.00015,
+            "simplify_level": 0.0001,
             "simplify_ratio": 2,
             "combine_lines_below": 15
         },
@@ -145,7 +143,8 @@
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0001,
-            "simplify_ratio": 2
+            "simplify_ratio": 2,
+			"filter_area": 0.5
         },
         "ocean": {
             "minzoom": 8,
@@ -176,12 +175,14 @@
             "maxzoom": 14,
             "simplify_below": 14,
             "simplify_level": 0.0001,
-            "simplify_ratio": 3
+            "simplify_ratio": 3,
+            "filter_area": 0.5,
+            "filter_below": 14
         },
         "land_low": {
             "minzoom": 8,
             "maxzoom": 12,
-            "filter_below": 12,
+            "filter_below": 13,
             "filter_area": 1,
             "simplify_below": 13,
             "simplify_level": 0.00025,
@@ -189,8 +190,13 @@
             "write_to": "land"
         },
         "sites": {
-            "minzoom": 14,
-            "maxzoom": 14
+            "minzoom": 13,
+            "maxzoom": 14,
+            "simplify_below": 14,
+            "simplify_level": 0.0001,
+            "simplify_ratio": 3,
+            "filter_area": 0.5,
+            "filter_below": 14
         },
         "pois": {
             "minzoom": 11,
