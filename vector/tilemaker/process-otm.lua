@@ -94,11 +94,17 @@ function setNameAttributes()
 	local name_de = Find("name:de")
 	local name_en = Find("name:en")
 	Attribute("name", fillWithFallback(name, name_en, name_de))
-	addAttributeOrEmptyStr("name:de")
-	addAttributeOrEmptyStr("name:en")
-	addAttributeOrEmptyStr("name:fr")
-	addAttributeOrEmptyStr("name:it")
-	addAttributeOrEmptyStr("name:es")
+	-- add "name:XY" only if it differs from "name"
+	addAttributeIfNotSameOrEmptyStr("name:de","name")
+	addAttributeIfNotSameOrEmptyStr("name:en","name")
+	addAttributeIfNotSameOrEmptyStr("name:fr","name")
+	addAttributeIfNotSameOrEmptyStr("name:it","name")
+	addAttributeIfNotSameOrEmptyStr("name:es","name")
+	--addAttributeOrEmptyStr("name:de")
+	--addAttributeOrEmptyStr("name:en")
+	--addAttributeOrEmptyStr("name:fr")
+	--addAttributeOrEmptyStr("name:it")
+	--addAttributeOrEmptyStr("name:es")
 	--Attribute("name_de", fillWithFallback(name_de, name, name_en))
 	--Attribute("name_en", fillWithFallback(name_en, name, name_de))
 end
@@ -120,6 +126,17 @@ function addAttributeOrEmptyStr(key)
 		Attribute(key, value)
 	else
 		Attribute(key, "")
+	end
+end
+
+-- Add the value of an OSM key1 if it exists and it is not the same than key2. If the object does not have that key1, add NULL.
+function addAttributeIfNotSameOrEmptyStr(key1,key2)
+	local value1 = Find(key1)
+	local value2 = Find(key2)
+	if value1 ~= "" and value1 ~= value2 then
+		Attribute(key1, value1)
+	else
+		Attribute(key1, "")
 	end
 end
 
@@ -1134,6 +1151,7 @@ end
 -- Returns true if the feature is written to that layer.
 -- Returns false if it was no POI we are interested in.
 function process_pois(polygon)
+	local type_tag = nil
 	local amenity = valueAcceptedOrNil(poi_amenity_values, Find("amenity"))
 	local shop = valueAcceptedOrNil(poi_shop_values, Find("shop"))
 	local tourism = valueAcceptedOrNil(poi_tourism_values, Find("tourism"))
@@ -1148,116 +1166,183 @@ function process_pois(polygon)
 	local office = valueAcceptedOrNil(poi_highway_values, Find("office"))
 	local power = valueAcceptedOrNil(poi_power_values, Find("power"))
 	
-	local access = Find("access")
-	local denotation = Find("denotation")
-	local name = Find("name")
-	local generator_method = Find("generator:method")
-	
 	if amenity == nil and shop == nil and tourism == nil and man_made == nil and historic == nil and leisure == nil and sport == nil and natural == nil and emergency == nil and highway == nil and railway == nil and office == nil and power == nil then
 		return false
 	end
 	
-	if sport == "swimming" and access == "private" then
-		return false
-	end
+	local access = Find("access")
+	local denotation = Find("denotation")
+	local name = Find("name")
+	local generator_method = Find("generator:method")
+	local tower_type = Find("tower:type")
+	local ruins = Find("ruins")
+	local denomination = Find("denomination")
+	local building = Find("building")
+	
+	--if sport == "swimming" and access == "private" then
+	--	return false
+	--end
 	if natural == "tree" and (name == nil or denotation ~= "landmark" or denotation ~= "natural_monument") then
 		return false
 	end	
 	
-	-- the following needs to be updated to be more precise
-		
+	-- the following needs to be updated to be more precise	
+	
+	--Attribute("amenity", nilToEmptyStr(amenity))
+	--Attribute("shop", nilToEmptyStr(shop))
+	--Attribute("tourism", nilToEmptyStr(tourism))
+	--Attribute("man_made", nilToEmptyStr(man_made))
+	--Attribute("historic", nilToEmptyStr(historic))
+	--Attribute("leisure", nilToEmptyStr(leisure))
+	--Attribute("sport", nilToEmptyStr(sport))
+	--Attribute("natural", nilToEmptyStr(natural))
+	--Attribute("emergency", nilToEmptyStr(emergency))
+	--Attribute("highway", nilToEmptyStr(highway))
+	--Attribute("railway", nilToEmptyStr(railway))
+	--Attribute("office", nilToEmptyStr(office))
+	--Attribute("power", nilToEmptyStr(power))
+	
+	--if catering_values[amenity] then
+	--	addAttributeOrEmptyStr("cuisine")
+	--end
+	--if amenity == "vending_machine" then
+	--	addAttributeOrEmptyStr("vending")
+	--end
+	--if tourism == "information" then
+	--	addAttributeOrEmptyStr("information")
+	--end
+	--if man_made == "communications_tower" or man_made == "tower" or man_made == "mast" then
+	--	addAttributeOrEmptyStr("tower:type")
+	--end
+	--if historic == "castle" then
+	--	addAttributeOrEmptyStr("ruins")
+	--end
+	--if natural == "tree" then
+	--	addAttributeOrEmptyStr("leaf_type")
+	--end
+	--if railway == "station" then
+	--	addAttributeOrEmptyStr("station")
+	--end
+	--if amenity == "recycling" then
+	--	addAttributeBoolean("recycling:glass_bottles")
+	--	addAttributeBoolean("recycling:paper")
+	--	addAttributeBoolean("recycling:clothes")
+	--	addAttributeBoolean("recycling:scrap_metal")
+	--end
+	--if amenity == "bank" then
+	--	addAttributeBoolean("atm")
+	--end
+	--if amenity == "place_of_worship" then
+	--	addAttributeOrEmptyStr("religion")
+	--	addAttributeOrEmptyStr("denomination")
+	--	addAttributeOrEmptyStr("building")
+	--	addAttributeOrEmptyStr("historic")
+	--end
+	--if power == "generator" then
+	--	addAttributeOrEmptyStr("generator:method")
+	--end
+	--if amenity == "parking" then
+	--	addAttributeOrEmptyStr("access")
+	--	addAttributeOrEmptyStr("parking")
+	--	addAttributeOrEmptyStr("fee")
+	--	addAttributeBoolean("hiking")
+	--end
+	--if natural == "peak" or natural == "volcano" then
+	--	addAttributeBoolean("summit:cross")
+	--end
+	
+	local is_church = { catholic = true, roman_catholic = true, old_catholic = true, greek_catholic = true, lutheran = true, protestant = true, reformed = true }
+	local is_chapel = { wayside_chapel = true, chapel = true, wayside_shrine = true, wayside_cross = true }
+	
+	local mz = 14 --default zoom level
+	if man_made == "communications_tower" then
+		type_tag = "communications_tower"
+		mz = 11
+	elseif power == "generator" and generator_method == "wind_turbine" then
+		type_tag = "wind_turbine"
+		mz = 11
+	elseif man_made == "tower" and tower_type == "communication" then
+		type_tag = "communications_tower"
+		mz = 12
+	elseif man_made == "tower" and tower_type == "observation" then
+		type_tag = "observation_tower"
+		mz = 12
+	elseif man_made == "lighthouse" then
+		type_tag = "lighthouse";
+		mz = 12
+	elseif man_made == "watertower" then
+		type_tag = "watertower";
+		mz = 12
+	elseif amenity == "place_of_worship" and religion == "christian" and (denomination == nil or is_church[denomination]) and not is_chapel[building] and not is_chapel[historic] then
+		type_tag = "church"
+		mz = 12
+	elseif historic == "castle" and ruins ~= "yes" then
+		type_tag = "castle"
+		mz = 12
+	elseif historic == "castle" and ruins == "yes" then
+		type_tag = "castle_ruins"
+		mz = 12
+	elseif historic == "ruins" then
+		type_tag = "castle_ruins"
+		mz = 14
+	elseif (leisure == "swimming_pool" or sport == "swimming") and access ~= "private" then
+		type_tag = "swimming"
+		mz = 12
+	elseif natural == "viewpoint" then
+		type_tag = "viewpoint"
+		mz = 12
+	elseif natural == "cave_entrance" then
+		type_tag = "cave"
+		mz = 12
+	elseif tourism == "camp_site" or tourism == "caravan_site" then
+		type_tag = "camp_site"
+		mz = 12
+	elseif tourism == "alpine_hut" then
+		type_tag = "alpine_hut"
+		mz = 12
+	elseif tourism == "wilderness_hut" then
+		type_tag = "wilderness_hut"
+		mz = 12
+	elseif leisure == "golf_course" then
+		type_tag = "golf"
+		mz = 12
+	elseif man_made == "mast" and tower_type == "communication" then
+		type_tag = "communications_mast"
+		mz = 13
+	elseif man_made == "chimney" then
+		type_tag = "chimney"
+		mz = 13
+	elseif man_made == "watermill" then
+		type_tag = "watermill"
+		mz = 13
+	elseif (natural == "peak" or natural == "volcano") and summit_cross ~= "yes" then -- todo: update with Dominanz once available
+		type_tag = "peak"
+		mz = 12
+	elseif (natural == "peak" or natural == "volcano") and summit_cross == "yes" then -- todo: update with Dominanz once available
+		type_tag = "summit_cross"
+		mz = 12
+	elseif man_made == "cross" then
+		type_tag = "cross"
+		mz = 13
+	elseif historic == "wayside_cross" then
+		type_tag = "wayside_cross"
+		mz = 14
+	elseif amenity == "parking" then -- todo: update with Wanderparkplaetze once available
+		type_tag = "parking"
+		mz = 14
+	end
+	
+	if type_tag == nil then
+		return false
+	end
+	
 	if polygon then
 		LayerAsCentroid("pois")
 	else
 		Layer("pois", false)
 	end
 	
-	Attribute("amenity", nilToEmptyStr(amenity))
-	Attribute("shop", nilToEmptyStr(shop))
-	Attribute("tourism", nilToEmptyStr(tourism))
-	Attribute("man_made", nilToEmptyStr(man_made))
-	Attribute("historic", nilToEmptyStr(historic))
-	Attribute("leisure", nilToEmptyStr(leisure))
-	Attribute("sport", nilToEmptyStr(sport))
-	Attribute("natural", nilToEmptyStr(natural))
-	Attribute("emergency", nilToEmptyStr(emergency))
-	Attribute("highway", nilToEmptyStr(highway))
-	Attribute("railway", nilToEmptyStr(railway))
-	Attribute("office", nilToEmptyStr(office))
-	Attribute("power", nilToEmptyStr(power))
-	
-	if catering_values[amenity] then
-		addAttributeOrEmptyStr("cuisine")
-	end
-	--if sport_values[leisure] then
-	--	addAttributeOrEmptyStr("sport")
-	--end
-	if amenity == "vending_machine" then
-		addAttributeOrEmptyStr("vending")
-	end
-	if tourism == "information" then
-		addAttributeOrEmptyStr("information")
-	end
-	if man_made == "communications_tower" or man_made == "tower" or man_made == "mast" then
-		addAttributeOrEmptyStr("tower:type")
-	end
-	if historic == "castle" then
-		addAttributeOrEmptyStr("ruins")
-	end
-	if natural == "tree" then
-		addAttributeOrEmptyStr("leaf_type")
-	end
-	if railway == "station" then
-		addAttributeOrEmptyStr("station")
-	end
-	if amenity == "recycling" then
-		addAttributeBoolean("recycling:glass_bottles")
-		addAttributeBoolean("recycling:paper")
-		addAttributeBoolean("recycling:clothes")
-		addAttributeBoolean("recycling:scrap_metal")
-	end
-	if amenity == "bank" then
-		addAttributeBoolean("atm")
-	end
-	if amenity == "place_of_worship" then
-		addAttributeOrEmptyStr("religion")
-		addAttributeOrEmptyStr("denomination")
-		addAttributeOrEmptyStr("building")
-		addAttributeOrEmptyStr("historic")
-	end
-	if power == "generator" then
-		addAttributeOrEmptyStr("generator:method")
-	end
-	if amenity == "parking" then
-		addAttributeOrEmptyStr("access")
-		addAttributeOrEmptyStr("parking")
-		addAttributeOrEmptyStr("fee")
-		addAttributeBoolean("hiking")
-	end
-	if natural == "peak" or natural == "volcano" then
-		addAttributeBoolean("summit:cross")
-	end
-	
-	local mz = 14 --default zoom level
-	if man_made == "communications_tower" then
-		mz = 11
-	elseif power == "generator" and generator_method == "wind_turbine" then
-		mz = 11
-	elseif man_made == "tower" or man_made == "watertower" then
-		mz = 12
-	elseif amenity == "place_of_worship" or historic == "castle" then
-		mz = 12
-	elseif sport == "swimming" or natural == "viewpoint" or natural == "cave_entrance" or tourism == "camp_site" or tourism == "alpine_hut" or tourism == "wilderness_hut" or tourism == "caravan_site" or leisure == "golf_course" then
-		mz = 12
-	elseif man_made == "mast" then
-		mz = 13
-	elseif man_made == "watermill" then
-		mz = 13
-	elseif natural == "peak" or natural == "volcano" then -- todo: update with Dominanz once available
-		mz = 12
-	elseif amenity == "parking" then -- todo: update with Wanderparkplaetze once available
-		mz = 14
-	end
+	Attribute("type", type_tag)
 	MinZoom(mz)
 	
 	setNameAttributes()

@@ -79,6 +79,8 @@
         "streets": {
             "minzoom": 13,
             "maxzoom": 14,
+            "simplify_level": 0.00005,
+            "combine_lines_below": 14,
             "combine_lines_below": 14
         },
         "streets_med": {
@@ -86,7 +88,7 @@
             "maxzoom": 12,
             "write_to": "streets",
             "simplify_below": 13,
-            "simplify_level": 0.00015,
+            "simplify_level": 0.00013,
             "combine_lines_below": 13
         },
         "streets_low": {
