@@ -71,7 +71,7 @@ poi_natural_values = Set { "spring", "cave_entrance", "tree", "sinkhole", "peak"
 poi_historic_values = Set { "monument", "memorial", "castle", "ruins", "archaeological_site",
 	"wayside_cross", "wayside_shrine", "battlefield", "fort" }
 poi_emergency_values = Set { "phone", "fire_hydrant", "defibrillator" }
-poi_highway_values = Set { "emergency_access_point" }
+poi_highway_values = Set { "emergency_access_point", "bus_stop" }
 poi_railway_values = Set { "station" }
 poi_office_values = Set { "diplomatic" }
 poi_power_values = Set { "generator", "tower", "pole" }
@@ -1176,80 +1176,12 @@ function process_pois(polygon)
 	local generator_method = Find("generator:method")
 	local tower_type = Find("tower:type")
 	local ruins = Find("ruins")
+	local religion = Find("religion")
 	local denomination = Find("denomination")
 	local building = Find("building")
-	
-	--if sport == "swimming" and access == "private" then
-	--	return false
-	--end
-	if natural == "tree" and (name == nil or denotation ~= "landmark" or denotation ~= "natural_monument") then
-		return false
-	end	
-	
-	-- the following needs to be updated to be more precise	
-	
-	--Attribute("amenity", nilToEmptyStr(amenity))
-	--Attribute("shop", nilToEmptyStr(shop))
-	--Attribute("tourism", nilToEmptyStr(tourism))
-	--Attribute("man_made", nilToEmptyStr(man_made))
-	--Attribute("historic", nilToEmptyStr(historic))
-	--Attribute("leisure", nilToEmptyStr(leisure))
-	--Attribute("sport", nilToEmptyStr(sport))
-	--Attribute("natural", nilToEmptyStr(natural))
-	--Attribute("emergency", nilToEmptyStr(emergency))
-	--Attribute("highway", nilToEmptyStr(highway))
-	--Attribute("railway", nilToEmptyStr(railway))
-	--Attribute("office", nilToEmptyStr(office))
-	--Attribute("power", nilToEmptyStr(power))
-	
-	--if catering_values[amenity] then
-	--	addAttributeOrEmptyStr("cuisine")
-	--end
-	--if amenity == "vending_machine" then
-	--	addAttributeOrEmptyStr("vending")
-	--end
-	--if tourism == "information" then
-	--	addAttributeOrEmptyStr("information")
-	--end
-	--if man_made == "communications_tower" or man_made == "tower" or man_made == "mast" then
-	--	addAttributeOrEmptyStr("tower:type")
-	--end
-	--if historic == "castle" then
-	--	addAttributeOrEmptyStr("ruins")
-	--end
-	--if natural == "tree" then
-	--	addAttributeOrEmptyStr("leaf_type")
-	--end
-	--if railway == "station" then
-	--	addAttributeOrEmptyStr("station")
-	--end
-	--if amenity == "recycling" then
-	--	addAttributeBoolean("recycling:glass_bottles")
-	--	addAttributeBoolean("recycling:paper")
-	--	addAttributeBoolean("recycling:clothes")
-	--	addAttributeBoolean("recycling:scrap_metal")
-	--end
-	--if amenity == "bank" then
-	--	addAttributeBoolean("atm")
-	--end
-	--if amenity == "place_of_worship" then
-	--	addAttributeOrEmptyStr("religion")
-	--	addAttributeOrEmptyStr("denomination")
-	--	addAttributeOrEmptyStr("building")
-	--	addAttributeOrEmptyStr("historic")
-	--end
-	--if power == "generator" then
-	--	addAttributeOrEmptyStr("generator:method")
-	--end
-	--if amenity == "parking" then
-	--	addAttributeOrEmptyStr("access")
-	--	addAttributeOrEmptyStr("parking")
-	--	addAttributeOrEmptyStr("fee")
-	--	addAttributeBoolean("hiking")
-	--end
-	--if natural == "peak" or natural == "volcano" then
-	--	addAttributeBoolean("summit:cross")
-	--end
+	local leaf_type = Find("leaf_type")
+	local station = Find("station")
+	local archaeological_site = Find("archaeological_site")
 	
 	local is_church = { catholic = true, roman_catholic = true, old_catholic = true, greek_catholic = true, lutheran = true, protestant = true, reformed = true }
 	local is_chapel = { wayside_chapel = true, chapel = true, wayside_shrine = true, wayside_cross = true }
@@ -1270,10 +1202,10 @@ function process_pois(polygon)
 	elseif man_made == "lighthouse" then
 		type_tag = "lighthouse";
 		mz = 12
-	elseif man_made == "watertower" then
-		type_tag = "watertower";
+	elseif man_made == "water_tower" then
+		type_tag = "water_tower";
 		mz = 12
-	elseif amenity == "place_of_worship" and religion == "christian" and (denomination == nil or is_church[denomination]) and not is_chapel[building] and not is_chapel[historic] then
+	elseif amenity == "place_of_worship" and religion == "christian" and (denomination == nil or is_church[denomination]) and (building == nil or not is_chapel[building]) and (historic == nil or not is_chapel[historic]) then
 		type_tag = "church"
 		mz = 12
 	elseif historic == "castle" and ruins ~= "yes" then
@@ -1294,6 +1226,12 @@ function process_pois(polygon)
 	elseif natural == "cave_entrance" then
 		type_tag = "cave"
 		mz = 12
+	elseif natural == "sinkhole" then
+		type_tag = "sinkhole"
+		mz = 13
+	elseif historic == "archaeological_site" and archaeological_site == "tumulus" then
+		type_tag = "tumulus"
+		mz = 13
 	elseif tourism == "camp_site" or tourism == "caravan_site" then
 		type_tag = "camp_site"
 		mz = 12
@@ -1315,19 +1253,38 @@ function process_pois(polygon)
 	elseif man_made == "watermill" then
 		type_tag = "watermill"
 		mz = 13
-	elseif (natural == "peak" or natural == "volcano") and summit_cross ~= "yes" then -- todo: update with Dominanz once available
-		type_tag = "peak"
-		mz = 12
-	elseif (natural == "peak" or natural == "volcano") and summit_cross == "yes" then -- todo: update with Dominanz once available
-		type_tag = "summit_cross"
+	elseif (natural == "peak" or natural == "volcano") then		-- todo: update with Dominanz once available
+		if summit_cross == "yes" then
+			type_tag = "summit_cross"
+		else
+			type_tag = "summit_cross"
+		end
 		mz = 12
 	elseif man_made == "cross" then
 		type_tag = "cross"
 		mz = 13
+	elseif natural == "tree" and (name ~= nil or denotation == "landmark" or denotation == "natural_monument") then
+		if leaf_type == "needleleaved" then
+			type_tag = "tree_needleleaved"
+		else
+			type_tag = "tree_broadleaved"
+		end
+		mz = 13
 	elseif historic == "wayside_cross" then
 		type_tag = "wayside_cross"
 		mz = 14
-	elseif amenity == "parking" then -- todo: update with Wanderparkplaetze once available
+	elseif highway == "bus_stop" then
+		type_tag = "bus_stop"
+		mz = 14
+	elseif railway == "station" then
+		if station == "subway" then
+			type_tag = "station_subway"
+			mz = 13
+		else
+			type_tag = "station"
+			mz = 12
+		end
+	elseif amenity == "parking" then 	-- todo: update with Wanderparkplaetze once available
 		type_tag = "parking"
 		mz = 14
 	end

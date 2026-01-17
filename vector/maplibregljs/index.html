@@ -7,15 +7,9 @@
 	<script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
 	<link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
     <script src="maplibre-grid.js"></script>
-    
-	<script src='https://unpkg.com/@maplibre/maplibre-gl-inspect@latest/dist/maplibre-gl-inspect.js'></script>
-	<link href='https://unpkg.com/@maplibre/maplibre-gl-inspect@latest/dist/maplibre-gl-inspect.css' rel='stylesheet' />
 
 	<script src="https://unpkg.com/maplibre-contour@0.1.0/dist/index.min.js"></script>
-	
-	<script src="https://unpkg.com/@geomatico/maplibre-cog-protocol@0.5.0/dist/index.js"></script>
-	<script src="https://unpkg.com/maplibre-contour@0.1.0/dist/index.min.js"></script>
-	
+		
 	<link href="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-export@4.1.0/dist/maplibre-gl-export.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-export@4.1.0/dist/maplibre-gl-export.umd.js"></script>
 	
@@ -29,15 +23,146 @@
         background: #000;
     }
 </style>
+  <style>
+    html,body{height:100%;margin:0;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    #map{position:absolute;inset:0}
+
+    /* Dialog (original look) */
+    .settings {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 300px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      padding: 12px;
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+    }
+    .settings.hidden{ display:none; }
+    .settings h3 { margin:0 0 8px 0; font-size:16px; }
+    .row { display:flex; align-items:center; justify-content:space-between; margin:8px 0; }
+    .control { display:flex; gap:8px; align-items:center; }
+
+    .switch { --w:46px; --h:24px; --pad:2px; width:var(--w); height:var(--h); border-radius:calc(var(--h)/2);
+      background:#d0d4d9; padding:var(--pad); cursor:pointer; box-sizing:content-box; transition: background .18s; }
+    .switch .knob { width: calc(var(--h) - (var(--pad) * 2)); height: calc(var(--h) - (var(--pad) * 2));
+      background:white; border-radius:50%; box-shadow:0 1px 3px rgba(0,0,0,.25); transform: translateX(0); transition: transform .18s; }
+    .switch.on { background: #3b82f6; }
+    .switch.on .knob { transform: translateX(calc(var(--w) - var(--h))); }
+
+    select { padding:6px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:14px; }
+
+    .foot { font-size:12px; color:#475569; margin-top:8px; display:flex; justify-content:space-between; align-items:center;}
+    .btn { padding:6px 10px; background:#111827;color:white;border-radius:6px;border:none;cursor:pointer;}
+    .btn.secondary { background:#f1f5f9;color:#0f172a;border:1px solid #e2e8f0; }
+
+    .settings .close-btn { position:absolute; top:8px; right:10px; background:transparent; border:0; cursor:pointer; padding:4px; }
+    .settings .close-btn svg{ width:16px; height:16px; fill:#334155; }
+
+    /* Ensure control button matches MapLibre structure */
+    .maplibregl-ctrl.settings-control button{ width:28px; height:28px; padding:0; border:0; background:transparent; cursor:pointer; }
+    .maplibregl-ctrl.settings-control svg{ width:18px; height:18px; fill:#111827; }
+    
+    .maplibregl-ctrl button.maplibregl-ctrl-settings .maplibregl-ctrl-icon {background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23333' aria-hidden='true'%3E%3Cpath d='M17 0c-1.071 0-2 .8-2 1.758v4.8c0 .962.884 1.758 2.007 1.758 1.123 0 2.007-.796 2.007-1.758V1.758C19.014.8 18.086 0 17 0zM0 3.316v1.679h15.586V3.316H0zM22.352 3.316v1.679H24V3.316h-1.648zM6.984 7.989c-1.123 0-2.007.8-2.007 1.758v4.8c0 .962.884 1.758 2.007 1.758s2.007-.796 2.007-1.758V9.747C8.991 8.789 8.107 7.989 6.984 7.989zM0 10.976v1.679h3.566v-1.679H0zM9.966 10.976v1.679H24v-1.679H9.966zM17 14.628c-1.123 0-2.007.8-2.007 1.758v4.8c0 .962.884 1.758 2.007 1.758 1.123 0 2.007-.796 2.007-1.758V16.147C19.014 14.889 18.086 14.628 17 14.628zM0 17.007v1.679h15.586v-1.679H0zM22.352 17.007v1.679H24v-1.679h-1.648z'/%3E%3C/svg%3E");}
+  </style>
 <body>
 <div id="map"></div>
+<div id="settings" class="settings hidden" role="dialog" aria-label="Map settings">
+    <button class="close-btn" id="dialogCloseBtn" aria-label="Close settings">
+      <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M14.53 3.47L9 9l5.53 5.53-1.06 1.06L7.94 10.06 2.41 15.59 1.35 14.53 6.88 9 1.35 3.47 2.41 2.41 7.94 7.94 13.47 2.41z"/></svg>
+    </button>
+
+    <h3>Map Settings</h3>
+
+    <div class="row">
+      <div>
+        <div class="label"><strong>Language</strong></div>
+        <div style="font-size:12px;color:#475569;">Map UI/labels language</div>
+      </div>
+      <div class="control">
+        <select id="langSelect" aria-label="Language selector">
+          <option value="nn" selected>Native</option>
+          <option value="en">English (en)</option>
+          <option value="de">Deutsch (de)</option>
+          <option value="it">Italiano (it)</option>
+          <option value="es">Español (es)</option>
+          <option value="fr">Français (fr)</option>
+        </select>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div>
+        <div class="label"><strong>Fullscreen</strong></div>
+        <div style="font-size:12px;color:#475569;">Toggle fullscreen</div>
+      </div>
+      <div class="control">
+        <div id="fullscreenSwitch" class="switch" role="switch" aria-checked="false" tabindex="0">
+          <div class="knob"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div>
+        <div class="label"><strong>Vector</strong></div>
+        <div style="font-size:12px;color:#475569;">Use vector or raster</div>
+      </div>
+      <div class="control">
+        <div id="vectorSwitch" class="switch" role="switch" aria-checked="false" tabindex="0">
+          <div class="knob"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div>
+        <div class="label"><strong>3D Globe</strong></div>
+        <div style="font-size:12px;color:#475569;">3D Globe at low zoom levels</div>
+      </div>
+      <div class="control">
+        <div id="globeSwitch" class="switch" role="switch" aria-checked="false" tabindex="0">
+          <div class="knob"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div>
+        <div class="label"><strong>3D Terrain</strong></div>
+        <div style="font-size:12px;color:#475569;">3D terrain at high zoom levels</div>
+      </div>
+      <div class="control">
+        <div id="terrainSwitch" class="switch" role="switch" aria-checked="false" tabindex="0">
+          <div class="knob"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div>
+        <div class="label"><strong>Debug</strong></div>
+        <div style="font-size:12px;color:#475569;">Show tile boundaries</div>
+      </div>
+      <div class="control">
+        <div id="tileboundarySwitch" class="switch" role="switch" aria-checked="false" tabindex="0">
+          <div class="knob"></div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
 
 <script src="otm_layers.json"></script>
 <script>
-	maplibregl.addProtocol('cog', MaplibreCOGProtocol.cogProtocol);
 	var demSource = new mlcontour.DemSource({
 		url: "https://tiles.mapterhorn.com/{z}/{x}/{y}.webp",
-		encoding: "terrarium", // "mapbox" or "terrarium" default="terrarium"
+		encoding: "terrarium",
 		maxzoom: 15,
 		worker: true, // offload isoline computation to a web worker to reduce jank
 		cacheSize: 100, // number of most-recent tiles to cache
@@ -55,8 +180,9 @@
             'sources': {
 				'opentopomap-vector': {
 					'type': 'vector',
+					'lineMetrics': true,
 					'tiles': [
-						'https://backup.opentopomap.org/otm/{z}/{x}/{y}.pbf'
+						'https://opentopomap.org/otm/{z}/{x}/{y}.pbf'
 					],
 					'maxzoom': 14,
 					'attribution': 'Map style: © OpenTopoMap, Map data © OpenStreetMap contributors'
@@ -71,7 +197,7 @@
 				},
 				/*'dem': {
 					'type': 'raster-dem',
-					'url': 'cog://https://backup.opentopomap.org/vector/dem-srtm-cog.tif#dem',
+					'url': 'cog://https://opentopomap.org/vector/dem-srtm-cog.tif#dem',
 					'tileSize': 256,
 					'attribution': 'DEM: © Copernicus 🇪🇺'
 				},*/
@@ -98,7 +224,7 @@
 					maxzoom: 15,
 
 				},
-                'opentopomap-tiles': {
+                'opentopomap-raster': {
                     'type': 'raster',
                     'tiles': [
                         'https://tile.opentopomap.org/{z}/{x}/{y}.png'
@@ -118,7 +244,7 @@
                 }
             },
             'glyphs': "https://fonts.undpgeohub.org/fonts/{fontstack}/{range}.pbf",
-            'sprite': "https://backup.opentopomap.org/vector/otm_sprite",
+            'sprite': "https://opentopomap.org/vector/otm_sprite",
             'layers': otm_layers,
             'sky': {
                 "sky-color": "#199EF3",
@@ -139,6 +265,8 @@
         zoom: 5,
         hash: true
     });
+    
+    //map.setStyle("otm-vector");
 	
     const grid = new MaplibreGrid.Grid({
 		  gridWidth: 10,
@@ -152,47 +280,160 @@
     
     //map.scrollZoom.setWheelZoomRate(1);
 
-    map.addControl(new maplibregl.FullscreenControl());
-    map.addControl(
-        new maplibregl.NavigationControl({
-            visualizePitch: true,
-            showZoom: true,
-            showCompass: true
-        })
-    );
+    map.addControl(new maplibregl.NavigationControl({visualizePitch:true, showZoom:true, showCompass:true}), 'top-left');
+	map.addControl(new maplibregl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-left');
     
-    // Add geolocate control
-	const geolocate = new maplibregl.GeolocateControl({
-		positionOptions: {
-			enableHighAccuracy: true
-		},
-		trackUserLocation: true
-	});
-	map.addControl(geolocate);
-	geolocate.trigger();
-	
-    map.addControl(
-        new maplibregl.TerrainControl({
-            source: 'dem',
-            exaggeration: 2
-        })
-    );
     
-    map.addControl(new MaplibreInspect({
-		showInspectButton: true,
-		showMapPopup: true
-	}));
-	
-	map.addControl(new MaplibreExportControl.MaplibreExportControl({
-		PageSize: MaplibreExportControl.Size.A4,
-		PageOrientation: MaplibreExportControl.PageOrientation.Landscape,
-		Format: MaplibreExportControl.Format.PDF,
-		DPI: MaplibreExportControl.DPI[300],
-		Crosshair: true,
-		PrintableArea: true,
-		Local: 'en'
-	}), 'top-right');
+    class SettingsControl {
+      onAdd(mapInstance) {
+        this._map = mapInstance;
+        const container = document.createElement('div');
+        container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+        const button = document.createElement('button');
+        button.className = 'maplibregl-ctrl-settings';
+        button.type = 'button';
+        button.title = 'Open settings';
+        button.setAttribute('aria-label','Open settings');
+        const span = document.createElement('span');
+        span.className='maplibregl-ctrl-icon';
+        span.setAttribute('aria-hidden',true);
+        container.appendChild(button);
+        button.appendChild(span);
+        button.addEventListener('click', () => {
+          document.getElementById('settings').classList.toggle('hidden');
+        });
+        this._container = container;
+        return this._container;
+      }
+      onRemove() {
+        this._container.parentNode.removeChild(this._container);
+        this._map = undefined;
+      }
+    }
+    map.addControl(new SettingsControl(), 'top-left');
+    
+    
+    // UI logic
+    const settingsEl = document.getElementById('settings');
+    const dialogCloseBtn = document.getElementById('dialogCloseBtn');
+    const langSelect = document.getElementById('langSelect');
+    const fullscreenSwitch = document.getElementById('fullscreenSwitch');
+    const vectorSwitch = document.getElementById('vectorSwitch');
+    const globeSwitch = document.getElementById('globeSwitch');
+    const terrainSwitch = document.getElementById('terrainSwitch');
+    const tileboundarySwitch = document.getElementById('tileboundarySwitch');
+    
+    const state = { lang:'en', proj:null, fullscreenOn:false, vectorOn:true, globeOn:true, terrainOn:false, tileboundaryOn:false };
+    
+    function setSwitchVisual(el, on){
+      if(on){ el.classList.add('on'); el.setAttribute('aria-checked','true'); } else { el.classList.remove('on'); el.setAttribute('aria-checked','false'); }
+    }
+    [fullscreenSwitch, vectorSwitch, globeSwitch, terrainSwitch, tileboundarySwitch].forEach(s => {
+      s.addEventListener('click', () => setSwitchVisual(s, s.getAttribute('aria-checked') !== 'true'));
+      s.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); s.click(); }});
+    });
+    
+    setSwitchVisual(fullscreenSwitch, state.fullscreenOn);
+    setSwitchVisual(vectorSwitch, state.vectorOn);
+    setSwitchVisual(globeSwitch, state.globeOn);
+    setSwitchVisual(terrainSwitch, state.terrainOn);
+    setSwitchVisual(tileboundarySwitch, state.tileboundaryOn);
 
+    dialogCloseBtn.addEventListener('click', () => settingsEl.classList.add('hidden'));
+    langSelect.addEventListener('change', () => updateMapLanguage(langSelect.value));
+    fullscreenSwitch.addEventListener('click', () => applyFullscreen(fullscreenSwitch.getAttribute('aria-checked') === 'true'));
+    vectorSwitch.addEventListener('click', () => applyVector(vectorSwitch.getAttribute('aria-checked') === 'true'));
+    globeSwitch.addEventListener('click', () => applyGlobe(globeSwitch.getAttribute('aria-checked') === 'true'));
+    terrainSwitch.addEventListener('click', () => applyTerrain(terrainSwitch.getAttribute('aria-checked') === 'true'));
+    tileboundarySwitch.addEventListener('click', () => applyTileboundary(tileboundarySwitch.getAttribute('aria-checked') === 'true'));
+    
+
+    
+    function applyFullscreen(on){
+      if(on && !state.fullscreenOn){
+        state.fullscreenOn = true;
+        map.getContainer().requestFullscreen();
+      } else if(!on && state.fullscreenOn){
+        state.fullscreenOn = false;
+      }
+    }
+    
+    function applyVector(on){
+      if(on && !state.vectorOn){
+		const style = map.getStyle();
+		style.layers.forEach((layer) => {	
+			if (layer.id == "opentopomap-raster") {
+				map.setLayoutProperty(layer.id, 'visibility', 'none');
+			} else {
+				map.setLayoutProperty(layer.id, 'visibility', 'visible');
+			}
+		});	
+        state.vectorOn = true;
+      } else if(!on && state.globeOn){
+		const style = map.getStyle();
+		style.layers.forEach((layer) => {	
+			if (layer.id != "opentopomap-raster") {
+				map.setLayoutProperty(layer.id, 'visibility', 'none');
+			} else {
+				map.setLayoutProperty(layer.id, 'visibility', 'visible');
+			}
+		});	
+        state.vectorOn = false;
+      }
+    }
+    
+    function applyGlobe(on){
+      if(on && !state.globeOn){
+        state.globeOn = true;
+		map.setProjection(state.proj);
+      } else if(!on && state.globeOn){
+		const style = map.getStyle();
+		state.proj = style && style.projection;
+		map.setProjection({ name: 'mercator' });
+        state.globeOn = false;
+      }
+    }
+    
+    function applyTerrain(on){
+      if(on && !state.terrainOn){
+		map.setTerrain({ source: 'dem', exaggeration: 2.0 });
+        state.terrainOn = true;
+      } else if(!on && state.terrainOn){
+		map.setTerrain(null);
+        state.terrainOn = false;
+      }
+    }
+    
+    function applyTileboundary(on){
+      if(on && !state.tileboundaryOn){
+		//map.setTerrain({ source: 'dem', exaggeration: 2.0 });
+		map.showTileBoundaries = true;
+        state.tileboundaryOn = true;
+      } else if(!on && state.tileboundaryOn){
+		//map.setTerrain(null);
+		map.showTileBoundaries = false;
+        state.tileboundaryOn = false;
+      }
+    }
+      
+    function updateMapLanguage(lang) {
+		const style = map.getStyle();		
+		style.layers.forEach((layer) => {
+			// Check if the layer has 'metadata': {'translate':true} and layer.layout property
+			if (layer.metadata && layer.metadata.translate === true) {
+				if (layer.layout && layer.layout['text-field']) {
+					map.setLayoutProperty(layer.id, 'text-field', ['coalesce',['get', 'name:'+lang],['get', 'name']]);
+				}
+			}
+		});
+	}
+	
+	
+    
+    /*map.on('load', () => {
+		updateMapLanguage(navigator.language.split('-')[0]);
+	});*/
+    	
 	//map.showTileBoundaries = true;
 	
 </script>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Usage:
-  python generate_sprite_tight_auto_cols.py input_folder output_sprite.png --padding 0 --json atlas.json
+  python generate_sprite.py input_folder output_sprite.png --padding 0 --json atlas.json
 
 Automatically determines column count to make the sheet roughly square.
 Uses ImageMagick (convert, montage, identify).
@@ -62,7 +62,8 @@ def build(input_folder, output_file, cols=None, padding=0, json_out=None):
     orig_sizes = []
     for i,f in enumerate(files):
         dest = tmp / f"f{i:04d}.png"
-        run(f'convert "{f}" -trim +repage "{dest}"')
+        #run(f'convert "{f}" -trim +repage "{dest}"')
+        run(f'convert "{f}" "{dest}"')
         originals.append(f.name)
         trimmed.append(dest)
         orig_sizes.append(get_size(str(f)))
