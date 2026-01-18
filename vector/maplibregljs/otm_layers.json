@@ -660,7 +660,7 @@ const otm_layers = [
 	],
 	"type": "symbol",
 	"layout": {
-        "text-field": ['coalesce',['get', 'name:de'],['get', 'name']],
+        "text-field": "{name}",
         "symbol-sort-key": ["get","population"],
         "text-size":["interpolate",["linear"],["zoom"],
 			7,["case",[">",["get","population"],20000],10,9],
@@ -691,7 +691,7 @@ const otm_layers = [
 	],
 	"type": "symbol",
 	"layout": {
-		"text-field": ['coalesce',['get', 'name:de'],['get', 'name']],
+		"text-field": "{name}",
         "symbol-sort-key": ["-", ["to-number", ["get", "population"]]],
         //"text-allow-overlap": true,
         "text-size": ["interpolate",["linear"],["zoom"],6,10, 7,12, 8,16, 10,22],
@@ -716,7 +716,7 @@ const otm_layers = [
 	],
 	"type": "symbol",
 	"layout": {
-		"text-field": ['coalesce',['get', 'name:de'],['get', 'name']],
+		"text-field": "{name}",
         "text-size": ["interpolate",["linear"],["zoom"],6,10, 8,17, 10,22],
         "text-max-width": 7,
         "text-variable-anchor": ["bottom-left","center","right","bottom","bottom-right","top-left","top","top-right"],
@@ -739,7 +739,7 @@ const otm_layers = [
 	],
 	"type": "symbol",
 	"layout": {
-		"text-field": ['coalesce',['get', 'name:de'],['get', 'name']],
+		"text-field": "{name}",
         "text-size": ["interpolate",["linear"],["zoom"],6,12, 8,17, 10,22],
         "text-transform": "uppercase",
         "text-max-width": 7,

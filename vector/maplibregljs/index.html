@@ -323,16 +323,22 @@
     const terrainSwitch = document.getElementById('terrainSwitch');
     const tileboundarySwitch = document.getElementById('tileboundarySwitch');
     
-    const state = { lang:'en', proj:null, fullscreenOn:false, vectorOn:true, globeOn:true, terrainOn:false, tileboundaryOn:false };
+    const state = { lang:'nn', proj:null, fullscreenOn:false, vectorOn:true, globeOn:true, terrainOn:false, tileboundaryOn:false };
     
+    function setLangVisual(lang) {
+		const sel = document.getElementById('langSelect');
+		sel.value = lang;
+	}
     function setSwitchVisual(el, on){
       if(on){ el.classList.add('on'); el.setAttribute('aria-checked','true'); } else { el.classList.remove('on'); el.setAttribute('aria-checked','false'); }
     }
+    
     [fullscreenSwitch, vectorSwitch, globeSwitch, terrainSwitch, tileboundarySwitch].forEach(s => {
       s.addEventListener('click', () => setSwitchVisual(s, s.getAttribute('aria-checked') !== 'true'));
       s.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); s.click(); }});
     });
     
+    setLangVisual(state.lang);
     setSwitchVisual(fullscreenSwitch, state.fullscreenOn);
     setSwitchVisual(vectorSwitch, state.vectorOn);
     setSwitchVisual(globeSwitch, state.globeOn);
@@ -422,7 +428,12 @@
 			// Check if the layer has 'metadata': {'translate':true} and layer.layout property
 			if (layer.metadata && layer.metadata.translate === true) {
 				if (layer.layout && layer.layout['text-field']) {
-					map.setLayoutProperty(layer.id, 'text-field', ['coalesce',['get', 'name:'+lang],['get', 'name']]);
+					if (lang == "nn") {
+						map.setLayoutProperty(layer.id, 'text-field', '{name}');
+					} else {
+						map.setLayoutProperty(layer.id, 'text-field', ['coalesce',['get', 'name:'+lang],['get', 'name']]);
+					}
+					state.lang = lang;
 				}
 			}
 		});
@@ -430,9 +441,10 @@
 	
 	
     
-    /*map.on('load', () => {
+    map.on('load', () => {
 		updateMapLanguage(navigator.language.split('-')[0]);
-	});*/
+		setLangVisual(state.lang);
+	});
     	
 	//map.showTileBoundaries = true;
 	
