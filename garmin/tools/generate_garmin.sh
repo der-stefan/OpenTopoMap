@@ -100,13 +100,8 @@ do
 			REDUCED_DENSITY=""
 		fi
 		
-		# Basecamp maps for Europe
-		if [[ "$continent" == *"europe"* ]]; then
-			GMAPI="--gmapi"
-		else
-			GMAPI=""
-		fi
-
+		GMAPI="--gmapi"
+		
 		java -Xmx10000m -jar $MKGMAP_JAR --output-dir=$MKGMAP_OUTPUT_DIR --style-file=$MKGMAP_STYLE_FILE --description="OpenTopoMap ${countryname_short^} ${continentdate}" --area-name="OpenTopoMap ${countryname_short^} ${continentdate}" --overview-mapname="OpenTopoMap_${countryname_short^}" --family-name="OpenTopoMap ${countryname_short^} ${continentdate}" --family-id=$FAMILY_ID --series-name="OpenTopoMap ${countryname_short^} ${continentdate}" --bounds=$BOUNDS_FILE --precomp-sea=$SEA_FILE --dem=$DEM_FILE -c $MKGMAP_OPTS $REDUCED_DENSITY $GMAPI $mkgmapin $MKGMAP_TYP_FILE &> $MKGMAP_OUTPUT_DIR/mkgmap.log
 		cd $MKGMAP_OUTPUT_DIR
 		mv OpenTopoMap\ ${countryname^}\ ${continentdate}.gmap OpenTopoMap_${countryname^}.gmap
