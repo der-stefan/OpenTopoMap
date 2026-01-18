@@ -39,6 +39,18 @@ if [ "$column" != " otm_isolation" ] ; then
 fi
 
 #
+# Check if otm_isolation is a column of planet_osm_polygon, if not, create it
+#
+
+column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
+         WHERE attrelid = ( SELECT oid FROM pg_class WHERE relname = 'planet_osm_polygon' ) \
+         AND attname = 'otm_isolation';"`
+
+if [ "$column" != " otm_isolation" ] ; then
+ psql -d $DBname -c "ALTER TABLE planet_osm_polygon ADD COLUMN otm_isolation text;"
+fi
+
+#
 # Check once again. If the column doesn't exist -> EXIT
 #
 
@@ -48,6 +60,15 @@ column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
 
 if [ "$column" != " otm_isolation" ] ; then
  echo "Sorry, no column otm_isolation in planet_osm_point"
+ exit 1
+fi
+
+column=`psql -d $DBname -t -c "SELECT attname FROM pg_attribute \
+         WHERE attrelid = ( SELECT oid FROM pg_class WHERE relname = 'planet_osm_polygon' ) \
+         AND attname = 'otm_isolation';"`
+
+if [ "$column" != " otm_isolation" ] ; then
+ echo "Sorry, no column otm_isolation in planet_osm_polygon"
  exit 1
 fi
 
