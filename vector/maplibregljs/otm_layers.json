@@ -273,16 +273,16 @@ const otm_layers = [
 	],
 	"type": "line",
 	"paint": {
-		"line-color": "black",
-		"line-dasharray": [0.2,0.25],
+		"line-color": "black",		
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			10, ["+",["match", ["get", "kind"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, "unclassified",1.3, "residential",1.3, "service",1.3, 1.3], 2],
-			12, ["+",["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 2.5], 2],
-			14, ["+",["match", ["get", "kind"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, 2.5], 2],
-			15, ["+",["match", ["get", "kind"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, 3.5], 2],
-			19, ["+",["match", ["get", "kind"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 6], 2],
-		]
+			10, ["+",2,["match", ["get", "kind"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, "unclassified",1.3, "residential",1.3, "service",1.3, "track",1.3, "path",0.1, 0.1]],
+			12, ["+",2,["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, "track",1.5, "path",0.1, 0.1]],
+			14, ["+",2,["match", ["get", "kind"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, "track",1.5, "path",0.1, 0.1]],
+			15, ["+",2,["match", ["get", "kind"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, "track",2, "path",2, 0.1]],
+			19, ["+",2,["match", ["get", "kind"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, "track",2, "path",2, 0.1]],
+		],
+		"line-dasharray": [0.2,0.25],
 	}
 },
 
@@ -293,7 +293,8 @@ const otm_layers = [
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["!=", "bridge", true]
+		["!=", "bridge", true],
+		["!=", "kind", "path"]
 	],
 	"type": "line",
 	"paint": {
@@ -316,6 +317,27 @@ const otm_layers = [
 		],
 		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
 		//"line-dasharray": [1,1],
+	}
+},
+{
+	"id": "roads-lowgrade-casing",	// merge with roads-casing once line-dasharray supports data-driven styling.
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["!=", "bridge", true],
+		["==", "kind", "path"],
+	],
+	"type": "line",
+	"paint": {
+		"line-color": "black",
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			12, ["match", ["get", "tracktype"], "grade2",0.4, 0.2],
+			14, ["match", ["get", "tracktype"], "grade2",0.7, "grade3",0.6, "grade4",0.5, "grade5",0.3, 0.5],
+		],
+		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
+		"line-dasharray": [6,6],
 	}
 },
 {
