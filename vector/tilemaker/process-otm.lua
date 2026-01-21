@@ -287,7 +287,7 @@ function process_place_layer()
 	if mz < 99 then
 		Layer("place_labels", false)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 		setNameAttributes()
 		local populationNum = tonumber(population)
 		if populationNum ~= nil then
@@ -340,7 +340,7 @@ function process_public_transport_layer(is_area)
 		Layer("public_transport", false)
 	end
 	MinZoom(11)
-	Attribute("kind", kind)
+	Attribute("type", kind)
 	local iata = Find("iata")
 	if iata ~= "" then
 		Attribute("iata", iata)
@@ -358,7 +358,7 @@ function node_function()
 	if highway == "motorway_junction" then
 		Layer("street_labels_points", false)
 		MinZoom(12)
-		Attribute("kind", highway)
+		Attribute("type", highway)
 		setNameAttributes()
 		Attribute("ref", Find("ref"))
 	end
@@ -446,13 +446,13 @@ function process_water_polygons(way_area)
 		local way_area = way_area
 		Layer("water_polygons", true)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 		AttributeNumeric("way_area", way_area)
 		ZOrder(way_area)
 		if Holds("name") then
 			LayerAsCentroid("water_polygons_labels")
 			MinZoom(14)
-			Attribute("kind", kind)
+			Attribute("type", kind)
 			AttributeNumeric("way_area", way_area)
 			ZOrder(way_area)
 			setNameAttributes()
@@ -489,7 +489,7 @@ function process_water_lines()
 		local layer = layerNumeric()
 		Layer("water_lines", false)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 		--AttributeBoolean("tunnel", tunnel)
 		--AttributeBoolean("bridge", bridge)
 		--AttributeBoolean("intermittent", intermittent)
@@ -506,7 +506,7 @@ function process_water_lines()
 		if Holds("name") then
 			Layer("water_lines_labels", false)
 			MinZoom(mz_label)
-			Attribute("kind", kind)
+			Attribute("type", kind)
 			--AttributeBoolean("tunnel", tunnel)
 			--AttributeBoolean("bridge", bridge)
 			--AttributeBoolean("intermittent", intermittent)
@@ -539,7 +539,7 @@ end
 --	if kind ~= nil then
 --		Layer("pier_lines", false)
 --		MinZoom(12)
---		Attribute("kind", kind)
+--		Attribute("type", kind)
 --	end
 --end
 
@@ -548,7 +548,7 @@ end
 --	if kind ~= nil then
 --		Layer("pier_polygons", true)
 --		MinZoom(12)
---		Attribute("kind", kind)
+--		Attribute("type", kind)
 --	end
 --end
 
@@ -593,12 +593,12 @@ function process_land()
 	if mz <= 12 then
 		Layer("land_low", true)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 	end
 	if mz < inf_zoom then
 		Layer("land", true)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 	end
 end
 
@@ -625,7 +625,7 @@ function process_sites()
 	if mz < inf_zoom then
 		Layer("sites", true)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 	end
 end
 
@@ -802,9 +802,9 @@ function process_streets()
 	end
 	--local link = (highway == "motorway_link" or highway == "trunk_link" or highway == "primary_link" or highway == "secondary_link" or highway == "tertiary_link")
 	local layer = tonumber(Find("layer"))
-	if layer == nil then
-		layer = 0
-	end
+	--if layer == nil then
+	--	layer = 0
+	--end
 	local oneway = Find("oneway")
 	local onewayBool = not rail and isOneway(oneway)
 	local reverseOnewayBool = not rail and isReverseOneway(oneway)
@@ -812,7 +812,7 @@ function process_streets()
 	if mz <= 13 then
 		Layer("streets_med", false)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 		--AttributeBoolean("link", link)
 		--Attribute("surface", surface)
 		--AttributeBoolean("tunnel", tunnelBool)
@@ -845,7 +845,8 @@ function process_streets()
 	if mz < inf_zoom then
 		Layer("streets", false)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
+		AttributeNumeric("layer", nilToEmptyStr(layer))
 		--AttributeBoolean("link", link)
 		--Attribute("surface", surface)
 		--Attribute("bicycle", bicycle)
@@ -892,7 +893,7 @@ function process_streets()
 	if mz <= 9 then
 		Layer("streets_low", false)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 		--AttributeBoolean("rail", rail)
 		if rail == true then
 			AttributeBoolean("rail", true)
@@ -959,7 +960,7 @@ function process_street_labels()
 	if (name ~= "" or refs ~= "") then
 		Layer("street_labels", false)
 		MinZoom(mz)
-		Attribute("kind", highway)
+		Attribute("type", highway)
 		AttributeBoolean("tunnel", toTunnelBool())
 		Attribute("ref", refs)
 		--AttributeNumeric("ref_rows", rows)
@@ -989,7 +990,7 @@ function process_street_polygons()
 	if mz < inf_zoom then
 		Layer("street_polygons", true)
 		MinZoom(mz)
-		Attribute("kind", kind)
+		Attribute("type", kind)
 		if surface ~= "" then
 			Attribute("surface", surface)
 		end
@@ -1003,7 +1004,7 @@ function process_street_polygons()
 		if name ~= "" then
 			LayerAsCentroid("streets_polygons_labels")
 			setNameAttributes()
-			Attribute("kind", kind)
+			Attribute("type", kind)
 			MinZoom(mz)
 		end
 	end
@@ -1014,7 +1015,7 @@ function process_aerialways()
 	if aerialway == "cable_car" or aerialway == "gondola" or aerialway == "chair_lift" or aerialway == "drag_lift" or aerialway == "t-bar" or aerialway == "j-bar" or aerialway == "platter" or aerialway == "rope_tow" then
 		Layer("aerialways", false)
 		MinZoom(12)
-		Attribute("kind", aerialway)
+		Attribute("type", aerialway)
 	end
 end
 
@@ -1030,7 +1031,7 @@ function process_powerlines()
 	if mz < inf_zoom then
 		Layer("power_lines", false)
 		MinZoom(mz)
-		Attribute("kind", power)
+		Attribute("type", power)
 	end
 end
 
@@ -1041,13 +1042,13 @@ function process_powertowers()
 	if power == "tower" then
 		mz = 12
 	elseif power == "pole" then
-		mz = 13
+		mz = 14
 	end
 	
 	if mz < inf_zoom then
 		Layer("power_points", false)
 		MinZoom(mz)
-		Attribute("kind", power)
+		Attribute("type", power)
 	end
 end
 
@@ -1063,7 +1064,7 @@ function process_buildings()
 	if mz < inf_zoom then
 		Layer("buildings", true)
 		MinZoom(mz)
-		Attribute("kind", building)
+		Attribute("type", building)
 	end
 end
 
@@ -1094,7 +1095,7 @@ function process_ferries()
 	if mz < inf_zoom then
 		Layer("ferries", false)
 		MinZoom(mz)
-		Attribute("kind", "ferry")
+		Attribute("type", "ferry")
 		setNameAttributes()
 	end
 end
@@ -1103,7 +1104,7 @@ function process_bridges()
 	if Find("man_made") == "bridge" then
 		Layer("bridges", true)
 		MinZoom(12)
-		Attribute("kind", "bridge")
+		Attribute("type", "bridge")
 	end
 end
 
@@ -1143,7 +1144,7 @@ function process_natural(poly_or_line)
 	--		Layer("natural_lines", false)
 	--	end
 	--	MinZoom(12)
-	--	Attribute("kind", "dam")
+	--	Attribute("type", "dam")
 	--end
 end
 
@@ -1300,6 +1301,7 @@ function process_pois(polygon)
 	end
 	
 	Attribute("type", type_tag)
+	Attribute("denotation", nilToEmptyStr(denotation)) -- debug
 	MinZoom(mz)
 	
 	setNameAttributes()

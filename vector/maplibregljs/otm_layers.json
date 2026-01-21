@@ -36,7 +36,7 @@ const otm_layers = [
 	"source-layer": "land",
 	"filter": [
 		"all",
-		["in", "kind", "residential","industrial","commercial"]
+		["in", "type", "residential","industrial","commercial"]
 	],
 	"type": "fill",
 	"paint": {"fill-color": "#dadada"}
@@ -47,7 +47,7 @@ const otm_layers = [
 	"source-layer": "sites",
 	"filter": [
 		"all",
-		["in", "kind", "university","college","school","hospital"]
+		["in", "type", "university","college","school","hospital"]
 	],
 	"type": "fill",
 	"paint": {"fill-color": "#dadada"}
@@ -59,7 +59,7 @@ const otm_layers = [
 	"minzoom": 12,
 	"filter": [
 		"all",
-		["in", "kind", "park", "playground", "village_green", "golf_course"]
+		["in", "type", "park", "playground", "village_green", "golf_course"]
 	],
 	"type": "fill",
 	"paint": {"fill-color": "#c2f3a2"}
@@ -70,7 +70,7 @@ const otm_layers = [
 	"source-layer": "land",
 	"filter": [
 		"all",
-		["==", "kind", "forest"]
+		["==", "type", "forest"]
 	],
 	"type": "fill",
 	"paint": {"fill-color": "#cce599","fill-outline-color": "#91c067"}
@@ -80,7 +80,7 @@ const otm_layers = [
 	"source": "opentopomap-vector",
 	"source-layer": "land",
 	"type": "fill",
-	"paint": {"fill-pattern": ["get","kind"]}
+	"paint": {"fill-pattern": ["get","type"]}
 },*/
 {
 	"id": "hillshade",
@@ -133,8 +133,8 @@ const otm_layers = [
 	"paint": {
 		"line-color": "blue",
 		"line-width": ["interpolate",["linear"],["zoom"],
-			6, ["match", ["get", "kind"], "river", 0.7, "stream", 0, 0.3],
-			12, ["match", ["get", "kind"], "river", 2.0, "stream", 0.6, 0.5],
+			6, ["match", ["get", "type"], "river", 0.7, "stream", 0, 0.3],
+			12, ["match", ["get", "type"], "river", 2.0, "stream", 0.6, 0.5],
 		],
 	}	
 },        
@@ -158,8 +158,8 @@ const otm_layers = [
         
         "text-size": [
 			"interpolate", ["linear"], ["zoom"],
-			13, ["match", ["get", "kind"], "canal",10, "river",10, "stream",9, 9],
-			18, ["match", ["get", "kind"], "canal",12, "river",12, "stream",11, 11],
+			13, ["match", ["get", "type"], "canal",10, "river",10, "stream",9, 9],
+			18, ["match", ["get", "type"], "canal",12, "river",12, "stream",11, 11],
 		],        
         "text-font": [
           "Roboto Regular"
@@ -167,7 +167,7 @@ const otm_layers = [
 	},
 	"paint": {
 		"text-color": "blue",
-		"text-halo-color": "white", //["match",["get","kind"],"river","#a3dde8","white"],
+		"text-halo-color": "white", //["match",["get","type"],"river","#a3dde8","white"],
 		"text-halo-width": 1.0
 	}
 },
@@ -233,11 +233,11 @@ const otm_layers = [
 			["linear"],
 			["zoom"],
 			12,"gray",
-			13, ["match", ["get", "kind"],
+			13, ["match", ["get", "type"],
 				["roof", "carport", "garage", "garages"], "#888",
 				"#333"
 			],
-			16, ["match", ["get", "kind"],
+			16, ["match", ["get", "type"],
 				["roof", "carport", "garage", "garages"], "#AAA",
 				"gray"
 			]
@@ -251,7 +251,7 @@ const otm_layers = [
 	"source": "opentopomap-vector",
 	"source-layer": "streets",
 	"filter": [
-		"all",["==", "kind", "rail"]
+		"all",["==", "type", "rail"]
 	],
 	"type": "line",
 	"paint": {
@@ -276,11 +276,11 @@ const otm_layers = [
 		"line-color": "black",		
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			10, ["+",2,["match", ["get", "kind"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, "unclassified",1.3, "residential",1.3, "service",1.3, "track",1.3, "path",0.1, 0.1]],
-			12, ["+",2,["match", ["get", "kind"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, "track",1.5, "path",0.1, 0.1]],
-			14, ["+",2,["match", ["get", "kind"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, "track",1.5, "path",0.1, 0.1]],
-			15, ["+",2,["match", ["get", "kind"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, "track",2, "path",2, 0.1]],
-			19, ["+",2,["match", ["get", "kind"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, "track",2, "path",2, 0.1]],
+			10, ["+",2,["match", ["get", "type"], "motorway",5.0, "trunk",4.5, "primary",3.6, "secondary",2.4, "tertiary",2.2, "unclassified",1.3, "residential",1.3, "service",1.3, "track",1.3, "path",0.1, 0.1]],
+			12, ["+",2,["match", ["get", "type"], "motorway",6.6, "trunk",6.3, "primary",4.9, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, "track",1.5, "path",0.1, 0.1]],
+			14, ["+",2,["match", ["get", "type"], "motorway",7.0, "trunk",7, "primary",7, "secondary",6, "tertiary",6.0, "unclassified",6, "residential",5, "service",5, "track",1.5, "path",0.1, 0.1]],
+			15, ["+",2,["match", ["get", "type"], "motorway",8.0, "trunk",7.5, "primary",7.5, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",6, "track",2, "path",2, 0.1]],
+			19, ["+",2,["match", ["get", "type"], "motorway",20, "trunk",21, "primary",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, "track",2, "path",2, 0.1]],
 		],
 		"line-dasharray": [0.2,0.25],
 	}
@@ -294,26 +294,26 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["!=", "bridge", true],
-		["!=", "kind", "path"]
+		["!=", "type", "path"]
 	],
 	"type": "line",
 	"paint": {
 		//"line-color": "black",
-		"line-color": ["match", ["get", "kind"], "track","black", "path","black", "black"],
+		"line-color": ["match", ["get", "type"], "track","black", "path","black", "black"],
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			 5, ["match", ["get", "kind"], "motorway",1.4, 1.4],
-			 6, ["match", ["get", "kind"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6],
-			 7, ["match", ["get", "kind"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0],
-			 8, ["match", ["get", "kind"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5],
-			 9, ["match", ["get", "kind"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, ["secondary","secondary_link"],1.9, ["tertiary","tertiary_link"],1.9, 1.5],
-			10, ["match", ["get", "kind"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, ["secondary","secondary_link"],2.6, ["tertiary","tertiary_link"],2.4, 1.5],
-			11, ["match", ["get", "kind"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, ["secondary","secondary_link"],3.0, ["tertiary","tertiary_link"],2.5, "unclassified",0.5, "residential",0.5, 0.5],
-			12, ["match", ["get", "kind"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.0, "residential",2.5, "service",2.0, 0.5],
-			13, ["match", ["get", "kind"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5],
-			14, ["match", ["get", "kind"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, ["secondary","secondary_link"],5.5, ["tertiary","tertiary_link"],4.5, "unclassified",4.9, "residential",4.1, "service",3.0, 0.5],
-			15, ["match", ["get", "kind"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, ["secondary","secondary_link"],7.5, ["tertiary","tertiary_link"],6.5, "unclassified",6.5, "residential",6, "service",3.5, 0.5],
-			19, ["match", ["get", "kind"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",4.5, "primary",21, "primary_link",21, ["secondary","secondary_link"],21, ["tertiary","tertiary_link"],20, "unclassified",21, "residential",20, "service",11, 0.5],
+			 5, ["match", ["get", "type"], "motorway",1.4, 1.4],
+			 6, ["match", ["get", "type"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6],
+			 7, ["match", ["get", "type"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0],
+			 8, ["match", ["get", "type"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5],
+			 9, ["match", ["get", "type"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, ["secondary","secondary_link"],1.9, ["tertiary","tertiary_link"],1.9, 1.5],
+			10, ["match", ["get", "type"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, ["secondary","secondary_link"],2.6, ["tertiary","tertiary_link"],2.4, 1.5],
+			11, ["match", ["get", "type"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, ["secondary","secondary_link"],3.0, ["tertiary","tertiary_link"],2.5, "unclassified",0.5, "residential",0.5, 0.5],
+			12, ["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.0, "residential",2.5, "service",2.0, 0.5],
+			13, ["match", ["get", "type"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5],
+			14, ["match", ["get", "type"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, ["secondary","secondary_link"],5.5, ["tertiary","tertiary_link"],4.5, "unclassified",4.9, "residential",4.1, "service",3.0, 0.5],
+			15, ["match", ["get", "type"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, ["secondary","secondary_link"],7.5, ["tertiary","tertiary_link"],6.5, "unclassified",6.5, "residential",6, "service",3.5, 0.5],
+			19, ["match", ["get", "type"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",21, "primary",21, "primary_link",21, ["secondary","secondary_link"],21, ["tertiary","tertiary_link"],20, "unclassified",21, "residential",20, "service",11, 0.5],
 		],
 		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
 		//"line-dasharray": [1,1],
@@ -326,7 +326,7 @@ const otm_layers = [
 	"filter": [
 		"all",
 		["!=", "bridge", true],
-		["==", "kind", "path"],
+		["==", "type", "path"],
 	],
 	"type": "line",
 	"paint": {
@@ -369,22 +369,22 @@ const otm_layers = [
 	"paint": {
 		"line-color": [
 			"step",["zoom"],"white",
-			 6, ["match", ["get", "kind"], ["motorway","motorway_link"],"#fdb548", ["trunk","trunk_link"],"#fdfd4f", "primary","white", "primary_link","white", "secondary","white", "tertiary","white", "rail","black", "white"],
-			10, ["match", ["get", "kind"], ["motorway","motorway_link"],"#fb9e2a", ["trunk","trunk_link","primary","primary_link","secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
-			11, ["match", ["get", "kind"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
-			13, ["match", ["get", "kind"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link","tertiary","tertiary_link"],"#fdfd4f", "rail","black", "white"],
+			 6, ["match", ["get", "type"], ["motorway","motorway_link"],"#fdb548", ["trunk","trunk_link"],"#fdfd4f", "primary","white", "primary_link","white", "secondary","white", "tertiary","white", "rail","black", "white"],
+			10, ["match", ["get", "type"], ["motorway","motorway_link"],"#fb9e2a", ["trunk","trunk_link","primary","primary_link","secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
+			11, ["match", ["get", "type"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
+			13, ["match", ["get", "type"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link","tertiary","tertiary_link"],"#fdfd4f", "rail","black", "white"],
 		],
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			 6, ["match", ["get", "kind"], "motorway",1.4, "motorway_link",1.4, "trunk",1.1, "trunk_link",1.1, "primary",1.2, "primary_link",1.2, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
-			 9, ["match", ["get", "kind"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
-			11, ["match", ["get", "kind"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
-			11.05, ["match", ["get", "kind"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			12, ["match", ["get", "kind"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			13, ["match", ["get", "kind"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
-			14, ["match", ["get", "kind"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",1.5, 0],
-			15, ["match", ["get", "kind"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
-			19, ["match", ["get", "kind"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",9.5 , 0],
+			 6, ["match", ["get", "type"], "motorway",1.4, "motorway_link",1.4, "trunk",1.1, "trunk_link",1.1, "primary",1.2, "primary_link",1.2, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			 9, ["match", ["get", "type"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			11, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
+			11.05, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			13, ["match", ["get", "type"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
+			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",1.5, 0],
+			15, ["match", ["get", "type"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
+			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",9.5 , 0],
 		],
 		"line-opacity": ["case", ["to-boolean", ["get","tunnel"]], 0.5, 1],
 	}
@@ -392,62 +392,126 @@ const otm_layers = [
 // Bridges
 //########
 {
-	"id": "bridge-casing",
+	"id": "bridge-layer1-casing",
 	"source": "opentopomap-vector",
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "bridge", true]
+		["==", "bridge", true],
+		["==", "layer", 1]
 	],
 	"type": "line",
 	"paint": {
 		"line-color": "black",
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			 5, ["+",1,["match", ["get", "kind"], "motorway",1.4, 1.4]],
-			 6, ["+",1,["match", ["get", "kind"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6]],
-			 7, ["+",1,["match", ["get", "kind"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0]],
-			 8, ["+",1,["match", ["get", "kind"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5]],
-			 9, ["+",1,["match", ["get", "kind"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
-			10, ["+",1,["match", ["get", "kind"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, "secondary",2.6, "tertiary",2.4, 1.5]],
-			11, ["+",1,["match", ["get", "kind"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
-			12, ["+",1,["match", ["get", "kind"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
-			13, ["+",1,["match", ["get", "kind"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
-			14, ["+",1,["match", ["get", "kind"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, "secondary",5.5, "tertiary",4.5, "unclassified",4.9, "residential",4.1, "service",3.5, 0.5]],
-			15, ["+",1,["match", ["get", "kind"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5]],
-			19, ["+",1,["match", ["get", "kind"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",4.5, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5]],
+			 5, ["+",1,["match", ["get", "type"], "motorway",1.4, 1.4]],
+			 6, ["+",1,["match", ["get", "type"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6]],
+			 7, ["+",1,["match", ["get", "type"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0]],
+			 8, ["+",1,["match", ["get", "type"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5]],
+			 9, ["+",1,["match", ["get", "type"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
+			10, ["+",1,["match", ["get", "type"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, "secondary",2.6, "tertiary",2.4, 1.5]],
+			11, ["+",1,["match", ["get", "type"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
+			12, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			13, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			14, ["+",1,["match", ["get", "type"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, "secondary",5.5, "tertiary",4.5, "unclassified",4.9, "residential",4.1, "service",3.5, 0.5]],
+			15, ["+",1.5,["match", ["get", "type"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5]],
+			19, ["+",2,["match", ["get", "type"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",21, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5]],
 		],
 	}
 },
 {
-	"id": "bridge-fill",
+	"id": "bridge-layer1-fill",
 	"source": "opentopomap-vector",
 	"source-layer": "streets",
 	"filter": [
 		"all",
-		["==", "bridge", true]
+		["==", "bridge", true],
+		["==", "layer", 1]
 	],
 	"type": "line",
 	"layout": {"line-cap": "round"},
 	"paint": {
 		"line-color": [
 			"step",["zoom"],"white",
-			 6, ["match", ["get", "kind"], ["motorway","motorway_link"],"#fdb548", ["trunk","trunk_link"],"#fdfd4f", "primary","white", "primary_link","white", "secondary","white", "tertiary","white", "rail","black", "white"],
-			10, ["match", ["get", "kind"], ["motorway","motorway_link"],"#fb9e2a", ["trunk","trunk_link","primary","primary_link","secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
-			11, ["match", ["get", "kind"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
-			13, ["match", ["get", "kind"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link","tertiary","tertiary_link"],"#fdfd4f", "rail","black", "white"],
+			 6, ["match", ["get", "type"], ["motorway","motorway_link"],"#fdb548", ["trunk","trunk_link"],"#fdfd4f", "primary","white", "primary_link","white", "secondary","white", "tertiary","white", "rail","black", "white"],
+			10, ["match", ["get", "type"], ["motorway","motorway_link"],"#fb9e2a", ["trunk","trunk_link","primary","primary_link","secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
+			11, ["match", ["get", "type"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
+			13, ["match", ["get", "type"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link","tertiary","tertiary_link"],"#fdfd4f", "rail","black", "white"],
 		],
 		"line-width": [
 			"interpolate", ["linear"], ["zoom"],
-			 6, ["match", ["get", "kind"], "motorway",1.4, "motorway_link",1.4, "trunk",1.1, "trunk_link",1.1, "primary",1.2, "primary_link",1.2, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
-			 9, ["match", ["get", "kind"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
-			11, ["match", ["get", "kind"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
-			11.05, ["match", ["get", "kind"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			12, ["match", ["get", "kind"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			13, ["match", ["get", "kind"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
-			14, ["match", ["get", "kind"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
-			15, ["match", ["get", "kind"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
-			19, ["match", ["get", "kind"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",17 , 0],
+			 6, ["match", ["get", "type"], "motorway",1.4, "motorway_link",1.4, "trunk",1.1, "trunk_link",1.1, "primary",1.2, "primary_link",1.2, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			 9, ["match", ["get", "type"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			11, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
+			11.05, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			13, ["match", ["get", "type"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
+			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
+			15, ["match", ["get", "type"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
+			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",17 , 0],
+		],
+	}
+},
+{
+	"id": "bridge-layer2-casing",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "bridge", true],
+		["!=", "layer", 1]
+	],
+	"type": "line",
+	"paint": {
+		"line-color": "black",
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			 5, ["+",1,["match", ["get", "type"], "motorway",1.4, 1.4]],
+			 6, ["+",1,["match", ["get", "type"], "motorway",2.3, "trunk",2.3, "primary",1.7, 1.6]],
+			 7, ["+",1,["match", ["get", "type"], "motorway",3.1, "trunk",2.9, "primary",2.3, 2.0]],
+			 8, ["+",1,["match", ["get", "type"], "motorway",3.8, "trunk",3.8, "primary",3.0, "secondary",1.9, 1.5]],
+			 9, ["+",1,["match", ["get", "type"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
+			10, ["+",1,["match", ["get", "type"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, "secondary",2.6, "tertiary",2.4, 1.5]],
+			11, ["+",1,["match", ["get", "type"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
+			12, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			13, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			14, ["+",1,["match", ["get", "type"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, "secondary",5.5, "tertiary",4.5, "unclassified",4.9, "residential",4.1, "service",3.5, 0.5]],
+			15, ["+",1.5,["match", ["get", "type"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5]],
+			19, ["+",2,["match", ["get", "type"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",21, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5]],
+		],
+	}
+},
+{
+	"id": "bridge-layer2-fill",
+	"source": "opentopomap-vector",
+	"source-layer": "streets",
+	"filter": [
+		"all",
+		["==", "bridge", true],
+		["!=", "layer", 1]
+	],
+	"type": "line",
+	"layout": {"line-cap": "round"},
+	"paint": {
+		"line-color": [
+			"step",["zoom"],"white",
+			 6, ["match", ["get", "type"], ["motorway","motorway_link"],"#fdb548", ["trunk","trunk_link"],"#fdfd4f", "primary","white", "primary_link","white", "secondary","white", "tertiary","white", "rail","black", "white"],
+			10, ["match", ["get", "type"], ["motorway","motorway_link"],"#fb9e2a", ["trunk","trunk_link","primary","primary_link","secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
+			11, ["match", ["get", "type"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link"],"#fdfd4f", ["tertiary","tertiary_link"],"white", "rail","black", "white"],
+			13, ["match", ["get", "type"], ["motorway","motorway_link","trunk","trunk_link","primary","primary_link"],"#fb9e2a", ["secondary","secondary_link","tertiary","tertiary_link"],"#fdfd4f", "rail","black", "white"],
+		],
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			 6, ["match", ["get", "type"], "motorway",1.4, "motorway_link",1.4, "trunk",1.1, "trunk_link",1.1, "primary",1.2, "primary_link",1.2, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			 9, ["match", ["get", "type"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
+			11, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
+			11.05, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			13, ["match", ["get", "type"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
+			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
+			15, ["match", ["get", "type"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
+			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",17 , 0],
 		],
 	}
 },
@@ -501,7 +565,7 @@ const otm_layers = [
 // ============
 
 {
-	"id": "poi-all",
+	"id": "poi-symbols",
 	"source": "opentopomap-vector",
 	"source-layer": "pois",
 	"type": "symbol",
@@ -519,19 +583,7 @@ const otm_layers = [
 		],
         "icon-keep-upright": true,
         "icon-allow-overlap": true,
-        "symbol-placement": "point",
-        "text-field": "{name}",
-        "text-size": ['step',['zoom'],0,15, 9,16, 10],
-        "text-anchor": "top",
-        "text-offset": [0,0.5],
-        "text-font": [
-          "Roboto Regular"
-        ],
-        "text-allow-overlap": true,
-	},
-	"paint": {
-		"text-halo-color": "white",
-		"text-halo-width": 1.5
+        "symbol-placement": "point"
 	}
 },
 {
@@ -570,15 +622,35 @@ const otm_layers = [
 	"paint": {
 		"text-halo-color": [
 			"case",
-			["in", ["get", "kind"], ["literal", ["motorway", "motorway_link", "trunk", "trunk_link", "primary"]]], "#fb9e2a",
-			["in", ["get", "kind"], ["literal", ["secondary", "tertiary"]]], "#fdfd4f",
-			//["==", ["get", "kind"], "secondary"], "#fdfd4f",
+			["in", ["get", "type"], ["literal", ["motorway", "motorway_link", "trunk", "trunk_link", "primary"]]], "#fb9e2a",
+			["in", ["get", "type"], ["literal", ["secondary", "tertiary"]]], "#fdfd4f",
+			//["==", ["get", "type"], "secondary"], "#fdfd4f",
 			"white"
 		],
 		"text-halo-width": 1.5
 	}
 },
-
+{
+	"id": "poi-texts",
+	"source": "opentopomap-vector",
+	"source-layer": "pois",
+	"type": "symbol",
+	"layout": {
+        "symbol-placement": "point",
+        "text-field": "{name}",
+        "text-size": ['step',['zoom'],0,15, 9,16, 10],
+        "text-anchor": "top",
+        "text-offset": [0,0.5],
+        "text-font": [
+          "Roboto Regular"
+        ],
+        //"text-allow-overlap": true,
+	},
+	"paint": {
+		"text-halo-color": "white",
+		"text-halo-width": 1.5
+	}
+},
 {
 	"id": "ref-labels",
 	"source": "opentopomap-vector",
@@ -597,9 +669,9 @@ const otm_layers = [
 		"text-halo-width": 1.5,
 		"text-halo-color": [
 			"step",["zoom"],"white",
-			10, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fdfd4f", "primary","#fdfd4f", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
-			11, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
-			13, ["match", ["get", "kind"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","#fdfd4f", "rail","black", "white"],
+			10, ["match", ["get", "type"], "motorway","#fb9e2a", "trunk","#fdfd4f", "primary","#fdfd4f", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			11, ["match", ["get", "type"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","white", "rail","black", "white"],
+			13, ["match", ["get", "type"], "motorway","#fb9e2a", "trunk","#fb9e2a", "primary","#fb9e2a", "secondary","#fdfd4f", "tertiary","#fdfd4f", "rail","black", "white"],
 			14, "white",
 		],
 	}
@@ -611,7 +683,7 @@ const otm_layers = [
 	"source-layer": "place_labels",
 	"metadata": {"translate":true},
 	"filter": [
-		"all",["in", "kind", "suburb", "quarter", "neighbourhood", "island", "hamlet", "isolated_dwelling", "farm"]
+		"all",["in", "type", "suburb", "quarter", "neighbourhood", "island", "hamlet", "isolated_dwelling", "farm"]
 	],
 	"type": "symbol",
 	"minzoom": 12,
@@ -635,7 +707,7 @@ const otm_layers = [
 	"metadata": {"translate": true},
 	"filter": [
 			"all",
-			["==", ["get","kind"], "village"],
+			["==", ["get","type"], "village"],
 			["any",
 				["all",[">=", ["zoom"], 9],[">=", ["get", "population"], 1000]],
 				["all",[">=", ["zoom"], 10],[">=", ["get", "population"], 1000]],
@@ -671,7 +743,7 @@ const otm_layers = [
 	"metadata": {"translate": true},
 	"filter": [
 			"all",
-			["==", ["get","kind"], "town"],
+			["==", ["get","type"], "town"],
 			["any",
 				["all",[">=", ["zoom"], 7],[">=", ["get", "population"], 10000]],
 				["all",[">=", ["zoom"], 8],[">=", ["get", "population"], 5000]],
@@ -709,7 +781,7 @@ const otm_layers = [
 	"source-layer": "place_labels",
 	"metadata": {"translate": true},
 	"filter": [
-		"all",["in", "kind", "city"]
+		"all",["in", "type", "city"]
 	],
 	"type": "symbol",
 	"layout": {
@@ -734,7 +806,7 @@ const otm_layers = [
 	"source-layer": "place_labels",
 	"metadata": {"translate": true},
 	"filter": [
-		"all",["in", "kind", "state_capital"]
+		"all",["in", "type", "state_capital"]
 	],
 	"type": "symbol",
 	"layout": {
@@ -757,7 +829,7 @@ const otm_layers = [
 	"source-layer": "place_labels",
 	"metadata": {"translate": true},
 	"filter": [
-		"all",["in", "kind", "capital"]
+		"all",["in", "type", "capital"]
 	],
 	"type": "symbol",
 	"layout": {
