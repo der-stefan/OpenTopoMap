@@ -63,12 +63,11 @@ SEA="$(pwd)/sea"
 mkdir data
 pushd data > /dev/null
 
-rm -f morocco-latest.osm.pbf
-wget "https://download.geofabrik.de/africa/morocco-latest.osm.pbf"
+wget -N "https://download.geofabrik.de/africa/morocco-latest.osm.pbf"
 
-rm -f 6324*.pbf
-java -jar $SPLITTERJAR --precomp-sea=$SEA "$(pwd)/morocco-latest.osm.pbf"
-DATA="$(pwd)/6324*.pbf"
+rm -f 6324*.o5m
+java -jar $SPLITTERJAR --precomp-sea=$SEA --output=o5m "$(pwd)/morocco-latest.osm.pbf"
+DATA="$(pwd)/6324*.o5m"
 
 popd > /dev/null
 
