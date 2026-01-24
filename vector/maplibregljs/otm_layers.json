@@ -59,7 +59,7 @@ const otm_layers = [
 	"minzoom": 12,
 	"filter": [
 		"all",
-		["in", "type", "park", "playground", "village_green", "golf_course"]
+		["in", "type", "park", "playground", "village_green", "golf_course", "pitch"]
 	],
 	"type": "fill",
 	"paint": {"fill-color": "#c2f3a2"}
@@ -201,19 +201,28 @@ const otm_layers = [
 	}	
 },
 {
-	"id": "cliff1",
+	"id": "natural_lines",
 	"source": "opentopomap-vector",
 	"source-layer": "natural_lines",
 	"type": "line",
 	"paint": {
-		"line-color": "black",
-		"line-width": 0.5,
+		"line-color": ["match", ["get", "type"],["cliff","city_wall","embankment"],"black", "pier","#777", "weir","#999", ["dam","crevasse","dyke","breakwater","groyne"],"red", "green"],
+		"line-width": [
+			"interpolate", ["linear"], ["zoom"],
+			 10, ["match", ["get", "type"], ["cliff","city_wall","embankment"],0.5, "dam",2.0, 1.0],
+			 17, ["match", ["get", "type"], ["cliff","city_wall","embankment"],0.5, "dam",3.0, 2.0]
+		],
 	}
 },
 {
-	"id": "cliff2",
+	"id": "cliff-teeth",
 	"source": "opentopomap-vector",
 	"source-layer": "natural_lines",
+	"filter": ["any",
+		["==", "type", "cliff"],
+		["==", "type", "city_wall"],
+		["==", "type", "embankment"],
+	],
 	"type": "line",
 	"paint": {
 		"line-color": "black",
@@ -228,19 +237,10 @@ const otm_layers = [
 	"source-layer": "buildings",
 	"type": "fill",
 	"paint": {
-		"fill-color": [
-			"interpolate",
-			["linear"],
-			["zoom"],
+		"fill-color": ["interpolate",["linear"],["zoom"],
 			12,"gray",
-			13, ["match", ["get", "type"],
-				["roof", "carport", "garage", "garages"], "#888",
-				"#333"
-			],
-			16, ["match", ["get", "type"],
-				["roof", "carport", "garage", "garages"], "#AAA",
-				"gray"
-			]
+			13, ["match", ["get", "type"],["roof", "carport", "garage", "garages"], "#888",	"#333"],
+			16, ["match", ["get", "type"],["roof", "carport", "garage", "garages"], "#AAA",	"gray"]
 		],
 		"fill-outline-color": ["interpolate",["exponential",0.5],["zoom"],12,"gray",13,"#333",14,"black"],
 	}
@@ -309,7 +309,7 @@ const otm_layers = [
 			 9, ["match", ["get", "type"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, ["secondary","secondary_link"],1.9, ["tertiary","tertiary_link"],1.9, 1.5],
 			10, ["match", ["get", "type"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, ["secondary","secondary_link"],2.6, ["tertiary","tertiary_link"],2.4, 1.5],
 			11, ["match", ["get", "type"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, ["secondary","secondary_link"],3.0, ["tertiary","tertiary_link"],2.5, "unclassified",0.5, "residential",0.5, 0.5],
-			12, ["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.0, "residential",2.5, "service",2.0, 0.5],
+			12, ["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.4, "primary_link",3.9, ["secondary","secondary_link"],3.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.0, "residential",2.5, "service",2.0, 0.5],
 			13, ["match", ["get", "type"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5],
 			14, ["match", ["get", "type"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, ["secondary","secondary_link"],5.5, ["tertiary","tertiary_link"],4.5, "unclassified",4.9, "residential",4.1, "service",3.0, 0.5],
 			15, ["match", ["get", "type"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, ["secondary","secondary_link"],7.5, ["tertiary","tertiary_link"],6.5, "unclassified",6.5, "residential",6, "service",3.5, 0.5],
@@ -380,7 +380,7 @@ const otm_layers = [
 			 9, ["match", ["get", "type"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
 			11, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
 			11.05, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.3, "primary_link",2.1, ["secondary","secondary_link"],1.7, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
 			13, ["match", ["get", "type"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
 			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",1.5, 0],
 			15, ["match", ["get", "type"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
@@ -412,11 +412,11 @@ const otm_layers = [
 			 9, ["+",1,["match", ["get", "type"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
 			10, ["+",1,["match", ["get", "type"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, "secondary",2.6, "tertiary",2.4, 1.5]],
 			11, ["+",1,["match", ["get", "type"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
-			12, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			12, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.4, "primary_link",3.9, ["secondary","secondary_link"],3.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.0, "residential",2.5, "service",2.0, 0.5]],
 			13, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
 			14, ["+",1,["match", ["get", "type"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, "secondary",5.5, "tertiary",4.5, "unclassified",4.9, "residential",4.1, "service",3.5, 0.5]],
 			15, ["+",1.5,["match", ["get", "type"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5]],
-			19, ["+",2,["match", ["get", "type"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",21, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",14, "service",14, 0.5]],
+			19, ["+",2,["match", ["get", "type"], "motorway",20, "motorway_link",20, "trunk",21, "trunk_link",21, "primary",21, "primary_link",21, "secondary",21, "tertiary",21, "unclassified",21, "residential",21, "service",14, 0.5]],
 		],
 	}
 },
@@ -445,11 +445,11 @@ const otm_layers = [
 			 9, ["match", ["get", "type"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
 			11, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
 			11.05, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.3, "primary_link",2.1, ["secondary","secondary_link"],1.7, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
 			13, ["match", ["get", "type"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
-			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
+			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",1.5, 0],
 			15, ["match", ["get", "type"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
-			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",17 , 0],
+			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",9.5 , 0],
 		],
 	}
 },
@@ -474,7 +474,7 @@ const otm_layers = [
 			 9, ["+",1,["match", ["get", "type"], "motorway",4.7, "motorway_link",3.5, "trunk",4.4, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",1.9, "tertiary",1.9, 1.5]],
 			10, ["+",1,["match", ["get", "type"], "motorway",5.0, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",3.6, "primary_link",3.5, "secondary",2.6, "tertiary",2.4, 1.5]],
 			11, ["+",1,["match", ["get", "type"], "motorway",5.3, "motorway_link",3.5, "trunk",4.7, "trunk_link",3.5, "primary",3.5, "primary_link",3.5, "secondary",3.0, "tertiary",2.5, "unclassified",0.5, "residential",0.5, 0.5]],
-			12, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.7, "primary_link",4.0, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
+			12, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.0, "trunk",6.3, "trunk_link",4.0, "primary",4.4, "primary_link",3.9, ["secondary","secondary_link"],3.5, ["tertiary","tertiary_link"],3.5, "unclassified",3.0, "residential",2.5, "service",2.0, 0.5]],
 			13, ["+",1,["match", ["get", "type"], "motorway",6.6, "motorway_link",4.3, "trunk",6.3, "trunk_link",4.3, "primary",4.9, "primary_link",4.2, "secondary",4.5, "tertiary",3.5, "unclassified",3.5, "residential",3.2, "service",2.5, 0.5]],
 			14, ["+",1,["match", ["get", "type"], "motorway",7.0, "motorway_link",5.0, "trunk",7.0, "trunk_link",5.0, "primary",6.0, "primary_link",4.5, "secondary",5.5, "tertiary",4.5, "unclassified",4.9, "residential",4.1, "service",3.5, 0.5]],
 			15, ["+",1.5,["match", ["get", "type"], "motorway",8.0, "motorway_link",8.0, "trunk",7.5, "trunk_link",8.0, "primary",7.5, "primary_link",7.0, "secondary",7.5, "tertiary",6.5, "unclassified",6.5, "residential",6, "service",4.5, 0.5]],
@@ -507,11 +507,11 @@ const otm_layers = [
 			 9, ["match", ["get", "type"], "motorway",2.9, "motorway_link",2.0, "trunk",2.5, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],1.5, ["tertiary","tertiary_link"],1.5, "unclassified",0, "residential",0, "service",1.0, 0],
 			11, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",0, "residential",0, "service",1.0, 0],
 			11.05, ["match", ["get", "type"], "motorway",3.5, "motorway_link",2.0, "trunk",3.2, "trunk_link",2.5, "primary",2.1, "primary_link",2.0, ["secondary","secondary_link"],2.2, ["tertiary","tertiary_link"],1.6, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
-			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.5, "primary_link",2.2, ["secondary","secondary_link"],2.5, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
+			12, ["match", ["get", "type"], "motorway",3.8, "motorway_link",2.2, "trunk",3.6, "trunk_link",2.5, "primary",2.3, "primary_link",2.1, ["secondary","secondary_link"],1.7, ["tertiary","tertiary_link"],1.7, "unclassified",1.5, "residential",1.1, "service",1.0, 0],
 			13, ["match", ["get", "type"], "motorway",4.2, "motorway_link",2.5, "trunk",4.0, "trunk_link",2.5, "primary",3.0, "primary_link",2.5, ["secondary","secondary_link"],2.9, ["tertiary","tertiary_link"],1.8, "unclassified",2.0, "residential",1.5, "service",1.2, 0],
-			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",2.0, 0],
+			14, ["match", ["get", "type"], "motorway",4.6, "motorway_link",3.5, "trunk",4.5, "trunk_link",3.5, "primary",4.0, "primary_link",3.0, ["secondary","secondary_link"],3.7, ["tertiary","tertiary_link"],3.0, "unclassified",2.8, "residential",2.7, "service",1.5, 0],
 			15, ["match", ["get", "type"], "motorway",5.0, "motorway_link",5.0, "trunk",5.0, "trunk_link",5.0, "primary",5.0, "primary_link",5.0, ["secondary","secondary_link"],4.5, ["tertiary","tertiary_link"],4.2, "unclassified",4.5, "residential",4.0, "service",2.0, 0],
-			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",17 , 0],
+			19, ["match", ["get", "type"], "motorway",17,  "motorway_link",17,  "trunk",17,  "trunk_link",17,  "primary",17,  "primary_link",17,  ["secondary","secondary_link"],17,  ["tertiary","tertiary_link"],17,  "unclassified",17,  "residential",17,  "service",9.5 , 0],
 		],
 	}
 },
@@ -570,7 +570,7 @@ const otm_layers = [
 	"source-layer": "pois",
 	"type": "symbol",
 	"layout": {
-        "icon-image": ['coalesce', ['get', 'type'], 'wayside_cross'],
+        "icon-image": ["coalesce", ["get", "type"], "wayside_cross"],
         "icon-offset": ["match", ["get", "type"],
 			"wind_turbine",["literal",[3,-10]],
 			"communications_tower",["literal",[0,-5]],

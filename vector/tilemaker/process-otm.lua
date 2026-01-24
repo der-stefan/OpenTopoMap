@@ -583,7 +583,7 @@ function process_land()
 	elseif landuse == "garages" then
 		kind = landuse
 		mz = 13
-	elseif leisure == "golf_course" or leisure == "park" or leisure == "garden" or leisure == "playground" or leisure == "miniature_golf" then
+	elseif leisure == "golf_course" or leisure == "park" or leisure == "garden" or leisure == "playground" or leisure == "miniature_golf" or leisure == "pitch" then
 		kind = leisure
 		mz = 11
 	elseif landuse == "cemetery" then
@@ -802,9 +802,6 @@ function process_streets()
 	end
 	--local link = (highway == "motorway_link" or highway == "trunk_link" or highway == "primary_link" or highway == "secondary_link" or highway == "tertiary_link")
 	local layer = tonumber(Find("layer"))
-	--if layer == nil then
-	--	layer = 0
-	--end
 	local oneway = Find("oneway")
 	local onewayBool = not rail and isOneway(oneway)
 	local reverseOnewayBool = not rail and isReverseOneway(oneway)
@@ -846,7 +843,10 @@ function process_streets()
 		Layer("streets", false)
 		MinZoom(mz)
 		Attribute("type", kind)
-		AttributeNumeric("layer", nilToEmptyStr(layer))
+		if layer ~= nil then
+			AttributeNumeric("layer", layer)
+			ZOrder(layer)
+		end
 		--AttributeBoolean("link", link)
 		--Attribute("surface", surface)
 		--Attribute("bicycle", bicycle)
@@ -1109,10 +1109,10 @@ function process_bridges()
 end
 
 function process_natural(poly_or_line)
-	local waterway_values = Set { "dam" }
+	local waterway_values = Set { "dam", "weir" }
 	local natural_values = Set { "cliff", "crevasse" }
 	local man_made_values = Set { "embankment", "dyke", "breakwater", "pier", "groyne" }
-	local barrier_values = Set { "ditch" }
+	local barrier_values = Set { "ditch", "city_wall" }
 	
 	local waterway = valueAcceptedOrNil(waterway_values, Find("waterway"))
 	local natural = valueAcceptedOrNil(natural_values, Find("natural"))
@@ -1130,10 +1130,12 @@ function process_natural(poly_or_line)
 	end
 	
 	mz = 12
-	Attribute("waterway", nilToEmptyStr(waterway))
-	Attribute("natural", nilToEmptyStr(natural))
-	Attribute("man_made", nilToEmptyStr(man_made))
-	Attribute("barrier", nilToEmptyStr(barrier))
+	--Attribute("waterway", nilToEmptyStr(waterway))
+	--Attribute("natural", nilToEmptyStr(natural))
+	--Attribute("man_made", nilToEmptyStr(man_made))
+	--Attribute("barrier", nilToEmptyStr(barrier))
+	local type_str = waterway or natural or man_made or barrier
+	Attribute("type",nilToEmptyStr(type_str))
 	
 	MinZoom(mz)
 	
