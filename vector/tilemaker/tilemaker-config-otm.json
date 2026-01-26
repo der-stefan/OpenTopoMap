@@ -178,7 +178,7 @@
             "simplify_below": 14,
             "simplify_level": 0.0001,
             "simplify_ratio": 3,
-            "filter_area": 0.5,
+            "filter_area": 0.2,
             "filter_below": 14
         },
         "land_low": {

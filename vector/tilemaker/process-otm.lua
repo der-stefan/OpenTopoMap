@@ -994,9 +994,19 @@ function process_street_polygons()
 		if surface ~= "" then
 			Attribute("surface", surface)
 		end
-		AttributeBoolean("tunnel", toTunnelBool(Find("tunnel"), Find("covered")))
-		AttributeBoolean("bridge", toBridgeBool(Find("bridge")))
-		AttributeBoolean("rail", false)
+		--AttributeBoolean("tunnel", toTunnelBool(Find("tunnel"), Find("covered")))
+		--AttributeBoolean("bridge", toBridgeBool(Find("bridge")))
+		--AttributeBoolean("rail", false)
+		
+		local tunnelBool = toTunnelBool(Find("tunnel"), Find("covered"))
+		local bridgeBool = toBridgeBool(Find("bridge"))
+		if tunnelBool == true then
+			AttributeBoolean("tunnel", true)
+		end
+		if bridgeBool == true then
+			AttributeBoolean("bridge", true)
+		end
+		
 		if service ~= "" then
 			Attribute("service", service)
 		end
@@ -1065,6 +1075,8 @@ function process_buildings()
 		Layer("buildings", true)
 		MinZoom(mz)
 		Attribute("type", building)
+		--Attribute("name", name)
+		setNameAttributes()
 	end
 end
 
@@ -1287,7 +1299,7 @@ function process_pois(polygon)
 			type_tag = "station"
 			mz = 12
 		end
-	elseif amenity == "parking" then 	-- todo: update with Wanderparkplaetze once available
+	elseif amenity == "parking" and name ~= nil then 	-- todo: update with Wanderparkplaetze once available
 		type_tag = "parking"
 		mz = 14
 	end
