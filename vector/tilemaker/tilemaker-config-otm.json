@@ -129,10 +129,6 @@
             "minzoom": 10,
             "maxzoom": 14
         },
-        "public_transport": {
-            "minzoom": 11,
-            "maxzoom": 14
-        },
         "buildings": {
             "minzoom": 12,
             "maxzoom": 14,
@@ -210,11 +206,10 @@
         "maxzoom": 14,
         "basezoom": 14,
         "include_ids": false,
-        "combine_below": 14,
         "high_resolution": true,
         "name": "OpenTopoMap",
-        "version": "1.0",
-        "description": "OpenTopoMap vector, based on shortbread",
+        "version": "0.9",
+        "description": "OpenTopoMap vector tiles",
         "compress": "gzip",
         "filemetadata": {
             "tilejson": "2.0.0",

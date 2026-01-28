@@ -301,53 +301,6 @@ function process_place_layer()
 	end
 end
 
-function process_public_transport_layer(is_area)
-	local railway = Find("railway")
-	local aeroway = Find("aeroway")
-	local aerialway = Find("aerialway")
-	local highway = Find("highway")
-	local amenity = Find("amenity")
-	local kind = ""
-	local mz = inf_zoom
-	if railway == "station" or railway == "halt" then
-		kind = railway
-		mz = 13
-	elseif railway == "tram_stop" then
-		kind = railway
-		mz = 14
-	elseif highway == "bus_stop" then
-		kind = highway
-		mz = 14
-	elseif amenity == "bus_station" then
-		kind = amenity
-		mz = 13
-	elseif amenity == "ferry_terminal" then
-		kind = amenity
-		mz = 12
-	elseif aerialway == "station" then
-		kind = "aerialway_station"
-		mz = 13
-	elseif aeroway == "aerodrome" then
-		kind = aeroway
-		mz = 11
-	elseif aeroway == "helipad" then
-		kind = aeroway
-		mz = 13
-	end
-	if is_area then
-		LayerAsCentroid("public_transport")
-	else
-		Layer("public_transport", false)
-	end
-	MinZoom(11)
-	Attribute("type", kind)
-	local iata = Find("iata")
-	if iata ~= "" then
-		Attribute("iata", iata)
-	end
-	setNameAttributes()
-end
-
 function node_function()
 	-- Layer place_labels
 	if Holds("place") and Holds("name") then
@@ -362,25 +315,7 @@ function node_function()
 		setNameAttributes()
 		Attribute("ref", Find("ref"))
 	end
-	-- Layer public_transport
-	local railway = Find("railway")
-	local aeroway = Find("aeroway")
-	local aerialway = Find("aerialway")
-	local amenity = Find("amenity")
-	local highway = Find("highway")
-
-	if railway == "station"
-	or railway == "halt"
-	or railway == "tram_stop"
-	or highway == "bus_stop"
-	or amenity == "bus_station"
-	or amenity == "ferry_terminal"
-	or aeroway == "aerodrome"
-	or aeroway == "helipad"
-	or aerialway == "station" then
-		process_public_transport_layer(false)
-	end
-
+	
 	-- Layer pois
 	-- Abort here if it was written as POI because Tilemaker cannot write a feature to two layers.
 	if process_pois(false) then
@@ -422,10 +357,11 @@ function process_water_polygons(way_area)
 	local natural = Find("natural")
 	local water = Find("water")
 	local landuse = Find("landuse")
+	local leisure = Find("leisure")
 	local mz = inf_zoom
 	local kind = ""
 	local is_river = (natural == "water" and water == "river") or waterway == "riverbank"
-	if landuse == "reservoir" or landuse == "basin" or (natural == "water" and not is_river) or natural == "glacier" then
+	if landuse == "reservoir" or landuse == "basin" or (natural == "water" and not is_river) or natural == "glacier" or leisure == "swimming_pool" then
 		mz = math.max(4, zmin_for_area(0.01, way_area))
 		if mz >= 10 then
 			mz = math.max(10, zmin_for_area(0.1, way_area))
@@ -434,6 +370,8 @@ function process_water_polygons(way_area)
 			kind = landuse
 		elseif natural == "water" or natural == "glacier" then
 			kind = natural
+		elseif leisure == "swimming_pool" then
+			kind = leisure
 		end
 	elseif is_river or waterway == "dock" or waterway == "canal" then
 		mz = math.max(4, zmin_for_area(0.1, way_area))
@@ -1076,7 +1014,7 @@ function process_buildings()
 		MinZoom(mz)
 		Attribute("type", building)
 		--Attribute("name", name)
-		setNameAttributes()
+		--setNameAttributes()
 	end
 end
 
@@ -1088,6 +1026,7 @@ function process_addresses(is_area)
 	end
 	MinZoom(14)
 	setAddressAttributes()
+	setNameAttributes()
 end
 
 function setAddressAttributes()
@@ -1167,23 +1106,39 @@ end
 -- Returns false if it was no POI we are interested in.
 function process_pois(polygon)
 	local type_tag = nil
-	local amenity = valueAcceptedOrNil(poi_amenity_values, Find("amenity"))
-	local shop = valueAcceptedOrNil(poi_shop_values, Find("shop"))
-	local tourism = valueAcceptedOrNil(poi_tourism_values, Find("tourism"))
-	local man_made = valueAcceptedOrNil(poi_man_made_values, Find("man_made"))
-	local historic = valueAcceptedOrNil(poi_historic_values, Find("historic"))
-	local leisure = valueAcceptedOrNil(poi_leisure_values, Find("leisure"))
-	local sport = valueAcceptedOrNil(poi_sport_values, Find("sport"))
-	local natural = valueAcceptedOrNil(poi_natural_values, Find("natural"))
-	local emergency = valueAcceptedOrNil(poi_emergency_values, Find("emergency"))
-	local highway = valueAcceptedOrNil(poi_highway_values, Find("highway"))
-	local railway = valueAcceptedOrNil(poi_railway_values, Find("railway"))
-	local office = valueAcceptedOrNil(poi_highway_values, Find("office"))
-	local power = valueAcceptedOrNil(poi_power_values, Find("power"))
+	local mz = 14 --default zoom level
+		
+	--local amenity = valueAcceptedOrNil(poi_amenity_values, Find("amenity"))
+	--local shop = valueAcceptedOrNil(poi_shop_values, Find("shop"))
+	--local tourism = valueAcceptedOrNil(poi_tourism_values, Find("tourism"))
+	--local man_made = valueAcceptedOrNil(poi_man_made_values, Find("man_made"))
+	--local historic = valueAcceptedOrNil(poi_historic_values, Find("historic"))
+	--local leisure = valueAcceptedOrNil(poi_leisure_values, Find("leisure"))
+	--local sport = valueAcceptedOrNil(poi_sport_values, Find("sport"))
+	--local natural = valueAcceptedOrNil(poi_natural_values, Find("natural"))
+	--local emergency = valueAcceptedOrNil(poi_emergency_values, Find("emergency"))
+	--local highway = valueAcceptedOrNil(poi_highway_values, Find("highway"))
+	--local railway = valueAcceptedOrNil(poi_railway_values, Find("railway"))
+	--local office = valueAcceptedOrNil(poi_highway_values, Find("office"))
+	--local power = valueAcceptedOrNil(poi_power_values, Find("power"))
 	
-	if amenity == nil and shop == nil and tourism == nil and man_made == nil and historic == nil and leisure == nil and sport == nil and natural == nil and emergency == nil and highway == nil and railway == nil and office == nil and power == nil then
-		return false
-	end
+	--if amenity == nil and shop == nil and tourism == nil and man_made == nil and historic == nil and leisure == nil and sport == nil and natural == nil and emergency == nil and highway == nil and railway == nil and office == nil and power == nil then
+	--	return false
+	--end
+	
+	local amenity = Find("amenity")
+	--local shop = Find("shop")
+	local tourism = Find("tourism")
+	local man_made = Find("man_made")
+	local historic = Find("historic")
+	local leisure = Find("leisure")
+	local sport = Find("sport")
+	local natural = Find("natural")
+	--local emergency = Find("emergency")
+	local highway = Find("highway")
+	local railway = Find("railway")
+	--local office = Find("office")
+	local power = Find("power")
 	
 	local access = Find("access")
 	local denotation = Find("denotation")
@@ -1197,11 +1152,11 @@ function process_pois(polygon)
 	local leaf_type = Find("leaf_type")
 	local station = Find("station")
 	local archaeological_site = Find("archaeological_site")
+	local hiking = Find("hiking")
 	
 	local is_church = { catholic = true, roman_catholic = true, old_catholic = true, greek_catholic = true, lutheran = true, protestant = true, reformed = true }
 	local is_chapel = { wayside_chapel = true, chapel = true, wayside_shrine = true, wayside_cross = true }
 	
-	local mz = 14 --default zoom level
 	if man_made == "communications_tower" then
 		type_tag = "communications_tower"
 		mz = 11
@@ -1233,6 +1188,7 @@ function process_pois(polygon)
 		type_tag = "castle_ruins"
 		mz = 14
 	elseif (leisure == "swimming_pool" or sport == "swimming") and access ~= "private" then
+		-- leisure == "sports_centre" and sport == "swimming"
 		type_tag = "swimming"
 		mz = 12
 	elseif natural == "viewpoint" then
@@ -1272,13 +1228,13 @@ function process_pois(polygon)
 		if summit_cross == "yes" then
 			type_tag = "summit_cross"
 		else
-			type_tag = "summit_cross"
+			type_tag = "peak"
 		end
 		mz = 12
 	elseif man_made == "cross" then
 		type_tag = "cross"
 		mz = 13
-	elseif natural == "tree" and (name ~= nil or denotation == "landmark" or denotation == "natural_monument") then
+	elseif natural == "tree" and (name ~= "" or denotation == "landmark" or denotation == "natural_monument") then		
 		if leaf_type == "needleleaved" then
 			type_tag = "tree_needleleaved"
 		else
@@ -1299,9 +1255,14 @@ function process_pois(polygon)
 			type_tag = "station"
 			mz = 12
 		end
-	elseif amenity == "parking" and name ~= nil then 	-- todo: update with Wanderparkplaetze once available
-		type_tag = "parking"
-		mz = 14
+	elseif amenity == "parking" and access ~= "private" then 	-- todo: update with Wanderparkplaetze once available
+		if hiking == "yes" then
+			type_tag = "parking"
+			mz = 12
+		elseif name ~= "" then
+			type_tag = "parking"
+			mz = 14
+		end
 	end
 	
 	if type_tag == nil then
@@ -1342,7 +1303,7 @@ function way_function()
 	local is_area_default_linear = area_yes_multi_boundary
 
 	-- Layers water_polygons, water_polygons_labels, dam_polygons
-	if is_area and (Holds("waterway") or Holds("natural") or Holds("landuse") or Holds("barrier") or Holds("man_made")) then
+	if is_area and (Holds("waterway") or Holds("natural") or Holds("landuse") or Holds("barrier") or Holds("man_made") or Holds("leisure")) then
 		process_water_polygons(area)
 		process_natural(true)
 	end
@@ -1402,25 +1363,6 @@ function way_function()
 	-- Layer ferries
 	if Find("route") == "ferry" then
 		process_ferries()
-	end
-
-	-- Layer public_transport
-	local railway = Find("railway")
-	local aeroway = Find("aeroway")
-	local highway = Find("highway")
-	local amenity = Find("amenity")
-	local aeroway = Find("aeroway")
-	if is_area
-		and (
-			railway == "station"
-			or railway == "halt"
-			or aeroway == "aerodrome"
-			or aeroway == "helipad"
-			or highway == "bus_stop"
-			or amenity == "bus_station"
-			or amenity == "ferry_terminal"
-		) then
-		process_public_transport_layer(true)
 	end
 
 	-- Layer buildings
