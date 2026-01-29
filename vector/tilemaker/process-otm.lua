@@ -988,7 +988,7 @@ function process_powertowers()
 	local mz = inf_zoom
 	
 	if power == "tower" then
-		mz = 12
+		mz = 13
 	elseif power == "pole" then
 		mz = 14
 	end
@@ -1187,8 +1187,7 @@ function process_pois(polygon)
 	elseif historic == "ruins" then
 		type_tag = "castle_ruins"
 		mz = 14
-	elseif (leisure == "swimming_pool" or sport == "swimming") and access ~= "private" then
-		-- leisure == "sports_centre" and sport == "swimming"
+	elseif (leisure == "sports_centre" and sport == "swimming") or leisure == "water_park" or leisure == "swimming_area" or (sport == "swimming" and leisure ~= "swimming_pool" and access ~= "private") then
 		type_tag = "swimming"
 		mz = 12
 	elseif natural == "viewpoint" then
